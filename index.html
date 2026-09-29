@@ -3,110 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f6f8f8">
-<title>MWY2026 · RC1 Interactive Travel Book</title>
+<meta name="theme-color" content="#f4f2ed">
+<title>MWY2026 · 上海三日行程書 RC3.7</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <style>
 :root{
-  --bg:#f6f8f8;--paper:#fff;--ink:#0e1516;--sub:#687476;--line:#dce4e4;
-  --accent:#18c9c1;--accent-ink:#08756f;--soft:#e8f9f7;--warn:#946300;--warnbg:#fff3d8;
-  --danger:#9a3232;--dangerbg:#fff0f0;--radius:18px;--shadow:0 16px 42px rgba(13,25,26,.08)
+  --bg:#f4f2ed; --paper:#fffefa; --ink:#142022; --muted:#657170; --line:#d9dfdc;
+  --soft:#e9f7f4; --accent:#12b9ad; --accent-ink:#087269; --ink-soft:#273335;
+  --warm:#f7efe1; --warn:#8c5f18; --danger:#a04343; --danger-soft:#fbebeb;
+  --radius:20px; --radius-sm:14px; --shadow:0 18px 55px rgba(26,37,38,.08);
 }
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif}
-body{min-height:100dvh}
-button{font:inherit;color:inherit}
-button:active{transform:scale(.985)}
-img{max-width:100%;display:block}
-.shell{max-width:820px;margin:0 auto;min-height:100dvh}
-.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 10px) 14px 10px;background:rgba(246,248,248,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.topbar h1{font-size:15px;margin:0;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.iconbtn{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:12px;display:grid;place-items:center;font-size:22px;cursor:pointer}
-.main{padding:16px 16px 105px}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;min-height:100dvh;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit} button:active{transform:scale(.985)} img{display:block;max-width:100%}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgba(18,185,173,.28);outline-offset:2px}
 .hidden{display:none!important}
-.cover{min-height:280px;background:#101718;color:#fff;border-radius:28px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
-.cover small{font-size:10px;letter-spacing:.14em;color:#9baaaa;font-weight:850}
-.cover h2{font-size:38px;line-height:1.01;letter-spacing:-.055em;margin:8px 0 0;max-width:11ch}
-.cover p{font-size:13px;line-height:1.6;color:#ced6d6;max-width:46ch}
-.cover-meta{display:flex;gap:7px;flex-wrap:wrap}.meta{font-size:9px;border:1px solid rgba(255,255,255,.16);padding:7px 9px;border-radius:999px}
-.section{margin-top:24px}.kicker{font-size:9px;letter-spacing:.14em;font-weight:900;color:#788485;margin:0 0 9px}
-.next{display:grid;grid-template-columns:65px 1fr auto;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:15px}
-.next .nt{font-size:21px;font-weight:900;letter-spacing:-.04em}.next h3,.row h3{margin:0;font-size:16px;letter-spacing:-.025em}.next p,.row p{font-size:11px;line-height:1.45;color:var(--sub);margin:4px 0 0}
-.cta{border:0;border-radius:11px;padding:9px 11px;background:var(--soft);color:var(--accent-ink);font-size:10px;font-weight:900;cursor:pointer}
-.days{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.daypick{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;text-align:left;cursor:pointer}.daypick b{font-size:13px}.daypick span{display:block;font-size:9px;color:var(--sub);line-height:1.4;margin-top:4px}
-.dayhead{display:flex;justify-content:space-between;align-items:end;margin:2px 0 14px}.dayhead h2{font-size:30px;letter-spacing:-.045em;margin:0}.dayhead p{font-size:11px;color:var(--sub);margin:5px 0 0}
-.seg,.viewseg{display:grid;background:#e8eeee;padding:3px;border-radius:13px}.seg{grid-template-columns:repeat(3,1fr);margin-bottom:10px}.viewseg{grid-template-columns:1fr 1fr;margin-bottom:16px}
-.seg button,.viewseg button{border:0;background:transparent;border-radius:10px;padding:9px;font-size:11px;font-weight:850;color:#6b7677;cursor:pointer}.seg button.active,.viewseg button.active{background:#fff;color:#111;box-shadow:0 2px 7px rgba(0,0,0,.06)}
-.timeline{position:relative}.timeline:before{content:"";position:absolute;left:28px;top:18px;bottom:18px;width:1px;background:#ccd6d6}
-.stop{position:relative;padding-left:57px;margin-bottom:10px}.dot{position:absolute;left:22px;top:17px;width:13px;height:13px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}
-.row{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;cursor:pointer;transition:.15s}.row.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(24,201,193,.12)}.rowtop{display:flex;justify-content:space-between;gap:12px}.time{font-size:10px;color:var(--accent-ink);font-weight:900;margin-bottom:4px}.kind{font-size:9px;color:#788283}
-.row-actions{display:flex;gap:6px;align-items:center}.locate{border:1px solid var(--line);background:#f8fafa;border-radius:10px;padding:7px 8px;font-size:9px;font-weight:850;cursor:pointer}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.tag{font-size:8px;padding:5px 7px;background:#f0f3f3;color:#687274;border-radius:999px}
-.linker{margin:-2px 0 9px 57px;color:#818b8c;font-size:9px}.linker:before{content:"↓";margin-right:7px}
-.bottomnav{position:fixed;left:50%;bottom:0;z-index:50;transform:translateX(-50%);width:min(820px,100%);display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:rgba(255,255,255,.95);backdrop-filter:blur(18px)}
-.nav{border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:10px;font-weight:850;color:#6e797a;cursor:pointer}.nav.active{background:var(--soft);color:var(--accent-ink)}
-#realMap{height:470px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#e9eeee}
-.mapfallback{height:100%;display:grid;place-items:center;text-align:center;color:#687475;padding:30px}
-.trip-marker{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid var(--accent);font-size:10px;font-weight:900;box-shadow:0 8px 20px rgba(0,0,0,.16);cursor:pointer}.trip-marker.event{background:#111;color:#fff;border-color:#111}.trip-marker.selected{width:36px;height:36px;background:var(--accent);color:#073f3b;border-color:#fff;box-shadow:0 0 0 3px var(--accent),0 9px 24px rgba(0,0,0,.2)}
-.map-tools{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.map-tools button{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 11px;font-size:9px;font-weight:850;cursor:pointer}
-.map-inspector{background:#101718;color:#fff;border-radius:18px;padding:15px;margin:12px 0}.map-inspector small{font-size:8px;letter-spacing:.11em;color:#91a0a0;font-weight:900}.map-inspector h3{font-size:17px;margin:5px 0 4px}.map-inspector p{font-size:10px;color:#c6cece;line-height:1.5;margin:0 0 11px}.map-inspector .mi-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.map-inspector button{border:0;border-radius:11px;padding:10px;font-size:9px;font-weight:900;cursor:pointer}.map-inspector .primary{background:var(--accent);color:#063d39}.map-inspector .secondary{background:#293233;color:#fff}
-.recheckline{margin-top:16px;padding-top:11px;border-top:1px solid var(--line);font-size:10px;color:#778283;line-height:1.5}
-.detail{position:fixed;inset:0;z-index:80;background:var(--bg);overflow:auto;transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}.detail.open{transform:translateX(0)}
-.dtop{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 9px) 13px 9px;background:rgba(246,248,248,.95);backdrop-filter:blur(17px);border-bottom:1px solid var(--line)}.dtop strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.article{max-width:820px;margin:0 auto;padding:18px 16px 58px}.article h1{font-size:36px;line-height:1.02;letter-spacing:-.055em;margin:8px 0 9px}.article .deck{font-size:13px;color:var(--sub);line-height:1.65;max-width:52ch;margin:0 0 18px}
-.status{display:inline-flex;font-size:8px;font-weight:900;padding:6px 8px;border-radius:999px;background:#e9f8f6;color:#19756f}.status.warn{background:var(--warnbg);color:var(--warn)}.status.danger{background:var(--dangerbg);color:var(--danger)}
-.heroimg{border-radius:22px;overflow:hidden;background:#dfe5e5;min-height:230px}.heroimg img{width:100%;height:100%;min-height:230px;max-height:440px;object-fit:cover}.caption{font-size:8px;color:#7a8586;line-height:1.5;margin-top:6px}
-.article h2{font-size:21px;letter-spacing:-.035em;margin:23px 0 10px}.article h3{font-size:13px;margin:14px 0 7px}.article p{font-size:11px;color:#3f494a;line-height:1.65}
-.choice{display:grid;grid-template-columns:1fr 1fr;gap:9px}.choice>div,.fact{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px}.choice b{font-size:17px}.choice span,.fact span{display:block;color:var(--sub);font-size:9px;line-height:1.45;margin-top:5px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.fact b{font-size:11px}
-.callout{border-left:3px solid var(--accent);padding:8px 0 8px 13px;margin:17px 0}.callout strong{font-size:12px;display:block}.callout p{margin:4px 0 0;color:#596465}
-.warnbox{background:var(--warnbg);border:1px solid #efd99c;border-radius:16px;padding:13px;margin:14px 0}.warnbox b{font-size:11px}.warnbox p{font-size:10px;color:#6f5a27;margin:5px 0 0}
-.matrix{width:100%;border-collapse:collapse;margin:10px 0}.matrix th,.matrix td{font-size:9px;text-align:left;padding:9px 7px;border-bottom:1px solid var(--line);vertical-align:top}.matrix th{color:#6b7677}.matrix td strong{font-size:10px}
-.route{margin:12px 0}.route-step{display:grid;grid-template-columns:54px 1fr;gap:10px;position:relative;padding-bottom:18px}.route-step:not(:last-child):after{content:"";position:absolute;left:24px;top:25px;bottom:0;width:1px;background:#c9d3d3}.route-dot{position:absolute;left:19px;top:21px;width:11px;height:11px;border-radius:50%;background:var(--accent);transform:translateX(-54px)}.route-time{font-size:9px;color:var(--accent-ink);font-weight:900}.route-copy b{font-size:12px}.route-copy span{display:block;font-size:9px;color:var(--sub);line-height:1.45;margin-top:4px}
-.lightbar{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.lightbar div{background:#e9eeee;border-radius:11px;padding:11px 6px;text-align:center;font-size:8px;line-height:1.45}.lightbar .hot{background:#dff8f6;color:#076e68;font-weight:900}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:9px}.compare>div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px}.compare h3{margin:0 0 8px}.compare p{font-size:9px;margin:4px 0}
-.eventgrid{display:grid;gap:8px}.eventmod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px}.eventmod .head{display:flex;justify-content:space-between;gap:10px}.eventmod h3{margin:0;font-size:12px}.eventmod .state{font-size:8px;font-weight:900;color:var(--accent-ink)}.eventmod.tba .state{color:#966800}.eventmod p{font-size:9px;color:var(--sub);margin:6px 0 0}
-.hallplan{display:grid;grid-template-columns:1.25fr .75fr;gap:9px;margin-top:12px}.hall{border-radius:16px;padding:16px;background:#fff;border:1px solid var(--line)}.hall.primary{border-color:var(--accent);background:#effcfb}.hall b{display:block;font-size:13px}.hall span{display:block;font-size:9px;color:var(--sub);line-height:1.45;margin-top:5px}
-.next-hop{background:#101718;color:#fff;border-radius:18px;padding:14px;margin-top:20px}.next-hop small{font-size:8px;color:#91a0a0;font-weight:900;letter-spacing:.1em}.next-hop b{display:block;font-size:13px;margin:5px 0 10px}.next-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.next-actions button{border:0;border-radius:11px;padding:10px;font-size:9px;font-weight:900}.next-actions .a{background:var(--accent);color:#063d39}.next-actions .b{background:#293233;color:#fff}
-.actions{position:sticky;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));margin:24px -16px -58px;background:rgba(246,248,248,.95);backdrop-filter:blur(16px);border-top:1px solid var(--line)}.actions button{border:0;border-radius:12px;padding:11px;font-size:9px;font-weight:900}.actions .primary{background:var(--accent);color:#063d39}.actions .secondary{background:#fff;border:1px solid var(--line)}
-.guideitem{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:8px}.guideitem h3{margin:0;font-size:13px}.guideitem p{font-size:10px;color:var(--sub);margin:5px 0 0;line-height:1.45}
-.state-list{display:grid;gap:8px}.state-row{display:grid;grid-template-columns:82px 1fr;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px}.state-row span{font-size:8px;font-weight:900}.state-row b{font-size:10px}.state-row p{font-size:9px;color:var(--sub);margin:3px 0 0;line-height:1.4}
-.viewer{margin:12px 0}.viewstage{height:360px;border-radius:22px;overflow:hidden;background:#dfe4e4;position:relative}.viewstage img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease,opacity .18s ease}.viewlabel{position:absolute;left:12px;top:12px;background:rgba(14,21,22,.84);color:#fff;border-radius:10px;padding:7px 9px;font-size:9px;font-weight:900}.viewmeta{font-size:9px;color:var(--sub);line-height:1.45;margin:8px 2px 0}
-.viewtabs,.lenstabs,.venue-tabs{display:flex;gap:7px;overflow:auto;padding:9px 0 2px;scrollbar-width:none}.viewtabs button,.lenstabs button,.venue-tabs button{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;font-size:9px;font-weight:850;cursor:pointer}.viewtabs button.active,.lenstabs button.active,.venue-tabs button.active{background:#101718;color:#fff;border-color:#101718}
-.pano{margin-top:13px}.panoview{height:245px;border-radius:18px;overflow:hidden;background:#dfe4e4;position:relative;touch-action:none;cursor:grab}.panoview:active{cursor:grabbing}.panoview img{height:100%;width:auto;max-width:none;position:absolute;left:0;top:0;user-select:none;pointer-events:none}.panotag{position:absolute;left:10px;bottom:10px;background:rgba(14,21,22,.82);color:#fff;border-radius:9px;padding:6px 8px;font-size:8px}
-.venue-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}.venue-card img{width:100%;height:235px;object-fit:cover}.venue-copy{padding:13px}.venue-copy h3{margin:0 0 6px;font-size:14px}.venue-copy p{font-size:9px;color:var(--sub);margin:0;line-height:1.5}
-.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:9px}.photo-pair .heroimg{min-height:180px}.photo-pair .heroimg img{min-height:180px;height:230px}
+.shell{max-width:900px;margin:0 auto;min-height:100dvh}
+.topbar{position:sticky;top:0;z-index:50;display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 9px) 14px 9px;background:rgba(244,242,237,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(217,223,220,.86)}
+.topbar-title{grid-column:2;font-size:14px;font-weight:780;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;letter-spacing:-.01em}.topbar>div:last-child{grid-column:3}
+.iconbtn{width:40px;height:40px;border:1px solid var(--line);background:rgba(255,254,250,.92);border-radius:13px;display:grid;place-items:center;font-size:24px;cursor:pointer;box-shadow:0 3px 10px rgba(20,32,34,.03)}
+.iconbtn.ghost{border-color:transparent;background:transparent;box-shadow:none}.iconbtn span{transform:translateY(-1px)}
+.main{padding:16px 16px 112px}
+.bottomnav{position:fixed;z-index:45;left:50%;bottom:0;transform:translateX(-50%);width:min(900px,100%);display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,254,250,.94);backdrop-filter:blur(20px);border-top:1px solid var(--line)}
+.nav{border:0;background:transparent;padding:10px 8px;border-radius:12px;font-size:12px;font-weight:720;color:#6a7675;cursor:pointer}.nav.active{background:var(--soft);color:var(--accent-ink)}
 
-.restaurant-arrival{margin:14px 0 22px}
-.restaurant-arrival .arrival-photo{border-radius:22px;overflow:hidden;background:#dfe5e5;position:relative}
-.restaurant-arrival .arrival-photo img{width:100%;height:310px;object-fit:cover}
-.restaurant-arrival .arrival-info{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;padding:12px 2px 0}
-.restaurant-arrival .arrival-info small{display:block;font-size:8px;font-weight:900;letter-spacing:.11em;color:var(--accent-ink);margin-bottom:4px}
-.restaurant-arrival .arrival-info b{font-size:12px}
-.restaurant-arrival .arrival-info p{font-size:9px;color:var(--sub);line-height:1.45;margin:4px 0 0}
-.restaurant-arrival .arrival-info button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 9px;font-size:8px;font-weight:900;cursor:pointer}
-.store-missing{min-height:250px;border-radius:22px;background:#e9eeee;border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:30px}
-.store-missing b{display:block;font-size:18px;letter-spacing:-.03em;margin-bottom:7px}
-.store-missing p{font-size:10px;color:var(--sub);line-height:1.55;margin:0;max-width:36ch}
-.store-missing .addr{display:inline-block;margin-top:11px;padding:7px 9px;border-radius:10px;background:#fff;font-size:9px;font-weight:850}
-.food-section{margin-top:22px}
-.food-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.food-card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.food-card img{width:100%;height:190px;object-fit:cover;background:#e4e9e9}
-.food-card .fc-copy{padding:10px 11px 11px}
-.food-card b{font-size:11px}
-.food-card span{display:block;font-size:8px;color:var(--sub);line-height:1.45;margin-top:4px}
-.food-card.placeholder{min-height:246px;display:grid;place-items:center;text-align:center;padding:20px}
-.food-card.placeholder b{font-size:13px}
-.food-card.placeholder span{max-width:24ch}
-.recognition-note{font-size:8px;color:#6f7a7b;margin-top:6px;line-height:1.45}
-@media(max-width:520px){
-  .restaurant-arrival .arrival-photo img{height:250px}
-  .food-gallery{grid-template-columns:1fr}
-  .food-card img{height:220px}
-}
 
-@media(min-width:760px){.article{padding-left:28px;padding-right:28px}.actions{margin-left:-28px;margin-right:-28px;padding-left:28px;padding-right:28px}}
+.cover{position:relative;overflow:hidden;min-height:330px;border-radius:30px;padding:26px;background:#111b1d;color:white;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}
+.cover:before{content:"";position:absolute;inset:auto -10% -28% 20%;height:58%;background:radial-gradient(circle at 50% 50%,rgba(18,185,173,.28),rgba(18,185,173,0) 68%);pointer-events:none}
+.cover-top,.cover-bottom{position:relative;z-index:1}.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:850;color:#9fb0af}.cover h1{font-size:clamp(42px,10vw,64px);line-height:.96;letter-spacing:-.06em;margin:10px 0 14px;max-width:9ch}.cover p{font-size:14px;line-height:1.7;color:#cfd7d6;max-width:46ch;margin:0}
+.cover-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.chip-dark{font-size:10px;padding:7px 9px;border:1px solid rgba(255,255,255,.17);border-radius:999px;color:#d7dedd;background:rgba(255,255,255,.03)}
+.section{margin-top:28px}.section-title{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:12px}.section-title h2{font-size:20px;letter-spacing:-.035em;margin:0}.section-title p{font-size:11px;color:var(--muted);margin:0}
+.day-grid{display:grid;grid-template-columns:1fr;gap:12px}.day-card{position:relative;overflow:hidden;min-height:168px;border:1px solid var(--line);border-radius:24px;background:var(--paper);text-align:left;padding:0;cursor:pointer}.day-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.day-card:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,17,18,.85),rgba(9,17,18,.25) 72%,rgba(9,17,18,.12))}.day-copy{position:relative;z-index:2;color:white;padding:20px;display:flex;min-height:168px;flex-direction:column;justify-content:end}.day-copy small{font-size:10px;font-weight:850;letter-spacing:.12em;color:#bdd1cf}.day-copy b{font-size:24px;letter-spacing:-.045em;margin-top:4px}.day-copy span{font-size:12px;line-height:1.5;color:#d6dddd;margin-top:4px}.day-arrow{position:absolute;right:17px;top:17px;z-index:3;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.14);color:white;font-size:19px}
+.baseline{display:grid;grid-template-columns:1fr;gap:8px}.baseline-row{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.baseline-row:first-child{border-top:0}.baseline-row small{font-size:10px;color:var(--muted);font-weight:750}.baseline-row b{font-size:13px}.baseline-row p{font-size:12px;line-height:1.55;color:var(--muted);margin:3px 0 0}
+
+
+.dayhead{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:4px 0 14px}.dayhead h2{font-size:32px;letter-spacing:-.05em;margin:0}.dayhead p{font-size:12px;color:var(--muted);margin:4px 0 0;line-height:1.5}.day-date{font-size:11px;color:var(--accent-ink);font-weight:780;background:var(--soft);border-radius:999px;padding:7px 9px;white-space:nowrap}
+.seg,.viewseg{display:grid;background:#e7ece9;padding:3px;border-radius:14px}.seg{grid-template-columns:repeat(3,1fr);margin-bottom:9px}.viewseg{grid-template-columns:1fr 1fr;margin-bottom:18px}.seg button,.viewseg button{border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:12px;font-weight:760;color:#687473;cursor:pointer}.seg button.active,.viewseg button.active{background:var(--paper);color:var(--ink);box-shadow:0 2px 8px rgba(20,32,34,.06)}
+.timeline{position:relative}.timeline:before{content:"";position:absolute;left:72px;top:19px;bottom:18px;width:1px;background:#c9d1ce}.stop{display:grid;grid-template-columns:55px 34px minmax(0,1fr);align-items:start;margin-bottom:3px;position:relative}.stop-time{padding-top:17px;text-align:right;font-size:11px;font-weight:820;color:var(--accent-ink);font-variant-numeric:tabular-nums}.stop-track{display:grid;place-items:center;height:48px}.stop-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--bg);z-index:2}.stop-dot.anchor{background:#172123}.stop-card{border:0;background:transparent;padding:12px 10px 13px;text-align:left;border-radius:16px;cursor:pointer;min-width:0}.stop-card:active,.stop-card.selected{background:rgba(255,254,250,.76)}.stop-kind{font-size:10px;color:#7a8583;font-weight:760}.stop-card h3{font-size:15px;letter-spacing:-.02em;margin:2px 0 3px}.stop-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}.route-link{margin:-2px 0 7px 89px;font-size:10px;color:#87908f;line-height:1.4}.route-link:before{content:"↓";margin-right:7px;color:#9aa3a1}
+
+
+#realMap{height:480px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#e9ece9}.mapfallback{height:100%;display:grid;place-items:center;text-align:center;color:#667271;padding:24px;font-size:12px}.trip-marker{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:2px solid var(--accent);font-size:10px;font-weight:900;box-shadow:0 7px 20px rgba(0,0,0,.18);cursor:pointer}.trip-marker.anchor{background:#172123;color:#fff;border-color:#172123}.trip-marker.selected{width:36px;height:36px;background:var(--accent);color:#053c38;border-color:#fff;box-shadow:0 0 0 3px var(--accent),0 8px 24px rgba(0,0,0,.2)}.map-tools{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}.map-tools button{border:1px solid var(--line);background:var(--paper);border-radius:11px;padding:9px 11px;font-size:10px;font-weight:760}.map-inspector{background:#172123;color:#fff;border-radius:18px;padding:15px;margin-top:10px}.map-inspector small{font-size:9px;color:#9aacab;letter-spacing:.08em}.map-inspector h3{font-size:17px;margin:5px 0 4px}.map-inspector p{font-size:11px;line-height:1.5;color:#cbd3d2;margin:0 0 11px}.map-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.map-actions button{border:0;border-radius:11px;padding:10px;font-size:10px;font-weight:800}.map-actions .primary{background:var(--accent);color:#073d39}.map-actions .secondary{background:#2a3637;color:#fff}.map-note{font-size:10px;line-height:1.5;color:#7c8684;margin:10px 2px 0}
+
+
+.guide-intro{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px}.guide-intro h2{font-size:27px;margin:0 0 8px;letter-spacing:-.04em}.guide-intro p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}.guide-group{margin-top:25px}.guide-group h3{font-size:12px;letter-spacing:.09em;color:#737e7c;text-transform:uppercase;margin:0 0 8px}.status-list{display:grid;gap:8px}.status-row{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:15px}.status-row .state{font-size:9px;font-weight:860;color:var(--accent-ink)}.status-row.warn .state{color:var(--warn)}.status-row b{font-size:12px}.status-row p{font-size:11px;line-height:1.48;color:var(--muted);margin:3px 0 0}.mini-route{display:grid;gap:7px}.mini-route .r{display:grid;grid-template-columns:66px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.mini-route .r:last-child{border-bottom:0}.mini-route strong{font-size:11px;color:var(--accent-ink)}.mini-route span{font-size:11px;line-height:1.45;color:var(--muted)}
+
+
+.detail{position:fixed;inset:0;z-index:80;background:var(--bg);overflow:auto;transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.8,.2,1)}.detail.open{transform:translateX(0)}.dtop{position:sticky;top:0;z-index:7;display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 8px) 13px 8px;background:rgba(244,242,237,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.dtop strong{text-align:center;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.article{max-width:900px;margin:0 auto;padding:18px 16px 110px}.page-kicker{font-size:10px;font-weight:880;letter-spacing:.13em;color:var(--accent-ink);text-transform:uppercase;margin:4px 0 7px}.article h1{font-size:clamp(36px,9vw,54px);line-height:.98;letter-spacing:-.058em;margin:0 0 10px;max-width:12ch}.deck{font-size:14px;line-height:1.68;color:#4c5858;margin:0;max-width:52ch}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:17px}.fact{background:rgba(255,254,250,.7);border-top:1px solid var(--line);padding:10px 0}.fact small{display:block;font-size:9px;font-weight:800;color:#7b8584;margin-bottom:3px}.fact b{display:block;font-size:12px;line-height:1.35}
+.media{position:relative;overflow:hidden;background:#e3e7e4;border-radius:22px;margin:18px 0 8px;min-height:240px}.media img{width:100%;height:min(62vw,480px);min-height:240px;object-fit:cover}.media.missing{display:grid;place-items:center}.media.missing:after{content:"相片載入唔到；頁面內容仍可使用。";font-size:11px;color:#707a78;padding:24px}.caption{font-size:10px;line-height:1.45;color:#7b8583;margin:6px 2px 0}
+.block{margin-top:27px}.block-title{font-size:11px;font-weight:880;letter-spacing:.1em;color:#74807e;text-transform:uppercase;margin-bottom:9px}.lead-action{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;background:#172123;color:#fff;border-radius:22px;padding:17px}.lead-action small{display:block;color:#9caeac;font-size:9px;font-weight:850;letter-spacing:.08em}.lead-action strong{display:block;font-size:22px;line-height:1.15;letter-spacing:-.035em;margin-top:5px}.lead-action p{font-size:11px;line-height:1.5;color:#c9d2d1;margin:5px 0 0}.lead-action .badge{font-size:11px;font-weight:900;background:var(--accent);color:#073d39;border-radius:999px;padding:8px 10px;white-space:nowrap}
+.rule-list{display:grid;border-top:1px solid var(--line)}.rule{display:grid;grid-template-columns:76px minmax(0,1fr);gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}.rule b{font-size:11px}.rule span{font-size:12px;line-height:1.5;color:#566261}.rule em{font-style:normal;color:var(--accent-ink);font-weight:800}
+.branch-grid{display:grid;grid-template-columns:1fr;gap:8px}.branch{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:13px}.branch b{font-size:13px}.branch span{display:block;font-size:11px;line-height:1.48;color:var(--muted);margin-top:4px}.branch.hot{border-color:rgba(18,185,173,.55);background:var(--soft)}.branch.warn{background:var(--warm);border-color:#ead8b5}.branch.danger{background:var(--danger-soft);border-color:#eccaca}
+.order-card{display:grid;grid-template-columns:84px 1fr;gap:13px;background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:12px}.order-card img{width:84px;height:84px;object-fit:cover;border-radius:14px;background:#e5e8e6}.order-card small{font-size:9px;color:#7a8583;font-weight:800}.order-card strong{display:block;font-size:17px;letter-spacing:-.025em;margin:3px 0 3px}.order-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}.order-textonly{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:15px}.order-textonly small{font-size:9px;color:#7a8583;font-weight:800}.order-textonly strong{display:block;font-size:18px;margin:3px 0}.order-textonly p{font-size:11px;color:var(--muted);line-height:1.48;margin:0}
+.cutoff{border-left:4px solid var(--danger);padding:10px 0 10px 13px;margin-top:18px}.cutoff small{display:block;font-size:9px;font-weight:900;color:var(--danger);letter-spacing:.08em}.cutoff strong{display:block;font-size:18px;letter-spacing:-.025em;margin:3px 0}.cutoff p{font-size:11px;line-height:1.5;color:#5c6665;margin:0}
+.route-stack{display:grid;gap:0}.route-step{display:grid;grid-template-columns:64px 20px 1fr;gap:8px;position:relative;min-height:66px}.route-step .t{font-size:10px;font-weight:850;color:var(--accent-ink);padding-top:5px;text-align:right}.route-step .track{position:relative}.route-step .track:before{content:"";position:absolute;left:9px;top:0;bottom:0;width:1px;background:#cbd3d0}.route-step:first-child .track:before{top:10px}.route-step:last-child .track:before{bottom:calc(100% - 10px)}.route-step .track:after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--accent);left:5px;top:7px;box-shadow:0 0 0 4px var(--bg)}.route-step h3{font-size:13px;margin:2px 0 3px}.route-step p{font-size:11px;line-height:1.45;color:var(--muted);margin:0;padding-bottom:13px}
+.shot-list{display:grid;gap:8px}.shot{display:grid;grid-template-columns:72px 1fr;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px}.lens{font-size:13px;font-weight:920;color:var(--accent-ink);letter-spacing:-.02em}.shot h3{font-size:13px;margin:0 0 3px}.shot p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}
+.weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.weather{border-top:3px solid #b9c5c2;background:var(--paper);border-radius:14px;padding:11px}.weather b{font-size:11px}.weather span{display:block;font-size:10px;line-height:1.42;color:var(--muted);margin-top:3px}.weather.good{border-top-color:var(--accent)}.weather.warn{border-top-color:#d09a49}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:8px}.compare>div{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:12px}.compare small{font-size:9px;color:#77817f;font-weight:800}.compare strong{display:block;font-size:14px;margin:4px 0}.compare p{font-size:10px;line-height:1.43;color:var(--muted);margin:0}
+.alert{border:1px solid #e4d7bd;background:var(--warm);border-radius:16px;padding:13px;margin-top:12px}.alert.danger{border-color:#eccaca;background:var(--danger-soft)}.alert strong{display:block;font-size:12px}.alert p{font-size:11px;line-height:1.48;color:#655c4e;margin:4px 0 0}.alert.danger p{color:#6c4f4f}
+.callout{font-size:22px;line-height:1.25;letter-spacing:-.035em;font-weight:770;margin:28px 0 8px;max-width:18ch}.subnote{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
+.disclosure{margin-top:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.disclosure details{border-top:1px solid var(--line)}.disclosure details:first-child{border-top:0}.disclosure summary{list-style:none;padding:13px 2px;font-size:12px;font-weight:770;cursor:pointer}.disclosure summary::-webkit-details-marker{display:none}.disclosure summary:after{content:"＋";float:right;color:#7f8987}.disclosure details[open] summary:after{content:"－"}.disclosure .more{font-size:11px;line-height:1.55;color:var(--muted);padding:0 2px 13px}
+.next-hop{background:#172123;color:#fff;border-radius:20px;padding:14px;margin-top:28px}.next-hop small{font-size:9px;color:#9aacaa;font-weight:850;letter-spacing:.08em}.next-hop strong{display:block;font-size:15px;line-height:1.35;margin:4px 0 10px}.next-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.next-actions button{border:0;border-radius:11px;padding:10px 8px;font-size:10px;font-weight:820}.next-actions .a{background:var(--accent);color:#063d38}.next-actions .b{background:#2a3637;color:white}.sticky-actions{position:sticky;bottom:0;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));margin:26px -16px -110px;background:rgba(244,242,237,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky-actions button{border:0;border-radius:12px;padding:11px;font-size:10px;font-weight:850}.sticky-actions .primary{background:var(--accent);color:#073d39}.sticky-actions .secondary{background:var(--paper);border:1px solid var(--line)}
+.viewer{margin-top:17px}.viewstage{height:370px;border-radius:22px;overflow:hidden;background:#e4e7e5;position:relative}.viewstage img{width:100%;height:100%;object-fit:cover;transition:transform .22s ease,opacity .15s ease}.viewlabel{position:absolute;left:12px;top:12px;padding:7px 9px;border-radius:10px;background:rgba(17,27,29,.82);color:#fff;font-size:10px;font-weight:800}.viewmeta{font-size:10px;line-height:1.45;color:var(--muted);margin:7px 2px 0}.tabline{display:flex;gap:6px;overflow:auto;padding:9px 0 2px;scrollbar-width:none}.tabline button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;font-size:10px;font-weight:760}.tabline button.active{background:#172123;color:#fff;border-color:#172123}
+.pano{margin-top:12px}.panoview{height:240px;border-radius:19px;overflow:hidden;background:#dfe4e1;position:relative;touch-action:none;cursor:grab}.panoview img{height:100%;width:auto;max-width:none;position:absolute;left:0;top:0;user-select:none;pointer-events:none}.panotag{position:absolute;left:10px;bottom:10px;background:rgba(17,27,29,.8);color:white;border-radius:9px;padding:6px 8px;font-size:9px}
+.venue-card{border:1px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden}.venue-card img{width:100%;height:220px;object-fit:cover}.venue-card .copy{padding:13px}.venue-card h3{font-size:14px;margin:0 0 5px}.venue-card p{font-size:11px;line-height:1.48;color:var(--muted);margin:0}
+.event-pass{border-radius:24px;padding:20px;background:#172123;color:white;position:relative;overflow:hidden}.event-pass:after{content:"";position:absolute;inset:-40% -50% auto 30%;height:180px;background:radial-gradient(circle,rgba(18,185,173,.3),transparent 68%)}.event-pass small{font-size:10px;color:#a1b1af;letter-spacing:.12em}.event-pass h2{font-size:30px;letter-spacing:-.05em;margin:6px 0 5px}.event-pass p{font-size:11px;color:#cad2d1;line-height:1.5;margin:0}.event-pass .time{font-size:58px;line-height:1;font-weight:900;letter-spacing:-.06em;margin-top:24px}.status-strip{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.status-pill{font-size:9px;font-weight:820;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,.08);color:#dbe3e2}.status-pill.ok{background:rgba(18,185,173,.18);color:#9ce6df}.status-pill.warn{background:rgba(241,198,112,.13);color:#f3cf91}
+
+
+
+.facts{align-items:stretch}.fact{padding:10px 9px 11px;min-width:0}.fact b{overflow-wrap:anywhere}
+.route-step{grid-template-columns:54px 20px minmax(0,1fr);column-gap:9px}.route-step .t{text-align:center;padding-top:4px;font-variant-numeric:tabular-nums}.route-step h3,.route-step p{min-width:0}
+.shot{grid-template-columns:76px minmax(0,1fr)}.lens{text-align:left;font-variant-numeric:tabular-nums}
+.dtop{padding-left:16px;padding-right:16px}.dtop .privacy-btn{justify-self:end}.topbar .privacy-btn{justify-self:end}
+.privacy-btn{width:40px;height:40px;border:1px solid var(--line);border-radius:13px;background:rgba(255,254,250,.92);font-size:10px;font-weight:900;letter-spacing:.03em;cursor:pointer;box-shadow:0 3px 10px rgba(20,32,34,.03)}
+.privacy-btn.on{background:var(--soft);border-color:rgba(18,185,173,.45);color:var(--accent-ink)}
+.privacy-note{font-size:10px;line-height:1.5;color:var(--muted);margin-top:8px}.privacy-note b{color:var(--ink)}
+.meal-extras{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.meal-extra{border:1px solid var(--line);border-radius:15px;background:rgba(255,254,250,.7);padding:11px}.meal-extra small{display:block;font-size:9px;font-weight:850;color:#778381;margin-bottom:4px}.meal-extra b{display:block;font-size:12px;line-height:1.4}.meal-extra p{font-size:10px;line-height:1.45;color:var(--muted);margin:4px 0 0}
+.photo-map-wrap{margin-top:12px;border:1px solid var(--line);border-radius:19px;overflow:hidden;background:var(--paper)}.photo-map{height:280px;background:#e5e9e6;position:relative}.photo-map-fallback{height:100%;display:grid;place-items:center;padding:20px;text-align:center;font-size:11px;line-height:1.55;color:var(--muted)}.photo-map-note{padding:10px 12px;border-top:1px solid var(--line);font-size:10px;line-height:1.45;color:var(--muted)}
+.photo-pin{display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border-radius:999px;background:#172123;color:#fff;border:2px solid #fff;font-size:9px;font-weight:900;box-shadow:0 5px 15px rgba(0,0,0,.2);white-space:nowrap}.photo-pin.hot{background:var(--accent);color:#053d38}
+.ref-grid{display:grid;grid-template-columns:1fr;gap:9px}.ref-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper)}.ref-card img{display:block;width:100%;height:auto;object-fit:contain;background:#e2e6e3}.ref-card .ref-copy{padding:11px 12px 12px}.ref-card small{font-size:9px;font-weight:850;color:var(--accent-ink);letter-spacing:.04em}.ref-card b{display:block;font-size:13px;margin:3px 0}.ref-card p{font-size:10px;line-height:1.46;color:var(--muted);margin:0}.ref-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.ref-tags span{font-size:8px;font-weight:820;padding:4px 6px;border-radius:999px;background:var(--soft);color:var(--accent-ink)}
+
+.pro-ref-grid{display:grid;grid-template-columns:1fr;gap:9px}.pro-ref{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,#fffefa,#f7f5ef);padding:14px 14px 13px;position:relative;overflow:hidden}.pro-ref:after{content:"↗";position:absolute;right:13px;top:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--accent-ink);font-weight:900}.pro-ref small{display:block;padding-right:34px;font-size:9px;font-weight:850;color:var(--accent-ink);letter-spacing:.04em}.pro-ref strong{display:block;padding-right:30px;font-size:14px;letter-spacing:-.02em;margin:4px 0 3px}.pro-ref .author{font-size:10px;font-weight:760;color:#77817f;margin-bottom:7px}.pro-ref p{font-size:10px;line-height:1.5;color:var(--muted);margin:0}.pro-ref .ref-tags{padding-right:26px}.pro-ref-note{font-size:9px;line-height:1.5;color:#7e8987;margin:8px 2px 0}.pro-ref:hover{border-color:#b7ceca;box-shadow:0 8px 22px rgba(20,32,34,.06)}
+.tower-orient{display:grid;gap:8px}.tower-dir{display:grid;grid-template-columns:68px minmax(0,1fr);gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line)}.tower-dir:last-child{border-bottom:0}.tower-dir .bearing{font-size:10px;font-weight:900;color:var(--accent-ink);line-height:1.3}.tower-dir b{display:block;font-size:13px;margin-bottom:3px}.tower-dir p{margin:0;font-size:10px;line-height:1.48;color:var(--muted)}.tower-priority{display:inline-block;margin-top:5px;padding:4px 7px;border-radius:999px;background:var(--soft);color:var(--accent-ink);font-size:9px;font-weight:850}.tower-priority.main{background:#d9f6f0}.tower-priority.secondary{background:#f1efe7}.tower-note{font-size:10px;line-height:1.5;color:var(--muted);margin:7px 2px 0}
+@media(min-width:560px){.pro-ref-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:560px){.ref-grid{grid-template-columns:repeat(3,1fr)}}
+
+.photo-map-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.photo-map-legend span{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:rgba(255,254,250,.82);border-radius:999px;padding:6px 8px;font-size:9px;font-weight:750;color:#53615f}.photo-map-legend b{color:var(--accent-ink);font-size:10px}.ref-source{display:inline-block;margin-top:8px;font-size:9px;font-weight:750;color:var(--accent-ink);text-decoration:none;border-bottom:1px solid rgba(0,123,116,.25)}
+@media(max-width:420px){.route-step{grid-template-columns:48px 18px minmax(0,1fr);column-gap:8px}.route-step .track:before{left:8px}.route-step .track:after{left:4px}}@media(max-width:350px){.meal-extras{grid-template-columns:1fr}}
+@media(min-width:720px){
+ .main{padding-left:24px;padding-right:24px}.article{padding-left:24px;padding-right:24px}.day-grid{grid-template-columns:repeat(3,1fr)}.day-card,.day-copy{min-height:220px}.day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.8),rgba(9,17,18,.1) 75%)}.facts{grid-template-columns:repeat(4,1fr)}.branch-grid{grid-template-columns:repeat(2,1fr)}.weather-grid{grid-template-columns:repeat(4,1fr)}.article h1{max-width:14ch}.sticky-actions{margin-left:-24px;margin-right:-24px}.cover{min-height:370px}}
+@media(max-width:380px){.main{padding-left:13px;padding-right:13px}.article{padding-left:13px;padding-right:13px}.sticky-actions{margin-left:-13px;margin-right:-13px}.stop{grid-template-columns:50px 30px minmax(0,1fr)}.timeline:before{left:65px}.route-link{margin-left:80px}.facts{grid-template-columns:1fr 1fr}.weather-grid{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.detail{transition:none}.viewstage img{transition:none}}
 </style>
 </head>
 <body>
@@ -114,363 +101,503 @@ img{max-width:100%;display:block}
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
 <script>
 const IMG={
- taikangStore:"https://wenhui.whb.cn/u/cms/www/202009/13193420g9ue.jpg",
- taikangFood:"https://p4.itc.cn/q_70/images03/20220831/6bfdc50a9fff4aa593d4e55309a68521.png",
- dahuchunFood:"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ac/18/28/caption.jpg?h=-1&s=1&w=1200",
- xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
- xiaoyangFood:"https://ak-d.tripcdn.com/images/1mi3d224x906uswcp6BA9_Q90.jpg?proc=source%2Ftrip",
- wangjiBrand:"https://images.shobserver.com/img/2023/4/11/e455508d287240a69be373ceeafe7962.jpg",
- wangjiFood:"https://images.squarespace-cdn.com/content/v1/57e94430d2b8579f31ebcc38/1621767461573-D6UM8K1I8GFVIR0FWGS4/P1240770.JPG?format=2500w",
- haijinziFood:"https://ak-d.tripcdn.com/images/1mi3i2234b8t2q7k0130F_R_600_400_R5_Q90.jpg?proc=source%2Ftrip",
- liangyingFood:"https://images.squarespace-cdn.com/content/v1/57e94430d2b8579f31ebcc38/1621148861899-MM8NSTYSYLD2WT8PREAP/IMG_2712.jpg",
- jiajiaStore:"https://megapx-assets.dcard.tw/images/bb951eb1-fe4f-4994-8e52-df072c08fdf8/1280.jpeg",
- jiajiaFood:"https://ak-d.tripcdn.com/images/0102j12000a4r5ds4DF70.jpg",
- taikang:"https://youimg1.c-ctrip.com/target/100714000000xa4663EF2.jpg",
- bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
- dahuchun:"https://ak-d.tripcdn.com/images/1mi0r224x92ea34gn497F.jpg?proc=source%2Ftrip",
- ferry:"https://i1.hdslb.com/bfs/archive/63fd81107d4686215577dda58c41db8a720d7f0c.jpg",
- xiandelai:"https://k.sinaimg.cn/n/sinakd20240108s/114/w1080h1434/20240108/98fe-e5f5acbf76287939ec9546e7b572a8d6.png/w700d1q75cms.jpg",
- zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
- qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
- xiaoyang:"https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
- mwyHall:"https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
- wukang:"https://blog.kakaocdn.net/dna/bqQfCn/dJMcafFypU7/AAAAAAAAAAAAAAAAAAAAAKBr5mUE6jTTT_ITTSP0rb2D2LCkKVHER2oN3TWqS9nb/img.jpg?allow_ip=&allow_referer=&credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1777561199&signature=Q8JZtc0jQe%2Baw8bMxkW4Dx5%2FcyQ%3D",
- happy:"https://imgpai.thepaper.cn/pphimage/20260430/5c3cb078-bd58-42de-a37b-21d7adab359c.jpg",
- tpy:"https://n.sinaimg.cn/spider20240725/694/w640h854/20240725/db11-de07bc06f13596b163abf5967958f29f.jpg",
- young:"https://img1.xinmin.cn/xmwb/2026-04-22/10422_p27.jpg",
- haijinzi:"https://g.udn.com.tw/upfiles/B_TA/taiwanmickey/PSN_PHOTO/293/f_29251293_1.JPG",
- zhangyuan:"https://img.jiemian.com/101/original/20260205/177028162342658100.jpg",
- louis:"https://im.rediff.com/getahead/2025/jun/30louis-vuitton1.jpg?h=900&w=670",
- towerNW:"https://commons.wikimedia.org/wiki/Special:Redirect/file/View_from_Shanghai_Tower_Observation_Deck.jpg",
- towerSE:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_3.jpg",
- towerSWFC:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_4.jpg",
- towerJinmao:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_5.jpg",
- towerInside:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_Aussichtsplattform.jpg",
- towerPano:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_9.jpg"
+  bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
+  yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
+  waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
+  waibaiduPudong:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Pont_Waibaidu_et_Pudong.jpg",
+  bundExample:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Pudong_Skyline_from_The_Bund_20260417.jpg",
+  bundNight48:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_-_Bund_at_Night.jpg",
+  bundNightPearl:"https://commons.wikimedia.org/wiki/Special:Redirect/file/2014.11.15.193354_Oriental_Pearl_Tower_at_night_Pudong_Shanghai.jpg",
+  waibaiduNight:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Night_lights_of_Shanghai.jpg",
+  wukangExample:"https://commons.wikimedia.org/wiki/Special:Redirect/file/20191027_Wukang_Mansion.jpg",
+  jiajiaStore:"https://megapx-assets.dcard.tw/images/bb951eb1-fe4f-4994-8e52-df072c08fdf8/1280.jpeg",
+  jiajiaFood:"https://ak-d.tripcdn.com/images/0102j12000a4r5ds4DF70.jpg",
+  taikangStore:"https://wenhui.whb.cn/u/cms/www/202009/13193420g9ue.jpg",
+  taikangFood:"https://p4.itc.cn/q_70/images03/20220831/6bfdc50a9fff4aa593d4e55309a68521.png",
+  dahuchun:"https://ak-d.tripcdn.com/images/1mi0r224x92ea34gn497F.jpg?proc=source%2Ftrip",
+  dahuchunFood:"https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ac/18/28/caption.jpg?h=-1&s=1&w=1200",
+  ferry:"https://i1.hdslb.com/bfs/archive/63fd81107d4686215577dda58c41db8a720d7f0c.jpg",
+  xiandelai:"https://k.sinaimg.cn/n/sinakd20240108s/114/w1080h1434/20240108/98fe-e5f5acbf76287939ec9546e7b572a8d6.png/w700d1q75cms.jpg",
+  xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
+  zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
+  qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
+  xiaoyang:"https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
+  xiaoyangFood:"https://ak-d.tripcdn.com/images/1mi3d224x906uswcp6BA9_Q90.jpg?proc=source%2Ftrip",
+  mwyHall:"https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
+  wangjiBrand:"https://images.shobserver.com/img/2023/4/11/e455508d287240a69be373ceeafe7962.jpg?x-oss-process=image/resize,w_1200",
+  wangjiFood:"https://images.squarespace-cdn.com/content/v1/57e94430d2b8579f31ebcc38/1621767461573-D6UM8K1I8GFVIR0FWGS4/P1240770.JPG?format=2500w",
+  wukang:"https://youimg1.c-ctrip.com/target/100b1900000169ysl903E.jpg",
+  happy:"https://imgpai.thepaper.cn/pphimage/20260430/5c3cb078-bd58-42de-a37b-21d7adab359c.jpg",
+  tpy:"https://n.sinaimg.cn/spider20240725/694/w640h854/20240725/db11-de07bc06f13596b163abf5967958f29f.jpg",
+  young:"https://img1.xinmin.cn/xmwb/2026-04-22/10422_p27.jpg",
+  haijinziFood:"https://ak-d.tripcdn.com/images/1mi3i2234b8t2q7k0130F_R_600_400_R5_Q90.jpg?proc=source%2Ftrip",
+  zhangyuan:"https://img.jiemian.com/101/original/20260205/177028162342658100.jpg",
+  louis:"https://im.rediff.com/getahead/2025/jun/30louis-vuitton1.jpg?h=900&w=670",
+  towerNightBund:"https://commons.wikimedia.org/wiki/Special:Redirect/file/20170130从上海中心大厦观景台眺望陆家嘴和外滩夜景.jpg",
+  towerNightRiver:"https://commons.wikimedia.org/wiki/Special:Redirect/file/View_from_the_Shanghai_Tower_observatory_deck.jpg",
+  towerNW:"https://commons.wikimedia.org/wiki/Special:Redirect/file/View_from_Shanghai_Tower_Observation_Deck.jpg",
+  towerSE:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_3.jpg",
+  towerSWFC:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_4.jpg",
+  towerJinmao:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_5.jpg",
+  towerInside:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_Aussichtsplattform.jpg",
+  towerPano:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_Tower_view_2016_9.jpg",
+  freeWaibaiduNight:"https://images.unsplash.com/photo-1727478432594-a6eb28ca0515?auto=format&fit=crop&fm=jpg&q=72&w=1600",
+  freeBundTele:"https://images.unsplash.com/photo-1742228836192-a7294496453b?auto=format&fit=crop&fm=jpg&q=72&w=1400",
+  freeTowerSWFC:"https://images.unsplash.com/photo-1647067151129-ac9991329a73?auto=format&fit=crop&fm=jpg&q=72&w=1400",
+  freeWukang:"https://images.unsplash.com/photo-1704095981825-df894149bb6b?auto=format&fit=crop&fm=jpg&q=72&w=1600",
+  freeZhangyuan:"https://images.unsplash.com/photo-1743934775465-ab4c4e16624d?auto=format&fit=crop&fm=jpg&q=72&w=1600",
+  freeLouis:"https://images.unsplash.com/photo-1766873269958-a8bbea93be29?auto=format&fit=crop&fm=jpg&q=72&w=1600"
 };
 
-const TRIP={
- 1:{title:"外灘＋陸家嘴＋上海之巔",items:[
-   {id:"jiajia",time:"14:30",title:"佳家湯包",sub:"鮮肉湯包＋魚丸湯",kind:"食",move:"往南京東路",coord:[121.470303,31.235191],address:"黃河路127號"},
-   {id:"taikang",time:"15:10",title:"泰康食品",sub:"鮮肉月餅 1 個 · 長龍就 skip",kind:"補給",move:"往外灘源",coord:[121.475983,31.235152],address:"南京東路766號"},
-   {id:"bund",time:"15:30",title:"外灘攝影段",sub:"外灘源 → 外白渡橋 → 江邊",kind:"攝影",move:"藍調後視進度決定大壺春",coord:[121.487772,31.242012],address:"圓明園路／外灘源"},
-   {id:"dahuchun",time:"18:00",title:"大壺春",sub:"清水派生煎 · 來得及先食",kind:"食",move:"金陵東路渡輪",coord:[121.489181,31.234836],address:"四川中路136號"},
-   {id:"ferry",time:"18:45",title:"黃浦江渡輪",sub:"金陵東路 → 東昌路",kind:"交通",move:"步行往上海中心",coord:[121.493308,31.232381],address:"金陵東路渡口"},
-   {id:"tower",time:"19:30",title:"上海之巔 118F",sub:"夜景 hard anchor",kind:"觀景",move:"21:15 後視胃容量",coord:[121.505366,31.233510],address:"上海中心大廈118F"},
-   {id:"xiandelai",time:"21:15+",title:"鮮得來",sub:"有胃先食排骨年糕",kind:"夜食",move:"返酒店",coord:[121.4865,31.2347],approx:true,address:"福建中路342–352號"}
+const DAYS={
+  1:{date:"10月31日 · 星期六",title:"外灘＋陸家嘴＋上海之巔",cover:IMG.bund,items:[
+    {id:"arrival",time:"12:30",title:"抵達上海",sub:"磁浮 → 龍陽路 → 地鐵入市區",kind:"交通",move:"住宿放行李",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"},
+    {id:"jiajia",time:"14:30",title:"佳家湯包",sub:"鮮肉湯包＋一碗湯 · 第一餐",kind:"食",move:"南京東路",coord:[121.470303,31.235191],address:"黃河路127號"},
+    {id:"taikang",time:"15:10",title:"泰康食品",sub:"鮮肉月餅 1 個 · 隊長就放棄",kind:"補給",move:"外灘源",coord:[121.475983,31.235152],address:"南京東路766號"},
+    {id:"bund",time:"15:30",title:"外灘黃昏攝影",sub:"外灘源 → 外白渡橋 → 主平台",kind:"攝影",move:"視光線決定大壺春",coord:[121.487772,31.242012],address:"圓明園路／外灘源"},
+    {id:"dahuchun",time:"18:00",title:"大壺春",sub:"只在主拍完成後先去 · 清水派生煎",kind:"食",move:"金陵東路渡口",coord:[121.489181,31.234836],address:"四川中路136號"},
+    {id:"ferry",time:"18:45",title:"黃浦江渡輪",sub:"金陵東路 → 東昌路 · 過江後反拍只做額外位",kind:"交通",move:"步行往上海中心",coord:[121.493308,31.232381],address:"金陵東路渡口"},
+    {id:"tower",time:"19:30",title:"上海之巔 118F",sub:"純夜景 · 先西向／西北向窗",kind:"重點",anchor:true,move:"21:15 後按胃容量",coord:[121.505366,31.233510],address:"上海中心大廈118F"},
+    {id:"xiandelai",time:"21:15+",title:"鮮得來",sub:"有胃先食排骨年糕 · 無胃直接返住宿",kind:"夜食",move:"返住宿",coord:[121.4865,31.2347],approx:true,address:"福建中路350號一帶"}
+  ]},
+  2:{date:"11月1日 · 星期日",title:"未來有你 2026",cover:IMG.mwyHall,items:[
+    {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"鹹豆漿＋粢飯團 · 隊長就只買核心兩樣",kind:"早餐",move:"10:00 前到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
+    {id:"mwy",time:"10:00",title:"MWY 場販／展示",sub:"小羽館主售 · 大羽館展示＋CALL棒",kind:"活動",anchor:true,move:"午餐按現場進度",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"qiqi",time:"12:00",title:"琪琪麵館",sub:"辣肉拌麵 · 13:30 後直接放棄",kind:"午餐",move:"返場館",coord:[121.461815,31.277407],address:"北寶興路296–298號"},
+    {id:"xiaoyang",time:"16:50",title:"小楊生煎",sub:"最小份招牌生煎 · 18:00 前返場館",kind:"補給",move:"演唱會入場",coord:[121.458164,31.298158],address:"江場路1212號協信廣場B1"},
+    {id:"mwy",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · 相機／袋規則等主辦最終公告",kind:"演唱會",anchor:true,move:"散場按餓度分支",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"postshow",time:"21:30+",title:"散場後",sub:"不再鎖餐廳 · 宵夜只服務體力",kind:"彈性",move:"返住宿",coord:null,address:""}
+  ]},
+  3:{date:"11月2日 · 星期一",title:"武康＋徐家匯＋張園",cover:IMG.wukang,items:[
+    {id:"wangji",time:"08:00",title:"王記葱油餅",sub:"原味葱油餅＋黑米粥／甜豆漿",kind:"早餐",move:"09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
+    {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"源點廣場主片 → 邊走邊拍",kind:"攝影",move:"10:15 前去徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
+    {id:"xjh",time:"10:30",title:"徐家匯 ACG／科技",sub:"美羅城 5–6F → TPY B2 → 新六百外牆",kind:"區域",move:"向東北收線",coord:[121.439649,31.192944],address:"肇嘉浜路1111號起"},
+    {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯 · 13:30 後轉後備方案",kind:"本幫菜",move:"張園",coord:[121.457505,31.221176],address:"進賢路240號"},
+    {id:"zhangyuan",time:"13:50",title:"張園 → 路易號",sub:"西進東出 · 15:15 收機",kind:"城市攝影",move:"返住宿取行李",coord:[121.460064,31.227971],address:"張園／南京西路789號"},
+    {id:"airport",time:"15:30",title:"返住宿 → PVG",sub:"15:30–15:40較舒服 · 15:50只作最遲正常值",kind:"交通",anchor:true,move:"19:05 航班",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"}
+  ]}
+};
+
+const PAGE_META={
+ arrival:{title:"抵達上海"},jiajia:{title:"佳家湯包"},taikang:{title:"泰康食品"},bund:{title:"外灘黃昏攝影"},dahuchun:{title:"大壺春"},ferry:{title:"黃浦江渡輪"},tower:{title:"上海之巔 118F"},xiandelai:{title:"鮮得來"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+};
+
+const PHOTO_MAPS={
+ bund:{zoom:14.9,points:[
+  {label:"A",name:"外灘源／北京東路×圓明園路",wgs:[121.48330,31.24399],hot:true},
+  {label:"A2",name:"圓明園路",wgs:[121.48310,31.24282]},
+  {label:"B",name:"外白渡橋",wgs:[121.48574,31.24531]},
+  {label:"C",name:"外灘主平台／陳毅廣場",wgs:[121.48592,31.24098],hot:true}
  ]},
- 2:{title:"MWY 主日",items:[
-   {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"鹹豆漿＋粢飯團",kind:"早餐",move:"10:00 起鎖場館",coord:[121.458896,31.236694],address:"石門二路487號"},
-   {id:"mwy",time:"10:00",title:"MWY 場販 / 展示",sub:"小羽館主售 · 大羽館展示＋CALL棒",kind:"Event",move:"午餐視場販進度",coord:[121.453255,31.291619],address:"汶水路116號"},
-   {id:"qiqi",time:"12:00",title:"琪琪麵館",sub:"辣肉拌麵 · 時間唔啱就放棄",kind:"午餐",move:"返場館",coord:[121.461815,31.277407],approx:true,address:"北寶興路（門牌待核）"},
-   {id:"xiaoyang",time:"17:00",title:"小楊生煎",sub:"最小份普通生煎 · 排隊設 cutoff",kind:"食",move:"18:00 前返場館",coord:[121.458164,31.298158],address:"江場路1212號協信星光廣場北區B1"},
-   {id:"mwy",time:"19:00",title:"未来有你 2026",sub:"夜場 · 上海靜安體育中心",kind:"Concert",move:"散場後往延長路",coord:[121.453255,31.291619],address:"汶水路116號"},
-   {id:"liangying",time:"21:30+",title:"良鷹美食",sub:"小餛飩 · 好餓先加鍋貼",kind:"夜食",move:"返酒店",coord:[121.4553,31.2740],approx:true,address:"共和新路2181號"}
+ wukang:{zoom:16.3,points:[
+  {label:"主位",name:"源點廣場／天平路×淮海中路",wgs:[121.43396,31.20618],hot:true},
+  {label:"樓",name:"武康大樓",wgs:[121.43366,31.20631]}
  ]},
- 3:{title:"武康＋徐家匯＋張園",items:[
-   {id:"wangji",time:"08:00",title:"王記葱油餅",sub:"原味葱油餅＋黑米粥／甜豆漿",kind:"早餐",move:"往武康大樓",coord:[121.436485,31.218589],approx:true,address:"東諸安浜路191-5號"},
-   {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"純街拍 · 30–75 min",kind:"攝影",move:"往徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
-   {id:"xjh",time:"10:30",title:"徐家匯 ACG / Tech",sub:"美羅城 → TPY → 新六百YOUNG",kind:"Area",move:"一路向東北收線",coord:[121.439649,31.192944],address:"肇嘉浜路1111號起"},
-   {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯＋一個配菜",kind:"本幫菜",move:"往張園",coord:[121.457505,31.221176],address:"進賢路240號"},
-   {id:"zhangyuan",time:"13:50",title:"張園 × The Louis",sub:"新舊城市空間 transition",kind:"城市",move:"15:20 左右返酒店",coord:[121.460064,31.227971],address:"張園／南京西路789號"}
+ zhangyuan:{zoom:15.8,points:[
+  {label:"01",name:"張園西區",wgs:[121.45550,31.22988],hot:true},
+  {label:"→",name:"東區長廊／太古匯方向",wgs:[121.45655,31.23005]},
+  {label:"02",name:"路易號／興業太古匯",wgs:[121.45765,31.22910],hot:true}
  ]}
 };
 
-let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false;
+let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null;
+
 const $=s=>document.querySelector(s);
 
+function esc(s=''){return String(s).replaceAll('\\','\\\\').replaceAll("'","\\'")}
+function factRows(items=[]){return items.map(([a,b])=>`<div class="fact"><small>${a}</small><b>${b}</b></div>`).join("")}
+function pageHead(kicker,title,deck,facts=[]){return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${facts.length?`<div class="facts">${factRows(facts)}</div>`:""}`}
+function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
+function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
+function lead(title,sub,badge=""){return `<div class="lead-action"><div><small>現場先做</small><strong>${title}</strong>${sub?`<p>${sub}</p>`:""}</div>${badge?`<div class="badge">${badge}</div>`:""}</div>`}
+function rules(rows){return `<div class="rule-list">${rows.map(r=>`<div class="rule"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}</div>`}
+function branches(items){return `<div class="branch-grid">${items.map(x=>`<div class="branch ${x[2]||''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`}
+function order(img,title,note,label="今次點法"){return img?`<div class="order-card"><img src="${img}" onerror="this.remove()"><div><small>${label}</small><strong>${title}</strong><p>${note}</p></div></div>`:`<div class="order-textonly"><small>${label}</small><strong>${title}</strong><p>${note}</p></div>`}
+function cutoff(title,note,label="最遲判斷"){return `<div class="cutoff"><small>${label}</small><strong>${title}</strong><p>${note}</p></div>`}
+function route(rows){return `<div class="route-stack">${rows.map(r=>`<div class="route-step"><div class="t">${r[0]}</div><div class="track"></div><div><h3>${r[1]}</h3><p>${r[2]}</p></div></div>`).join("")}</div>`}
+function shots(rows){return `<div class="shot-list">${rows.map(r=>`<div class="shot"><div class="lens">${r[0]}</div><div><h3>${r[1]}</h3><p>${r[2]}</p></div></div>`).join("")}</div>`}
+function weather(items){return `<div class="weather-grid">${items.map(x=>`<div class="weather ${x[2]||''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`}
+function compare(items){return `<div class="compare">${items.map(x=>`<div><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div>`}
+function alertBox(title,note,danger=false){return `<div class="alert ${danger?'danger':''}"><strong>${title}</strong><p>${note}</p></div>`}
+function more(items){return `<div class="disclosure">${items.map(x=>`<details><summary>${x[0]}</summary><div class="more">${x[1]}</div></details>`).join("")}</div>`}
+function nextHop(a,b){return `<div class="next-hop"><small>下一站</small><strong>${a} → ${b}</strong><div class="next-actions"><button class="a" onclick="copyText('${esc(a)}')">複製起點</button><button class="b" onclick="copyText('${esc(b)}')">複製終點</button></div></div>`}
+function sticky(primary,address,secondary="複製地址"){return `<div class="sticky-actions"><button class="primary" onclick="copyText('${esc(primary)} ${esc(address)}')">複製名稱＋地址</button><button class="secondary" onclick="copyText('${esc(address)}')">${secondary}</button></div>`}
+function mealExtras(rows){return `<div class="meal-extras">${rows.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`}
+function referenceGallery(items){return `<div class="ref-grid">${items.map(x=>`<div class="ref-card"><img src="${x[0]}" alt="${x[1]}" onerror="this.remove()"><div class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">參考圖來源 · ${x[6]||"原作者頁"}</a>`:""}</div></div>`).join("")}</div>`}
+function photographerRefs(items){return `<div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><div class="author">${x[2]}</div><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}</a>`).join("")}</div><div class="pro-ref-note">攝影師作品只連去原作者頁面，不把原圖重新發布到本站；用嚟學站位、構圖、主體比例同夜景處理。</div>`}
+function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…<br>地圖只用嚟認位；現場導航仍交畀高德。</div></div>${legend}<div class="photo-map-note">機位圖係認位工具：睇街道／附近地標同機位相對位置；唔當即時步行導航。地圖載入失敗時，上面標籤仍可直接拎去高德認位。</div></div>`}
+function shotWeatherCommon(){return weather([
+ ["晴／少雲","追暖光、天空層次；長焦壓縮價值最高。","good"],
+ ["全陰","放棄金光，改建築質感、幾何、人物。",""],
+ ["雨後","順路利用濕地反光；唔為水窪繞路。",""],
+ ["霧／低能見度","減少70–120mm遠景，改24–50mm＋近前景。","warn"]
+])}
+
+const P={
+arrival:()=>`${pageHead("第1日 · 抵達／入市區","抵達上海","第一段唔追景點，目標只係穩定入市區、放低行李，再開始下午主線。",[["航班","航班資料已隱藏 · 12:30 PVG"],["磁浮","PVG → 龍陽路約8分鐘"],["普通票","¥50；同日機票現行約¥40"],["住宿","如家商旅酒店（上海火車站南廣場店）"]])}
+${lead("先搭磁浮去龍陽路","落地後先完成一段簡單、可預期嘅高速移動；到龍陽路再按體力決定地鐵定叫車。","300 km/h")}
+${block("入市區路線",route([
+ ["12:30","PVG T2 落地","入境、取行李後去磁浮站；營運窗對本次到達時間充足。"],
+ ["→","磁浮到龍陽路","約8分鐘；先體驗磁浮，再處理市區交通。"],
+ ["主線","轉乘市區交通","由龍陽路去住宿預留約45–50分鐘，再按當日轉乘、步行同路況調整。"],
+ ["後備","龍陽路直接叫車","如果落雨、疲累或行李令轉乘麻煩，就用高德／Didi直接去住宿。"]
+]))}
+${alertBox("呢頁唔需要塞景點","抵達段只管『順利入城』。真正要守嘅係下午外灘光線，所以落地後唔再加額外站。")}
+${nextHop("上海浦東國際機場 T2","市區住宿")}`,
+
+jiajia:()=>`${pageHead("第1日 · 第一餐","佳家湯包","第一餐只解決兩件事：補體力，同時食一款有代表性嘅上海湯包。唔需要現場重新研究餐牌。",[["地址","黃河路127號"],["停留","30–40分鐘"],["主點","鮮肉湯包"],["排隊判斷",">20–25分鐘要重評"]])}
+${media(IMG.jiajiaStore,"認店：黃河路127號；門面只用嚟確認分店。")}
+${block("今次點法",order(IMG.jiajiaFood,"鮮肉湯包＋魚丸湯／雞鴨血湯二選一","常見一籠約12隻；一籠再加一碗湯已經係完整第一餐。唔順手再加蟹粉款。")+mealExtras([["有胃再加","蛋黃鮮肉／全家福","只係想多試一種先加；唔需要再開蟹粉主題。"],["飲品","店內茶／清水","主餐已有湯，飲品只補水，唔另佔胃容量。"]]))}
+${block("現場判斷",branches([
+ ["排隊／等蒸 ≤20分鐘","照食；現點現包現蒸，本身就可能比坐低食更花時間。","hot"],
+ ["預估 >20–25分鐘","先睇外灘進度；會推遲攝影就縮餐或轉後備，唔用名店綁死行程。","warn"]
+]))}
+<div class="callout">食到主角就走。</div><p class="subnote">呢餐唔係用嚟掃餐牌；後面仲有鮮肉月餅、黃昏攝影同可選生煎。</p>
+${nextHop("佳家湯包 黃河路127號","泰康食品 南京東路766號")}${sticky("佳家湯包","黃河路127號")}`,
+
+taikang:()=>`${pageHead("第1日 · 沿途補給","泰康食品","呢站只係一個沿途動作：買一個鮮肉月餅。排隊成本一高，就直接放棄。",[["地址","南京東路766號"],["營業參考","約09:00–22:00"],["買","鮮肉月餅 ×1"],["排隊上限","10分鐘"]])}
+${media(IMG.taikangStore,"南京東路店門面；到現場只需要認啱店。")}
+${block("買咩",order(IMG.taikangFood,"鮮肉月餅 1 個","最好即食／短時間內食。唔因老字號身份進店慢慢逛或者買一袋伴手禮。","唯一任務")+mealExtras([["想換口味","榨菜鮮肉月餅","只係隊短＋有胃先考慮；唔同時買兩三個。"],["飲品","沿路水／茶","呢站係補給，唔值得為飲品再排一條隊。"]]))}
+${block("兩個結果",branches([
+ ["隊短","買一個，趁熱食，然後繼續行程。","hot"],
+ ["排隊 >10分鐘／開始壓光線","直接放棄；15:30後開始進入外灘攝影主線。","danger"]
+]))}
+${nextHop("泰康食品 南京東路766號","北京東路 × 圓明園路")}${sticky("泰康食品","南京東路766號")}`,
+
+bund:()=>`${pageHead("第1日 · 攝影主線","外灘黃昏／夜景","黃昏係固定主拍；夜景只係返浦西後仍有體力、亮燈成立而且順路時先補。Reference 只留會幫你落機位嘅少量畫面。",[["日落","約17:06"],["民用暮光","約17:31結束"],["主拍窗口","17:00–17:35"],["器材","Z8 + 24–120/4 S"]])}
+${media(IMG.bund,"由外灘源一路向江邊推；先完成自然光主片，唔為夜景反過來拖慢主線。")}
+${block("機位圖",photoMap("bund"))}
+${block("精選構圖參考",referenceGallery([
+ [IMG.yuanmingyuan,"圓明園路紅磚街景","A2 · 24–35mm","認紅磚、街道透視同門洞比例；實戰到場先做北京東路長焦，再補呢類環境畫面。",["認位","廣角環境"],"https://commons.wikimedia.org/wiki/File:Yuanmingyuan_Rd._Shanghai.JPG","Wikimedia Commons"],
+ [IMG.freeWaibaiduNight,"外白渡橋＋浦東夜景","B · 35–70mm方向","最有用係橋身、東方明珠同三件套嘅前後關係。相片由乍浦路橋一帶拍，所以只借幾何；主線唔為佢新增一站。",["橋體層次","夜景完成畫面"],"https://unsplash.com/photos/a-view-of-a-city-at-night-from-across-the-water-gica0HNc9Ks","Unsplash"],
+ [IMG.bundNight48,"外灘主平台夜景","C · 約50mm方向","35–50mm最值得多試：建築比例夠大，又比24mm容易避人頭、欄杆同黑水面。",["主平台","35–50mm","亮燈後"],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg","Wikimedia Commons"],
+ [IMG.freeBundTele,"東方明珠中長焦","C · 85–120mm方向","長焦唔需要塞晒所有樓；一個主體加一個陪體已經成立，用嚟預想收緊後嘅地標比例。",["中長焦","單一主題"],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA","Unsplash"]
+]))}
+${block("攝影師進階參考",photographerRefs([
+ ["A · 北京東路","Shanghai - Beijing Road","Markus Bahlmann","街道盡頭壓入東方明珠，正好對應70–120mm『老街＋現代地標』玩法；只借站位／壓縮。",["外灘源","長焦壓縮"],"https://www.flickr.com/photos/cnmark/3311466724"],
+ ["B · 外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","由橋上向浦東收地標層次；適合學鋼架／橋體點樣唔搶主體。",["外白渡橋","地標層次"],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
+ ["C · 主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同主要樓群間距都清楚；長曝效果唔照抄。",["主平台","完整 skyline"],"https://www.flickr.com/photos/kylehase/45486996424"]
+]))}
+${block("先按到場時間分配",branches([
+ ["16:10 前","外灘源20–25分鐘；北京東路長焦先，之後圓明園路。","hot"],
+ ["16:10–16:30","縮到10–12分鐘，只做最穩兩組。",""],
+ ["16:30 後","外灘源只收1–2組，直接保外白渡橋＋主平台。","danger"]
+]))}
+${block("一路向南拍",route([
+ ["A","外灘源／北京東路","70–120mm沿街壓東方明珠／現代樓群；街谷比江邊更早失去直射光。"],
+ ["A2","圓明園路","24–35mm拍紅磚、門洞、路燈、行人；街谷全陰就轉質感／人物。"],
+ ["B","外白渡橋","10–15分鐘；35–50mm用鋼桁架做V形／三角框景，24–28只補一組環境。"],
+ ["C","外灘主平台","17:00–17:35完成三張必拍；第一排滿就後退，用50–120mm越過人頭。"]
+]))}
+${block("主平台三張必拍",shots([
+ ["24–28","完整陸家嘴 skyline","只要一張基準照；帶少量黃浦江，唔為反射收太多黑水面。"],
+ ["35–50","主力畫面","放大建築群、減少欄杆同人群；最值得多試幾個位置。"],
+ ["85–120","單一主體＋陪體","東方明珠＋上海中心，或者上海中心／金茂局部；唔硬塞全部高樓。"]
+]))}
+${block("夜返浦西可補，但唔倒轉主線",branches([
+ ["有體力＋已亮燈＋返程順路","可補1輪主平台夜景；35–50mm主畫面＋85–120mm一組局部，10–20分鐘收。","hot"],
+ ["要特登繞路／已攰","唔補。黃昏主片先係固定任務。",""],
+ ["夜食後已返浦西","再按體力決定短補外灘定直接返住宿，唔預先鎖死。","warn"]
+]))}
+${block("天氣即時切換",shotWeatherCommon())}
+${cutoff("黃昏唔等景觀燈","若亮燈時間會侵蝕輪渡＋19:30上海之巔，完成自然光就走；夜景需要時留到返浦西再決定。","離開原則")}
+${more([
+ ["人流點處理？","星期六預設高人流。唔等空景；人物最多留底部10–20%，或者用中長焦裁走。"],
+ ["外白渡橋有咩要避？","橋面有車流／震動，唔追慢門；遠景差就改鋼架幾何＋人物。"],
+ ["攝影優先級","外灘主平台 ＞ 外白渡橋 ＞ 外灘源 ＞ 浦東反拍 ＞ 夜景補拍。"]
+])}
+${nextHop("外灘主平台／陳毅廣場","大壺春／金陵東路渡口")}`,
+
+dahuchun:()=>`${pageHead("第1日 · 可選晚餐","大壺春","呢站唔係固定任務。只有外灘主拍已經完成，而且輪渡＋19:30上海之巔仲有足夠緩衝，先食。",[["地址","四川中路136號"],["營業參考","約07:00–19:30"],["角色","清水派生煎代表"],["排隊上限","10–15分鐘"]])}
+${media(IMG.dahuchun,"代表性在清水派生煎；保留原因係品類，而唔係單一食評背書。")}
+${block("今次點法",order(IMG.dahuchunFood,"清水派／鮮肉系生煎＋咖喱牛肉湯","主角係生煎；同第2日小楊形成傳統清水派 vs 現代爆汁型嘅刻意比較。")+mealExtras([["有胃再加","鮮蝦小餛飩／千張包粉絲湯","兩樣都係常見配搭，但唔需要同時加。"],["飲品","清水／茶","咖喱牛肉湯已經係主要湯飲。"]]))}
+${block("去唔去，由時間決定",branches([
+ ["外灘主拍已完成＋有緩衝","去；控制成一個短晚餐。","hot"],
+ ["藍調未完成／排隊 >10–15分鐘","直接放棄。真正衝突係攝影時間窗，唔係餐廳關門。","danger"]
+]))}
+${nextHop("大壺春 四川中路136號","金陵東路渡口")}${sticky("大壺春","四川中路136號")}`,
+
+ferry:()=>`${pageHead("第1日 · 過江","黃浦江渡輪","渡輪係交通，同時俾你一個5–10分鐘反拍浦西嘅機會；唔應該變成另一段沿江搵機位。",[["路線","金陵東路 → 東昌路"],["反拍","5–10分鐘"],["焦段","50–120mm"],["班次","前一晚＋當日再核"]])}
+${media(IMG.ferry,"落船後就近完成反拍；唔沿江再開新攝影支線。")}
+${block("對岸反拍 reference",photographerRefs([
+ ["50–85mm","Bund night skyline","JC Terry","先看整條萬國建築帶點樣壓成一組；你現場只要完成一張整體即可。",["浦東反拍","建築帶"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/"],
+ ["85–120mm","Bund detail across Huangpu","JC Terry","用中長焦抽海關大樓／和平飯店等局部，正好對應5–10分鐘bonus打法。",["中長焦","局部"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/"]
+]))}
+${block("落船後只做一件事",shots([
+ ["50–85","萬國建築群整體","落船後就近反拍，唔沿江再搵新機位。"],
+ ["85–120","海關大樓／和平飯店局部","時間緊就只拍2–3張，完成即走。"]
+]))}
+${alertBox("班次一定要臨場更新","前一晚＋當日實時再核；如果渡輪唔成立，用地鐵／Didi過江，唔拖上海之巔。")}
+${nextHop("東昌路渡口","上海中心 · 上海之巔118F")}`,
+
+tower:()=>towerPage(),
+
+xiandelai:()=>`${pageHead("第1日 · 夜食","鮮得來","放喺上海之巔之後，就唔會同黃昏攝影爭時間。呢站完全按胃容量決定。",[["位置","福建中路350號一帶"],["營業參考","約11:00–次日01:00"],["主點","排骨年糕"],["角色","有胃先去"]])}
+${media(IMG.xiandelai,"2026已遷往福建中路一帶；唔再導航去雲南南路舊址。")}
+${block("只點核心",order(IMG.xiandelaiFood,"排骨年糕 1 份","呢度嘅主角就係排骨年糕；唔需要再開另一張上海小吃清單。")+mealExtras([["仍然好餓","砂鍋蝦仁小餛飩","只在排骨年糕食完仲有胃先加。"],["飲品","茶／清水","夜食以補充體力為主。"]]))}
+${block("按身體狀態分支",branches([
+ ["上海之巔後仍有胃","去；食完再返住宿。","hot"],
+ ["已飽／已攰","直接返住宿。唔為完成清單硬食。",""]
+]))}
+${sticky("鮮得來排骨年糕","福建中路350號一帶")}`,
+
+zhang:()=>`${pageHead("第2日 · 早餐","張師傅早餐店","早餐目標係一次食到上海傳統早餐核心，但唔需要四大金剛每樣一份。10:00場販先係今日第一個固定時間點。",[["地址","石門二路487號"],["營業參考","約04:00–12:00"],["主點","鹹豆漿＋粢飯團"],["排隊上限","15–20分鐘"]])}
+${media(IMG.zhangStore,"店細、座位有限；以快食／可外帶思維處理。")}
+${block("今次點法",order(null,"鹹豆漿＋粢飯團","有胃先加大餅／油條。粢飯團本身可能已包含油條，唔需要為『四大金剛』逐樣獨立叫一份。")+mealExtras([["有胃再加","甜／鹹大餅＋油條","想完整體驗先加；粢飯團已包油條就唔重複。"],["另一口感","豆腐花","唔想再食主食時先考慮。"]]))}
+${block("排隊處理",branches([
+ ["正常","坐低／外帶都得，食完北上場館。","hot"],
+ ["排隊 >15–20分鐘","先買最想食嗰兩樣就走；唔讓早餐拖累10:00場販。","danger"]
+]))}
+${nextHop("張師傅早餐店 石門二路487號","上海靜安體育中心 汶水路116號")}${sticky("張師傅早餐店","石門二路487號")}`,
+
+mwy:()=>mwyPage(),
+
+qiqi:()=>`${pageHead("第2日 · 午餐候選","琪琪麵館","呢間只屬於午餐時間窗，唔係『遲少少下午再補』。場販／展示一拖，就直接放棄。",[["地址","北寶興路296–298號"],["營業參考","約06:00–14:00"],["主點","辣肉拌麵"],["最佳到店","12:00–13:00"]])}
+${block("今次點法",order(IMG.qiqiNoodle,"辣肉拌麵","辣肉係老上海麵館經典澆頭之一；午飯後期澆頭可能賣剩，唔需要堆多款。")+mealExtras([["有胃再加","素雞／烤麩小澆頭","只揀一款，保持午餐快而完整。"],["飲品","店內茶／清水","麵本身已夠重口，飲品以補水為主。"]]))}
+${block("時間判斷",branches([
+ ["12:00–13:00","最好；正常去食。","hot"],
+ ["13:15先準備離開場館","先問自己仲值唔值得去；開始偏危險。","warn"],
+ ["13:30後","直接放棄。唔把琪琪變成下午補餐。","danger"]
+]))}
+${nextHop("琪琪麵館 北寶興路296–298號","上海靜安體育中心")}${sticky("琪琪麵館","北寶興路296–298號")}`,
+
+xiaoyang:()=>`${pageHead("第2日 · 演唱會前補給","小楊生煎","功能非常單純：17:00前後快速補能量，18:00前返到場館，留出安檢／入場緩衝。",[["地址","江場路1212號協信廣場B1"],["時段","16:45–17:15"],["主點","最小份招牌生煎"],["回場館","18:00前"]])}
+${media(IMG.xiaoyang,"同第1日大壺春重複『生煎』係刻意比較兩種風格，而唔係失控重複。")}
+${block("今次點法",order(IMG.xiaoyangFood,"最小份小楊生煎","餓先加一碗粉絲湯；唔喺演唱會前點一堆限定口味。")+mealExtras([["仍然餓","老鴨粉絲湯／百葉包粉絲湯","二選一；唔再加另一份麵。"],["飲品","清水","演唱會前避免為飲品排隊；補水就夠。"]]))}
+${block("排隊判斷",branches([
+ ["排隊正常","照食，17:15左右完成。","hot"],
+ ["排隊 >15分鐘","降級：只買最快出餐主食／轉場館附近更快方案。","danger"]
+]))}
+${cutoff("18:00 前返場館","食物唔可以壓縮安檢／入場緩衝；如果之前仲要回住宿寄存相機，小楊係第一個可縮／可砍項。","硬目標")}
+${nextHop("小楊生煎 協信廣場B1","上海靜安體育中心")}${sticky("小楊生煎","江場路1212號協信廣場B1")}`,
+
+postshow:()=>`${pageHead("第2日 · 散場後","散場後","呢段刻意唔鎖餐廳。19:00演唱會之後，宵夜只服務體力；唔再為『上海必吃』加一段繞路。",[["原良鷹方案","撤下"],["判斷依據","餓度＋是否已食鮮得來"],["第一選擇","唔餓就返住宿"],["最後安全網","全昌福約至23:00"]])}
+${block("散場後決策",branches([
+ ["唔餓","直接返住宿。今日主角係MWY，唔需要為宵夜完成清單。","hot"],
+ ["第1日冇食鮮得來＋仍想食上海小吃","可以去福建中路補排骨年糕，但要接受佢唔係返住宿最直線。",""],
+ ["已食過鮮得來，只係要填肚","沿返住宿方向搵晚市／外賣即可；唔追名店。",""],
+ ["住宿附近需要確定有熱食","用高德搜尋當晚仍營業、順路嘅熱食即可；公開版唔保存住宿附近固定店名。","warn"]
+]))}
+<div class="callout">宵夜永遠係可選。</div><p class="subnote">呢頁係刻意保留彈性，而唔係資料未完成。</p>`,
+
+wangji:()=>`${pageHead("第3日 · 早餐","王記葱油餅","最後一日早餐仍然食上海本地味，但要守住09:00武康街拍窗口。",[["地址","東諸安浜路191-5號"],["營業參考","約06:00–19:00"],["主點","原味葱油餅"],["等候預算","15–20分鐘"]])}
+${media(IMG.wangjiBrand,"品牌招牌參考；實際以東諸安浜路191-5號導航為準。")}
+${block("今次點法",order(IMG.wangjiFood,"原味葱油餅＋黑米粥／甜豆漿二選一","先食原版招牌；唔再重複第2日油條、粢飯、鹹豆漿。")+mealExtras([["有胃再加","葱油餅加蛋／韭菜餅","原味主角食完先決定，唔一開始叫兩份。"],["飲品","黑米粥／甜豆漿","兩者已經係早餐飲品位，二選一。"]]))}
+${block("現場判斷",branches([
+ ["正常","出爐即食最有價值；食完直接去武康。","hot"],
+ ["隊太長","外帶，路上處理；唔為一塊餅延遲09:00街拍。","danger"]
+]))}
+${nextHop("王記葱油餅 東諸安浜路191-5號","武康大樓 源點廣場")}${sticky("王記葱油餅","東諸安浜路191-5號")}`,
+
+wukang:()=>`${pageHead("第3日 · 攝影開場","武康大樓＋武康路","09:00係正常日光，所以 reference 只保留日間可重現嘅幾何、人物同街景。先完成船頭主片，再用武康路做輕量街拍。",[["到場","約09:00"],["武康大樓","15–20分鐘"],["武康路","09:20–10:05"],["離開","10:15前"]])}
+${media(IMG.freeWukang,"Calvin Wong · Canon R6 II。接近你真正會遇到嘅日間街口：車、人、交通燈都在；唔等清場一樣可以完成主片。")}
+${block("機位圖",photoMap("wukang"))}
+${block("精選 reference",referenceGallery([
+ [IMG.freeWukang,"完整船頭＋街口","主位 · 35mm先試","完整形狀、垂直線同街口環境都清楚；人物同車流可以保留做比例尺。",["日間","主片","不等清場"],"https://unsplash.com/photos/a-very-tall-building-with-lots-of-windows-810raPKOqk4","Unsplash"],
+ [IMG.wukangExample,"較乾淨嘅經典角度","主位 · 幾何參考","只借建築形狀同站位；唔把特定季節／光線當成09:00必然結果。",["幾何參考","站位"],"https://commons.wikimedia.org/wiki/File:20191027_Wukang_Mansion.jpg","Wikimedia Commons"]
+]))}
+${block("武康大樓三步",shots([
+ ["35mm","完整船頭","略低角度先完成主片；唔站馬路中央追絕對對稱。"],
+ ["24mm","補環境版","帶多啲街口同周邊，但唔用超廣角做唯一主片。"],
+ ["50–70","紅磚／窗／陽台／人物","一兩個行人或者單車反而令比例更自然。"]
+]))}
+${block("武康路：邊行邊拍",photographerRefs([
+ ["街角人物","Wukang Road pedestrian","Michael Jiang","人過馬路＋街角建築；適合學35–50mm點樣將人放入城市畫面，而唔係等條街清空。",["街拍","人物比例"],"https://unsplash.com/photos/a-person-crossing-the-street-in-front-of-a-building-YA6GZLsPu4A"],
+ ["沿路街景","Shanghai street view / city walk","krzhck","車、店面、梧桐同日常街道層次；提醒自己武康路唔係逐棟建築checklist。",["city walk","35–50mm"],"https://unsplash.com/photos/a-white-car-parked-on-the-side-of-a-street-Jty4xwXtogE"]
+]))}
+${block("沿路焦段",rules([
+ ["35–50mm","街道、店面、近中距離人物。"],
+ ["70–120mm","窗、陽台、梧桐、遠處人物。"],
+ ["停留原則","見到好光先停；唔等光、唔折返。"]
+]))}
+${cutoff("10:15 前走","15–20分鐘已足夠完成武康大樓主片；之後一路向徐家匯，唔為網紅角度拖成半日。","離開條件")}
+${nextHop("武康大樓／武康路","美羅城 肇嘉浜路1111號")}`,
+
+xjh:()=>xjhPage(),
+
+haijinzi:()=>`${pageHead("第3日 · 本幫午飯","海金滋","呢餐係全程唯一完整本幫正餐。份量同時間要受控制，唔可以拖到張園／機場緩衝。",[["地址","進賢路240號"],["目標到店","約12:40"],["時間上限","45–60分鐘"],["保守午市","按13:30結束處理"]])}
+${block("今次點法",order(IMG.haijinziFood,"葱烤大排＋白飯＋一個輕菜","胃夠先再加醬爆豬肝／響油鱔絲二選一。唔一個人同時點三個重菜。")+mealExtras([["有胃再加","醬爆豬肝／響油鱔絲","兩款都係真正招牌，二選一就夠。"],["飲品","熱茶／清水","正餐以解膩補水為主；唔另外安排酒類。"]]))}
+${alertBox("營業資料有衝突","有來源列11:00–13:30／17:00–20:30，亦有平台列10:00–21:00。執行一律按較短午市保守處理。")}
+${block("到店決策",branches([
+ ["12:40左右到／可入座","正常食海金滋。","hot"],
+ ["13:15仍未能確定到店／入座","開始考慮放棄；唔再當成必完成任務。","warn"],
+ ["13:30後","唔賭午市，直接去味香齋快速方案。","danger"]
+]))}
+${block("後備方案",order(null,"味香齋 · 麻醬麵＋小牛湯","雁蕩路14號；徐家匯玩過鐘或者海金滋排隊／午市不穩就啟動。一旦轉咗味香齋，就唔再補海金滋。","快速方案"))}
+${nextHop("海金滋 進賢路240號","張園／南京西路789號")}${sticky("海金滋","進賢路240號")}`,
+
+zhangyuan:()=>`${pageHead("第3日 · 城市攝影收尾","張園 → 路易號","張園一路向東，經東區步行長廊接興業太古匯，最後拍路易號。Reference 只服務下午日間條件，唔追夜間燈帶。",[["張園","13:50–14:40"],["路易號","14:40–15:15"],["離開","15:15左右"],["方向","西進東出"]])}
+${block("機位圖",photoMap("zhangyuan"))}
+${block("精選 reference",referenceGallery([
+ [IMG.freeZhangyuan,"張園窄巷／門洞","01 · 24–35mm","真實張園位置；借窄巷透視、拱門同人物尺度。午後反差大時先保紅磚高光。",["張園","日間","24–35mm"],"https://unsplash.com/photos/a-narrow-alley-shows-a-dolce-gabbana-store-PvZZIdtkGcY","Unsplash"],
+ [IMG.freeLouis,"The Louis 完整船形","02 · 50–70mm方向","稍退後先收完整船形＋周邊高樓比例；呢張最適合用嚟認你真正想要嘅主畫面。",["The Louis","完整船形","50–70mm"],"https://unsplash.com/photos/modern-building-shaped-like-a-cruise-ship-bsz-zWyqY58","Unsplash"]
+]))}
+${block("建築／機位進階參考",photographerRefs([
+ ["張園","Zhangyuan Shikumen / Blue Bottle","Archiposition · 朱潤資","高質建築攝影，適合拆紅磚材質、門窗、里弄同新舊建築疊合；只開原作頁。",["建築攝影","材質／空間"],"https://www.archiposition.com/items/01a2c5dfd1"],
+ ["路易號","The Louis photo spots","Trip.com contributors","用嚟理解船頭／退後拍全船嘅實際位置；只借站位，唔抄打卡姿勢。",["機位","站位"],"https://www.trip.com/moments/detail/shanghai-2-149602924/"]
+]))}
+${block("張園",shots([
+ ["24–35","窄巷透視／門洞框景","一路向太古匯方向走；晴天下午先保紅磚高光。"],
+ ["50–85","磚牆／窗／人物／新舊疊合","陰天反而最穩定，適合細節同材質。"]
+]))}
+${block("一路去路易號",route([
+ ["13:50","張園","邊行邊拍；唔為角度折返。"],
+ ["→","東區步行長廊／興業太古匯","只作連續城市空間同轉場，唔逐層逛商場。"],
+ ["14:40","路易號","稍退後先用50–70mm收完整船形＋周邊高樓比例。"],
+ ["補拍","24–35mm靠近船頭","只補1–2組曲線透視；人太多就放棄近景。"],
+ ["15:15","收機返住宿","唔等無人、唔搵高位、唔等夜間燈帶。"]
+]))}
+${cutoff("15:15 收機","返住宿取行李優先；任何近景、快閃或者排隊入展都唔值得侵蝕機場時間。","硬截止")}
+${nextHop("張園／路易號","市區住宿")}`,
+
+airport:()=>`${pageHead("第3日 · 收尾／去機場","返住宿 → PVG","呢頁只處理航班緩衝。目前預估15:50離住宿可行但唔寬鬆，所以現場應以前移做正常目標。",[["返住宿","15:15後立即"],["較舒服出發","15:30–15:40"],["最遲正常值","15:50"],["航班","19:05 · 航班資料已隱藏"]])}
+${lead("15:30–15:40取完行李就走","15:50唔係目標，只係最遲正常值。交通事故／塞車會快速侵蝕緩衝。","約17:00到PVG")}
+${block("收尾路線",route([
+ ["15:15","張園／路易號收工","相機收起，直接返住宿。"],
+ ["15:30–15:40","住宿取行李並出發","呢個係較舒服嘅硬截止。"],
+ ["15:50","只作最遲正常值","如果拖到呢個時間，唔再追加任何食／買／拍攝任務。"],
+ ["≈17:00","PVG T2","機場餐只係補給，唔再追上海美食主線。"],
+ ["19:05","返程航班","完成行程。"]
+]))}
+${alertBox("唔好用『仲有兩個鐘』錯覺拖延","由市區去PVG嘅不確定性主要係道路／交通時間。Day 3任何前段活動一超時，先砍餐飲後備／張園額外內容，唔砍機場緩衝。",true)}`
+};
+
+function towerPage(){
+ return `${pageHead("第1日 · 19:30 · 夜景","上海之巔 118F","純夜景。先認方向，再完成西／西北黃浦江主片；附近超高樓同城市紋理係第二輪。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["時段","19:30–21:00"],["重評","出發前2–3日"]])}
+ ${block("先記四個方向",`<div class="tower-orient">
+   <div class="tower-dir"><div class="bearing">西／西北</div><div><b>黃浦江大彎＋外灘</b><p>24–50mm主力。第一個合適窗位就先完成；東方明珠可做近景 anchor。</p><span class="tower-priority main">第一優先</span></div></div>
+   <div class="tower-dir"><div class="bearing">東北</div><div><b>SWFC＋金茂高度差</b><p>50–120mm。利用118F俯視附近兩座超高樓，拍幾何、樓頂同城市密度。</p><span class="tower-priority secondary">第二輪</span></div></div>
+   <div class="tower-dir"><div class="bearing">北向</div><div><b>金茂／城市燈海</b><p>70–120mm。單一建築＋道路層次即可，唔需要每張都塞晒地標。</p><span class="tower-priority secondary">補充</span></div></div>
+   <div class="tower-dir"><div class="bearing">其他方向</div><div><b>道路＋城市紋理</b><p>能見度高先值得花時間；低雲／霧就提早收。</p><span class="tower-priority secondary">視條件</span></div></div>
+ </div><p class="tower-note">實際窗位、玻璃反光同人流會令你左右移動，唔需要守死一格玻璃。</p>`)}
+ ${block("主力夜景 reference",referenceGallery([
+  [IMG.towerNightRiver,"黃浦江大彎＋東方明珠","西／西北 · 24–35mm","第一張應該先建立江道、東方明珠、外灘三層關係。",["夜景實拍","第一主片"],"https://commons.wikimedia.org/wiki/File:View_from_the_Shanghai_Tower_observatory_deck.jpg","Wikimedia Commons"],
+  [IMG.towerNightBund,"外灘＋陸家嘴夜景","西向 · 35–50mm概念","收窄少少後，重點由純大景變成地標比例同城市層次。",["夜景實拍","地標比例"],"https://commons.wikimedia.org/wiki/File:20170130从上海中心大厦观景台眺望陆家嘴和外滩夜景.jpg","Wikimedia Commons"],
+  [IMG.freeTowerSWFC,"SWFC 夜景近景","東北 · 50–85mm方向","Bernd Dittrich 由上海中心拍 SWFC；非常直接嘅第二輪近景 reference。",["上海中心實拍","SWFC","50–85mm"],"https://unsplash.com/photos/an-aerial-view-of-a-city-at-night-bAWkT81-E2g","Unsplash"]
+ ]))}
+ ${block("攝影師進階參考",photographerRefs([
+  ["西向 · 主力","Night lights of Pudong","Terry Allen","浦東前景 → 黃浦江 → 外灘背景；最值得學三層景深同城市尺度。",["西向","三層景深"],"https://www.flickr.com/photos/130819462@N04/30100921186/"],
+  ["西向 · 黃浦江大彎","Shanghai – Top of Shanghai","Markus Bahlmann","黃浦江大彎、外灘、蘇州河口同前景；最適合研究江道構圖。",["西向","江道構圖"],"https://www.flickr.com/photos/cnmark/51540253050"],
+  ["東北 · 超高樓群","Skyscrapers of Pudong","Terry Allen","SWFC在右、金茂在左下；直接學50–120mm點樣利用附近超高樓做主體。",["東北","SWFC＋金茂"],"https://www.flickr.com/photos/130819462@N04/30092106521/"]
+ ]))}
+ ${block("到場拍攝次序",shots([
+  ["24–35","黃浦江大彎＋浦西","先完成一張完整主片；三層關係成立先再巡。"],
+  ["35–50","東方明珠／外灘＋江面比例","自然視角收乾淨地標關係，避免所有畫面都係超廣角。"],
+  ["50–85","外灘建築群／SWFC＋金茂","開始拆成兩三個主體；利用附近高樓高度差。"],
+  ["85–120","道路燈線／單棟建築／城市紋理","能見度好先多拍；霧／低雲時唔硬拉遠。"]
+ ]))}
+ ${block("先處理玻璃，再處理參數",rules([
+  ["鏡頭","盡量正對玻璃；遮光罩能貼就貼。"],
+  ["遮反光","不能貼就用黑外套包住鏡頭周圍；身後有亮屏／燈就先左右移位。"],
+  ["快門／ISO","先保畫面銳利，尤其50–120mm；唔為低ISO硬壓極慢快門。"],
+  ["CPL","唔以CPL作夜景主要解法。"]
+ ]))}
+ ${block("值唔值得上去，由能見度決定",weather([
+  ["能見度高","85–120mm價值大升；可以抽道路、樓群同遠處建築帶。","good"],
+  ["低雲／霧","雲底接近／低於約550–600m，或者城市能見度差，118F價值大減。","warn"]
+ ]))}
+ ${nextHop("上海之巔118F","夜食／返住宿")}`;
+}
+
+function mwyPage(){
+ return `${pageHead("第2日 · 主日","未來有你 2026","呢頁只分『已確認』同『等官方』。場販時間／場地已經可以執行；相機、袋、安檢、再次入場仍然唔可以當成已知。",[["場販","10:00–22:00"],["主售","小羽毛球館"],["展示","大羽毛球館＋CALL棒單品"],["夜場","19:00 · VIP"]])}
+ <div class="event-pass"><small>11月1日 · 上海靜安體育中心</small><h2>未來有你 2026</h2><p>汶水路116號 · Day 2所有飲食同器材安排都要服從呢個主線。</p><div class="time">19:00</div><div class="status-strip"><span class="status-pill ok">場販時間已確認</span><span class="status-pill ok">場地已確認</span><span class="status-pill warn">相機規則待公告</span><span class="status-pill warn">再次入場待確認</span></div></div>
+ ${block("場販／展示已確認",route([
+  ["10:00","小羽毛球館","官方場販主要售賣區。"],
+  ["同時","大羽毛球館","多作展示區，只設CALL棒單品購買點。"],
+  ["22:00","場販結束","影片旁白曾講23:00，但官方圖係22:00；網站以官方圖為準。"],
+  ["19:00","VIP夜場","演唱會本身係Day 2最硬時間點。"]
+ ]))}
+ ${block("相機規則：等主辦，唔估",branches([
+  ["最終容許 Z8／可換鏡頭相機","照原本Day 2行程；Z8可全日跟身。","hot"],
+  ["最終禁止 Z8，但只持19:00夜場","下午場販／展示後插入『場館 → 住宿寄存 → 回汶水路』分支。","warn"],
+  ["如果之後再有14:00日場票＋禁相機","最乾淨係早上已把Z8留住宿；唔好等下午先處理。","danger"]
+ ]))}
+ ${block("夜場-only＋禁相機時點做",route([
+  ["≈15:45","離開場館區","如果高德／Didi顯示道路順暢，可以用錢換時間。"],
+  ["15–25m","叫車去住宿","單程先預留約15–25分鐘；路況差就改用較穩定公共交通。"],
+  ["住宿","前台寄存 Z8＋24–120","可用乾淨軟布／衣物包好，以相機本體尺寸交前台；是否接受要先向住宿確認。"],
+  ["≈16:40–16:55","回汶水路／協信廣場","順利就仍可保住小楊時段。"],
+  ["18:00","返場館","如果16:00後先開始離場，小楊係第一個可砍項。"]
+ ]))}
+ ${alertBox("住宿寄存仍有兩件事未核實","要先確認：① 前台是否接受呢個尺寸嘅貴重物品；② 有冇寄存牌／收據，同當晚取回流程。住宿聯絡資料不存於公開版。")}
+ ${more([
+  ["去年／其他活動禁相機可唔可以直接當2026規則？","唔可以。去年第三方整理同同場館其他2026活動，只能證明Z8被拒入場係實質風險，唔可以代替2026 MWY主辦最終公告。"],
+  ["場販區可唔可以自由再入？","影片作者話持當日票可自由進出，但而家未搵到官方公開文字確認，所以只作參考。"]
+ ])}`;
+}
+
+function xjhPage(){
+ return `${pageHead("第3日 · 室內探索","徐家匯 ACG／科技","三個點只去最有用嗰層。呢段嘅停留時間唔由商場大小決定，而係由11月2日當期IP／遊戲活動決定。",[["時段","約10:30–12:20"],["主站","美羅城 5–6F"],["第二站","TPY B2"],["第三站","新六百外牆"]])}
+ ${block("最短有效路線",route([
+  ["01","美羅城 5–6F","HAPPY MALL／動漫主題影院／XR；三站之中最值得當主娛樂站。"],
+  ["02","TPY Center B2","二次元街、谷店、卡牌、扭蛋、快閃；上層科技內容按興趣再睇。"],
+  ["03","新六百YOUNG","先睇外部8K裸眼3D大屏；有當期IP活動先深入室內。"]
+ ]))}
+ <div class="tabline"><button class="active" onclick="xjhVenue('happy',this)">美羅城</button><button onclick="xjhVenue('tpy',this)">TPY B2</button><button onclick="xjhVenue('young',this)">新六百YOUNG</button></div><div id="venueCard">${venueCard('happy')}</div>
+ ${alertBox("10月底再查當期IP","有 Miku／PJSK／遊戲 IP 真正啱口味先延長；普通內容就照原定時間離開，唔因為『已經嚟到』而逐層行。")}
+ ${cutoff("徐家匯玩過鐘 → 午飯先降級","如果IP活動太好玩，可以延長；代價應該係海金滋轉味香齋快速方案，而唔係侵蝕張園收尾／機場。","時間交換")}
+ ${nextHop("美羅城／TPY","海金滋 進賢路240號")}`;
+}
+function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"先看外部裸眼3D大屏；有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
+function xjhVenue(k,btn){$("#venueCard").innerHTML=venueCard(k);btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+
 function init(){
- document.getElementById("app").innerHTML=`
+ const autoDay=todayTripDay(); if(autoDay) currentDay=autoDay;
+ document.getElementById('app').innerHTML=`
  <div class="shell">
-  <header class="topbar"><button id="backBtn" class="iconbtn hidden">‹</button><h1 id="pageTitle">MWY2026 · Interactive Trip Book</h1></header>
+  <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><button id="privacyBtnTop" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></header>
   <main class="main">
    <section id="tripView">
-    <div class="cover"><div><small>SHANGHAI · 3 DAYS</small><h2>現場打開就知道下一步。</h2><p>Timeline 管時間，Map 管空間；每篇 detail 再用自己最合理嘅內容與互動方式解釋現場。</p></div><div class="cover-meta"><span class="meta">10/31–11/2</span><span class="meta">外灘 · MWY · 徐家匯</span><span class="meta">RC1 Preview</span></div></div>
-    <div class="section"><p class="kicker">NEXT</p><div class="next"><div class="nt">14:30</div><div><h3>佳家湯包</h3><p>第一餐 · 鮮肉湯包＋魚丸湯</p></div><button class="cta" onclick="openDetail('jiajia')">打開</button></div></div>
-    <div class="section"><p class="kicker">3 DAYS</p><div class="days">${[1,2,3].map(d=>`<button class="daypick" onclick="openDay(${d})"><b>Day ${d}</b><span>${TRIP[d].title}</span></button>`).join("")}</div></div>
+    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · 2026.10.31—11.02</div><h1>三日行程書</h1><p>行程、攝影、飲食、活動規則全部壓成現場可執行版本。先睇下一步，需要時先展開詳細資料。</p><div class="cover-meta"><span class="chip-dark">Nikon Z8 + 24–120/4 S</span><span class="chip-dark">資料更新 · 09/28</span></div></div><div class="cover-bottom"><div class="eyebrow">主線已鎖 · 時效資料臨行刷新</div></div></div>
+    <div class="section"><div class="section-title"><h2>三日主線</h2><p>按日進入時間線</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
+    <div class="section"><div class="section-title"><h2>執行原則</h2><p>資料層 → 現場判斷</p></div><div class="baseline"><div class="baseline-row"><small>攝影</small><div><b>唔為相加站</b><p>超時先砍額外畫面；Day 1守自然光，Day 3守15:15收尾。</p></div></div><div class="baseline-row"><small>飲食</small><div><b>排隊係時間成本</b><p>每間店都有放棄條件；唔為名店破壞攝影、MWY或者機場緩衝。</p></div></div><div class="baseline-row"><small>Day 2</small><div><b>只信主辦最終規則</b><p>場販已確認；相機／袋／再次入場仍然等公告，網站只保留決策分支。</p></div></div></div></div>
    </section>
-   <section id="dayView" class="hidden">
-    <div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div></div>
-    <div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">Day ${d}</button>`).join("")}</div>
-    <div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">Timeline</button><button id="mBtn" onclick="setMode('map')">Map</button></div>
-    <div id="timelinePane"></div><div id="mapPane" class="hidden"></div>
-   </section>
-   <section id="guideView" class="hidden">
-    <div class="dayhead"><div><h2>Guide</h2><p>導航、資料狀態、臨行前重查。</p></div></div>
-    <div class="guideitem"><h3>住宿</h3><p>如家商旅酒店（上海火車站南廣場店）。只保留公開店名／地址作導航。</p></div>
-    <div class="guideitem"><h3>PVG T2</h3><p>Day 3 約15:50離開酒店，目標約17:00到浦東機場 T2。</p></div>
-    <p class="kicker" style="margin-top:22px">RECHECK BOARD</p>
-    <div class="state-list">
-      <div class="state-row"><span style="color:#08756f">VERIFIED</span><div><b>MWY 場販</b><p>10/31–11/1 10:00–22:00；小羽館主售、大羽館展示＋CALL棒。</p></div></div>
-      <div class="state-row"><span style="color:#9a3232">CONFLICT</span><div><b>琪琪麵館地址</b><p>政府行政資料與旅遊平台門牌衝突，未解決前不提供一鍵導航。</p></div></div>
-      <div class="state-row"><span style="color:#946300">CHECK</span><div><b>渡輪 / 大壺春 / 上海之巔</b><p>臨行重查班次、收店時間、票務、能見度。</p></div></div>
-      <div class="state-row"><span style="color:#946300">TBA</span><div><b>MWY Camera / Bag / Re-entry</b><p>待主辦正式公告。</p></div></div>
-    </div>
-   </section>
+   <section id="dayView" class="hidden"><div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div><div class="day-date" id="dayDate"></div></div><div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">第${d}日</button>`).join('')}</div><div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">時間線</button><button id="mBtn" onclick="setMode('map')">地圖</button></div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section>
+   <section id="guideView" class="hidden">${guideHTML()}</section>
   </main>
-  <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">Trip</button><button id="navDay" class="nav" onclick="openDay(currentDay)">Day</button><button id="navGuide" class="nav" onclick="showGuide()">Guide</button></nav>
+  <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">行程</button><button id="navDay" class="nav" onclick="openDay(currentDay)">當日</button><button id="navGuide" class="nav" onclick="showGuide()">指南</button></nav>
  </div>
- <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()">‹</button><strong id="detailTitle"></strong></div><article id="article" class="article"></article></div>`;
- $("#backBtn").onclick=()=>history.back();
- history.replaceState({v:"trip"},"","#trip");
-}
+ <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><button id="privacyBtnDetail" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></div><article id="article" class="article"></article></div>`;
 
-function setTop(t,b=false){$("#pageTitle").textContent=t;$("#backBtn").classList.toggle("hidden",!b)}
-function nav(x){$("#navTrip").classList.toggle("active",x==="trip");$("#navDay").classList.toggle("active",x==="day");$("#navGuide").classList.toggle("active",x==="guide")}
-function hideMain(){["tripView","dayView","guideView"].forEach(id=>$("#"+id).classList.add("hidden"))}
-function showTrip(){hideMain();$("#tripView").classList.remove("hidden");setTop("MWY2026 · Interactive Trip Book");nav("trip");history.pushState({v:"trip"},"","#trip")}
-function showGuide(){hideMain();$("#guideView").classList.remove("hidden");setTop("Guide",true);nav("guide");history.pushState({v:"guide"},"","#guide")}
-function openDay(d){currentDay=d;mode="timeline";hideMain();$("#dayView").classList.remove("hidden");setTop(`Day ${d} · ${TRIP[d].title}`,true);nav("day");renderDay();history.pushState({v:"day",d,mode},"",`#day-${d}`)}
-function switchDay(d){currentDay=d;renderDay();setTop(`Day ${d} · ${TRIP[d].title}`,true);history.replaceState({v:"day",d,mode},"",`#day-${d}-${mode}`)}
-function setMode(m){mode=m;renderDay();history.replaceState({v:"day",d:currentDay,mode},"",`#day-${currentDay}-${mode}`)}
+ $('#backBtn').onclick=()=>history.back();
+ history.replaceState({v:'trip'},'','#trip');
+ restoreFromHash();
+}
+function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
+function dayCardSub(d){return d===1?'抵達 → 外灘黃昏 → 渡輪 → 上海之巔':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
+function todayTripDay(){const z=new Date(),k=`${z.getFullYear()}-${String(z.getMonth()+1).padStart(2,'0')}-${String(z.getDate()).padStart(2,'0')}`;return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[k]||0}
+function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList.toggle('hidden',!b)}
+function nav(x){$('#navTrip').classList.toggle('active',x==='trip');$('#navDay').classList.toggle('active',x==='day');$('#navGuide').classList.toggle('active',x==='guide')}
+function hideMain(){['tripView','dayView','guideView'].forEach(id=>$('#'+id).classList.add('hidden'))}
+function showTrip(push=true){hideMain();$('#tripView').classList.remove('hidden');setTop('MWY2026 · 上海三日行程書');nav('trip');if(push)history.pushState({v:'trip'},'','#trip')}
+function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidden');setTop('指南',true);nav('guide');if(push)history.pushState({v:'guide'},'','#guide')}
+function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();if(push)history.pushState({v:'day',d,mode},'',`#day-${d}`)}
+function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
+function setMode(m){mode=m;renderDay();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
+function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active',+b.dataset.d===currentDay));$('#tBtn').classList.toggle('active',mode==='timeline');$('#mBtn').classList.toggle('active',mode==='map');$('#timelinePane').classList.toggle('hidden',mode!=='timeline');$('#mapPane').classList.toggle('hidden',mode!=='map');if(mode==='timeline')renderTimeline();else{renderMap();setTimeout(initMap,30)}}
+function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>`${i?`<div class="route-link">${items[i-1].move||''}</div>`:''}<div class="stop"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" onclick="openDetail('${x.id}')"><span class="stop-kind">${x.kind}</span><h3>${x.title}</h3><p>${x.sub}</p></button></div>`).join('')}</div>`}
 
-function renderDay(){
- const day=TRIP[currentDay], items=day.items;
- $("#dayTitle").textContent=`Day ${currentDay}`;$("#daySub").textContent=day.title;
- document.querySelectorAll(".seg button").forEach(b=>b.classList.toggle("active",+b.dataset.d===currentDay));
- $("#tBtn").classList.toggle("active",mode==="timeline");$("#mBtn").classList.toggle("active",mode==="map");
- $("#timelinePane").classList.toggle("hidden",mode!=="timeline");$("#mapPane").classList.toggle("hidden",mode!=="map");
- $("#timelinePane").innerHTML=`<div class="timeline">${items.map((x,i)=>`
-  <div class="stop" id="stop-${currentDay}-${i}"><span class="dot"></span>
-   <div class="row ${selected[currentDay]===i?"selected":""}" onclick="selectTimeline(${i})">
-    <div class="rowtop"><div><div class="time">${x.time}</div><h3>${x.title}</h3><p>${x.sub}</p><div class="tags"><span class="tag">${x.kind}</span>${x.approx?'<span class="tag">PIN APPROX</span>':''}</div></div>
-    <div class="row-actions"><button class="locate" onclick="event.stopPropagation();locateStop(${i})">Map</button><div class="kind">›</div></div></div>
-   </div></div>${i<items.length-1?`<div class="linker">${x.move}</div>`:""}`).join("")}</div>
-  ${currentDay===2?'<div class="recheckline">MWY：場販資料已鎖定；Camera / Bag / Re-entry 仍維持 TBA / UNCONFIRMED。</div>':""}`;
- if(mode==="map"){renderMap();setTimeout(initMap,0)}
-}
-
-function selectTimeline(i){selected[currentDay]=i;openDetail(TRIP[currentDay].items[i].id)}
-function locateStop(i){selected[currentDay]=i;mode="map";renderDay();setTimeout(()=>selectMapStop(i,true),120)}
-function goTimeline(){mode="timeline";renderDay();requestAnimationFrame(()=>document.getElementById(`stop-${currentDay}-${selected[currentDay]}`)?.scrollIntoView({behavior:"smooth",block:"center"}))}
-function renderMap(){
- const items=TRIP[currentDay].items, x=items[selected[currentDay]]||items[0];
- $("#mapPane").innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>MapLibre + OpenFreeMap · 零 API key</small></div></div>
- <div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${items.length-1},true)">最後一站</button></div>
- <div id="mapInspector">${inspectorHTML(x)}</div>
- <div class="recheckline">Map 只負責理解空間與 stop 關係。真正搭車／步行 routing 繼續交畀高德 point-to-point。</div>`;
-}
-function inspectorHTML(x){
- const i=TRIP[currentDay].items.indexOf(x);
- return `<div class="map-inspector"><small>SELECTED STOP ${i+1}/${TRIP[currentDay].items.length}</small><h3>${x.time} · ${x.title}</h3><p>${x.sub}<br>${x.address}${x.approx?" · pin 暫作近似":""}</p><div class="mi-actions"><button class="primary" onclick="openDetail('${x.id}')">詳細頁</button><button class="secondary" onclick="goTimeline()">回 Timeline</button></div></div>`;
-}
+function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
+function inspectorHTML(x,mapped){if(!x)return'';const i=mapped.indexOf(x);return `<div class="map-inspector"><small>站點 ${i+1}/${mapped.length}</small><h3>${x.time} · ${x.title}</h3><p>${x.sub}${x.address?`<br>${x.address}`:''}</p><div class="map-actions"><button class="primary" onclick="openDetail('${x.id}')">打開詳細頁</button><button class="secondary" onclick="goTimeline()">回時間線</button></div></div>`}
 function outOfChina(lng,lat){return lng<72.004||lng>137.8347||lat<0.8293||lat>55.8271}
 function transformLat(x,y){let r=-100+2*x+3*y+.2*y*y+.1*x*y+.2*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3;r+=(20*Math.sin(y*Math.PI)+40*Math.sin(y/3*Math.PI))*2/3;r+=(160*Math.sin(y/12*Math.PI)+320*Math.sin(y*Math.PI/30))*2/3;return r}
 function transformLng(x,y){let r=300+x+2*y+.1*x*x+.1*x*y+.1*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3;r+=(20*Math.sin(x*Math.PI)+40*Math.sin(x/3*Math.PI))*2/3;r+=(150*Math.sin(x/12*Math.PI)+300*Math.sin(x/30*Math.PI))*2/3;return r}
 function gcjToWgs(lng,lat){if(outOfChina(lng,lat))return[lng,lat];const a=6378245,ee=.00669342162296594323,dLat=transformLat(lng-105,lat-35),dLng=transformLng(lng-105,lat-35),rad=lat/180*Math.PI,s=Math.sin(rad),m=1-ee*s*s,sm=Math.sqrt(m),mgLat=lat+(dLat*180)/((a*(1-ee))/(m*sm)*Math.PI),mgLng=lng+(dLng*180)/(a/sm*Math.cos(rad)*Math.PI);return[lng*2-mgLng,lat*2-mgLat]}
-function initMap(){
- if(typeof maplibregl==="undefined"){document.querySelector("#realMap .mapfallback").innerHTML="MapLibre 未載入。正式 repo / GitHub Pages 再驗真地圖。";return}
- try{
-  if(mapObj)mapObj.remove();mapMarkers=[];
-  const items=TRIP[currentDay].items, coords=items.map(x=>gcjToWgs(...x.coord));
-  mapObj=new maplibregl.Map({container:"realMap",style:"https://tiles.openfreemap.org/styles/liberty",center:coords[selected[currentDay]],zoom:13,attributionControl:true});
-  mapObj.addControl(new maplibregl.NavigationControl({showCompass:true}),"top-right");
-  mapObj.on("load",()=>{
-    mapMarkers=items.map((x,i)=>{
-      const el=document.createElement("div");el.className="trip-marker"+((x.kind==="Event"||x.kind==="Concert")?" event":"")+(selected[currentDay]===i?" selected":"");el.textContent=i+1;
-      el.onclick=()=>selectMapStop(i,true);
-      return new maplibregl.Marker({element:el}).setLngLat(coords[i]).addTo(mapObj)
-    });
-    mapObj.addSource("route",{type:"geojson",data:{type:"Feature",geometry:{type:"LineString",coordinates:coords}}});
-    mapObj.addLayer({id:"route-line",type:"line",source:"route",paint:{"line-color":"#169f99","line-width":3,"line-opacity":.65,"line-dasharray":[1.2,1.5]}});
-    fitDay();setTimeout(()=>selectMapStop(selected[currentDay],false),300)
-  });
- }catch(e){document.getElementById("realMap").innerHTML='<div class="mapfallback">真地圖喺目前預覽環境載入唔到。RC1 code 已保留完整 MapLibre 聯動。</div>'}
-}
-function fitDay(){if(!mapObj)return;const cs=TRIP[currentDay].items.map(x=>gcjToWgs(...x.coord));const b=cs.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(cs[0],cs[0]));mapObj.fitBounds(b,{padding:58,maxZoom:14,duration:500})}
-function selectMapStop(i,fly){
- selected[currentDay]=i;const x=TRIP[currentDay].items[i];
- if($("#mapInspector"))$("#mapInspector").innerHTML=inspectorHTML(x);
- mapMarkers.forEach((m,j)=>m.getElement().classList.toggle("selected",j===i));
- if(fly&&mapObj)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:15,duration:550});
-}
-function hero(src,cap,position="center"){return `<div class="heroimg"><img src="${src}" style="object-position:${position}" onerror="this.parentElement.style.display='none'"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
-function status(t,c=""){return `<span class="status ${c}">${t}</span>`}
-function hop(a,b){return `<div class="next-hop"><small>NEXT HOP</small><b>${a} → ${b}</b><div class="next-actions"><button class="a" onclick="copyText('${a}')">Copy 起點</button><button class="b" onclick="copyText('${b}')">Copy 終點</button></div></div>`}
-function actions(name,address){return `<div class="actions"><button class="primary" onclick="copyText('${name} ${address||""}')">Copy 店名＋地址</button><button class="secondary" onclick="copyText('${address||name}')">Copy 地址</button></div>`}
+function initMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);if(typeof maplibregl==='undefined'){const f=document.querySelector('#realMap .mapfallback');if(f)f.innerHTML='地圖元件載入失敗。可直接複製地址去高德。';return}try{if(mapObj)mapObj.remove();mapMarkers=[];const coords=mapped.map(x=>gcjToWgs(...x.coord));mapObj=new maplibregl.Map({container:'realMap',style:'https://tiles.openfreemap.org/styles/liberty',center:coords[selected[currentDay]]||coords[0],zoom:12,attributionControl:true});mapObj.addControl(new maplibregl.NavigationControl({showCompass:true}),'top-right');mapObj.on('load',()=>{mapMarkers=mapped.map((x,i)=>{const el=document.createElement('div');el.className='trip-marker'+(x.anchor?' anchor':'')+(selected[currentDay]===i?' selected':'');el.textContent=i+1;el.onclick=()=>selectMapStop(i,true);return new maplibregl.Marker({element:el}).setLngLat(coords[i]).addTo(mapObj)});if(coords.length>1){mapObj.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:coords}}});mapObj.addLayer({id:'route-line',type:'line',source:'route',paint:{'line-color':'#169f99','line-width':3,'line-opacity':.65,'line-dasharray':[1.2,1.5]}})}fitDay()})}catch(e){document.getElementById('realMap').innerHTML='<div class="mapfallback">地圖喺目前環境載入唔到；詳細頁同地址複製功能仍可正常用。</div>'}}
+function fitDay(){if(!mapObj)return;const cs=DAYS[currentDay].items.filter(x=>x.coord).map(x=>gcjToWgs(...x.coord));if(!cs.length)return;if(cs.length===1){mapObj.flyTo({center:cs[0],zoom:14});return}const b=cs.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(cs[0],cs[0]));mapObj.fitBounds(b,{padding:55,maxZoom:14,duration:350})}
+function selectMapStop(i,fly){const mapped=DAYS[currentDay].items.filter(x=>x.coord);selected[currentDay]=i;const x=mapped[i];if($('#mapInspector'))$('#mapInspector').innerHTML=inspectorHTML(x,mapped);mapMarkers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));if(fly&&mapObj&&x)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:14.5,duration:450})}
+function goTimeline(){mode='timeline';renderDay()}
 
-function restaurantArrival(imgSrc,address,note,exact=true){
- if(!imgSrc){
-  return `<div class="restaurant-arrival"><div class="store-missing"><div><b>門面相待核實</b><p>${note||"寧願暫時唔放錯舖相。正式版會補 exact storefront，呢格係真正嘅認店位置。"}</p><span class="addr">${address}</span></div></div><div class="arrival-info"><div><small>到埗認店</small><b>${address}</b><p>門面素材未達到可放心認店嘅標準。</p></div><button onclick="copyText('${address}')">Copy 地址</button></div></div>`;
- }
- return `<div class="restaurant-arrival"><div class="arrival-photo"><img src="${imgSrc}" onerror="this.parentElement.style.display='none'"></div><div class="arrival-info"><div><small>${exact?"到埗認店":"品牌識別 · 非 exact branch"}</small><b>${address}</b><p>${note||""}</p></div><button onclick="copyText('${address}')">Copy 地址</button></div></div>`;
-}
-function foodCard(imgSrc,title,note){
- if(!imgSrc)return `<div class="food-card placeholder"><div><b>${title}</b><span>${note||"食物相待補。"}</span></div></div>`;
- return `<div class="food-card"><img src="${imgSrc}" onerror="this.style.display='none'"><div class="fc-copy"><b>${title}</b><span>${note||""}</span></div></div>`;
-}
-function foodGallery(cards){return `<div class="food-section"><h2>食物先睇樣</h2><div class="food-gallery">${cards.join("")}</div></div>`}
+function guideHTML(){return `<div class="guide-intro"><h2>指南</h2><p>網站只保存現場會用到嘅結論。研究過程留喺資料源；時效資料按指定時間再刷新，避免將一個月前嘅答案當成當日事實。</p><div class="privacy-note"><b>公開版只保留必要識別資料。</b> 住宿名稱保留作導航識別；航班編號、住宿地址／聯絡資料唔存在 HTML 原始碼。右上「公開」只係狀態標記。</div></div><div class="guide-group"><h3>資料狀態</h3><div class="status-list"><div class="status-row"><div class="state">基準</div><div><b>攝影現場手冊 FINAL · 09/28</b><p>Day 1／Day 3站位、焦段、天氣分支已完成。</p></div></div><div class="status-row"><div class="state">基準</div><div><b>飲食現場手冊 FINAL V1 · 09/28</b><p>每間主店點法、排隊上限、放棄條件已完成。</p></div></div><div class="status-row warn"><div class="state">待公告</div><div><b>MWY 相機／袋／安檢／再次入場</b><p>場販時間及場地已確認；其餘只保留決策分支，唔自行補答案。</p></div></div></div></div><div class="guide-group"><h3>臨行刷新</h3><div class="mini-route"><div class="r"><strong>T-7至3日</strong><span>餐廳營業／臨休／搬遷；上海天氣、能見度、低雲；判斷上海之巔價值。</span></div><div class="r"><strong>T-2至1日</strong><span>外灘／小陸家嘴景觀照明；東金線渡輪班次／臨時停航。</span></div><div class="r"><strong>T-1日</strong><span>佳家、泰康、大壺春、鮮得來、張師傅、琪琪、小楊、王記、海金滋、味香齋逐間快速睇「今日營業」。</span></div><div class="r"><strong>當日</strong><span>只看排隊長度、下一個固定時間點、實際天氣／人流；按頁面放棄條件執行。</span></div></div></div><div class="guide-group"><h3>固定導航資料</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>地址／聯絡資料不存於公開版；Day 2相機禁帶時，前台貴重物品寄存係優先研究方案。</p></div></div><div class="status-row"><div class="state">返程</div><div><b>11/2 · 航班資料已隱藏 · 19:05 PVG T2</b><p>15:30–15:40由住宿出發較舒服；15:50只作最遲正常值。</p></div></div></div></div>`}
 
-const P={
-jiajia:()=>`${status("VERIFIED")}<h1>佳家湯包</h1><p class="deck">去到先認啱黃河路127號新店，入店後先睇今次真正要叫咩。</p>
-${restaurantArrival(IMG.jiajiaStore,"黃河路127號","黑底金字「佳家湯包」，門旁可以直接見到綠色127門牌。",true)}
-${foodGallery([
- foodCard(IMG.jiajiaFood,"鮮肉湯包＋湯","今次以鮮肉湯包為核心；配魚丸湯／雞鴨血湯。"),
- foodCard(null,"其他湯包線","蟹粉鮮肉、蛋黃鮮肉等係店內重要產品，但唔需要為完成菜單而全部叫。")
-])}
-<h2>今次點咩</h2><div class="choice"><div><b>鮮肉湯包</b><span>核心基本款，本身已經係佳家主線。</span></div><div><b>＋魚丸湯</b><span>想換口味可用雞鴨血湯。</span></div></div>
-<table class="matrix"><tr><th>菜式</th><th>店內角色</th><th>今次</th></tr><tr><td><strong>鮮肉湯包</strong></td><td>核心基本款</td><td>主選</td></tr><tr><td>蟹粉鮮肉</td><td>名氣線</td><td>非必要</td></tr><tr><td>蛋黃鮮肉</td><td>變奏</td><td>胃有位先</td></tr><tr><td>魚丸湯</td><td>配搭</td><td>推薦</td></tr></table>
-<div class="callout"><strong>胃容量先係資源</strong><p>後面仲有泰康、大壺春。第一餐食到代表性就夠。</p></div>${hop("佳家湯包 黃河路127號","泰康食品 南京東路766號")}${actions("佳家湯包","黃河路127號")}`,
-
-taikang:()=>`${status("QUEUE DECISION","warn")}<h1>泰康食品</h1><p class="deck">先認南京東路766號門面，再決定要唔要停低買一個鮮肉月餅。</p>
-${restaurantArrival(IMG.taikangStore,"南京東路766號","黑底黃字「泰康食品」係最直接嘅門面識別。",true)}
-${foodGallery([
- foodCard(IMG.taikangFood,"鮮肉月餅","今次只需要 1 個，趁熱食。"),
- foodCard(null,"其他糕點","唔展開掃貨；呢站只係路過補給。")
-])}
-<div class="choice"><div><b>BUY ONE</b><span>鮮肉月餅 1 個。</span></div><div><b>長龍</b><span>直接 skip。外灘光線優先。</span></div></div>
-<div class="callout"><strong>唔值得為佢破壞15:30後行程</strong><p>中秋前排隊情況唔直接套落10/31。現場一望就知排得唔合理，就走。</p></div>${hop("泰康食品 南京東路766號","洛克·外灘源 / 圓明園路")}${actions("泰康食品","南京東路766號")}`,
-
-bund:()=>`${status("PHOTO ROUTE")}<h1>外灘黃昏</h1><p class="deck">呢段唔係「去外灘」，係由舊街區一路追住光線行到黃浦江。</p>${hero(IMG.bund,"外灘藍調係呢段真正要守住嘅畫面。")}
-<h2>Route</h2><div class="route"><div class="route-step"><div class="route-dot"></div><div class="route-time">15:30</div><div class="route-copy"><b>洛克·外灘源 / 圓明園路</b><span>建築立面、街燈、街道縱深。35–70mm。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">16:20</div><div class="route-copy"><b>外白渡橋</b><span>鋼橋做前景，浦東 skyline 做背景。24–35mm。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">16:50</div><div class="route-copy"><b>外灘江邊</b><span>預留位置，等日落一路落到藍調。</span></div></div></div>
-<h2>Light window</h2><div class="lightbar"><div>日光<br>16:00+</div><div>17:06<br>Sunset</div><div class="hot">17:06–17:31<br>Blue hour</div><div>17:31+<br>Night</div></div>
-<div class="warnbox"><b>天空靚時，大壺春讓路。</b><p>光線不可重播，食店可以。藍調未完成就唔好為18:00餐廳硬走。</p></div>
-<div class="grid2"><div class="fact"><b>圓明園路</b><span>中焦整理立面與街道線條。</span></div><div class="fact"><b>外白渡橋</b><span>24–35mm。橋面有車流震動。</span></div><div class="fact"><b>江邊全景</b><span>24–35mm 收 skyline。</span></div><div class="fact"><b>細節</b><span>50–120mm 抽樓群、船、燈線。</span></div></div>${hop("外灘","大壺春 四川中路136號")}`,
-
-dahuchun:()=>`${status("HOURS RECHECK","warn")}<h1>大壺春</h1><p class="deck">門面本身非常好認。下面再用實物睇清楚，點解佢同 Day 2 小楊係兩種生煎體驗。</p>
-${restaurantArrival(IMG.dahuchun,"四川中路136號","大字「大壺春」、紅燈籠，門口亦可見136號資訊。",true)}
-${foodGallery([
- foodCard(IMG.dahuchunFood,"清水派生煎＋湯","厚啲嘅全發酵麵皮、肉汁為主，正係今次要比較嘅重點。"),
- foodCard(null,"咖喱牛肉湯","今次配搭；正式版再補 exact dish shot。")
-])}
-<h2>生煎唔只得一種</h2><div class="compare"><div><h3>大壺春</h3><p><b>清水派</b></p><p>全發酵麵皮</p><p>肉汁為主</p><p>傳統口感</p></div><div><h3>小楊</h3><p><b>多汁型</b></p><p>皮較薄</p><p>湯汁感強</p><p>現代大眾型</p></div></div>
-<div class="callout"><strong>今次</strong><p>原味生煎＋咖喱牛肉湯。</p></div><div class="warnbox"><b>只喺時間成立時先食</b><p>外灘藍調優先；完整收店時間出發前再核。</p></div>${hop("大壺春 四川中路136號","金陵東路渡口")}${actions("大壺春","四川中路136號")}`,
-
-ferry:()=>`${status("DAY-OF RECHECK","warn")}<h1>黃浦江渡輪</h1><p class="deck">呢頁係交通操作。目的係由浦西轉去浦東，唔係當一個獨立景點。</p>${hero(IMG.ferry,"金陵東路渡口入口辨識。")}
-<div class="route"><div class="route-step"><div class="route-dot"></div><div class="route-time">START</div><div class="route-copy"><b>金陵東路渡口</b><span>外灘側上船。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">東金線</div><div class="route-copy"><b>約15分鐘一班</b><span>當日服務時間再核。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">END</div><div class="route-copy"><b>東昌路渡口</b><span>落船後步行去上海中心。</span></div></div></div>
-<div class="warnbox"><b>大型活動／天氣可臨時改班</b><p>當晚出發前再查。現代空調船亦唔應預期有舊式露天甲板攝影體驗。</p></div>${hop("金陵東路渡口","上海之巅观光厅")}${actions("金陵東路渡口","中山東二路金陵東路渡口")}`,
-
-tower:()=>towerPage(),
-
-xiandelai:()=>`${status("2026 NEW SITE")}<h1>鮮得來</h1><p class="deck">呢間最怕用到舊雲南南路門面相，所以新店門面未核到之前，我寧願唔放錯相。</p>
-${restaurantArrival(null,"福建中路342、346–348、350–352號","2026搬到福建中路嘅新總店；正式版要用新址 exact storefront，舊雲南南路相唔會冒充。",false)}
-${foodGallery([
- foodCard(IMG.xiandelaiFood,"排骨年糕","真正需要睇嘅食物主角。"),
- foodCard(null,"小餛飩 / 其他","夜晚如果只係想完成代表性體驗，其實排骨年糕已經夠。")
-])}
-<div class="choice"><div><b>有胃</b><span>排骨年糕。</span></div><div><b>冇胃</b><span>直接返酒店。</span></div></div>
-<div class="warnbox"><b>2026 已搬舖</b><p>唔好跟舊雲南南路地址。福建中路店係今次唯一應該導航嘅版本。</p></div>${actions("鮮得來排骨年糕","福建中路342–352號")}`,
-
-zhang:()=>`${status("HOURS RECHECK","warn")}<h1>張師傅早餐店</h1><p class="deck">先認到居民區入面嗰種細早餐舖，再睇四大金剛入面今朝真正要食邊兩樣。</p>
-${restaurantArrival(IMG.zhangStore,"石門二路487號","素材可以認到開放式早餐檔口同油條工作區；地址仍以石門二路487號為導航基準。",true)}
-${foodGallery([
- foodCard(IMG.zhangStore,"粢飯團＋鹹豆漿","同一組素材下半部已經直接見到早餐實物。"),
- foodCard(null,"大餅 / 油條","有胃先補，唔需要四大金剛一次過全部完成。")
-])}
-<h2>今朝組合</h2><div class="choice"><div><b>鹹豆漿</b><span>主選。</span></div><div><b>粢飯團</b><span>主選；已經有足夠飽肚度。</span></div></div>
-<div class="callout"><strong>食早餐，不是 brunch</strong><p>今日真正重要嘅時間資源留畀 MWY。</p></div>${hop("張師傅早餐店 石門二路487號","上海靜安體育中心 汶水路116號")}${actions("張師傅早餐店","石門二路487號")}`,
-
-qiqi:()=>`${status("ADDRESS CONFLICT","danger")}<h1>琪琪麵館</h1><p class="deck">呢間更加需要「門面先行」，因為目前連門牌來源都有衝突。未核到 exact storefront 前，唔會用其他麵館相冒充。</p>
-${restaurantArrival(null,"北寶興路290–292號 / 296–298號來源衝突","政府行政資料指向290–292號102室；旅遊平台大量仍寫296–298號。門面相同一鍵導航一齊 HOLD。",false)}
-${foodGallery([
- foodCard(IMG.qiqiNoodle,"辣肉拌麵","今次主選。圖片只作菜式視覺參考，不宣稱係 exact 店內出品。"),
- foodCard(null,"其他澆頭","紅燒肉 / 爆魚 / 大腸 / 大排。到時只揀一個主澆頭就夠。")
-])}
-<h2>點法</h2><div class="choice"><div><b>Step 1</b><span>湯 / 拌 / 干挑</span></div><div><b>Step 2</b><span>辣肉 / 紅燒肉 / 爆魚 / 大腸 / 大排</span></div></div>
-<div class="callout"><strong>今次：辣肉拌麵</strong><p>如果場販／展示時間唔啱，直接放棄。</p></div>
-<div class="warnbox"><b>導航地址未解決</b><p>未完成最後核實之前，不提供一鍵導航，避免到上海先中伏。</p></div>`,
-
-xiaoyang:()=>`${status("PRE-SHOW")}<h1>小楊生煎</h1><p class="deck">上面先畀你認品牌門面；協信星光廣場 exact storefront 仲要再補，但至少唔會將食物大圖當認路圖。</p>
-${restaurantArrival(IMG.xiaoyang,"江場路1212號協信星光廣場北區B1","呢張係其他分店品牌門面，只用來認粉紅「小楊生煎」識別；唔當協信店 exact 門面。",false)}
-${foodGallery([
- foodCard(IMG.xiaoyangFood,"普通鮮肉生煎","今次就係食基本款，最小份。"),
- foodCard(null,"粉絲湯","有胃先加；pre-show 唔需要點成完整大餐。")
-])}
-<div class="choice"><div><b>普通生煎</b><span>最小份。</span></div><div><b>有胃先加</b><span>粉絲湯。</span></div></div>
-<div class="warnbox"><b>排隊 cutoff</b><p>明顯長龍就提早／改快食，唔為食店拖慢18:00回場。</p></div>${hop("小楊生煎 江場路1212號","上海靜安體育中心 汶水路116號")}${actions("小楊生煎","江場路1212號協信星光廣場北區B1")}`,
-
-mwy:()=>`${status("PARTIAL VERIFIED")}<h1>未来有你 2026</h1><p class="deck">Event Control Centre。已公布嘅就鎖，未公布嘅保持 TBA，唔用估。</p>${hero(IMG.mwyHall,"靜安體育中心羽毛球館空間參考。實際活動佈置以主辦圖卡為準。")}
-<h2>場販空間</h2><div class="hallplan"><div class="hall primary"><b>小羽毛球館</b><span>官方場販主要售賣區。10/31–11/1 · 10:00–22:00。</span></div><div class="hall"><b>大羽毛球館</b><span>主要展示區＋CALL棒單品購買點。</span></div></div>
-<h2>Live status</h2><div class="eventgrid"><div class="eventmod"><div class="head"><h3>官方場販 Part.1</h3><span class="state">LIVE</span></div><p>第一彈、購買方式指引、法披線上預售已公布。第二彈待解鎖。</p></div><div class="eventmod"><div class="head"><h3>Concert</h3><span class="state">VERIFIED</span></div><p>11/1 · 19:00 · 上海靜安體育中心。操作目標：18:00前返場館範圍。</p></div><div class="eventmod tba"><div class="head"><h3>Camera / Bag / Security</h3><span class="state">TBA</span></div><p>仍待主辦正式公告。</p></div><div class="eventmod tba"><div class="head"><h3>Re-entry / 展示會完整進出規則</h3><span class="state">UNCONFIRMED</span></div><p>粉絲／影片經驗唔當官方規則。</p></div></div>
-<div class="warnbox"><b>Day 2 食飯全部低於 Event 優先級</b><p>琪琪時間唔啱就放棄；17:00小楊見長龍就改快食。</p></div><p class="caption">Last checked 2026-09-27。MWY 後續資料會直接更新 module，唔需要改版面。</p>${actions("上海靜安體育中心","汶水路116號")}`,
-
-liangying:()=>`${status("POST-SHOW")}<h1>良鷹美食</h1><p class="deck">散場後先要認啱共和新路店；但目前未有足夠可靠嘅 exact storefront 素材，所以唔會混用延長中路分店相。</p>
-${restaurantArrival(null,"共和新路2181號1層101–102","品牌有其他分店，正式版要補共和新路店 exact storefront。",false)}
-${foodGallery([
- foodCard(IMG.liangyingFood,"小餛飩品類參考","呢張係上海小餛飩品類視覺，不當良鷹實拍。正式版會換店內出品。"),
- foodCard(null,"鍋貼","真係好餓先加；正式版再補良鷹出品相。")
-])}
-<div class="choice"><div><b>正常餓</b><span>魚湯／鮮肉小餛飩。</span></div><div><b>好餓</b><span>再加鍋貼。</span></div></div>
-<h2>點去</h2><div class="route"><div class="route-step"><div class="route-dot"></div><div class="route-time">1號線</div><div class="route-copy"><b>汶水路 → 上海馬戲城 → 延長路</b><span>兩站，再去共和新路店。</span></div></div></div>
-<div class="callout"><strong>冇胃就直接返酒店</strong><p>呢間唔係 hard anchor。</p></div>${actions("良鷹美食","共和新路2181號")}`,
-
-wangji:()=>`${status("QUICK START")}<h1>王記葱油餅</h1><p class="deck">早餐頁同樣先解決「見到間舖知唔知係佢」。但目前搵到最清楚嘅品牌門面係襄陽南路店，唔會冒充東諸安浜路分店。</p>
-${restaurantArrival(IMG.wangjiBrand,"東諸安浜路191-5號","圖片係王記品牌門面參考，非東諸安浜路 exact branch；正式認路圖仍待補。",false)}
-${foodGallery([
- foodCard(IMG.wangjiFood,"葱油餅","睇到薄脆分層同葱香內層；今次就食原味。"),
- foodCard(null,"黑米粥 / 甜豆漿","二選一，用來平衡油香，唔再加大量 topping。")
-])}
-<div class="choice"><div><b>原味葱油餅</b><span>主角。</span></div><div><b>＋黑米粥 / 甜豆漿</b><span>二選一。</span></div></div>
-<div class="callout"><strong>食完就走</strong><p>真正要守住嘅係09:00武康街拍窗口。</p></div>${hop("王記葱油餅 東諸安浜路191-5號","武康大樓 淮海中路1850號")}${actions("王記葱油餅","東諸安浜路191-5號")}`,
-
-wukang:()=>`${status("PHOTO FIELD GUIDE")}<h1>武康大樓</h1><p class="deck">先完成經典尖角，再沿武康路向前，用較長焦距整理街道層次。</p>${hero(IMG.wukang,"尖角／船頭構圖參考。")}
-<h2>第一個機位</h2><div class="callout"><strong>天平路 × 淮海中路 30°轉角</strong><p>先用24–35mm完成完整尖角，再決定要唔要沿武康路延伸。</p></div>
-<div class="choice"><div><b>24–35mm</b><span>完整尖角＋街道。</span></div><div><b>50–85mm</b><span>梧桐、側立面、人車壓縮。</span></div></div>
-<div class="warnbox"><b>Exit rule</b><p>30–45分鐘已經覺得夠就走。最多60–75分鐘，不做人文深挖。</p></div>${hop("武康大樓 淮海中路1850號","美羅城 肇嘉浜路1111號")}${actions("武康大樓","淮海中路1850號")}`,
-
-xjh:()=>xjhPage(),
-
-haijinzi:()=>`${status("HOURS RECHECK","warn")}<h1>海金滋</h1><p class="deck">正餐頁更加需要分開「認店」同「點菜」。目前240號地址已核，但網上部分舊門面相門牌不一致，所以先唔用錯圖。</p>
-${restaurantArrival(null,"進賢路240號","高德及2026餐飲資料均指向240號；舊圖片有出現210號門牌，唔適合作為今次認店圖。",false)}
-${foodGallery([
- foodCard(IMG.haijinziFood,"葱烤大排","今餐主角。先用實物建立份量同濃油赤醬預期。"),
- foodCard(null,"第二道菜","青菜 / 醬爆豬肝 / 響油鱔絲三選一；正式版會補對應實拍。")
-])}
-<h2>一個人點</h2><div class="choice"><div><b>葱烤大排</b><span>主角＋白飯。</span></div><div><b>再揀 1 個</b><span>青菜 / 醬爆豬肝 / 響油鱔絲。</span></div></div>
-<div class="callout"><strong>今次唔點排骨年糕</strong><p>唔係因為差，而係 Day 1 鮮得來先係呢個品類主角。</p></div>
-<div class="warnbox"><b>營業時間來源有差異</b><p>12:40午飯落入主要來源共同午市範圍，完整 hours 出發前再核。</p></div>${hop("海金滋 進賢路240號","張園 / The Louis")}${actions("海金滋","進賢路240號")}`,
-
-zhangyuan:()=>`${status("EVENT RECHECK","warn")}<h1>張園 × The Louis</h1><p class="deck">真正值得睇嘅唔係兩個 POI，而係由巨大現代商業裝置一路過渡到石庫門巷弄。</p>
-<div class="photo-pair">${hero(IMG.louis,"The Louis：現代商業／大型城市裝置。")}${hero(IMG.zhangyuan,"張園：歷史建築肌理同現代活動重新疊加。")}</div>
-<h2>從巨輪走進石庫門</h2><div class="route"><div class="route-step"><div class="route-dot"></div><div class="route-time">01</div><div class="route-copy"><b>The Louis</b><span>先拍完整船形；有即時展覽 slot先深入。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">02</div><div class="route-copy"><b>興業太古匯</b><span>只作轉接，唔當普通商場慢逛。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">03</div><div class="route-copy"><b>張園東區首開段</b><span>注意係首開區，唔係整個東區全面完成。</span></div></div><div class="route-step"><div class="route-dot"></div><div class="route-time">04</div><div class="route-copy"><b>張園西區</b><span>石庫門、巷弄、快閃，同前面形成材質／尺度反差。</span></div></div></div>
-<div class="warnbox"><b>15:20 左右 hard cutoff</b><p>活動普通就45–60分鐘收工；有真正值得睇嘅快閃／LV slot先深入。</p></div>${actions("張園","威海路／茂名北路張園")}`
-};
-
-function towerPage(){
- return `${status("118F MULTI-VIEW")}<h1>上海之巔 118F</h1><p class="deck">唔再用九宮格靠想像。呢頁用真正118F實景，按方向切換，再用焦段按鈕做 approximate crop。</p>
- <div class="viewer"><div class="viewstage"><img id="towerMain" src="${IMG.towerNW}" onerror="this.style.display='none'"><div class="viewlabel" id="towerLabel">西北 · 外灘 / 黃浦江</div></div><div class="viewmeta" id="towerMeta">實景 heading 約321°。可見外灘、黃浦江、東方明珠。</div>
- <div class="viewtabs"><button class="active" onclick="switchTower('nw',this)">西北 · 外灘</button><button onclick="switchTower('se',this)">東南 · 浦東</button><button onclick="switchTower('swfc',this)">SWFC</button><button onclick="switchTower('jinmao',this)">金茂俯視</button><button onclick="switchTower('inside',this)">118F 室內</button></div>
- <div class="lenstabs"><button class="active" onclick="towerLens(24,this)">24mm</button><button onclick="towerLens(50,this)">50mm</button><button onclick="towerLens(120,this)">120mm</button></div></div>
- <div class="callout"><strong>焦段係構圖預覽，唔係光學模擬</strong><p>用同一張實景近似 crop，目標係幫你出發前感受「24 / 50 / 120mm 大概會收幾多」。</p></div>
- <h2>118F 寬幅 Panorama</h2><div class="pano"><div class="panoview" id="panoView"><img id="panoImg" src="${IMG.towerPano}" onload="initPano()" onerror="this.style.display='none'"><div class="panotag">拖住左右移動 · 寬幅 panorama，非360°</div></div><div class="caption">原圖係118F實拍寬幅拼接，heading 約323°。未搵到真正完整360素材之前，唔會假裝係360。</div></div>
- <h2>拍攝操作</h2><div class="choice"><div><b>24mm</b><span>城市尺度、黃浦江、完整景觀。</span></div><div><b>50–120mm</b><span>外灘建築、道路、樓群壓縮。</span></div></div>
- <div class="callout"><strong>玻璃先係最大敵人</strong><p>鏡頭靠玻璃、避開身後燈源。手持作預設；腳架規則臨行前再核。</p></div>${hop("上海之巅观光厅","鮮得來 / 酒店")}${actions("上海之巅观光厅","上海中心大廈118F")}`;
-}
-const towerViews={
- nw:{src:IMG.towerNW,label:"西北 · 外灘 / 黃浦江",meta:"heading 約321°。可見外灘、黃浦江、東方明珠。",pos:"center"},
- se:{src:IMG.towerSE,label:"東南 · 浦東腹地",meta:"heading 約147°。城市由陸家嘴向東南延伸。",pos:"center"},
- swfc:{src:IMG.towerSWFC,label:"俯視 · 環球金融中心",meta:"118F直接望落SWFC，最容易理解546m高度差。",pos:"center"},
- jinmao:{src:IMG.towerJinmao,label:"北偏西 · 金茂俯視",meta:"heading 約346°。金茂大廈直接落在腳下。",pos:"center"},
- inside:{src:IMG.towerInside,label:"118F 室內 / 玻璃",meta:"睇清楚實際落地玻璃與室內反光環境。",pos:"center"}
-};
-function switchTower(k,btn){const v=towerViews[k],im=$("#towerMain");if(!im)return;im.style.opacity=.2;setTimeout(()=>{im.src=v.src;im.style.objectPosition=v.pos;im.style.transform="scale(1)";im.style.opacity=1},100);$("#towerLabel").textContent=v.label;$("#towerMeta").textContent=v.meta;document.querySelectorAll(".viewtabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active");document.querySelectorAll(".lenstabs button").forEach((b,i)=>b.classList.toggle("active",i===0))}
-function towerLens(mm,btn){const im=$("#towerMain");if(!im)return;im.style.transform=`scale(${mm===24?1:mm===50?2.05:4.7})`;document.querySelectorAll(".lenstabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
-let pano={x:0,startX:0,startPos:0,drag:false,min:0};
-function initPano(){const v=$("#panoView"),im=$("#panoImg");if(!v||!im)return;const reset=()=>{pano.min=Math.min(0,v.clientWidth-im.clientWidth);pano.x=pano.min/2;im.style.transform=`translateX(${pano.x}px)`};reset();window.addEventListener("resize",reset);v.onpointerdown=e=>{pano.drag=true;pano.startX=e.clientX;pano.startPos=pano.x;v.setPointerCapture(e.pointerId)};v.onpointermove=e=>{if(!pano.drag)return;pano.x=Math.max(pano.min,Math.min(0,pano.startPos+(e.clientX-pano.startX)));im.style.transform=`translateX(${pano.x}px)`};v.onpointerup=v.onpointercancel=()=>pano.drag=false}
-function xjhPage(){
- return `${status("LATE-OCT RECHECK","warn")}<h1>徐家匯 ACG / Tech</h1><p class="deck">唔係三個商場由地下行到頂。每個點角色完全唔同，只去最值錢嗰層。</p>
- <div class="venue-tabs"><button class="active" onclick="xjhVenue('happy',this)">美羅城 5–6F</button><button onclick="xjhVenue('tpy',this)">TPY B2</button><button onclick="xjhVenue('young',this)">新六百YOUNG</button></div>
- <div id="venueCard">${venueCard("happy")}</div>
- <div class="warnbox"><b>TODAY'S IP 決定停留時間</b><p>10月底重查 Miku / PJSK / 遊戲 IP。撞正真正有興趣活動就延長；普通商場內容就照 schedule 離開。</p></div>${hop("美羅城 / TPY","海金滋 進賢路240號")}${actions("美羅城","肇嘉浜路1111號")}`;
-}
-function venueCard(k){
- const d={
-  happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容。三站之中最適合當主娛樂站。"},
-  tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；上層科技內容按興趣先睇。"},
-  young:{img:IMG.young,title:"新六百YOUNG",text:"先睇外部1000㎡級8K裸眼3D大屏。只有當期 IP 活動值得先深入室內。"}
- }[k];
- return `<div class="venue-card"><img src="${d.img}" onerror="this.style.display='none'"><div class="venue-copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`;
-}
-function xjhVenue(k,btn){$("#venueCard").innerHTML=venueCard(k);document.querySelectorAll(".venue-tabs button").forEach(b=>b.classList.remove("active"));btn.classList.add("active")}
-
-function openDetail(id){
- const fn=P[id]||(()=>`<h1>${id}</h1><p class="deck">待編輯。</p>`);$("#article").innerHTML=fn();
- const item=Object.values(TRIP).flatMap(d=>d.items).find(x=>x.id===id);$("#detailTitle").textContent=item?.title||id;$("#detail").classList.add("open");detailOpen=true;$("#detail").scrollTop=0;
- history.pushState({v:"detail",id},"",location.hash+"-detail")
-}
-function closeDetail(){if(!detailOpen)return;$("#detail").classList.remove("open");detailOpen=false;if(history.state?.v==="detail")history.back()}
-function copyText(t){navigator.clipboard?.writeText(t);const old=document.title;document.title="已複製 · "+t;setTimeout(()=>document.title=old,800)}
-window.addEventListener("popstate",e=>{if(detailOpen){$("#detail").classList.remove("open");detailOpen=false;return}const s=e.state;if(!s||s.v==="trip"){hideMain();$("#tripView").classList.remove("hidden");setTop("MWY2026 · Interactive Trip Book");nav("trip");return}if(s.v==="day"){currentDay=s.d;mode=s.mode||"timeline";hideMain();$("#dayView").classList.remove("hidden");setTop(`Day ${currentDay} · ${TRIP[currentDay].title}`,true);nav("day");renderDay();return}if(s.v==="guide"){hideMain();$("#guideView").classList.remove("hidden");setTop("Guide",true);nav("guide")}});
+function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;if(typeof maplibregl==='undefined'){el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);detailMapObj=new maplibregl.Map({container:el,style:'https://tiles.openfreemap.org/styles/liberty',center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:false});detailMapObj.on('load',()=>{cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
+function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);$('#article').innerHTML=fn();$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;updatePrivacyButtons();setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
+function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');detailOpen=false;if(history.state?.v==='detail')history.back()}
+function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t);const old=$('#pageTitle').textContent;$('#pageTitle').textContent='已複製';setTimeout(()=>$('#pageTitle').textContent=old,650)}
+function restoreFromHash(){const h=location.hash;if(h.startsWith('#detail-')){const id=h.replace('#detail-','');openDay(findDayForId(id),false);openDetail(id,false);history.replaceState({v:'detail',id},'',h);return}if(h.startsWith('#day-')){const m=h.match(/^#day-(\d)(?:-(map|timeline))?$/);if(m){currentDay=+m[1];mode=m[2]||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();history.replaceState({v:'day',d:currentDay,mode},'',h);return}}if(h==='#guide'){showGuide(false);history.replaceState({v:'guide'},'',h);return}showTrip(false)}
+function findDayForId(id){for(const [d,x] of Object.entries(DAYS))if(x.items.some(i=>i.id===id))return +d;return 1}
+window.addEventListener('popstate',e=>{if(detailOpen&&e.state?.v!=='detail'){$('#detail').classList.remove('open');detailOpen=false}const s=e.state;if(!s||s.v==='trip'){showTrip(false);return}if(s.v==='day'){currentDay=s.d;mode=s.mode||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();return}if(s.v==='guide'){showGuide(false);return}if(s.v==='detail'){const d=findDayForId(s.id);openDay(d,false);openDetail(s.id,false)}});
 init();
 </script>
 </body>
