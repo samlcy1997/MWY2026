@@ -2,7 +2,7 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC4.1 scope
+## Current RC4.2 scope
 
 - Day 1 rebuilt from the latest locked itinerary: Nanjing East Road → Waibaidu Bridge / Bund → Pudong reverse-shoot → Jinqiao Freedom Gundam
 - Day 1 food line: Lai Lai Xiaolong → Taikang fresh-meat mooncake → late dinner at Dong Tai Xiang
