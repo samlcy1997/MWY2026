@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC3.9</title>
+<title>MWY2026 · 上海三日行程書 RC4.0</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <style>
 :root{
@@ -146,19 +146,22 @@ const IMG={
   freeTowerSWFC:"https://images.unsplash.com/photo-1647067151129-ac9991329a73?auto=format&fit=crop&fm=jpg&q=72&w=1400",
   freeWukang:"https://images.unsplash.com/photo-1704095981825-df894149bb6b?auto=format&fit=crop&fm=jpg&q=72&w=1600",
   freeZhangyuan:"https://images.unsplash.com/photo-1743934775465-ab4c4e16624d?auto=format&fit=crop&fm=jpg&q=72&w=1600",
-  freeLouis:"https://images.unsplash.com/photo-1766873269958-a8bbea93be29?auto=format&fit=crop&fm=jpg&q=72&w=1600"
+  freeLouis:"https://images.unsplash.com/photo-1766873269958-a8bbea93be29?auto=format&fit=crop&fm=jpg&q=72&w=1600",
+  gundamHero:"https://images.unsplash.com/photo-1708227437495-c436ae150e7e?auto=format&fit=crop&fm=jpg&q=76&w=1800",
+  gundamDetail:"https://images.unsplash.com/photo-1625235471526-67781e38eb57?auto=format&fit=crop&fm=jpg&q=76&w=1500",
+  gundamAlt:"https://images.unsplash.com/photo-1625235471241-c1c50a8a18a1?auto=format&fit=crop&fm=jpg&q=76&w=1500"
 };
 
 const DAYS={
-  1:{date:"10月31日 · 星期六",title:"外灘＋陸家嘴＋上海之巔",cover:IMG.bund,items:[
-    {id:"arrival",time:"12:30",title:"抵達上海",sub:"磁浮 → 龍陽路 → 地鐵入市區",kind:"交通",move:"住宿放行李",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"},
-    {id:"jiajia",time:"14:30",title:"佳家湯包",sub:"鮮肉湯包＋一碗湯 · 第一餐",kind:"食",move:"南京東路",coord:[121.470303,31.235191],address:"黃河路127號"},
-    {id:"taikang",time:"15:10",title:"泰康食品",sub:"鮮肉月餅 1 個 · 隊長就放棄",kind:"補給",move:"外灘源",coord:[121.475983,31.235152],address:"南京東路766號"},
-    {id:"bund",time:"15:30",title:"外灘黃昏攝影",sub:"外灘源 → 外白渡橋 → 主平台",kind:"攝影",move:"視光線決定大壺春",coord:[121.487772,31.242012],address:"圓明園路／外灘源"},
-    {id:"dahuchun",time:"18:00",title:"大壺春",sub:"只在主拍完成後先去 · 清水派生煎",kind:"食",move:"金陵東路渡口",coord:[121.489181,31.234836],address:"四川中路136號"},
-    {id:"ferry",time:"18:45",title:"黃浦江渡輪",sub:"金陵東路 → 東昌路 · 過江後反拍只做額外位",kind:"交通",move:"步行往上海中心",coord:[121.493308,31.232381],address:"金陵東路渡口"},
-    {id:"tower",time:"19:30",title:"上海之巔 118F",sub:"純夜景 · 先西向／西北向窗",kind:"重點",anchor:true,move:"21:15 後按胃容量",coord:[121.505366,31.233510],address:"上海中心大廈118F"},
-    {id:"xiandelai",time:"21:15+",title:"鮮得來",sub:"有胃先食排骨年糕 · 無胃直接返住宿",kind:"夜食",move:"返住宿",coord:[121.4865,31.2347],approx:true,address:"福建中路350號一帶"}
+  1:{date:"10月31日 · 星期六",title:"外灘夜景＋Freedom Gundam",cover:IMG.bund,items:[
+    {id:"arrival",time:"12:30",title:"抵達上海",sub:"入境 → 入市區 → 14:15–14:45住宿放行李",kind:"交通",move:"15:05 第一餐",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"},
+    {id:"lailai",time:"15:05",title:"萊萊小籠",sub:"松茸鮮肉／純鮮肉小籠 · 15:35前走",kind:"食",move:"南京東路",coord:[121.477126,31.236125],address:"天津路506號"},
+    {id:"taikang",time:"15:35",title:"泰康食品",sub:"鮮肉月餅 1 個 · 15:45左右食物段硬 cutoff",kind:"補給",move:"16:10 外白渡橋",coord:[121.475983,31.235152],address:"南京東路766號"},
+    {id:"bund",time:"16:10",title:"外白渡橋 → 外灘",sub:"日光 → 日落 → blue hour → 亮燈，一路向南拍",kind:"攝影",anchor:true,move:"18:15／18:30 金陵東路渡口",coord:[121.490060,31.242896],address:"外白渡橋／外灘"},
+    {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",move:"19:15 收機叫車",coord:[121.493308,31.232381],address:"金陵東路渡口 → 東昌路渡口"},
+    {id:"gundam",time:"19:45",title:"1:1 Freedom Gundam",sub:"夜攝＋等一輪夜間演出 · 場次臨行再核",kind:"主力拍攝",anchor:true,move:"20:40 上4F",coord:[121.603823,31.252264],address:"LaLaport上海金橋 · 新金橋路738號"},
+    {id:"gundambase",time:"20:40",title:"THE GUNDAM BASE",sub:"金橋店 · 21:10前離開",kind:"ACG",move:"去晚餐",coord:[121.603823,31.252264],address:"新金橋路738號 LaLaport 4F 429–430"},
+    {id:"dongtaixiang",time:"21:40",title:"東泰祥",sub:"特色生煎＋咖喱牛肉湯 · Day 1晚餐",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
   ]},
   2:{date:"11月1日 · 星期日",title:"未來有你 2026",cover:IMG.mwyHall,items:[
     {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"鹹豆漿＋粢飯團 · 隊長就只買核心兩樣",kind:"早餐",move:"10:00 前到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
@@ -179,15 +182,17 @@ const DAYS={
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},jiajia:{title:"佳家湯包"},taikang:{title:"泰康食品"},bund:{title:"外灘黃昏攝影"},dahuchun:{title:"大壺春"},ferry:{title:"黃浦江渡輪"},tower:{title:"上海之巔 118F"},xiandelai:{title:"鮮得來"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+ arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"輪渡＋浦東反拍"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非主線"},xiandelai:{title:"鮮得來 · 非主線"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
 };
 
 const PHOTO_MAPS={
- bund:{zoom:14.9,points:[
-  {label:"A",name:"外灘源／北京東路×圓明園路",wgs:[121.48330,31.24399],hot:true},
-  {label:"A2",name:"圓明園路",wgs:[121.48310,31.24282]},
-  {label:"B",name:"外白渡橋",wgs:[121.48574,31.24531]},
-  {label:"C",name:"外灘主平台／陳毅廣場",wgs:[121.48592,31.24098],hot:true}
+ bund:{zoom:14.7,points:[
+  {label:"B",name:"外白渡橋／蘇州河口",wgs:[121.48572,31.24508],hot:true},
+  {label:"C",name:"外灘主平台／陳毅廣場一帶",wgs:[121.48592,31.24098],hot:true},
+  {label:"D",name:"金陵東路渡口",wgs:[121.48885,31.23438]}
+ ]},
+ gundam:{zoom:16.1,points:[
+  {label:"G",name:"1:1 Freedom Gundam／LaLaport南廣場",wgs:[121.59962,31.25446],hot:true}
  ]},
  wukang:{zoom:16.3,points:[
   {label:"主位",name:"源點廣場／天平路×淮海中路",wgs:[121.43396,31.20618],hot:true},
@@ -235,112 +240,130 @@ function shotWeatherCommon(){return weather([
 ])}
 
 const P={
-arrival:()=>`${pageHead("第1日 · 抵達／入市區","抵達上海","第一段唔追景點，目標只係穩定入市區、放低行李，再開始下午主線。",[["航班","航班資料已隱藏 · 12:30 PVG"],["磁浮","PVG → 龍陽路約8分鐘"],["普通票","¥50；同日機票現行約¥40"],["住宿","如家商旅酒店（上海火車站南廣場店）"]])}
-${lead("先搭磁浮去龍陽路","落地後先完成一段簡單、可預期嘅高速移動；到龍陽路再按體力決定地鐵定叫車。","300 km/h")}
-${block("入市區路線",route([
- ["12:30","PVG T2 落地","入境、取行李後去磁浮站；營運窗對本次到達時間充足。"],
- ["→","磁浮到龍陽路","約8分鐘；先體驗磁浮，再處理市區交通。"],
- ["主線","轉乘市區交通","由龍陽路去住宿預留約45–50分鐘，再按當日轉乘、步行同路況調整。"],
- ["後備","龍陽路直接叫車","如果落雨、疲累或行李令轉乘麻煩，就用高德／Didi直接去住宿。"]
+arrival:()=>`${pageHead("第1日 · 抵達／入市區","抵達上海","第一段只處理落地、入市區同放行李。新版 Day 1 真正硬資源係外灘光線，所以 14:15–14:45 到住宿係規劃基準，早到只當 bonus。",[["航班","航班資料已隱藏 · 12:30 PVG"],["住宿基準","14:15–14:45"],["第一餐","15:05 萊萊小籠"],["食物硬截止","約15:45"]])}
+${lead("先完成入市區＋放行李","唔喺落地段加景點；如果入境／交通慢，就由食物段吸收延誤。","守16:10外白渡橋")}
+${block("入市區節奏",route([
+ ["12:30","PVG T2 落地","入境、取行李後入市區；交通方法按現場效率處理。"],
+ ["14:15–14:45","住宿放行李","呢個係規劃基準；13:xx到只當額外緩衝。"],
+ ["15:05","去萊萊小籠","由呢刻開始，所有餐飲都服從外灘光線。"],
+ ["≈15:45","食物段硬截止","延誤就外帶／砍一項，唔將延誤傳去外白渡橋。"]
 ]))}
-${alertBox("呢頁唔需要塞景點","抵達段只管『順利入城』。真正要守嘅係下午外灘光線，所以落地後唔再加額外站。")}
-${nextHop("上海浦東國際機場 T2","市區住宿")}`,
+${alertBox("新版 Day 1 已取消上塔主線","時間由高空觀景重新投放到外灘完整夜景、浦東反拍同 Freedom Gundam。")}
+${nextHop("市區住宿","萊萊小籠 天津路506號")}`,
 
-jiajia:()=>`${pageHead("第1日 · 第一餐","佳家湯包","第一餐只解決兩件事：補體力，同時食一款有代表性嘅上海湯包。唔需要現場重新研究餐牌。",[["地址","黃河路127號"],["停留","30–40分鐘"],["主點","鮮肉湯包"],["排隊判斷",">20–25分鐘要重評"]])}
-${media(IMG.jiajiaStore,"認店：黃河路127號；門面只用嚟確認分店。")}
-${block("今次點法",order(IMG.jiajiaFood,"鮮肉湯包＋魚丸湯／雞鴨血湯二選一","常見一籠約12隻；一籠再加一碗湯已經係完整第一餐。唔順手再加蟹粉款。")+mealExtras([["有胃再加","蛋黃鮮肉／全家福","只係想多試一種先加；唔需要再開蟹粉主題。"],["飲品","店內茶／清水","主餐已有湯，飲品只補水，唔另佔胃容量。"]]))}
-${block("現場判斷",branches([
- ["排隊／等蒸 ≤20分鐘","照食；現點現包現蒸，本身就可能比坐低食更花時間。","hot"],
- ["預估 >20–25分鐘","先睇外灘進度；會推遲攝影就縮餐或轉後備，唔用名店綁死行程。","warn"]
+lailai:()=>`${pageHead("第1日 · 15:05 · 第一餐","萊萊小籠","新版已鎖行程把第一餐改到天津路萊萊。店最出名其實係蟹粉／蟹膏系，但今次按你口味走鮮肉方向，食到代表就走。",[["地址","天津路506號"],["時段","15:05–15:35"],["營業參考","08:00–14:00 / 15:00–20:00"],["角色","Day 1小籠代表"]])}
+${block("今次點法",order(null,"松茸鮮肉小籠／純鮮肉小籠 二選一","萊萊公開招牌高度集中蟹粉系；今次唔為『最招牌』勉強食蟹。松茸鮮肉或純鮮肉更貼你口味。")+mealExtras([["有胃再加","雞鴨血湯","現時公開餐單有呢款；只加一碗湯，唔再開第二款主食。"],["飲品","店內茶／清水","DOC冇鎖指定飲品；只補水，唔另外排飲品店。"]]))}
+${block("時間只睇一條線",branches([
+ ["15:05左右到","正常食；15:35前完成離店。","hot"],
+ ["排隊／現蒸會拖過15:35","縮單或者直接走；15:45左右係整個食物段硬 cutoff。","danger"]
 ]))}
-<div class="callout">食到主角就走。</div><p class="subnote">呢餐唔係用嚟掃餐牌；後面仲有鮮肉月餅、黃昏攝影同可選生煎。</p>
-${nextHop("佳家湯包 黃河路127號","泰康食品 南京東路766號")}${sticky("佳家湯包","黃河路127號")}`,
+<div class="callout">呢餐由『食得最完整』改成『準時食到代表』。</div>
+${nextHop("萊萊小籠 天津路506號","泰康食品 南京東路766號")}${sticky("萊萊小籠","天津路506號")}`,
 
-taikang:()=>`${pageHead("第1日 · 沿途補給","泰康食品","呢站只係一個沿途動作：買一個鮮肉月餅。排隊成本一高，就直接放棄。",[["地址","南京東路766號"],["營業參考","約09:00–22:00"],["買","鮮肉月餅 ×1"],["排隊上限","10分鐘"]])}
-${media(IMG.taikangStore,"南京東路店門面；到現場只需要認啱店。")}
-${block("買咩",order(IMG.taikangFood,"鮮肉月餅 1 個","最好即食／短時間內食。唔因老字號身份進店慢慢逛或者買一袋伴手禮。","唯一任務")+mealExtras([["想換口味","榨菜鮮肉月餅","只係隊短＋有胃先考慮；唔同時買兩三個。"],["飲品","沿路水／茶","呢站係補給，唔值得為飲品再排一條隊。"]]))}
-${block("兩個結果",branches([
- ["隊短","買一個，趁熱食，然後繼續行程。","hot"],
- ["排隊 >10分鐘／開始壓光線","直接放棄；15:30後開始進入外灘攝影主線。","danger"]
+taikang:()=>`${pageHead("第1日 · 15:35 · 沿途補給","泰康食品","呢站只係一個沿途動作：鮮肉月餅一個。新版 Day 1 約15:45設食物段硬 cutoff，所以排隊一長就直接砍。",[["地址","南京東路766號"],["時段","15:35–15:50"],["買","鮮肉月餅 ×1"],["硬截止","約15:45開始收食物段"]])}
+${media(IMG.taikangStore,"南京東路店門面；只用嚟認店。")}
+${block("買咩",order(IMG.taikangFood,"鮮肉月餅 1 個","即買即走；唔因老字號身份入店慢慢逛。","唯一任務")+mealExtras([["想換口味","榨菜鮮肉月餅","只係隊短＋有胃先考慮；唔同時買兩三個。"],["飲品","沿路水／茶","補水即可，唔再新增排隊點。"]]))}
+${block("現場只有兩個結果",branches([
+ ["無隊／極短隊","買一個，直接向外白渡橋。","hot"],
+ ["開始接近15:45／有明顯隊","放棄或者外帶最快方案；唔犧牲16:10橋位。","danger"]
 ]))}
-${nextHop("泰康食品 南京東路766號","北京東路 × 圓明園路")}${sticky("泰康食品","南京東路766號")}`,
+${nextHop("泰康食品 南京東路766號","外白渡橋")}${sticky("泰康食品","南京東路766號")}`,
 
-bund:()=>`${pageHead("第1日 · 攝影主線","外灘黃昏／夜景","黃昏係固定主拍；夜景只係返浦西後仍有體力、亮燈成立而且順路時先補。Reference 只留會幫你落機位嘅少量畫面。",[["日落","約17:06"],["民用暮光","約17:31結束"],["主拍窗口","17:00–17:35"],["器材","Z8 + 24–120/4 S"]])}
-${media(IMG.bund,"由外灘源一路向江邊推；先完成自然光主片，唔為夜景反過來拖慢主線。")}
+bund:()=>`${pageHead("第1日 · 攝影主線","外白渡橋 → 外灘","新版主線由16:10外白渡橋開始，之後一路向南邊走邊拍；17:05後留到深藍，再視當日燈光補一輪完整亮燈 skyline。唔再為外灘源／上塔倒走。",[["外白渡橋","約16:10"],["日落","約17:06"],["主力深藍","17:05–18:00"],["亮燈補拍","約18:00–18:15 · 臨行再核"]])}
+${media(IMG.bund,"今次唔係『影一個點再轉場』，而係由蘇州河口一路向南，把日光、日落、藍調、亮燈串成同一條攝影線。")}
 ${block("機位圖",photoMap("bund"))}
 ${block("精選構圖參考",referenceGallery([
- [IMG.yuanmingyuan,"圓明園路紅磚街景","A2 · 24–35mm","認紅磚、街道透視同門洞比例；實戰到場先做北京東路長焦，再補呢類環境畫面。",["認位","廣角環境"],"https://commons.wikimedia.org/wiki/File:Yuanmingyuan_Rd._Shanghai.JPG","Wikimedia Commons"],
- [IMG.freeWaibaiduNight,"外白渡橋＋浦東夜景","B · 35–70mm方向","最有用係橋身、東方明珠同三件套嘅前後關係。相片由乍浦路橋一帶拍，所以只借幾何；主線唔為佢新增一站。",["橋體層次","夜景完成畫面"],"https://unsplash.com/photos/a-view-of-a-city-at-night-from-across-the-water-gica0HNc9Ks","Unsplash"],
- [IMG.bundNight48,"外灘主平台夜景","C · 約50mm方向","35–50mm最值得多試：建築比例夠大，又比24mm容易避人頭、欄杆同黑水面。",["主平台","35–50mm","亮燈後"],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg","Wikimedia Commons"],
- [IMG.freeBundTele,"東方明珠中長焦","C · 85–120mm方向","長焦唔需要塞晒所有樓；一個主體加一個陪體已經成立，用嚟預想收緊後嘅地標比例。",["中長焦","單一主題"],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA","Unsplash"]
-]))}
-${block("攝影師進階參考",photographerRefs([
- ["A · 北京東路","Shanghai - Beijing Road","Markus Bahlmann","街道盡頭壓入東方明珠，正好對應70–120mm『老街＋現代地標』玩法；只借站位／壓縮。",["外灘源","長焦壓縮"],"https://www.flickr.com/photos/cnmark/3311466724"],
- ["B · 外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","由橋上向浦東收地標層次；適合學鋼架／橋體點樣唔搶主體。",["外白渡橋","地標層次"],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
- ["C · 主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同主要樓群間距都清楚；長曝效果唔照抄。",["主平台","完整 skyline"],"https://www.flickr.com/photos/kylehase/45486996424"]
-]))}
-${block("先按到場時間分配",branches([
- ["16:10 前","外灘源20–25分鐘；北京東路長焦先，之後圓明園路。","hot"],
- ["16:10–16:30","縮到10–12分鐘，只做最穩兩組。",""],
- ["16:30 後","外灘源只收1–2組，直接保外白渡橋＋主平台。","danger"]
+ [IMG.waibaidu,"外白渡橋日間結構","B · 24–50mm","16:10先用仍有自然光嘅橋體做幾何；遠景好就帶浦東，遠景差就收鋼架同人物。",["認位","橋體幾何"],"https://commons.wikimedia.org/wiki/File:Waibaidu_Bridge_Shanghai.jpg","Wikimedia Commons"],
+ [IMG.freeWaibaiduNight,"外白渡橋＋浦東層次","B · 35–70mm方向","借橋身、東方明珠同高樓前後關係；呢張由乍浦路橋一帶拍，只借幾何，唔新增站。",["橋體層次","方向參考"],"https://unsplash.com/photos/a-view-of-a-city-at-night-from-across-the-water-gica0HNc9Ks","Unsplash"],
+ [IMG.bundNight48,"外灘主平台亮燈","C · 約50mm方向","35–50mm仍然係主力：建築比例大，亦比24mm容易避人頭、欄杆同過多黑水面。",["主平台","35–50mm","亮燈後"],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg","Wikimedia Commons"],
+ [IMG.freeBundTele,"東方明珠中長焦","C · 85–120mm方向","一個主體＋一個陪體已經成立；用嚟預想深藍／亮燈後收緊地標嘅比例。",["中長焦","局部"],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA","Unsplash"]
 ]))}
 ${block("一路向南拍",route([
- ["A","外灘源／北京東路","70–120mm沿街壓東方明珠／現代樓群；街谷比江邊更早失去直射光。"],
- ["A2","圓明園路","24–35mm拍紅磚、門洞、路燈、行人；街谷全陰就轉質感／人物。"],
- ["B","外白渡橋","10–15分鐘；35–50mm用鋼桁架做V形／三角框景，24–28只補一組環境。"],
- ["C","外灘主平台","17:00–17:35完成三張必拍；第一排滿就後退，用50–120mm越過人頭。"]
+ ["16:10","外白渡橋／蘇州河口","先拍仍有日光嘅橋與建築；35–50mm主力，24–28mm只補環境。"],
+ ["16:40","沿外灘向南移動","一邊走一邊取景，唔影完橋再倒頭返去搵位。"],
+ ["17:05–18:00","blue hour／深藍主戰場","24mm完成全景，35–50mm做主力，85–120mm抽地標局部。"],
+ ["≈18:00–18:15","如果景觀燈已亮","補完整亮燈浦東 skyline；10/31實際啟燈時間臨行再核。"],
+ ["18:15／18:30","金陵東路渡口","按現場進度揀船；到點就走，後面仲有浦東反拍＋Freedom。"]
 ]))}
-${block("主平台三張必拍",shots([
- ["24–28","完整陸家嘴 skyline","只要一張基準照；帶少量黃浦江，唔為反射收太多黑水面。"],
- ["35–50","主力畫面","放大建築群、減少欄杆同人群；最值得多試幾個位置。"],
- ["85–120","單一主體＋陪體","東方明珠＋上海中心，或者上海中心／金茂局部；唔硬塞全部高樓。"]
+${block("主平台三個焦段",shots([
+ ["24–28","完整陸家嘴 skyline","一張基準照；江面只留足夠層次，唔收成大塊黑水。"],
+ ["35–50","主力畫面","建築群比例最舒服；人多時後退少少，用焦段越過人頭。"],
+ ["85–120","單一主體＋陪體","東方明珠、上海中心、金茂等局部；風大就先保快門。"]
 ]))}
-${block("夜返浦西可補，但唔倒轉主線",branches([
- ["有體力＋已亮燈＋返程順路","可補1輪主平台夜景；35–50mm主畫面＋85–120mm一組局部，10–20分鐘收。","hot"],
- ["要特登繞路／已攰","唔補。黃昏主片先係固定任務。",""],
- ["夜食後已返浦西","再按體力決定短補外灘定直接返住宿，唔預先鎖死。","warn"]
+${block("攝影師進階參考",photographerRefs([
+ ["B · 外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","由橋上向浦東收地標層次；適合學鋼架／橋體點樣唔搶主體。",["外白渡橋","地標層次"],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
+ ["C · 主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同主要樓群間距清楚；長曝效果唔照抄。",["主平台","完整 skyline"],"https://www.flickr.com/photos/kylehase/45486996424"]
 ]))}
 ${block("天氣即時切換",shotWeatherCommon())}
-${cutoff("黃昏唔等景觀燈","若亮燈時間會侵蝕輪渡＋19:30上海之巔，完成自然光就走；夜景需要時留到返浦西再決定。","離開原則")}
+${cutoff("18:15／18:30要開始過江","今次真正硬 anchor 已經由上海之巔改成 Freedom Gundam。燈未齊都唔值得拖到錯過浦東反拍同19:45高達。","離開原則")}
 ${more([
- ["人流點處理？","星期六預設高人流。唔等空景；人物最多留底部10–20%，或者用中長焦裁走。"],
- ["外白渡橋有咩要避？","橋面有車流／震動，唔追慢門；遠景差就改鋼架幾何＋人物。"],
- ["攝影優先級","外灘主平台 ＞ 外白渡橋 ＞ 外灘源 ＞ 浦東反拍 ＞ 夜景補拍。"]
+ ["星期六人多點處理？","預設高人流。唔等空景；人物壓畫面底部，或者用35–120mm裁走。"],
+ ["外灘源仲去唔去？","最新已鎖 Day 1 冇再安排外灘源／圓明園路固定停留；唔為舊攝影bonus破壞新主線。"],
+ ["今次攝影優先級","外灘深藍／亮燈主平台 ＞ 外白渡橋 ＞ 浦東反拍。"]
 ])}
-${nextHop("外灘主平台／陳毅廣場","大壺春／金陵東路渡口")}`,
+${nextHop("外灘主平台／陳毅廣場","金陵東路渡口")}`,
 
-dahuchun:()=>`${pageHead("第1日 · 可選晚餐","大壺春","呢站唔係固定任務。只有外灘主拍已經完成，而且輪渡＋19:30上海之巔仲有足夠緩衝，先食。",[["地址","四川中路136號"],["營業參考","約07:00–19:30"],["角色","清水派生煎代表"],["排隊上限","10–15分鐘"]])}
-${media(IMG.dahuchun,"代表性在清水派生煎；保留原因係品類，而唔係單一食評背書。")}
-${block("今次點法",order(IMG.dahuchunFood,"清水派／鮮肉系生煎＋咖喱牛肉湯","主角係生煎；同第2日小楊形成傳統清水派 vs 現代爆汁型嘅刻意比較。")+mealExtras([["有胃再加","鮮蝦小餛飩／千張包粉絲湯","兩樣都係常見配搭，但唔需要同時加。"],["飲品","清水／茶","咖喱牛肉湯已經係主要湯飲。"]]))}
-${block("去唔去，由時間決定",branches([
- ["外灘主拍已完成＋有緩衝","去；控制成一個短晚餐。","hot"],
- ["藍調未完成／排隊 >10–15分鐘","直接放棄。真正衝突係攝影時間窗，唔係餐廳關門。","danger"]
-]))}
-${nextHop("大壺春 四川中路136號","金陵東路渡口")}${sticky("大壺春","四川中路136號")}`,
+dahuchun:()=>`${pageHead("非主線 · 舊研究保留","大壺春","新版 Day 1 已因 Freedom Gundam 夜攝改線；大壺春收舖時段同新主線衝突，所以只保留資料，唔再放 timeline。",[["狀態","非主線"],["原因","晚間時段衝突"],["代表","清水派生煎"],["替代","Day 1晚餐改東泰祥"]])}
+${alertBox("唔為佢改線","如現場偶然經過而且時間異常充裕先再算；正常執行直接忽略。",true)}`,
 
-ferry:()=>`${pageHead("第1日 · 過江","黃浦江渡輪","渡輪係交通，同時俾你一個5–10分鐘反拍浦西嘅機會；唔應該變成另一段沿江搵機位。",[["路線","金陵東路 → 東昌路"],["反拍","5–10分鐘"],["焦段","50–120mm"],["班次","前一晚＋當日再核"]])}
-${media(IMG.ferry,"落船後就近完成反拍；唔沿江再開新攝影支線。")}
-${block("對岸反拍 reference",photographerRefs([
- ["50–85mm","Bund night skyline","JC Terry","先看整條萬國建築帶點樣壓成一組；你現場只要完成一張整體即可。",["浦東反拍","建築帶"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/"],
- ["85–120mm","Bund detail across Huangpu","JC Terry","用中長焦抽海關大樓／和平飯店等局部，正好對應5–10分鐘bonus打法。",["中長焦","局部"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/"]
+ferry:()=>`${pageHead("第1日 · 18:15／18:30","輪渡＋浦東反拍","過江唔再只係交通 bonus。新版主線正式留一段畀浦東濱江反拍亮燈外灘，完成後19:15左右收機叫車去金橋。",[["輪渡","金陵東路 → 東昌路"],["落船後","約18:25–19:05"],["焦段","50–120mm主力"],["收機","約19:15"]])}
+${media(IMG.ferry,"輪渡優先係為咗避開星期六外灘叫車／過江隧道不確定性；船本身唔當主要拍攝平台。")}
+${block("浦東反拍 reference",photographerRefs([
+ ["50–85mm","Bund night skyline","JC Terry","先看整條萬國建築帶點樣壓成一組；新版有較完整時間，可以先完成整體再做局部。",["浦東反拍","建築帶"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/"],
+ ["85–120mm","Bund detail across Huangpu","JC Terry","抽海關大樓／和平飯店等局部；中長焦比無腳架追長曝水面更對題。",["中長焦","局部"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/"]
 ]))}
-${block("落船後只做一件事",shots([
- ["50–85","萬國建築群整體","落船後就近反拍，唔沿江再搵新機位。"],
- ["85–120","海關大樓／和平飯店局部","時間緊就只拍2–3張，完成即走。"]
+${block("落船後拍攝次序",route([
+ ["18:15／18:30","金陵東路上船","按當日班次同外灘完成度揀；前一晚＋當日再核。"],
+ ["落船","東昌路／附近可見江面","唔沿江搵『神位』，先完成可見角度。"],
+ ["50–85mm","外灘建築帶整體","先有一張完整、節奏清楚嘅萬國建築群。"],
+ ["85–120mm","海關／和平飯店等局部","再抽2–3組細節；無腳架唔追長曝水面。"],
+ ["≈19:15","收機叫車","Taxi → 金橋 LaLaport，預留20–30分鐘。"]
 ]))}
-${alertBox("班次一定要臨場更新","前一晚＋當日實時再核；如果渡輪唔成立，用地鐵／Didi過江，唔拖上海之巔。")}
-${nextHop("東昌路渡口","上海中心 · 上海之巔118F")}`,
+${alertBox("班次係臨行刷新項","DOC只鎖18:15／18:30作目標，實際東金線服務以前一晚＋當日資訊為準；若唔成立，再用地鐵／Didi過江。")}
+${nextHop("東昌路渡口／浦東濱江","LaLaport上海金橋 新金橋路738號")}`,
 
 tower:()=>towerPage(),
 
-xiandelai:()=>`${pageHead("第1日 · 夜食","鮮得來","放喺上海之巔之後，就唔會同黃昏攝影爭時間。呢站完全按胃容量決定。",[["位置","福建中路350號一帶"],["營業參考","約11:00–次日01:00"],["主點","排骨年糕"],["角色","有胃先去"]])}
-${media(IMG.xiandelai,"2026已遷往福建中路一帶；唔再導航去雲南南路舊址。")}
-${block("只點核心",order(IMG.xiandelaiFood,"排骨年糕 1 份","呢度嘅主角就係排骨年糕；唔需要再開另一張上海小吃清單。")+mealExtras([["仍然好餓","砂鍋蝦仁小餛飩","只在排骨年糕食完仲有胃先加。"],["飲品","茶／清水","夜食以補充體力為主。"]]))}
-${block("按身體狀態分支",branches([
- ["上海之巔後仍有胃","去；食完再返住宿。","hot"],
- ["已飽／已攰","直接返住宿。唔為完成清單硬食。",""]
+xiandelai:()=>`${pageHead("非主線 · 舊研究保留","鮮得來","新版 Day 1 晚餐已改東泰祥，鮮得來唔再係上塔後夜食。資料留低只作其他日子想補排骨年糕時參考。",[["狀態","非主線"],["主點","排骨年糕"],["位置","福建中路一帶"],["用途","日後補票"]])}`,
+
+gundam:()=>`${pageHead("第1日 · 19:45 · 主力拍攝","1:1 Freedom Gundam","外灘之後第二個真正主拍點。先完成完整立像，再等一輪夜間演出；精確演出場次唔預先寫死，出發前再核。",[["位置","LaLaport上海金橋南廣場"],["目標時段","19:45–20:40"],["立像","實物大 Freedom Gundam"],["器材","Z8 + 24–120/4 S"]])}
+${media(IMG.gundamHero,"Unsplash 可重用實拍；先用嚟認立像、廣場同商場關係。實際到場係夜間，光線以現場燈光為準。")}
+${block("認位圖",photoMap("gundam"))}
+${block("先完成三種畫面",shots([
+ ["24–35","完整立像＋少量環境","先退後完成一張全身；注意垂直線，唔好一開始就貼太近低炒。"],
+ ["50–70","上半身／頭胸比例","減少廣場雜物，保留巨大尺度感；最適合做主力肖像式構圖。"],
+ ["85–120","頭部／肩甲／101等細節","等演出燈光變化時抽局部；呢段最容易出同全身完全唔同嘅畫面。"]
 ]))}
-${sticky("鮮得來排骨年糕","福建中路350號一帶")}`,
+${block("免費 reference",referenceGallery([
+ [IMG.gundamHero,"Freedom Gundam＋LaLaport環境","廣角認位","Wenhao Ruan · FUJIFILM X-T3；借完整立像同周邊環境比例，唔照抄光線。",["完整立像","認位"],"https://unsplash.com/photos/a-giant-robot-standing-next-to-a-tall-pole-IoxeD-rCJJo","Unsplash"],
+ [IMG.gundamDetail,"Freedom Gundam 主體","中距離主體比例","Riku Lu · FUJIFILM X-T3；適合睇主體佔畫面比例同人／立像尺度。",["中距離","尺度"],"https://unsplash.com/photos/white-and-red-robot-statue-h8Yc16kCcK8","Unsplash"],
+ [IMG.gundamAlt,"Freedom Gundam 細節方向","中長焦 reference","同系列免費圖；到夜間演出時可用類似收法抽頭胸／裝甲細節。",["細節","85–120mm"],"https://unsplash.com/photos/white-blue-and-yellow-robot-toy-QyyR6IZWjLM","Unsplash"]
+]))}
+${block("夜間演出點拍",rules([
+ ["演出前","先完成靜態全身，同時揀好一個唔易畀人擋嘅位置。"],
+ ["演出開始","優先保快門同高光；燈色／活動部件一變就先影，唔慢慢微調構圖。"],
+ ["人太多","用50–120mm收緊，或者將人群留底部做尺度；唔等廣場清空。"],
+ ["一輪就夠","DOC主線只預留到20:40左右；完成一輪夜演＋主片就上Gundam Base。"]
+]))}
+${alertBox("夜間演出場次係待核項","目前只鎖『等一輪』，唔將網上舊場次當10/31一定有效。出發前再查當日演出時間。")}
+${nextHop("Freedom Gundam 南廣場","THE GUNDAM BASE SHANGHAI · LaLaport 4F")}`,
+
+gundambase:()=>`${pageHead("第1日 · 20:40 · ACG","THE GUNDAM BASE SHANGHAI","夜攝完成先入店。官方現時列金橋店位於LaLaport 4F 429–430，10:00–22:00全年無休；本次只留約30分鐘，唔變成無限逛街。",[["位置","LaLaport 4F 429–430"],["官方營業","10:00–22:00"],["本次","20:40–21:10"],["離開","約21:10"]])}
+${block("入店次序",route([
+ ["先","睇限定／今次真係想買嘅品項","先處理『唔買會後悔』嗰類，唔由第一排慢慢掃。"],
+ ["再","睇SEED主題店裝／Freedom頭部造型","官方介紹確認店內有相關展示；有時間先影。"],
+ ["21:10","離店","22:00關門唔代表可以逛到22:00；後面仲有正式晚餐。"]
+]))}
+${more([["官方店資料","金橋店地址：浦東新區新金橋路738號4樓429、430；官方現時列10:00–22:00全年無休。"]])}
+${nextHop("THE GUNDAM BASE SHANGHAI","東泰祥生煎館 重慶北路188號")}${sticky("THE GUNDAM BASE SHANGHAI","新金橋路738號 LaLaport 4F 429–430")}`,
+
+dongtaixiang:()=>`${pageHead("第1日 · 21:40 · 晚餐","東泰祥","新版 Day 1 深夜正餐主線。外灘＋Freedom拍完先坐低食；重點係特色生煎＋咖喱牛肉湯，唔再趕大壺春收舖。",[["分店","重慶北路店"],["地址","重慶北路188號"],["目標","21:40–22:20"],["公開資料","現時列全天營業"]])}
+${block("今次點法",order(null,"特色生煎＋咖喱牛肉湯","先完成兩樣主角；成日已經食過小籠同月餅，夜晚唔需要用份量證明自己。")+mealExtras([["有胃再加","開洋葱油拌麵／鮮肉小餛飩 二選一","兩款現時公開餐單都有；揀一款補足就夠。"],["飲品","酸梅汁／清水","想解膩先叫酸梅汁；否則清水即可。"]]))}
+${block("點解改呢間",branches([
+ ["新版主線","21:10離開LaLaport後仍可正常食，唔受大壺春較早收舖限制。","hot"],
+ ["已經好攰／唔太餓","縮成生煎＋湯，食完直接返住宿。",""]
+]))}
+${nextHop("東泰祥 重慶北路188號","如家商旅酒店（上海火車站南廣場店）")}${sticky("東泰祥生煎館","重慶北路188號")}`,
 
 zhang:()=>`${pageHead("第2日 · 早餐","張師傅早餐店","早餐目標係一次食到上海傳統早餐核心，但唔需要四大金剛每樣一份。10:00場販先係今日第一個固定時間點。",[["地址","石門二路487號"],["營業參考","約04:00–12:00"],["主點","鹹豆漿＋粢飯團"],["排隊上限","15–20分鐘"]])}
 ${media(IMG.zhangStore,"店細、座位有限；以快食／可外帶思維處理。")}
@@ -363,7 +386,7 @@ ${block("時間判斷",branches([
 ${nextHop("琪琪麵館 北寶興路296–298號","上海靜安體育中心")}${sticky("琪琪麵館","北寶興路296–298號")}`,
 
 xiaoyang:()=>`${pageHead("第2日 · 演唱會前補給","小楊生煎","功能非常單純：17:00前後快速補能量，18:00前返到場館，留出安檢／入場緩衝。",[["地址","江場路1212號協信廣場B1"],["時段","16:45–17:15"],["主點","最小份招牌生煎"],["回場館","18:00前"]])}
-${media(IMG.xiaoyang,"同第1日大壺春重複『生煎』係刻意比較兩種風格，而唔係失控重複。")}
+${media(IMG.xiaoyang,"第1日晚餐已改東泰祥；如果前一晚已食過生煎，呢餐按胃口縮到最小份，角色只係pre-show快速補能量。")}
 ${block("今次點法",order(IMG.xiaoyangFood,"最小份小楊生煎","餓先加一碗粉絲湯；唔喺演唱會前點一堆限定口味。")+mealExtras([["仍然餓","老鴨粉絲湯／百葉包粉絲湯","二選一；唔再加另一份麵。"],["飲品","清水","演唱會前避免為飲品排隊；補水就夠。"]]))}
 ${block("排隊判斷",branches([
  ["排隊正常","照食，17:15左右完成。","hot"],
@@ -372,11 +395,11 @@ ${block("排隊判斷",branches([
 ${cutoff("18:00 前返場館","食物唔可以壓縮安檢／入場緩衝；如果之前仲要回住宿寄存相機，小楊係第一個可縮／可砍項。","硬目標")}
 ${nextHop("小楊生煎 協信廣場B1","上海靜安體育中心")}${sticky("小楊生煎","江場路1212號協信廣場B1")}`,
 
-postshow:()=>`${pageHead("第2日 · 散場後","散場後","呢段刻意唔鎖餐廳。19:00演唱會之後，宵夜只服務體力；唔再為『上海必吃』加一段繞路。",[["原良鷹方案","撤下"],["判斷依據","餓度＋是否已食鮮得來"],["第一選擇","唔餓就返住宿"],["最後安全網","全昌福約至23:00"]])}
+postshow:()=>`${pageHead("第2日 · 散場後","散場後","呢段刻意唔鎖餐廳。19:00演唱會之後，宵夜只服務體力；唔再為『上海必吃』加一段繞路。",[["原良鷹方案","撤下"],["判斷依據","餓度＋返住宿動線"],["第一選擇","唔餓就返住宿"],["最後安全網","全昌福約至23:00"]])}
 ${block("散場後決策",branches([
  ["唔餓","直接返住宿。今日主角係MWY，唔需要為宵夜完成清單。","hot"],
- ["第1日冇食鮮得來＋仍想食上海小吃","可以去福建中路補排骨年糕，但要接受佢唔係返住宿最直線。",""],
- ["已食過鮮得來，只係要填肚","沿返住宿方向搵晚市／外賣即可；唔追名店。",""],
+ ["散場後仍想補排骨年糕","鮮得來可作補票方案，但要接受佢唔係返住宿最直線。",""],
+ ["只係要填肚","沿返住宿方向搵晚市／外賣即可；唔追名店。",""],
  ["住宿附近需要確定有熱食","用高德搜尋當晚仍營業、順路嘅熱食即可；公開版唔保存住宿附近固定店名。","warn"]
 ]))}
 <div class="callout">宵夜永遠係可選。</div><p class="subnote">呢頁係刻意保留彈性，而唔係資料未完成。</p>`,
@@ -464,7 +487,7 @@ ${alertBox("唔好用『仲有兩個鐘』錯覺拖延","由市區去PVG嘅不�
 };
 
 function towerPage(){
- return `${pageHead("第1日 · 19:30 · 夜景","上海之巔 118F","純夜景。先認方向，再完成西／西北黃浦江主片；附近超高樓同城市紋理係第二輪。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["時段","19:30–21:00"],["重評","出發前2–3日"]])}
+ return `${pageHead("Bonus · 非主線","上海之巔 118F","資料保留，但新版 Day 1 已正式移除上塔。只有當日能見度極佳、時間異常充裕，而且完全唔影響外灘 blue hour／Freedom，先重新考慮。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["主線","已移除"],["角色","天氣觸發 optional"]])}
  ${block("先記四個方向",`<div class="tower-orient">
    <div class="tower-dir"><div class="bearing">西／西北</div><div><b>黃浦江大彎＋外灘</b><p>24–50mm主力。第一個合適窗位就先完成；東方明珠可做近景 anchor。</p><span class="tower-priority main">第一優先</span></div></div>
    <div class="tower-dir"><div class="bearing">東北</div><div><b>SWFC＋金茂高度差</b><p>50–120mm。利用118F俯視附近兩座超高樓，拍幾何、樓頂同城市密度。</p><span class="tower-priority secondary">第二輪</span></div></div>
@@ -497,7 +520,7 @@ function towerPage(){
   ["能見度高","85–120mm價值大升；可以抽道路、樓群同遠處建築帶。","good"],
   ["低雲／霧","雲底接近／低於約550–600m，或者城市能見度差，118F價值大減。","warn"]
  ]))}
- ${nextHop("上海之巔118F","夜食／返住宿")}`;
+ ${alertBox("正常情況唔加返上塔","慳返門票同約90分鐘，將時間留畀浦東反拍＋Freedom。",true)}`;
 }
 
 function mwyPage(){
@@ -562,11 +585,11 @@ function init(){
  <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><button id="privacyBtnDetail" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></div><article id="article" class="article"></article></div>`;
 
  $('#backBtn').onclick=()=>history.back();
- if(!location.hash)history.replaceState({v:'trip'},'','#trip');
+ if(!location.hash)if(!location.hash)history.replaceState({v:'trip'},'','#trip');
  restoreFromHash();
 }
 function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
-function dayCardSub(d){return d===1?'抵達 → 外灘黃昏 → 渡輪 → 上海之巔':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
+function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
 function todayTripDay(){const z=new Date(),k=`${z.getFullYear()}-${String(z.getMonth()+1).padStart(2,'0')}-${String(z.getDate()).padStart(2,'0')}`;return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[k]||0}
 function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList.toggle('hidden',!b)}
 function nav(x){$('#navTrip').classList.toggle('active',x==='trip');$('#navDay').classList.toggle('active',x==='day');$('#navGuide').classList.toggle('active',x==='guide')}
@@ -590,7 +613,7 @@ function fitDay(){if(!mapObj)return;const cs=DAYS[currentDay].items.filter(x=>x.
 function selectMapStop(i,fly){const mapped=DAYS[currentDay].items.filter(x=>x.coord);selected[currentDay]=i;const x=mapped[i];if($('#mapInspector'))$('#mapInspector').innerHTML=inspectorHTML(x,mapped);mapMarkers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));if(fly&&mapObj&&x)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:14.5,duration:450})}
 function goTimeline(){mode='timeline';renderDay()}
 
-function guideHTML(){return `<div class="guide-intro"><h2>指南</h2><p>網站只保存現場會用到嘅結論。研究過程留喺資料源；時效資料按指定時間再刷新，避免將一個月前嘅答案當成當日事實。</p><div class="privacy-note"><b>公開版只保留必要識別資料。</b> 住宿名稱保留作導航識別；航班編號、住宿地址／聯絡資料唔存在 HTML 原始碼。右上「公開」只係狀態標記。</div></div><div class="guide-group"><h3>資料狀態</h3><div class="status-list"><div class="status-row"><div class="state">基準</div><div><b>攝影現場手冊 FINAL · 09/28</b><p>Day 1／Day 3站位、焦段、天氣分支已完成。</p></div></div><div class="status-row"><div class="state">基準</div><div><b>飲食現場手冊 FINAL V1 · 09/28</b><p>每間主店點法、排隊上限、放棄條件已完成。</p></div></div><div class="status-row warn"><div class="state">待公告</div><div><b>MWY 相機／袋／安檢／再次入場</b><p>場販時間及場地已確認；其餘只保留決策分支，唔自行補答案。</p></div></div></div></div><div class="guide-group"><h3>臨行刷新</h3><div class="mini-route"><div class="r"><strong>T-7至3日</strong><span>餐廳營業／臨休／搬遷；上海天氣、能見度、低雲；判斷上海之巔價值。</span></div><div class="r"><strong>T-2至1日</strong><span>外灘／小陸家嘴景觀照明；東金線渡輪班次／臨時停航。</span></div><div class="r"><strong>T-1日</strong><span>佳家、泰康、大壺春、鮮得來、張師傅、琪琪、小楊、王記、海金滋、味香齋逐間快速睇「今日營業」。</span></div><div class="r"><strong>當日</strong><span>只看排隊長度、下一個固定時間點、實際天氣／人流；按頁面放棄條件執行。</span></div></div></div><div class="guide-group"><h3>固定導航資料</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>地址／聯絡資料不存於公開版；Day 2相機禁帶時，前台貴重物品寄存係優先研究方案。</p></div></div><div class="status-row"><div class="state">返程</div><div><b>11/2 · 航班資料已隱藏 · 19:05 PVG T2</b><p>15:30–15:40由住宿出發較舒服；15:50只作最遲正常值。</p></div></div></div></div>`}
+function guideHTML(){return `<div class="guide-intro"><h2>指南</h2><p>網站只保存現場會用到嘅結論。Day 1 已按最新「已鎖行程」重建；後面舊 research 只當 provenance，唔反過來覆蓋主線。</p><div class="privacy-note"><b>公開版只保留必要識別資料。</b> 住宿名稱保留作導航識別；航班編號、住宿地址／聯絡資料唔存在 HTML 原始碼。右上「公開」只係狀態標記。</div></div><div class="guide-group"><h3>資料狀態</h3><div class="status-list"><div class="status-row"><div class="state">Day 1</div><div><b>10/31 主線已重鎖</b><p>南京東路 → 外白渡橋／外灘 → 浦東反拍 → 金橋 Freedom Gundam；上海之巔移出主線。</p></div></div><div class="status-row"><div class="state">攝影</div><div><b>外灘／武康／張園 reference 已整理</b><p>免費圖直接展示；攝影師作品只連原作者頁。</p></div></div><div class="status-row warn"><div class="state">待公告</div><div><b>MWY 相機／袋／安檢／再次入場</b><p>只保留決策分支，唔自行補答案。</p></div></div></div></div><div class="guide-group"><h3>臨行刷新</h3><div class="mini-route"><div class="r"><strong>T-7至3日</strong><span>餐廳營業／臨休／搬遷；上海天氣同能見度。上海之巔只作bonus，不再因天氣牽動主線。</span></div><div class="r"><strong>T-2至1日</strong><span>外灘／小陸家嘴10/31景觀照明；東金線渡輪班次／臨時停航；Freedom Gundam 夜間演出場次。</span></div><div class="r"><strong>T-1日</strong><span>萊萊、泰康、東泰祥、張師傅、琪琪、小楊、王記、海金滋、味香齋快速睇「今日營業」。</span></div><div class="r"><strong>當日</strong><span>只看排隊長度、下一個固定時間點、實際天氣／人流；Day 1約15:45之後唔再畀食物侵蝕外灘光線。</span></div></div></div><div class="guide-group"><h3>Day 1 固定節點</h3><div class="status-list"><div class="status-row"><div class="state">19:45</div><div><b>1:1 Freedom Gundam</b><p>夜攝＋等一輪夜間演出；精確場次臨行再核。</p></div></div><div class="status-row"><div class="state">20:40</div><div><b>THE GUNDAM BASE SHANGHAI</b><p>金橋LaLaport 4F；官方現時10:00–22:00。</p></div></div><div class="status-row"><div class="state">Bonus</div><div><b>上海之巔唔屬主線</b><p>只有能見度極佳＋時間異常充裕先再考慮；唔犧牲外灘／Freedom。</p></div></div></div></div><div class="guide-group"><h3>固定導航資料</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>地址／聯絡資料不存於公開版；Day 2相機禁帶時，前台貴重物品寄存係優先研究方案。</p></div></div><div class="status-row"><div class="state">返程</div><div><b>11/2 · 航班資料已隱藏 · 19:05 PVG T2</b><p>15:30–15:40由住宿出發較舒服；15:50只作最遲正常值。</p></div></div></div></div>`}
 
 function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;if(typeof maplibregl==='undefined'){el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
 function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);$('#article').innerHTML=fn();$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
