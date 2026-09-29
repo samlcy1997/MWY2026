@@ -2,7 +2,7 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC4.0 scope
+## Current RC4.1 scope
 
 - Day 1 rebuilt from the latest locked itinerary: Nanjing East Road → Waibaidu Bridge / Bund → Pudong reverse-shoot → Jinqiao Freedom Gundam
 - Day 1 food line: Lai Lai Xiaolong → Taikang fresh-meat mooncake → late dinner at Dong Tai Xiang
@@ -10,7 +10,7 @@ A mobile-first three-day Shanghai field guide built around 未來有你 2026, ph
 - Day 2 / Day 3 operational timeline retained
 - Timeline ↔ interactive MapLibre + OpenStreetMap linkage
 - Page-specific layouts for photography, food, events, transport and area walks
-- Photography field guides for the Bund line, Pudong reverse-shoot, Freedom Gundam, Wukang, Zhangyuan and The Louis
+- Photography field guides for the Bund line, Pudong reverse-Bund night shoot, Pudong reverse-shoot, Freedom Gundam, Wukang, Zhangyuan and The Louis
 - Reusable reference images plus links to photographer originals where useful
 - Pre-trip recheck board for lighting, ferry service, Freedom Gundam night-show timing and volatile opening hours
 
