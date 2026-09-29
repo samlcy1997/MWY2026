@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC4.0</title>
+<title>MWY2026 · 上海三日行程書 RC4.1</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
 <style>
 :root{
@@ -149,7 +149,9 @@ const IMG={
   freeLouis:"https://images.unsplash.com/photo-1766873269958-a8bbea93be29?auto=format&fit=crop&fm=jpg&q=72&w=1600",
   gundamHero:"https://images.unsplash.com/photo-1708227437495-c436ae150e7e?auto=format&fit=crop&fm=jpg&q=76&w=1800",
   gundamDetail:"https://images.unsplash.com/photo-1625235471526-67781e38eb57?auto=format&fit=crop&fm=jpg&q=76&w=1500",
-  gundamAlt:"https://images.unsplash.com/photo-1625235471241-c1c50a8a18a1?auto=format&fit=crop&fm=jpg&q=76&w=1500"
+  gundamAlt:"https://images.unsplash.com/photo-1625235471241-c1c50a8a18a1?auto=format&fit=crop&fm=jpg&q=76&w=1500",
+  pudongBund70:"https://images.pexels.com/photos/30685872/pexels-photo-30685872/free-photo-of-shanghai-bund-night-skyline-illuminated.jpeg?auto=compress&cs=tinysrgb&w=1600",
+  pudongBund110:"https://images.pexels.com/photos/30685862/pexels-photo-30685862/free-photo-of-shanghai-bund-night-skyline-reflecting-on-huangpu-river.jpeg?auto=compress&cs=tinysrgb&w=1600"
 };
 
 const DAYS={
@@ -158,7 +160,7 @@ const DAYS={
     {id:"lailai",time:"15:05",title:"萊萊小籠",sub:"松茸鮮肉／純鮮肉小籠 · 15:35前走",kind:"食",move:"南京東路",coord:[121.477126,31.236125],address:"天津路506號"},
     {id:"taikang",time:"15:35",title:"泰康食品",sub:"鮮肉月餅 1 個 · 15:45左右食物段硬 cutoff",kind:"補給",move:"16:10 外白渡橋",coord:[121.475983,31.235152],address:"南京東路766號"},
     {id:"bund",time:"16:10",title:"外白渡橋 → 外灘",sub:"日光 → 日落 → blue hour → 亮燈，一路向南拍",kind:"攝影",anchor:true,move:"18:15／18:30 金陵東路渡口",coord:[121.490060,31.242896],address:"外白渡橋／外灘"},
-    {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",move:"19:15 收機叫車",coord:[121.493308,31.232381],address:"金陵東路渡口 → 東昌路渡口"},
+    {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",move:"19:15 收機叫車",coord:[121.498989,31.232071],address:"東昌路渡口 · 濱江大道3528號"},
     {id:"gundam",time:"19:45",title:"1:1 Freedom Gundam",sub:"夜攝＋等一輪夜間演出 · 場次臨行再核",kind:"主力拍攝",anchor:true,move:"20:40 上4F",coord:[121.603823,31.252264],address:"LaLaport上海金橋 · 新金橋路738號"},
     {id:"gundambase",time:"20:40",title:"THE GUNDAM BASE",sub:"金橋店 · 21:10前離開",kind:"ACG",move:"去晚餐",coord:[121.603823,31.252264],address:"新金橋路738號 LaLaport 4F 429–430"},
     {id:"dongtaixiang",time:"21:40",title:"東泰祥",sub:"特色生煎＋咖喱牛肉湯 · Day 1晚餐",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
@@ -182,10 +184,13 @@ const DAYS={
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"輪渡＋浦東反拍"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非主線"},xiandelai:{title:"鮮得來 · 非主線"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+ arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非主線"},xiandelai:{title:"鮮得來 · 非主線"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
 };
 
 const PHOTO_MAPS={
+ ferry:{zoom:16.2,points:[
+  {label:"P",name:"東昌路渡口／落船即拍起點",wgs:[121.498989,31.232071],hot:true}
+ ]},
  bund:{zoom:14.7,points:[
   {label:"B",name:"外白渡橋／蘇州河口",wgs:[121.48572,31.24508],hot:true},
   {label:"C",name:"外灘主平台／陳毅廣場一帶",wgs:[121.48592,31.24098],hot:true},
@@ -306,21 +311,32 @@ ${nextHop("外灘主平台／陳毅廣場","金陵東路渡口")}`,
 dahuchun:()=>`${pageHead("非主線 · 舊研究保留","大壺春","新版 Day 1 已因 Freedom Gundam 夜攝改線；大壺春收舖時段同新主線衝突，所以只保留資料，唔再放 timeline。",[["狀態","非主線"],["原因","晚間時段衝突"],["代表","清水派生煎"],["替代","Day 1晚餐改東泰祥"]])}
 ${alertBox("唔為佢改線","如現場偶然經過而且時間異常充裕先再算；正常執行直接忽略。",true)}`,
 
-ferry:()=>`${pageHead("第1日 · 18:15／18:30","輪渡＋浦東反拍","過江唔再只係交通 bonus。新版主線正式留一段畀浦東濱江反拍亮燈外灘，完成後19:15左右收機叫車去金橋。",[["輪渡","金陵東路 → 東昌路"],["落船後","約18:25–19:05"],["焦段","50–120mm主力"],["收機","約19:15"]])}
-${media(IMG.ferry,"輪渡優先係為咗避開星期六外灘叫車／過江隧道不確定性；船本身唔當主要拍攝平台。")}
-${block("浦東反拍 reference",photographerRefs([
- ["50–85mm","Bund night skyline","JC Terry","先看整條萬國建築帶點樣壓成一組；新版有較完整時間，可以先完成整體再做局部。",["浦東反拍","建築帶"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/"],
- ["85–120mm","Bund detail across Huangpu","JC Terry","抽海關大樓／和平飯店等局部；中長焦比無腳架追長曝水面更對題。",["中長焦","局部"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/"]
+ferry:()=>`${pageHead("第1日 · 浦東夜景攝影","東昌路落船 → 反拍外灘","呢段已經係正式拍攝站，唔再係過江順手 bonus。落船即開始：先用50–70mm完成萬國建築群，再用85–120mm抽海關大樓／和平飯店；19:05左右開始收尾，19:15叫車去金橋。",[["拍攝窗","約18:25–19:05"],["固定起點","東昌路渡口"],["主力焦段","50–120mm"],["收機","約19:05–19:15"]])}
+${block("機位圖",photoMap("ferry"))}
+${alertBox("機位唔需要追『神位』","固定起點就係東昌路渡口落船後嘅濱江。先喺可見江面位置完成主片；欄杆／人流唔理想先沿濱江前後微調幾十米，唔為找角度走遠。")}
+${block("精選構圖參考",referenceGallery([
+ [IMG.pudongBund70,"外灘萬國建築群整體","約70mm reference","JC Terry · Canon EOS 6D Mark II，原作70mm。最值得抄係建築帶比例同節奏；原作係8秒長曝，本次無腳架只借構圖，唔照抄曝光。",["50–70mm","建築帶","夜景"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/","Pexels · JC Terry"],
+ [IMG.pudongBund110,"海關／外灘局部壓縮","約110mm reference","同一攝影師、同一組浦江夜景，原作110mm。適合預想85–120mm下單棟地標同立面壓縮；原作15秒長曝，只借 framing。",["85–120mm","局部","長焦壓縮"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/","Pexels · JC Terry"]
 ]))}
-${block("落船後拍攝次序",route([
- ["18:15／18:30","金陵東路上船","按當日班次同外灘完成度揀；前一晚＋當日再核。"],
- ["落船","東昌路／附近可見江面","唔沿江搵『神位』，先完成可見角度。"],
- ["50–85mm","外灘建築帶整體","先有一張完整、節奏清楚嘅萬國建築群。"],
- ["85–120mm","海關／和平飯店等局部","再抽2–3組細節；無腳架唔追長曝水面。"],
+${block("到場即拍",shots([
+ ["50–70","先完成整條萬國建築群","先要一張完整、節奏清楚嘅建築帶。唔急住上120mm，先確保主片到手。"],
+ ["85–120","海關大樓／和平飯店／單棟局部","每次只抽一個主體＋少量陪體；避免將整排樓硬塞入長焦畫面。"],
+ ["50–85","船隻／江面做前景","如果剛好有船經過先利用；唔等船、唔等平滑倒影。"]
+]))}
+${block("落船後節奏",route([
+ ["18:15／18:30","金陵東路上船","按當日班次同外灘完成度揀；輪渡服務前一晚＋當日再核。"],
+ ["落船即拍","東昌路渡口濱江","第一個可見江面位置就先完成50–70mm主片。"],
+ ["+10分鐘","85–120mm局部","抽海關鐘樓、和平飯店屋頂、亮燈立面；風大就提高快門。"],
+ ["≈19:05","最後一輪","只補缺少嘅一組，唔重新沿江搵位。"],
  ["≈19:15","收機叫車","Taxi → 金橋 LaLaport，預留20–30分鐘。"]
 ]))}
-${alertBox("班次係臨行刷新項","DOC只鎖18:15／18:30作目標，實際東金線服務以前一晚＋當日資訊為準；若唔成立，再用地鐵／Didi過江。")}
-${nextHop("東昌路渡口／浦東濱江","LaLaport上海金橋 新金橋路738號")}`,
+${block("無腳架夜景設定思路",rules([
+ ["快門優先於低ISO","JC Terry reference係8–15秒長曝；你無腳架，唔追同款水面。寧願拉高ISO保住建築銳利。"],
+ ["85–120mm更怕手震／風","江邊有風就提高快門；Z8 IBIS係保險，唔係叫你硬壓極慢快門。"],
+ ["亮部先保住","外灘立面同鐘樓燈位容易爆；先保高光，再接受江面偏暗。"]
+]))}
+${cutoff("19:05開始收尾","Freedom Gundam 19:45先係下一個固定主拍。呢段如果渡輪延誤，先保50–70mm整體，再保一張85–120mm局部；其餘直接砍。","離開條件")}
+${nextHop("東昌路渡口 · 濱江大道3528號","LaLaport上海金橋 · 新金橋路738號")}`
 
 tower:()=>towerPage(),
 
