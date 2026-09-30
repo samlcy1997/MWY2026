@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC5.3</title>
+<title>MWY2026 · 上海三日行程書 RC5.4</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
@@ -130,6 +130,12 @@ body{letter-spacing:-.005em}
 .guide-intro{background:transparent;border:0;border-radius:0;padding:6px 0 18px;border-bottom:1px solid var(--line)}.guide-intro h2{font-size:38px}.privacy-note{margin-top:18px}.guide-group{margin-top:32px}.status-list{border-top:1px solid var(--line)}.status-row{border-bottom:1px solid var(--line);padding:14px 0;background:transparent}
 #realMap{border:0;border-radius:14px;height:420px}.map-inspector{border-radius:14px}.map-note{font-size:9px}
 @media(max-width:560px){.main{padding-left:14px;padding-right:14px}.article{padding-left:14px;padding-right:14px}.live-strip{grid-template-columns:1fr 1fr}.stop{grid-template-columns:50px 28px minmax(0,1fr)}.timeline:before{left:63px}.route-link{margin-left:76px}.stop.major .stop-card{padding-left:12px;padding-right:12px}.facts{grid-template-columns:1fr 1fr}}
+
+.food-feature{margin-top:26px}.food-feature img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;background:#e7e9e7}.food-feature-copy{padding:12px 0 0}.food-feature-copy small{display:block;font-size:9px;letter-spacing:.06em;color:#78817f;margin-bottom:4px}.food-feature-copy strong{display:block;font-size:23px;line-height:1.05;letter-spacing:-.035em}.food-feature-copy p{font-size:12px;line-height:1.55;color:var(--muted);margin:7px 0 0;max-width:46ch}
+.food-list{border-top:1px solid var(--line)}.food-row{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}.food-row small{font-size:9px;color:#7b8582;padding-top:2px}.food-row b{display:block;font-size:15px;margin-bottom:4px}.food-row p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
+.eat-steps{counter-reset:eat;border-top:1px solid var(--line)}.eat-step{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.eat-step:before{counter-increment:eat;content:counter(eat);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#17201f;color:#fff;font-size:10px;font-weight:800}.eat-step b{display:block;font-size:13px;margin-bottom:3px}.eat-step p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
+.next-hop.compact{margin-top:36px}.next-hop.compact p{font-size:10px;color:#b7c3c0;margin:5px 0 0}.next-hop.compact .next-actions{grid-template-columns:1fr;margin-top:12px}.sticky-actions{display:none!important}
+.detail-pager{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 84px;padding-top:18px;border-top:1px solid var(--line)}.detail-pager button,.pager-end{min-height:64px;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:11px 12px;text-align:left}.pager-next{text-align:right!important}.detail-pager small{display:block;font-size:8px;letter-spacing:.06em;color:#7b8582;margin-bottom:4px}.detail-pager b{font-size:12px;line-height:1.3}.pager-next{border-color:#bdddd8!important;background:#edf7f5!important}.pager-end{display:flex;flex-direction:column;justify-content:center}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.detail{transition:none}.viewstage img{transition:none}}
 </style>
 </head>
@@ -137,7 +143,7 @@ body{letter-spacing:-.005em}
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.3",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.4",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -159,6 +165,9 @@ const IMG={
   xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
   zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
   qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
+  xiaolongbaoRef:"https://images.pexels.com/photos/6752827/pexels-photo-6752827.jpeg?auto=compress&dpr=1&h=750&w=1260",
+  shengjianRef:"https://english.shanghai.gov.cn/cmsres/7a/7af47e98a7df434d8dab44b36f87a0ef/77565a16a875edf1379a7e2f36a5d1cb.gif",
+  shanghaiBreakfastRef:"https://english.shanghai.gov.cn/cmsres/24/24e4b3dffb8f45b18b5ba8948a9efbfb/1be6c7304fa48221dd54f0b62b448103.jpg",
   xiaoyang:"https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
   xiaoyangFood:"https://ak-d.tripcdn.com/images/1mi3d224x906uswcp6BA9_Q90.jpg?proc=source%2Ftrip",
   mwyHall:"https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
@@ -208,7 +217,7 @@ const DAYS={
     {id:"mwy",time:"10:00",title:"MWY 場販／展示",sub:"小羽館主售 · 大羽館展示＋CALL棒",kind:"活動",anchor:true,move:"午餐按現場進度",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
     {id:"qiqi",time:"12:00",title:"琪琪麵館",sub:"辣肉拌麵 · 13:30 後直接放棄",kind:"午餐",move:"返場館",coord:[121.461815,31.277407],address:"北寶興路296–298號"},
     {id:"xiaoyang",time:"16:50",title:"小楊生煎",sub:"最小份招牌生煎 · 18:00 前返場館",kind:"補給",move:"演唱會入場",coord:[121.458164,31.298158],address:"江場路1212號協信廣場B1"},
-    {id:"mwy",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · 相機／袋安排出發前再確認",kind:"演唱會",anchor:true,move:"散場按餓度分支",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"mwyshow",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · 相機／袋安排出發前再確認",kind:"演唱會",anchor:true,move:"散場按餓度分支",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
     {id:"postshow",time:"21:30+",title:"散場後",sub:"不再鎖餐廳 · 宵夜只服務體力",kind:"彈性",move:"返住宿",coord:null,address:""}
   ]},
   3:{date:"11月2日 · 星期一",title:"武康＋徐家匯＋張園",cover:IMG.wukang,items:[
@@ -222,7 +231,7 @@ const DAYS={
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非行程"},xiandelai:{title:"鮮得來 · 非行程"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+ arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非行程"},xiandelai:{title:"鮮得來 · 非行程"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},mwyshow:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
 };
 
 const PHOTO_MAPS={
@@ -248,7 +257,7 @@ const PHOTO_MAPS={
  ]}
 };
 
-let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null;
+let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null, detailCurrentId="";
 const OSM_RASTER_STYLE={version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm",type:"raster",source:"osm"}]};
 
 const $=s=>document.querySelector(s);
@@ -269,9 +278,15 @@ function weather(items){return `<div class="weather-grid">${items.map(x=>`<div c
 function compare(items){return `<div class="compare">${items.map(x=>`<div><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[2]}</p></div>`).join("")}</div>`}
 function alertBox(title,note,danger=false){return `<div class="alert ${danger?'danger':''}"><strong>${title}</strong><p>${note}</p></div>`}
 function more(items){return `<div class="disclosure">${items.map(x=>`<details><summary>${x[0]}</summary><div class="more">${x[1]}</div></details>`).join("")}</div>`}
-function nextHop(a,b,copyA=a,copyB=b){const actions=[copyA?`<button class="a" onclick="copyText('${esc(copyA)}')">複製起點</button>`:"",copyB?`<button class="b" onclick="copyText('${esc(copyB)}')">複製終點</button>`:""].filter(Boolean).join("");return `<div class="next-hop"><small>下一站</small><strong>${a} → ${b}</strong>${actions?`<div class="next-actions">${actions}</div>`:""}</div>`}
-function sticky(primary,address,secondary="複製地址"){return `<div class="sticky-actions"><button class="primary" onclick="copyText('${esc(primary)} ${esc(address)}')">複製名稱＋地址</button><button class="secondary" onclick="copyText('${esc(address)}')">${secondary}</button></div>`}
+function nextHop(a,b,copyA=a,copyB=b){return copyB?`<div class="next-hop compact"><small>去下一站</small><strong>${b}</strong><p>${copyB}</p><div class="next-actions"><button class="a" onclick="copyText('${esc(copyB)}')">複製目的地</button></div></div>`:""}
+function sticky(){return""}
+function findItemPosition(id){for(const [d,day] of Object.entries(DAYS)){const i=day.items.findIndex(x=>x.id===id);if(i>=0)return{day:+d,index:i,items:day.items}}return null}
+function detailPagerHTML(id){const p=findItemPosition(id);if(!p)return"";const prev=p.items[p.index-1]||null,next=p.items[p.index+1]||null;return `<div class="detail-pager">${prev?`<button class="pager-prev" onclick="openAdjacentDetail(-1)"><small>上一站</small><b>← ${prev.title}</b></button>`:`<span></span>`}${next?`<button class="pager-next" onclick="openAdjacentDetail(1)"><small>下一站</small><b>${next.title} →</b></button>`:`<div class="pager-end"><small>今日</small><b>最後一站</b></div>`}</div>`}
+function openAdjacentDetail(delta){const p=findItemPosition(detailCurrentId);if(!p)return;const target=p.items[p.index+delta];if(!target)return;openDetail(target.id,false);history.replaceState({v:'detail',id:target.id},'',`#detail-${target.id}`)}
 function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return useful.length?`<div class="meal-extras">${useful.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`:""}
+function foodFeature(img,kicker,title,note){return `<div class="food-feature">${img?`<img src="${img}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><small>${kicker}</small><strong>${title}</strong><p>${note}</p></div></div>`}
+function foodList(rows){return `<div class="food-list">${rows.map(r=>`<div class="food-row"><small>${r[0]}</small><div><b>${r[1]}</b><p>${r[2]}</p></div></div>`).join("")}</div>`}
+function eatSteps(rows){return `<div class="eat-steps">${rows.map(r=>`<div class="eat-step"><div><b>${r[0]}</b><p>${r[1]}</p></div></div>`).join("")}</div>`}
 function 例圖Gallery(items){return `<div class="ref-grid">${items.map((x,i)=>`<figure class="ref-card ${i===0?"featured":""}"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><figcaption class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">原圖 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
 function photographerRefs(items){return `<details class="secondary-disclosure"><summary>更多構圖參考</summary><div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[3]}</p></a>`).join("")}</div></details>`}
 function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…</div></div>${legend}<details class="map-help"><summary>地圖用途</summary><p>只用嚟認街道、地標同機位相對位置；現場導航仍交畀高德。</p></details></div>`}
@@ -490,6 +505,7 @@ ${block("收尾路線",route([
 ]))}
 `
 };
+P.mwyshow=()=>mwyPage();
 
 function towerPage(){
  return `${pageHead("備用景點","上海之巔 118F","正常行程唔上塔。只有能見度極佳、時間異常充裕，而且唔影響外灘同 Freedom，先臨時考慮。",[["高度","546m"],["安排","正常不去"],["條件","能見度極佳＋時間有餘"]])}
@@ -562,6 +578,9 @@ function init(){
  <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div>`;
 
  $('#backBtn').onclick=()=>history.back();
+ let swipeX=0,swipeY=0,swipeTarget=null;
+ $('#detail').addEventListener('touchstart',e=>{if(e.touches.length!==1)return;swipeX=e.touches[0].clientX;swipeY=e.touches[0].clientY;swipeTarget=e.target},{passive:true});
+ $('#detail').addEventListener('touchend',e=>{if(!detailOpen||!e.changedTouches.length)return;if(swipeTarget?.closest('button,a,summary,input,select,textarea,.photo-map,.maplibregl-map,.tabline'))return;const dx=e.changedTouches[0].clientX-swipeX,dy=e.changedTouches[0].clientY-swipeY;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.35)openAdjacentDetail(dx<0?1:-1)},{passive:true});
  if(!location.hash)history.replaceState({v:'trip'},'','#trip');
  restoreFromHash();
  setInterval(refreshLiveStrip,60000);
@@ -615,7 +634,7 @@ function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以�
 </div></div>`}
 
 function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;if(typeof maplibregl==='undefined'){el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
-function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);$('#article').innerHTML=fn();$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
+function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
 function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');detailOpen=false;if(history.state?.v==='detail')history.back()}
 function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t);const old=$('#pageTitle').textContent,shown=String(t).length>22?String(t).slice(0,22)+'…':String(t);$('#pageTitle').textContent='已複製 · '+shown;setTimeout(()=>$('#pageTitle').textContent=old,900)}
 function restoreFromHash(){const h=location.hash;if(h.startsWith('#detail-')){const id=h.replace('#detail-','');openDay(findDayForId(id),false);openDetail(id,false);history.replaceState({v:'detail',id},'',h);return}if(h.startsWith('#day-')){const m=h.match(/^#day-(\d)(?:-(map|timeline))?$/);if(m){currentDay=+m[1];mode=m[2]||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();history.replaceState({v:'day',d:currentDay,mode},'',h);return}}if(h==='#guide'){showGuide(false);history.replaceState({v:'guide'},'',h);return}showTrip(false)}
