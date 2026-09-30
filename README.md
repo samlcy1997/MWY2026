@@ -2,10 +2,10 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.5 scope
+## Current RC5.6 scope
 
-- One restrained AI-generated inline diagram for xiaolongbao eating steps; photography pages keep real reference photos and real map geometry
-- Diagram was mobile-adjusted to a 2×2 layout after design review
+- Xiaolongbao eating steps use a native 2×2 vector UI for stable mobile rendering; no raster/base64 diagram asset
+- Photography pages keep real reference photos and real map geometry
 
 - Event-specific detail layouts instead of one generic content skeleton
 - Food pages focus on dish visuals, what to order, relevant eating context, and only meaningful exceptions
