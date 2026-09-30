@@ -2,7 +2,12 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.3 scope
+## Current RC5.4 scope
+
+- Event-specific detail layouts instead of one generic content skeleton
+- Food pages focus on dish visuals, what to order, relevant eating context, and only meaningful exceptions
+- Detail pages support visible previous/next navigation plus horizontal swipe
+- Route footer uses one destination-copy action; duplicate sticky copy bars removed
 
 - Content-pruned field guide: primary UI keeps only action-changing information
 
