@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC4.4</title>
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<title>MWY2026 · 上海三日行程書 RC4.5</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
   --bg:#f4f2ed; --paper:#fffefa; --ink:#142022; --muted:#657170; --line:#d9dfdc;
@@ -38,6 +38,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .baseline{display:grid;grid-template-columns:1fr;gap:8px}.baseline-row{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}.baseline-row:first-child{border-top:0}.baseline-row small{font-size:10px;color:var(--muted);font-weight:750}.baseline-row b{font-size:13px}.baseline-row p{font-size:12px;line-height:1.55;color:var(--muted);margin:3px 0 0}
 
 
+.live-strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}.live-jump{border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:11px 12px;text-align:left;cursor:pointer}.live-jump.current{background:#172123;color:#fff;border-color:#172123}.live-jump.next{background:var(--soft);border-color:#cce4df}.live-jump small{display:block;font-size:9px;font-weight:850;letter-spacing:.08em;color:#788582;margin-bottom:3px}.live-jump.current small{color:#a9bbb8}.live-jump b{display:block;font-size:12px;line-height:1.3}.live-jump span{display:block;font-size:10px;line-height:1.35;margin-top:3px;color:#72807e}.live-jump.current span{color:#cad4d2}.live-done{margin:10px 0 12px;border:1px solid var(--line);background:var(--paper);border-radius:16px;padding:12px;font-size:11px;color:var(--muted)}
 .dayhead{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:4px 0 14px}.dayhead h2{font-size:32px;letter-spacing:-.05em;margin:0}.dayhead p{font-size:12px;color:var(--muted);margin:4px 0 0;line-height:1.5}.day-date{font-size:11px;color:var(--accent-ink);font-weight:780;background:var(--soft);border-radius:999px;padding:7px 9px;white-space:nowrap}
 .seg,.viewseg{display:grid;background:#e7ece9;padding:3px;border-radius:14px}.seg{grid-template-columns:repeat(3,1fr);margin-bottom:9px}.viewseg{grid-template-columns:1fr 1fr;margin-bottom:18px}.seg button,.viewseg button{border:0;background:transparent;border-radius:11px;padding:10px 8px;font-size:12px;font-weight:760;color:#687473;cursor:pointer}.seg button.active,.viewseg button.active{background:var(--paper);color:var(--ink);box-shadow:0 2px 8px rgba(20,32,34,.06)}
 .timeline{position:relative}.timeline:before{content:"";position:absolute;left:72px;top:19px;bottom:18px;width:1px;background:#c9d1ce}.stop{display:grid;grid-template-columns:55px 34px minmax(0,1fr);align-items:start;margin-bottom:3px;position:relative}.stop-time{padding-top:17px;text-align:right;font-size:11px;font-weight:820;color:var(--accent-ink);font-variant-numeric:tabular-nums}.stop-track{display:grid;place-items:center;height:48px}.stop-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px var(--bg);z-index:2}.stop-dot.anchor{background:#172123}.stop-card{border:0;background:transparent;padding:12px 10px 13px;text-align:left;border-radius:16px;cursor:pointer;min-width:0}.stop-card:active,.stop-card.selected{background:rgba(255,254,250,.76)}.stop-kind{font-size:10px;color:#7a8583;font-weight:760}.stop-card h3{font-size:15px;letter-spacing:-.02em;margin:2px 0 3px}.stop-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}.route-link{margin:-2px 0 7px 89px;font-size:10px;color:#87908f;line-height:1.4}.route-link:before{content:"↓";margin-right:7px;color:#9aa3a1}
@@ -98,8 +99,9 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 </head>
 <body>
 <div id="app"></div>
-<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
+const SITE={version:"RC4.5",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -159,7 +161,7 @@ const DAYS={
     {id:"arrival",time:"12:30",title:"抵達上海",sub:"入境 → 入市區 → 14:15–14:45住宿放行李",kind:"交通",move:"15:05 第一餐",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"},
     {id:"lailai",time:"15:05",title:"萊萊小籠",sub:"松茸鮮肉／純鮮肉小籠 · 15:35前走",kind:"食",move:"南京東路",coord:[121.477126,31.236125],address:"天津路506號"},
     {id:"taikang",time:"15:35",title:"泰康食品",sub:"鮮肉月餅 1 個 · 15:45左右食物段硬 cutoff",kind:"補給",move:"16:10 外白渡橋",coord:[121.475983,31.235152],address:"南京東路766號"},
-    {id:"bund",time:"16:10",title:"外白渡橋 → 外灘",sub:"日光 → 日落 → blue hour → 亮燈，一路向南拍",kind:"攝影",anchor:true,move:"18:15／18:30 金陵東路渡口",coord:[121.490060,31.242896],address:"外白渡橋／外灘"},
+    {id:"bund",time:"16:10",title:"外白渡橋 → 外灘",sub:"日光 → 日落 → 藍調時段 → 亮燈，一路向南拍",kind:"攝影",anchor:true,move:"18:15／18:30 金陵東路渡口",coord:[121.490060,31.242896],address:"外白渡橋／外灘"},
     {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",move:"19:15 收機叫車",coord:[121.498989,31.232071],address:"東昌路渡口 · 濱江大道3528號"},
     {id:"gundam",time:"19:45",title:"1:1 Freedom Gundam",sub:"夜攝＋等一輪夜間演出 · 場次臨行再核",kind:"主力拍攝",anchor:true,move:"20:40 上4F",coord:[121.603823,31.252264],address:"LaLaport上海金橋 · 新金橋路738號"},
     {id:"gundambase",time:"20:40",title:"THE GUNDAM BASE",sub:"金橋店 · 21:10前離開",kind:"ACG",move:"去晚餐",coord:[121.603823,31.252264],address:"新金橋路738號 LaLaport 4F 429–430"},
@@ -218,12 +220,12 @@ const $=s=>document.querySelector(s);
 function esc(s=''){return String(s).replaceAll('\\','\\\\').replaceAll("'","\\'")}
 function factRows(items=[]){return items.map(([a,b])=>`<div class="fact"><small>${a}</small><b>${b}</b></div>`).join("")}
 function pageHead(kicker,title,deck,facts=[]){return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${facts.length?`<div class="facts">${factRows(facts)}</div>`:""}`}
-function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
+function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" loading="lazy" decoding="async" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
 function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
 function lead(title,sub,badge=""){return `<div class="lead-action"><div><small>現場先做</small><strong>${title}</strong>${sub?`<p>${sub}</p>`:""}</div>${badge?`<div class="badge">${badge}</div>`:""}</div>`}
 function rules(rows){return `<div class="rule-list">${rows.map(r=>`<div class="rule"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}</div>`}
 function branches(items){return `<div class="branch-grid">${items.map(x=>`<div class="branch ${x[2]||''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`}
-function order(img,title,note,label="今次點法"){return img?`<div class="order-card"><img src="${img}" onerror="this.remove()"><div><small>${label}</small><strong>${title}</strong><p>${note}</p></div></div>`:`<div class="order-textonly"><small>${label}</small><strong>${title}</strong><p>${note}</p></div>`}
+function order(img,title,note,label="今次點法"){return img?`<div class="order-card"><img src="${img}" loading="lazy" decoding="async" onerror="this.remove()"><div><small>${label}</small><strong>${title}</strong><p>${note}</p></div></div>`:`<div class="order-textonly"><small>${label}</small><strong>${title}</strong><p>${note}</p></div>`}
 function cutoff(title,note,label="最遲判斷"){return `<div class="cutoff"><small>${label}</small><strong>${title}</strong><p>${note}</p></div>`}
 function route(rows){return `<div class="route-stack">${rows.map(r=>`<div class="route-step"><div class="t">${r[0]}</div><div class="track"></div><div><h3>${r[1]}</h3><p>${r[2]}</p></div></div>`).join("")}</div>`}
 function shots(rows){return `<div class="shot-list">${rows.map(r=>`<div class="shot"><div class="lens">${r[0]}</div><div><h3>${r[1]}</h3><p>${r[2]}</p></div></div>`).join("")}</div>`}
@@ -234,7 +236,7 @@ function more(items){return `<div class="disclosure">${items.map(x=>`<details><s
 function nextHop(a,b){return `<div class="next-hop"><small>下一站</small><strong>${a} → ${b}</strong><div class="next-actions"><button class="a" onclick="copyText('${esc(a)}')">複製起點</button><button class="b" onclick="copyText('${esc(b)}')">複製終點</button></div></div>`}
 function sticky(primary,address,secondary="複製地址"){return `<div class="sticky-actions"><button class="primary" onclick="copyText('${esc(primary)} ${esc(address)}')">複製名稱＋地址</button><button class="secondary" onclick="copyText('${esc(address)}')">${secondary}</button></div>`}
 function mealExtras(rows){return `<div class="meal-extras">${rows.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`}
-function referenceGallery(items){return `<div class="ref-grid">${items.map(x=>`<div class="ref-card"><img src="${x[0]}" alt="${x[1]}" onerror="this.remove()"><div class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">參考圖來源 · ${x[6]||"原作者頁"}</a>`:""}</div></div>`).join("")}</div>`}
+function referenceGallery(items){return `<div class="ref-grid">${items.map(x=>`<div class="ref-card"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><div class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">參考圖來源 · ${x[6]||"原作者頁"}</a>`:""}</div></div>`).join("")}</div>`}
 function photographerRefs(items){return `<div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><div class="author">${x[2]}</div><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}</a>`).join("")}</div><div class="pro-ref-note">攝影師作品只連去原作者頁面，不把原圖重新發布到本站；用嚟學站位、構圖、主體比例同夜景處理。</div>`}
 function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…<br>地圖只用嚟認位；現場導航仍交畀高德。</div></div>${legend}<div class="photo-map-note">機位圖係認位工具：睇街道／附近地標同機位相對位置；唔當即時步行導航。地圖載入失敗時，上面標籤仍可直接拎去高德認位。</div></div>`}
 function shotWeatherCommon(){return weather([
@@ -245,7 +247,7 @@ function shotWeatherCommon(){return weather([
 ])}
 
 const P={
-arrival:()=>`${pageHead("第1日 · 抵達／入市區","抵達上海","第一段只處理落地、入市區同放行李。新版 Day 1 真正硬資源係外灘光線，所以 14:15–14:45 到住宿係規劃基準，早到只當 bonus。",[["航班","航班資料已隱藏 · 12:30 PVG"],["住宿基準","14:15–14:45"],["第一餐","15:05 萊萊小籠"],["食物硬截止","約15:45"]])}
+arrival:()=>`${pageHead("第1日 · 抵達／入市區","抵達上海","第一段只處理落地、入市區同放行李。新版 Day 1 真正硬資源係外灘光線，所以 14:15–14:45 到住宿係規劃基準，早到只當 備用。",[["航班","航班資料已隱藏 · 12:30 PVG"],["住宿基準","14:15–14:45"],["第一餐","15:05 萊萊小籠"],["食物硬截止","約15:45"]])}
 ${lead("先完成入市區＋放行李","唔喺落地段加景點；如果入境／交通慢，就由食物段吸收延誤。","守16:10外白渡橋")}
 ${block("入市區節奏",route([
  ["12:30","PVG T2 落地","入境、取行李後入市區；交通方法按現場效率處理。"],
@@ -286,7 +288,7 @@ ${block("精選構圖參考",referenceGallery([
 ${block("一路向南拍",route([
  ["16:10","外白渡橋／蘇州河口","先拍仍有日光嘅橋與建築；35–50mm主力，24–28mm只補環境。"],
  ["16:40","沿外灘向南移動","一邊走一邊取景，唔影完橋再倒頭返去搵位。"],
- ["17:05–18:00","blue hour／深藍主戰場","24mm完成全景，35–50mm做主力，85–120mm抽地標局部。"],
+ ["17:05–18:00","藍調時段／深藍主戰場","24mm完成全景，35–50mm做主力，85–120mm抽地標局部。"],
  ["≈18:00–18:15","如果景觀燈已亮","補完整亮燈浦東 skyline；10/31實際啟燈時間臨行再核。"],
  ["18:15／18:30","金陵東路渡口","按現場進度揀船；到點就走，後面仲有浦東反拍＋Freedom。"]
 ]))}
@@ -303,7 +305,7 @@ ${block("天氣即時切換",shotWeatherCommon())}
 ${cutoff("18:15／18:30要開始過江","今次真正硬 anchor 已經由上海之巔改成 Freedom Gundam。燈未齊都唔值得拖到錯過浦東反拍同19:45高達。","離開原則")}
 ${more([
  ["星期六人多點處理？","預設高人流。唔等空景；人物壓畫面底部，或者用35–120mm裁走。"],
- ["外灘源仲去唔去？","最新已鎖 Day 1 冇再安排外灘源／圓明園路固定停留；唔為舊攝影bonus破壞新主線。"],
+ ["外灘源仲去唔去？","最新已鎖 Day 1 冇再安排外灘源／圓明園路固定停留；唔為舊攝影備用破壞新主線。"],
  ["今次攝影優先級","外灘深藍／亮燈主平台 ＞ 外白渡橋 ＞ 浦東反拍。"]
 ])}
 ${nextHop("外灘主平台／陳毅廣場","金陵東路渡口")}`,
@@ -311,7 +313,7 @@ ${nextHop("外灘主平台／陳毅廣場","金陵東路渡口")}`,
 dahuchun:()=>`${pageHead("非主線 · 舊研究保留","大壺春","新版 Day 1 已因 Freedom Gundam 夜攝改線；大壺春收舖時段同新主線衝突，所以只保留資料，唔再放 timeline。",[["狀態","非主線"],["原因","晚間時段衝突"],["代表","清水派生煎"],["替代","Day 1晚餐改東泰祥"]])}
 ${alertBox("唔為佢改線","如現場偶然經過而且時間異常充裕先再算；正常執行直接忽略。",true)}`,
 
-ferry:()=>`${pageHead("第1日 · 浦東夜景攝影","東昌路落船 → 反拍外灘","呢段已經係正式拍攝站，唔再係過江順手 bonus。落船即開始：先用50–70mm完成萬國建築群，再用85–120mm抽海關大樓／和平飯店；19:05左右開始收尾，19:15叫車去金橋。",[["拍攝窗","約18:25–19:05"],["固定起點","東昌路渡口"],["主力焦段","50–120mm"],["收機","約19:05–19:15"]])}
+ferry:()=>`${pageHead("第1日 · 浦東夜景攝影","東昌路落船 → 反拍外灘","呢段已經係正式拍攝站，唔再係過江順手 備用。落船即開始：先用50–70mm完成萬國建築群，再用85–120mm抽海關大樓／和平飯店；19:05左右開始收尾，19:15叫車去金橋。",[["拍攝窗","約18:25–19:05"],["固定起點","東昌路渡口"],["主力焦段","50–120mm"],["收機","約19:05–19:15"]])}
 ${block("機位圖",photoMap("ferry"))}
 ${alertBox("機位唔需要追『神位』","固定起點就係東昌路渡口落船後嘅濱江。先喺可見江面位置完成主片；欄杆／人流唔理想先沿濱江前後微調幾十米，唔為找角度走遠。")}
 ${block("精選構圖參考",referenceGallery([
@@ -328,7 +330,7 @@ ${block("落船後節奏",route([
  ["落船即拍","東昌路渡口濱江","第一個可見江面位置就先完成50–70mm主片。"],
  ["+10分鐘","85–120mm局部","抽海關鐘樓、和平飯店屋頂、亮燈立面；風大就提高快門。"],
  ["≈19:05","最後一輪","只補缺少嘅一組，唔重新沿江搵位。"],
- ["≈19:15","收機叫車","Taxi → 金橋 LaLaport，預留20–30分鐘。"]
+ ["≈19:15","收機叫車","叫車 → 金橋 LaLaport，預留20–30分鐘。"]
 ]))}
 ${block("無腳架夜景設定思路",rules([
  ["快門優先於低ISO","JC Terry reference係8–15秒長曝；你無腳架，唔追同款水面。寧願拉高ISO保住建築銳利。"],
@@ -503,7 +505,7 @@ ${alertBox("唔好用『仲有兩個鐘』錯覺拖延","由市區去PVG嘅不�
 };
 
 function towerPage(){
- return `${pageHead("Bonus · 非主線","上海之巔 118F","資料保留，但新版 Day 1 已正式移除上塔。只有當日能見度極佳、時間異常充裕，而且完全唔影響外灘 blue hour／Freedom，先重新考慮。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["主線","已移除"],["角色","天氣觸發 optional"]])}
+ return `${pageHead("Bonus · 非主線","上海之巔 118F","資料保留，但新版 Day 1 已正式移除上塔。只有當日能見度極佳、時間異常充裕，而且完全唔影響外灘 藍調時段／Freedom，先重新考慮。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["主線","已移除"],["角色","天氣觸發 備用"]])}
  ${block("先記四個方向",`<div class="tower-orient">
    <div class="tower-dir"><div class="bearing">西／西北</div><div><b>黃浦江大彎＋外灘</b><p>24–50mm主力。第一個合適窗位就先完成；東方明珠可做近景 anchor。</p><span class="tower-priority main">第一優先</span></div></div>
    <div class="tower-dir"><div class="bearing">東北</div><div><b>SWFC＋金茂高度差</b><p>50–120mm。利用118F俯視附近兩座超高樓，拍幾何、樓頂同城市密度。</p><span class="tower-priority secondary">第二輪</span></div></div>
@@ -579,21 +581,22 @@ function xjhPage(){
  ${cutoff("徐家匯玩過鐘 → 午飯先降級","如果IP活動太好玩，可以延長；代價應該係海金滋轉味香齋快速方案，而唔係侵蝕張園收尾／機場。","時間交換")}
  ${nextHop("美羅城／TPY","海金滋 進賢路240號")}`;
 }
-function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"先看外部裸眼3D大屏；有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
+function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"先看外部裸眼3D大屏；有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" loading="lazy" decoding="async" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
 function xjhVenue(k,btn){$("#venueCard").innerHTML=venueCard(k);btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
 
 function init(){
+ document.title=`MWY2026 · 上海三日行程書 ${SITE.version}`;
  const autoDay=todayTripDay(); if(autoDay) currentDay=autoDay;
  document.getElementById('app').innerHTML=`
  <div class="shell">
   <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><button id="privacyBtnTop" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></header>
   <main class="main">
    <section id="tripView">
-    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · 2026.10.31—11.02</div><h1>三日行程書</h1><p>行程、攝影、飲食、活動規則全部壓成現場可執行版本。先睇下一步，需要時先展開詳細資料。</p><div class="cover-meta"><span class="chip-dark">Nikon Z8 + 24–120/4 S</span><span class="chip-dark">資料更新 · 09/28</span></div></div><div class="cover-bottom"><div class="eyebrow">主線已鎖 · 時效資料臨行刷新</div></div></div>
+    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1><p>行程、攝影、飲食、活動規則全部壓成現場可執行版本。先睇下一步，需要時先展開詳細資料。</p><div class="cover-meta"><span class="chip-dark">Nikon Z8 + 24–120/4 S</span><span class="chip-dark">資料更新 · ${SITE.updated}</span></div></div><div class="cover-bottom"><div class="eyebrow">主線已鎖 · 時效資料臨行刷新</div></div></div>
     <div class="section"><div class="section-title"><h2>三日主線</h2><p>按日進入時間線</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
     <div class="section"><div class="section-title"><h2>執行原則</h2><p>資料層 → 現場判斷</p></div><div class="baseline"><div class="baseline-row"><small>攝影</small><div><b>唔為相加站</b><p>超時先砍額外畫面；Day 1守自然光，Day 3守15:15收尾。</p></div></div><div class="baseline-row"><small>飲食</small><div><b>排隊係時間成本</b><p>每間店都有放棄條件；唔為名店破壞攝影、MWY或者機場緩衝。</p></div></div><div class="baseline-row"><small>Day 2</small><div><b>只信主辦最終規則</b><p>場販已確認；相機／袋／再次入場仍然等公告，網站只保留決策分支。</p></div></div></div></div>
    </section>
-   <section id="dayView" class="hidden"><div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div><div class="day-date" id="dayDate"></div></div><div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">第${d}日</button>`).join('')}</div><div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">時間線</button><button id="mBtn" onclick="setMode('map')">地圖</button></div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section>
+   <section id="dayView" class="hidden"><div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div><div class="day-date" id="dayDate"></div></div><div id="liveStrip"></div><div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">第${d}日</button>`).join('')}</div><div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">時間線</button><button id="mBtn" onclick="setMode('map')">地圖</button></div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section>
    <section id="guideView" class="hidden">${guideHTML()}</section>
   </main>
   <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">行程</button><button id="navDay" class="nav" onclick="openDay(currentDay)">當日</button><button id="navGuide" class="nav" onclick="showGuide()">指南</button></nav>
@@ -601,12 +604,15 @@ function init(){
  <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><button id="privacyBtnDetail" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></div><article id="article" class="article"></article></div>`;
 
  $('#backBtn').onclick=()=>history.back();
- if(!location.hash)if(!location.hash)history.replaceState({v:'trip'},'','#trip');
+ if(!location.hash)history.replaceState({v:'trip'},'','#trip');
  restoreFromHash();
 }
-function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
+function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
 function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
-function todayTripDay(){const z=new Date(),k=`${z.getFullYear()}-${String(z.getMonth()+1).padStart(2,'0')}-${String(z.getDate()).padStart(2,'0')}`;return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[k]||0}
+function shanghaiClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return{date:`${parts.year}-${parts.month}-${parts.day}`,minutes:+parts.hour*60+(+parts.minute)}}
+function todayTripDay(){return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[shanghaiClock().date]||0}
+function stopMinutes(t=''){const m=String(t).match(/(\d{1,2}):(\d{2})/);return m?(+m[1])*60+(+m[2]):9999}
+function liveStripHTML(){if(todayTripDay()!==currentDay)return'';const now=shanghaiClock().minutes,items=DAYS[currentDay].items;let idx=-1;for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)idx=i;const cur=idx>=0?items[idx]:null,nxt=items[idx+1]||null;if(!cur&&nxt)return `<div class="live-strip"><button class="live-jump next" onclick="openDetail('${nxt.id}')"><small>下一站</small><b>${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur&&nxt)return `<div class="live-strip"><button class="live-jump current" onclick="openDetail('${cur.id}')"><small>目前段落</small><b>${cur.time} · ${cur.title}</b><span>${cur.sub}</span></button><button class="live-jump next" onclick="openDetail('${nxt.id}')"><small>下一站</small><b>${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur)return `<div class="live-done">目前：<b>${cur.time} · ${cur.title}</b>。今日主線已到最後一站。</div>`;return''}
 function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList.toggle('hidden',!b)}
 function nav(x){$('#navTrip').classList.toggle('active',x==='trip');$('#navDay').classList.toggle('active',x==='day');$('#navGuide').classList.toggle('active',x==='guide')}
 function hideMain(){['tripView','dayView','guideView'].forEach(id=>$('#'+id).classList.add('hidden'))}
@@ -616,7 +622,7 @@ function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidde
 function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();resetMainScroll();if(push)history.pushState({v:'day',d,mode},'',`#day-${d}`)}
 function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
 function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
-function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active',+b.dataset.d===currentDay));$('#tBtn').classList.toggle('active',mode==='timeline');$('#mBtn').classList.toggle('active',mode==='map');$('#timelinePane').classList.toggle('hidden',mode!=='timeline');$('#mapPane').classList.toggle('hidden',mode!=='map');if(mode==='timeline')renderTimeline();else{renderMap();setTimeout(initMap,30)}}
+function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active',+b.dataset.d===currentDay));$('#tBtn').classList.toggle('active',mode==='timeline');$('#mBtn').classList.toggle('active',mode==='map');$('#timelinePane').classList.toggle('hidden',mode!=='timeline');$('#mapPane').classList.toggle('hidden',mode!=='map');if(mode==='timeline')renderTimeline();else{renderMap();setTimeout(initMap,30)}}
 function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>`${i?`<div class="route-link">${items[i-1].move||''}</div>`:''}<div class="stop"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" onclick="openDetail('${x.id}')"><span class="stop-kind">${x.kind}</span><h3>${x.title}</h3><p>${x.sub}</p></button></div>`).join('')}</div>`}
 
 function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
@@ -630,7 +636,7 @@ function fitDay(){if(!mapObj)return;const cs=DAYS[currentDay].items.filter(x=>x.
 function selectMapStop(i,fly){const mapped=DAYS[currentDay].items.filter(x=>x.coord);selected[currentDay]=i;const x=mapped[i];if($('#mapInspector'))$('#mapInspector').innerHTML=inspectorHTML(x,mapped);mapMarkers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));if(fly&&mapObj&&x)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:14.5,duration:450})}
 function goTimeline(){setMode('timeline')}
 
-function guideHTML(){return `<div class="guide-intro"><h2>指南</h2><p>網站只保存現場會用到嘅結論。Day 1 已按最新「已鎖行程」重建；後面舊 research 只當 provenance，唔反過來覆蓋主線。</p><div class="privacy-note"><b>公開版只保留必要識別資料。</b> 住宿名稱保留作導航識別；航班編號、住宿地址／聯絡資料唔存在 HTML 原始碼。右上「公開」只係狀態標記。</div></div><div class="guide-group"><h3>資料狀態</h3><div class="status-list"><div class="status-row"><div class="state">Day 1</div><div><b>10/31 主線已重鎖</b><p>南京東路 → 外白渡橋／外灘 → 浦東反拍 → 金橋 Freedom Gundam；上海之巔移出主線。</p></div></div><div class="status-row"><div class="state">攝影</div><div><b>外灘／武康／張園 reference 已整理</b><p>免費圖直接展示；攝影師作品只連原作者頁。</p></div></div><div class="status-row warn"><div class="state">待公告</div><div><b>MWY 相機／袋／安檢／再次入場</b><p>只保留決策分支，唔自行補答案。</p></div></div></div></div><div class="guide-group"><h3>臨行刷新</h3><div class="mini-route"><div class="r"><strong>T-7至3日</strong><span>餐廳營業／臨休／搬遷；上海天氣同能見度。上海之巔只作bonus，不再因天氣牽動主線。</span></div><div class="r"><strong>T-2至1日</strong><span>外灘／小陸家嘴10/31景觀照明；東金線渡輪班次／臨時停航；Freedom Gundam 夜間演出場次。</span></div><div class="r"><strong>T-1日</strong><span>萊萊、泰康、東泰祥、張師傅、琪琪、小楊、王記、海金滋、味香齋快速睇「今日營業」。</span></div><div class="r"><strong>當日</strong><span>只看排隊長度、下一個固定時間點、實際天氣／人流；Day 1約15:45之後唔再畀食物侵蝕外灘光線。</span></div></div></div><div class="guide-group"><h3>Day 1 固定節點</h3><div class="status-list"><div class="status-row"><div class="state">19:45</div><div><b>1:1 Freedom Gundam</b><p>夜攝＋等一輪夜間演出；精確場次臨行再核。</p></div></div><div class="status-row"><div class="state">20:40</div><div><b>THE GUNDAM BASE SHANGHAI</b><p>金橋LaLaport 4F；官方現時10:00–22:00。</p></div></div><div class="status-row"><div class="state">Bonus</div><div><b>上海之巔唔屬主線</b><p>只有能見度極佳＋時間異常充裕先再考慮；唔犧牲外灘／Freedom。</p></div></div></div></div><div class="guide-group"><h3>固定導航資料</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>地址／聯絡資料不存於公開版；Day 2相機禁帶時，前台貴重物品寄存係優先研究方案。</p></div></div><div class="status-row"><div class="state">返程</div><div><b>11/2 · 航班資料已隱藏 · 19:05 PVG T2</b><p>15:30–15:40由住宿出發較舒服；15:50只作最遲正常值。</p></div></div></div></div>`}
+function guideHTML(){return `<div class="guide-intro"><h2>指南</h2><p>網站只保存現場會用到嘅結論。Day 1 已按最新「已鎖行程」重建；後面舊研究只作追溯，唔反過來覆蓋主線。</p><div class="privacy-note"><b>公開版只保留必要識別資料。</b> 住宿名稱保留作導航識別；航班編號、住宿地址／聯絡資料唔存在 HTML 原始碼。右上「公開」只係狀態標記。</div></div><div class="guide-group"><h3>資料狀態</h3><div class="status-list"><div class="status-row"><div class="state">Day 1</div><div><b>10/31 主線已重鎖</b><p>南京東路 → 外白渡橋／外灘 → 浦東反拍 → 金橋 Freedom Gundam；上海之巔移出主線。</p></div></div><div class="status-row"><div class="state">攝影</div><div><b>${SITE.photoStatus} 構圖參考已整理</b><p>免費圖直接展示；攝影師作品只連原作者頁。</p></div></div><div class="status-row warn"><div class="state">待公告</div><div><b>MWY 相機／袋／安檢／再次入場</b><p>只保留決策分支，唔自行補答案。</p></div></div></div></div><div class="guide-group"><h3>臨行刷新</h3><div class="mini-route"><div class="r"><strong>T-7至3日</strong><span>餐廳營業／臨休／搬遷；上海天氣同能見度。上海之巔只作備用，不再因天氣牽動主線。</span></div><div class="r"><strong>T-2至1日</strong><span>外灘／小陸家嘴10/31景觀照明；東金線渡輪班次／臨時停航；Freedom Gundam 夜間演出場次。</span></div><div class="r"><strong>T-1日</strong><span>萊萊、泰康、東泰祥、張師傅、琪琪、小楊、王記、海金滋、味香齋快速睇「今日營業」。</span></div><div class="r"><strong>當日</strong><span>只看排隊長度、下一個固定時間點、實際天氣／人流；Day 1約15:45之後唔再畀食物侵蝕外灘光線。</span></div></div></div><div class="guide-group"><h3>Day 1 固定節點</h3><div class="status-list"><div class="status-row"><div class="state">19:45</div><div><b>1:1 Freedom Gundam</b><p>夜攝＋等一輪夜間演出；精確場次臨行再核。</p></div></div><div class="status-row"><div class="state">20:40</div><div><b>THE GUNDAM BASE SHANGHAI</b><p>金橋LaLaport 4F；官方現時10:00–22:00。</p></div></div><div class="status-row"><div class="state">Bonus</div><div><b>上海之巔唔屬主線</b><p>只有能見度極佳＋時間異常充裕先再考慮；唔犧牲外灘／Freedom。</p></div></div></div></div><div class="guide-group"><h3>固定導航資料</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>地址／聯絡資料不存於公開版；Day 2相機禁帶時，前台貴重物品寄存係優先研究方案。</p></div></div><div class="status-row"><div class="state">返程</div><div><b>11/2 · 航班資料已隱藏 · 19:05 PVG T2</b><p>15:30–15:40由住宿出發較舒服；15:50只作最遲正常值。</p></div></div></div></div>`}
 
 function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;if(typeof maplibregl==='undefined'){el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
 function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);$('#article').innerHTML=fn();$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
