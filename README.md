@@ -2,7 +2,7 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.1 scope
+## Current RC5.2 scope
 
 - Spatial hierarchy redesign: major itinerary anchors carry more visual weight than transit/food steps
 - Progressive disclosure for secondary facts, weather branches and advanced photographer references
