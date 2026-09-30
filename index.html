@@ -312,94 +312,68 @@ ${block("排隊",branches([
 ]))}
 ${nextHop("泰康食品","外白渡橋","泰康食品 南京東路766號","外白渡橋 上海")}${sticky("泰康食品","南京東路766號")}`,
 
-bund:()=>`${pageHead("第1日 · 16:10–18:15","外白渡橋 → 外灘","16:10由外白渡橋開始，一路向南邊走邊拍；17:05後留喺江邊等藍調時段，再視當日燈光補一輪完整浦東 skyline。",[["外白渡橋","約16:10"],["日落","約17:06"],["藍調時段","17:05–18:00"],["亮燈補拍","約18:00–18:15"]])}
-${media(IMG.bund,"今次唔係『影一個點再轉場』，而係由蘇州河口一路向南，把日光、日落、藍調、亮燈串成同一條攝影線。")}
-${block("機位圖",photoMap("bund"))}
-${block("精選構圖參考",例圖Gallery([
- [IMG.waibaidu,"外白渡橋日間結構","B · 24–50mm","16:10先用仍有自然光嘅橋體做幾何；遠景好就帶浦東，遠景差就收鋼架同人物。",["認位","橋體幾何"],"https://commons.wikimedia.org/wiki/File:Waibaidu_Bridge_Shanghai.jpg","Wikimedia Commons"],
- [IMG.freeWaibaiduNight,"外白渡橋＋浦東層次","B · 35–70mm方向","借橋身、東方明珠同高樓前後關係；呢張由乍浦路橋一帶拍，只借幾何，唔新增站。",["橋體層次","方向參考"],"https://unsplash.com/photos/a-view-of-a-city-at-night-from-across-the-water-gica0HNc9Ks","Unsplash"],
- [IMG.bundNight48,"外灘主平台亮燈","C · 約50mm方向","35–50mm仍然係主力：建築比例大，亦比24mm容易避人頭、欄杆同過多黑水面。",["主平台","35–50mm","亮燈後"],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg","Wikimedia Commons"],
- [IMG.freeBundTele,"東方明珠中長焦","C · 85–120mm方向","一個主體＋一個陪體已經成立；用嚟預想深藍／亮燈後收緊地標嘅比例。",["中長焦","局部"],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA","Unsplash"]
+bund:()=>`${pageHead("第1日 · 16:10–18:15","外白渡橋 → 外灘","16:10由外白渡橋開始，一路向南；17:05後留喺江邊拍藍調時段，18:15／18:30去金陵東路渡口。",[["開始","16:10 · 外白渡橋"],["離開","18:15／18:30"],["日落","約17:06"],["藍調","17:05–18:00"]])}
+${block("想影到",例圖Gallery([
+ [IMG.waibaidu,"外白渡橋日間結構","35–50mm","先用橋體做幾何；遠景好先帶浦東。",[],"https://commons.wikimedia.org/wiki/File:Waibaidu_Bridge_Shanghai.jpg",""],
+ [IMG.bundNight48,"外灘主平台亮燈","35–50mm","主力畫面：建築比例夠大，亦較容易避開人頭、欄杆同過多黑水。",[],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg",""],
+ [IMG.freeBundTele,"浦東地標局部","85–120mm","一個主體＋一個陪體就夠；深藍／亮燈後再收緊。",[],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA",""]
 ]))}
-${block("一路向南拍",route([
- ["16:10","外白渡橋／蘇州河口","先拍仍有日光嘅橋與建築；35–50mm主力，24–28mm只補環境。"],
- ["16:40","沿外灘向南移動","一邊走一邊取景，唔影完橋再倒頭返去搵位。"],
- ["17:05–18:00","藍調時段／深藍主戰場","24mm完成全景，35–50mm做主力，85–120mm抽地標局部。"],
- ["≈18:00–18:15","如果景觀燈已亮","補完整亮燈浦東 skyline；10/31實際啟燈時間臨行再核。"],
- ["18:15／18:30","金陵東路渡口","按現場進度揀船；到點就走，後面仲有浦東反拍＋Freedom。"]
+${block("機位",photoMap("bund"))}
+${block("由北向南",route([
+ ["16:10","外白渡橋／蘇州河口","35–50mm先拍橋體；24–28mm只補環境。"],
+ ["16:40","沿外灘向南","邊行邊拍，唔倒頭搵位。"],
+ ["17:05–18:00","外灘主平台","35–50mm主力；24mm補完整 skyline，85–120mm抽地標。"],
+ ["≈18:00","景觀燈已亮就補一輪","燈未齊唔等；以渡輪時間為準。"],
+ ["18:15／18:30","金陵東路渡口","到點過江。"]
 ]))}
-${block("主平台三個焦段",shots([
- ["24–28","完整陸家嘴 skyline","一張基準照；江面只留足夠層次，唔收成大塊黑水。"],
- ["35–50","主力畫面","建築群比例最舒服；人多時後退少少，用焦段越過人頭。"],
- ["85–120","單一主體＋陪體","東方明珠、上海中心、金茂等局部；風大就先保快門。"]
-]))}
-${block("攝影師進階參考",photographerRefs([
- ["B · 外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","由橋上向浦東收地標層次；適合學鋼架／橋體點樣唔搶主體。",["外白渡橋","地標層次"],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
- ["C · 主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同主要樓群間距清楚；長曝效果唔照抄。",["主平台","完整 skyline"],"https://www.flickr.com/photos/kylehase/45486996424"]
-]))}
-${block("天氣即時切換",shotWeatherCommon())}
-${cutoff("18:15／18:30要開始過江","今次真正硬 anchor 已經由上海之巔改成 Freedom Gundam。燈未齊都唔值得拖到錯過浦東反拍同19:45高達。","離開原則")}
-${more([
- ["星期六人多點處理？","預設高人流。唔等空景；人物壓畫面底部，或者用35–120mm裁走。"],
- ["外灘源仲去唔去？","外灘源／圓明園路今次唔停；時間有餘先順路望一眼。"],
- ["今次攝影優先級","外灘深藍／亮燈主平台 ＞ 外白渡橋 ＞ 浦東反拍。"]
+${photographerRefs([
+ ["外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","橋體同浦東地標點樣分配畫面。",[],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
+ ["外灘主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同樓群間距。",[],"https://www.flickr.com/photos/kylehase/45486996424"]
 ])}
+${cutoff("18:15／18:30 過江","燈未齊都唔等；後面仲有浦東反拍同19:45 Freedom。","離開")}
 ${nextHop("外灘主平台","金陵東路渡口","外灘陳毅廣場","金陵東路渡口 上海")}`,
 
 dahuchun:()=>`${pageHead("備用餐廳","大壺春","今次三日行程唔特別繞去；如果其他時間順路經過，可以食清水派生煎。",[["代表","清水派生煎"],["安排","唔特別繞路"],["適合","順路先食"],["Day 1晚餐","東泰祥"]])}
 ${alertBox("唔為佢改線","如現場偶然經過而且時間異常充裕先再算；正常執行直接忽略。",true)}`,
 
-ferry:()=>`${pageHead("第1日 · 18:25–19:05","浦東反拍外灘","東昌路落船即開始：先用50–70mm完成萬國建築群，再用85–120mm抽海關大樓／和平飯店；19:05左右收尾，19:15叫車去金橋。",[["拍攝","約18:25–19:05"],["起點","東昌路渡口"],["焦段","50–120mm"],["離開","約19:15"]])}
-${block("機位圖",photoMap("ferry"))}
-${alertBox("機位唔需要追『神位』","固定起點就係東昌路渡口落船後嘅濱江。先喺可見江面位置完成主片；欄杆／人流唔理想先沿濱江前後微調幾十米，唔為找角度走遠。")}
-${block("精選構圖參考",例圖Gallery([
- [IMG.pudongBund70,"外灘萬國建築群整體","約70mm 例圖","JC Terry · Canon EOS 6D Mark II，原作70mm。最值得抄係建築帶比例同節奏；原作係8秒長曝，本次無腳架只借構圖，唔照抄曝光。",["50–70mm","建築帶","夜景"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/","Pexels · JC Terry"],
- [IMG.pudongBund110,"海關／外灘局部壓縮","約110mm 例圖","同一攝影師、同一組浦江夜景，原作110mm。適合預想85–120mm下單棟地標同立面壓縮；原作15秒長曝，只借 framing。",["85–120mm","局部","長焦壓縮"],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/","Pexels · JC Terry"]
+ferry:()=>`${pageHead("第1日 · 18:25–19:05","浦東反拍外灘","東昌路落船即拍：先50–70mm完整萬國建築群，再85–120mm抽海關大樓／和平飯店；19:05收尾。",[["拍攝","18:25–19:05"],["離開","約19:15"],["起點","東昌路渡口"],["焦段","50–120mm"]])}
+${block("想影到",例圖Gallery([
+ [IMG.pudongBund70,"萬國建築群整體","50–70mm","先完成整條建築帶。例圖係長曝，只睇構圖比例。",[],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/",""],
+ [IMG.pudongBund110,"海關／外灘局部","85–120mm","再抽單棟地標同立面壓縮；唔將整排樓塞入長焦。",[],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/",""]
 ]))}
-${block("到場即拍",shots([
- ["50–70","先完成整條萬國建築群","先要一張完整、節奏清楚嘅建築帶。唔急住上120mm，先確保主片到手。"],
- ["85–120","海關大樓／和平飯店／單棟局部","每次只抽一個主體＋少量陪體；避免將整排樓硬塞入長焦畫面。"],
- ["50–85","船隻／江面做前景","如果剛好有船經過先利用；唔等船、唔等平滑倒影。"]
+${block("機位",photoMap("ferry"))}
+${block("落船後",route([
+ ["落船即拍","東昌路渡口濱江","第一個可見江面位置先完成50–70mm主片。"],
+ ["+10分鐘","85–120mm","海關鐘樓、和平飯店、亮燈立面。"],
+ ["有船先拍","50–85mm","順手利用江面前景；唔等船。"],
+ ["≈19:05","最後一輪","只補缺少嘅一組。"],
+ ["≈19:15","叫車","去金橋 LaLaport。"]
 ]))}
-${block("落船後節奏",route([
- ["18:15／18:30","金陵東路上船","按當日班次同外灘完成度揀；輪渡服務前一晚＋當日再核。"],
- ["落船即拍","東昌路渡口濱江","第一個可見江面位置就先完成50–70mm主片。"],
- ["+10分鐘","85–120mm局部","抽海關鐘樓、和平飯店屋頂、亮燈立面；風大就提高快門。"],
- ["≈19:05","最後一輪","只補缺少嘅一組，唔重新沿江搵位。"],
- ["≈19:15","收機叫車","叫車 → 金橋 LaLaport，預留20–30分鐘。"]
-]))}
-${block("無腳架夜景設定思路",rules([
- ["快門優先於低ISO","JC Terry 例圖係8–15秒長曝；你無腳架，唔追同款水面。寧願拉高ISO保住建築銳利。"],
- ["85–120mm更怕手震／風","江邊有風就提高快門；機身防震係保險，唔係叫你硬壓極慢快門。"],
- ["亮部先保住","外灘立面同鐘樓燈位容易爆；先保高光，再接受江面偏暗。"]
-]))}
-${cutoff("19:05開始收尾","Freedom Gundam 19:45先係下一個固定主拍。呢段如果渡輪延誤，先保50–70mm整體，再保一張85–120mm局部；其餘直接砍。","離開條件")}
+${cutoff("19:05 收尾","如果渡輪延誤，保一張整體＋一張長焦就走。","離開")}
 ${nextHop("東昌路渡口","LaLaport上海金橋","東昌路渡口 濱江大道3528號","LaLaport上海金橋 新金橋路738號")}`,
 
 tower:()=>towerPage(),
 
 xiandelai:()=>`${pageHead("備用餐廳","鮮得來","如果其他時間想補排骨年糕，可以再考慮；今次正常行程唔特別繞去。",[["主點","排骨年糕"],["位置","福建中路一帶"],["安排","順路先食"],["Day 1晚餐","東泰祥"]])}`,
 
-gundam:()=>`${pageHead("第1日 · 19:45–20:40","1:1 Freedom Gundam","到南廣場先影完整立像，再等一輪夜間演出；演出時間出發前再確認。",[["位置","LaLaport上海金橋南廣場"],["時段","19:45–20:40"],["拍攝","完整立像＋夜間演出"],["器材","相機"]])}
-${media(IMG.gundamHero,"Unsplash 可重用實拍；先用嚟認立像、廣場同商場關係。實際到場係夜間，光線以現場燈光為準。")}
-${block("認位圖",photoMap("gundam"))}
-${block("先完成三種畫面",shots([
- ["24–35","完整立像＋少量環境","先退後完成一張全身；注意垂直線，唔好一開始就貼太近低炒。"],
- ["50–70","上半身／頭胸比例","減少廣場雜物，保留巨大尺度感；最適合做主力肖像式構圖。"],
- ["85–120","頭部／肩甲／101等細節","等演出燈光變化時抽局部；呢段最容易出同全身完全唔同嘅畫面。"]
+gundam:()=>`${pageHead("第1日 · 19:45–20:40","1:1 Freedom Gundam","到南廣場先完成靜態主片，再等一輪夜間演出；演出時間出發前再確認。",[["位置","LaLaport上海金橋南廣場"],["離開","20:40"],["演出","出發前再確認"],["下一站","Gundam Base"]])}
+${block("想影到",例圖Gallery([
+ [IMG.gundamHero,"完整立像＋環境","24–35mm","先完成一張全身，保留少量廣場同商場尺度。",[],"https://unsplash.com/photos/a-giant-robot-standing-next-to-a-tall-pole-IoxeD-rCJJo",""],
+ [IMG.gundamDetail,"頭胸比例","50–70mm","收走廣場雜物，保留巨大尺度感。",[],"https://unsplash.com/photos/white-and-red-robot-statue-h8Yc16kCcK8",""],
+ [IMG.gundamAlt,"裝甲細節","85–120mm","演出燈光變化時抽頭部、肩甲同標誌細節。",[],"https://unsplash.com/photos/white-blue-and-yellow-robot-toy-QyyR6IZWjLM",""]
 ]))}
-${block("免費 例圖",例圖Gallery([
- [IMG.gundamHero,"Freedom Gundam＋LaLaport環境","廣角認位","Wenhao Ruan · FUJIFILM X-T3；借完整立像同周邊環境比例，唔照抄光線。",["完整立像","認位"],"https://unsplash.com/photos/a-giant-robot-standing-next-to-a-tall-pole-IoxeD-rCJJo","Unsplash"],
- [IMG.gundamDetail,"Freedom Gundam 主體","中距離主體比例","Riku Lu · FUJIFILM X-T3；適合睇主體佔畫面比例同人／立像尺度。",["中距離","尺度"],"https://unsplash.com/photos/white-and-red-robot-statue-h8Yc16kCcK8","Unsplash"],
- [IMG.gundamAlt,"Freedom Gundam 細節方向","中長焦 例圖","同系列免費圖；到夜間演出時可用類似收法抽頭胸／裝甲細節。",["細節","85–120mm"],"https://unsplash.com/photos/white-blue-and-yellow-robot-toy-QyyR6IZWjLM","Unsplash"]
+${block("認位",photoMap("gundam"))}
+${block("到場三步",shots([
+ ["24–35","完整立像","先退後完成全身。"],
+ ["50–70","上半身","減少背景雜物。"],
+ ["85–120","頭部／裝甲","等演出燈光變化時抽局部。"]
 ]))}
-${block("夜間演出點拍",rules([
- ["演出前","先完成靜態全身，同時揀好一個唔易畀人擋嘅位置。"],
- ["演出開始","優先保快門同高光；燈色／活動部件一變就先影，唔慢慢微調構圖。"],
- ["人太多","用50–120mm收緊，或者將人群留底部做尺度；唔等廣場清空。"],
- ["一輪就夠","DOC行程只預留到20:40左右；完成一輪夜演＋主片就上Gundam Base。"]
+${block("夜間演出",rules([
+ ["演出前","先揀一個唔易畀人擋嘅位置。"],
+ ["演出開始","先保動作同燈光變化，唔慢慢重構圖。"],
+ ["一輪完成","影完主片就上 Gundam Base。"]
 ]))}
-${alertBox("夜間演出場次係待核項","目前只鎖『等一輪』，唔將網上舊場次當10/31一定有效。出發前再查當日演出時間。")}
+${cutoff("20:40 上4F","唔為第二輪演出拖晚餐。","離開")}
 ${nextHop("Freedom Gundam 南廣場","THE GUNDAM BASE","LaLaport上海金橋 1:1 Freedom Gundam","THE GUNDAM BASE SHANGHAI 新金橋路738號 LaLaport 4F 429–430")}`,
 
 gundambase:()=>`${pageHead("第1日 · 20:40 · ACG","THE GUNDAM BASE SHANGHAI","夜攝完成先入店。官方現時列金橋店位於LaLaport 4F 429–430，10:00–22:00全年無休；本次只留約30分鐘，唔變成無限逛街。",[["位置","LaLaport 4F 429–430"],["官方營業","10:00–22:00"],["本次","20:40–21:10"],["離開","約21:10"]])}
@@ -467,28 +441,23 @@ ${block("現場判斷",branches([
 ]))}
 ${nextHop("王記葱油餅","武康大樓","王記葱油餅 東諸安浜路191-5號","武康大樓 上海")}${sticky("王記葱油餅","東諸安浜路191-5號")}`,
 
-wukang:()=>`${pageHead("第3日 · 09:00–10:15","武康大樓＋武康路","先喺源點廣場完成武康大樓船頭主片，再沿武康路做輕量街拍；10:15前離開去徐家匯。",[["到場","約09:00"],["武康大樓","15–20分鐘"],["武康路","09:20–10:05"],["離開","10:15前"]])}
-${media(IMG.freeWukang,"Calvin Wong · Canon R6 II。接近你真正會遇到嘅日間街口：車、人、交通燈都在；唔等清場一樣可以完成主片。")}
-${block("機位圖",photoMap("wukang"))}
-${block("精選 例圖",例圖Gallery([
- [IMG.freeWukang,"完整船頭＋街口","主位 · 35mm先試","完整形狀、垂直線同街口環境都清楚；人物同車流可以保留做比例尺。",["日間","主片","不等清場"],"https://unsplash.com/photos/a-very-tall-building-with-lots-of-windows-810raPKOqk4","Unsplash"],
- [IMG.wukangExample,"較乾淨嘅經典角度","主位 · 幾何參考","只借建築形狀同站位；唔把特定季節／光線當成09:00必然結果。",["幾何參考","站位"],"https://commons.wikimedia.org/wiki/File:20191027_Wukang_Mansion.jpg","Wikimedia Commons"]
+wukang:()=>`${pageHead("第3日 · 09:00–10:15","武康大樓＋武康路","09:00先完成武康大樓船頭主片，再沿武康路街拍；10:15前離開去徐家匯。",[["武康大樓","09:00–09:20"],["武康路","09:20–10:05"],["離開","10:15前"],["下一站","徐家匯"]])}
+${block("想影到",例圖Gallery([
+ [IMG.freeWukang,"完整船頭＋街口","35mm","先完成完整建築形狀；車同人物可以保留做比例。",[],"https://unsplash.com/photos/a-very-tall-building-with-lots-of-windows-810raPKOqk4",""],
+ [IMG.wukangExample,"經典船頭角度","24–35mm","用嚟確認站位同建築幾何，唔等清場。",[],"https://commons.wikimedia.org/wiki/File:20191027_Wukang_Mansion.jpg",""]
 ]))}
-${block("武康大樓三步",shots([
- ["35mm","完整船頭","略低角度先完成主片；唔站馬路中央追絕對對稱。"],
- ["24mm","補環境版","帶多啲街口同周邊，但唔用超廣角做唯一主片。"],
- ["50–70","紅磚／窗／陽台／人物","一兩個行人或者單車反而令比例更自然。"]
+${block("機位",photoMap("wukang"))}
+${block("09:00 · 武康大樓",shots([
+ ["35mm","完整船頭","主片先做。"],
+ ["24mm","環境版","補街口同周邊。"],
+ ["50–70","窗／陽台／人物","一兩組細節就夠。"]
 ]))}
-${block("武康路：邊行邊拍",photographerRefs([
- ["街角人物","Wukang Road pedestrian","Michael Jiang","人過馬路＋街角建築；適合學35–50mm點樣將人放入城市畫面，而唔係等條街清空。",["街拍","人物比例"],"https://unsplash.com/photos/a-person-crossing-the-street-in-front-of-a-building-YA6GZLsPu4A"],
- ["沿路街景","Shanghai street view / city walk","krzhck","車、店面、梧桐同日常街道層次；提醒自己武康路唔係逐棟建築checklist。",["city walk","35–50mm"],"https://unsplash.com/photos/a-white-car-parked-on-the-side-of-a-street-Jty4xwXtogE"]
-]))}
-${block("沿路焦段",rules([
+${block("09:20 · 武康路",rules([
  ["35–50mm","街道、店面、近中距離人物。"],
  ["70–120mm","窗、陽台、梧桐、遠處人物。"],
- ["停留原則","見到好光先停；唔等光、唔折返。"]
+ ["見到先停","唔等光、唔折返。"]
 ]))}
-${cutoff("10:15 前走","15–20分鐘已足夠完成武康大樓主片；之後一路向徐家匯，唔為網紅角度拖成半日。","離開條件")}
+${cutoff("10:15 前走","武康路唔拖成半日；準時去徐家匯。","離開")}
 ${nextHop("武康路","美羅城","武康大樓 上海","美羅城 肇嘉浜路1111號")}`,
 
 xjh:()=>xjhPage(),
@@ -504,28 +473,20 @@ ${block("到店決策",branches([
 ${block("後備方案",order(null,"味香齋 · 麻醬麵＋小牛湯","雁蕩路14號；徐家匯玩過鐘或者海金滋排隊／午市不穩就啟動。一旦轉咗味香齋，就唔再補海金滋。","快速方案"))}
 ${nextHop("海金滋","張園","海金滋 進賢路240號","張園 南京西路789號")}${sticky("海金滋","進賢路240號")}`,
 
-zhangyuan:()=>`${pageHead("第3日 · 城市攝影收尾","張園 → 路易號","張園一路向東，經東區步行長廊接興業太古匯，最後拍路易號。Reference 只服務下午日間條件，唔追夜間燈帶。",[["張園","13:50–14:40"],["路易號","14:40–15:15"],["離開","15:15左右"],["方向","西進東出"]])}
-${block("機位圖",photoMap("zhangyuan"))}
-${block("精選 例圖",例圖Gallery([
- [IMG.freeZhangyuan,"張園窄巷／門洞","01 · 24–35mm","真實張園位置；借窄巷透視、拱門同人物尺度。午後反差大時先保紅磚高光。",["張園","日間","24–35mm"],"https://unsplash.com/photos/a-narrow-alley-shows-a-dolce-gabbana-store-PvZZIdtkGcY","Unsplash"],
- [IMG.freeLouis,"The Louis 完整船形","02 · 50–70mm方向","稍退後先收完整船形＋周邊高樓比例；呢張最適合用嚟認你真正想要嘅主畫面。",["The Louis","完整船形","50–70mm"],"https://unsplash.com/photos/modern-building-shaped-like-a-cruise-ship-bsz-zWyqY58","Unsplash"]
+zhangyuan:()=>`${pageHead("第3日 · 13:50–15:15","張園 → 路易號","由張園一路向東去興業太古匯，最後拍路易號；15:15收機返住宿。",[["張園","13:50–14:40"],["路易號","14:40–15:15"],["離開","15:15"],["方向","西進東出"]])}
+${block("想影到",例圖Gallery([
+ [IMG.freeZhangyuan,"張園窄巷／門洞","24–35mm","用窄巷透視、拱門同人物尺度。",[],"https://unsplash.com/photos/a-narrow-alley-shows-a-dolce-gabbana-store-PvZZIdtkGcY",""],
+ [IMG.freeLouis,"The Louis 完整船形","50–70mm","稍退後收完整船形＋周邊高樓比例。",[],"https://unsplash.com/photos/modern-building-shaped-like-a-cruise-ship-bsz-zWyqY58",""]
 ]))}
-${block("建築／機位進階參考",photographerRefs([
- ["張園","Zhangyuan Shikumen / Blue Bottle","Archiposition · 朱潤資","高質建築攝影，適合拆紅磚材質、門窗、里弄同新舊建築疊合；只開原作頁。",["建築攝影","材質／空間"],"https://www.archiposition.com/items/01a2c5dfd1"],
- ["路易號","The Louis photo spots","Trip.com contributors","用嚟理解船頭／退後拍全船嘅實際位置；只借站位，唔抄打卡姿勢。",["機位","站位"],"https://www.trip.com/moments/detail/shanghai-2-149602924/"]
+${block("機位",photoMap("zhangyuan"))}
+${block("一路向東",route([
+ ["13:50","張園","24–35mm拍窄巷／門洞；50–85mm補紅磚、窗同人物。"],
+ ["→","東區步行長廊","一路向興業太古匯，唔逐層逛商場。"],
+ ["14:40","路易號","50–70mm先收完整船形＋高樓。"],
+ ["補一兩張","船頭近景","24–35mm；人太多就直接放棄。"],
+ ["15:15","收機","返住宿取行李。"]
 ]))}
-${block("張園",shots([
- ["24–35","窄巷透視／門洞框景","一路向太古匯方向走；晴天下午先保紅磚高光。"],
- ["50–85","磚牆／窗／人物／新舊疊合","陰天反而最穩定，適合細節同材質。"]
-]))}
-${block("一路去路易號",route([
- ["13:50","張園","邊行邊拍；唔為角度折返。"],
- ["→","東區步行長廊／興業太古匯","只作連續城市空間同轉場，唔逐層逛商場。"],
- ["14:40","路易號","稍退後先用50–70mm收完整船形＋周邊高樓比例。"],
- ["補拍","24–35mm靠近船頭","只補1–2組曲線透視；人太多就放棄近景。"],
- ["15:15","收機返住宿","唔等無人、唔搵高位、唔等夜間燈帶。"]
-]))}
-${cutoff("15:15 收機","返住宿取行李優先；任何近景、快閃或者排隊入展都唔值得侵蝕機場時間。","硬截止")}
+${cutoff("15:15 收機","近景、快閃、排隊入展全部讓位畀機場時間。","離開")}
 ${nextHop("路易號","住宿","路易號 上海興業太古匯","如家商旅酒店（上海火車站南廣場店）")}`,
 
 airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服，15:50只當最遲正常值。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["航班","19:05 · PVG T2"]])}
