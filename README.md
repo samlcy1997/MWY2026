@@ -2,7 +2,13 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC4.5 scope
+## Current RC5.0 scope
+
+- Spatial hierarchy redesign: major itinerary anchors carry more visual weight than transit/food steps
+- Progressive disclosure for secondary facts, weather branches and advanced photographer references
+- Editorial photography references with fewer card-like containers and less metadata clutter
+- Reduced persistent chrome; privacy state remains documented in Guide instead of occupying every screen
+- Softer detail transition using fade/lift instead of full-screen lateral slide
 
 - Trip-day current/next stop cue using Shanghai local time
 - Lazy-loaded detail/reference imagery
@@ -31,3 +37,8 @@ The hotel name is intentionally retained for navigation context. Flight numbers,
 - Late-October Xujiahui IP events
 - Zhangyuan / The Louis current pop-ups
 - Restaurant closures, relocations and opening-hour changes
+
+
+## Rollback
+
+RC4.5 rollback point: `52050275c5dbf9d91ad9436a02197c39b84cbe31`.
