@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC4.5</title>
+<title>MWY2026 · 上海三日行程書 RC5.0</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
@@ -94,6 +94,42 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 @media(min-width:720px){
  .main{padding-left:24px;padding-right:24px}.article{padding-left:24px;padding-right:24px}.day-grid{grid-template-columns:repeat(3,1fr)}.day-card,.day-copy{min-height:220px}.day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.8),rgba(9,17,18,.1) 75%)}.facts{grid-template-columns:repeat(4,1fr)}.branch-grid{grid-template-columns:repeat(2,1fr)}.weather-grid{grid-template-columns:repeat(4,1fr)}.article h1{max-width:14ch}.sticky-actions{margin-left:-24px;margin-right:-24px}.cover{min-height:370px}}
 @media(max-width:380px){.main{padding-left:13px;padding-right:13px}.article{padding-left:13px;padding-right:13px}.sticky-actions{margin-left:-13px;margin-right:-13px}.stop{grid-template-columns:50px 30px minmax(0,1fr)}.timeline:before{left:65px}.route-link{margin-left:80px}.facts{grid-template-columns:1fr 1fr}.weather-grid{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
+
+:root{--bg:#f7f7f4;--paper:#fff;--ink:#18201f;--muted:#727b79;--line:rgba(24,32,31,.09);--soft:#edf5f2;--accent:#11a79d;--accent-ink:#08736c;--radius:14px;--radius-sm:10px;--shadow:none}
+body{letter-spacing:-.005em}
+.topbar{background:rgba(247,247,244,.9);border-bottom-color:rgba(24,32,31,.06)}
+.top-spacer{width:44px;height:44px}
+.cover{min-height:280px;border-radius:22px;padding:24px;background:#17201f;box-shadow:none}
+.cover h1{font-size:clamp(44px,11vw,68px);max-width:8ch;margin-top:18px}
+.cover p{max-width:34ch;color:#c7cfcd}.cover-meta{margin-top:24px}.chip-dark{border-color:rgba(255,255,255,.12);background:transparent}
+.section{margin-top:38px}.section-title{margin-bottom:16px}.section-title h2{font-size:22px}.section-title p{font-size:10px}
+.day-grid{gap:0;border-top:1px solid var(--line)}.day-card{min-height:154px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent}.day-card:after{background:linear-gradient(90deg,rgba(9,17,18,.84),rgba(9,17,18,.18) 78%)}.day-copy{min-height:154px;padding:18px 16px}.day-copy b{font-size:25px}.day-arrow{right:12px}
+.baseline{border-top:1px solid var(--line)}.baseline-row{border-bottom:1px solid var(--line);padding:15px 0;background:transparent}
+.dayhead{padding-top:10px;margin-bottom:14px}.dayhead h2{font-size:34px}.seg,.viewseg{background:transparent;border:0;padding:0;gap:6px}.seg button,.viewseg button{border:1px solid var(--line);background:var(--paper);border-radius:9px}.seg button.active,.viewseg button.active{background:#17201f;color:#fff;border-color:#17201f}
+.timeline{padding-top:4px}.timeline:before{left:72px;background:rgba(24,32,31,.12)}.stop{margin-bottom:0}.stop.minor{min-height:60px}.stop.major{margin:9px 0 12px}.stop-time{padding-top:16px;color:#78817f;font-size:10px}.stop.major .stop-time{padding-top:20px;color:var(--accent-ink);font-size:11px}.stop-track{height:48px}.stop-dot{width:8px;height:8px;background:#aeb8b5;box-shadow:0 0 0 5px var(--bg)}.stop-dot.anchor{width:13px;height:13px;background:#17201f}
+.stop-card{border-radius:12px;padding:12px 8px 14px}.stop.minor .stop-card p{display:none}.stop.minor .stop-card h3{font-size:14px;font-weight:690;color:#323b39;margin-top:5px}.stop.major .stop-card{padding:16px 14px 17px;background:var(--paper);border:1px solid var(--line)}.stop.major .stop-card h3{font-size:21px;line-height:1.06;letter-spacing:-.045em;margin:4px 0 7px}.stop.major .stop-card p{font-size:11px;max-width:31ch}.stop-kind{font-size:9px;letter-spacing:.08em;text-transform:uppercase}.route-link{margin:0 0 2px 89px;font-size:9px;color:#99a09f}.route-link:before{content:"";margin:0}
+.detail{background:var(--bg);opacity:0;transform:translateY(18px) scale(.994);pointer-events:none;transition:opacity .28s cubic-bezier(.16,1,.3,1),transform .34s cubic-bezier(.16,1,.3,1)}.detail.open{opacity:1;transform:none;pointer-events:auto}.dtop{background:rgba(247,247,244,.9);border-bottom-color:rgba(24,32,31,.06)}
+.article{padding-top:28px}.page-kicker{font-size:9px;letter-spacing:.1em;margin-bottom:10px;color:#75807d;text-transform:none}.article h1{font-size:clamp(42px,11vw,62px);max-width:10ch;line-height:.94;margin-bottom:14px}.deck{font-size:15px;line-height:1.62;max-width:34ch;color:#525d5b}
+.facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:24px;border-top:1px solid var(--line)}.fact{padding:12px 10px 12px 0;border-top:0;border-bottom:1px solid var(--line);background:transparent}.fact small{font-size:8px;letter-spacing:.06em}.fact b{font-size:12px}.facts-more{margin-top:0;border-bottom:1px solid var(--line)}.facts-more summary{list-style:none;cursor:pointer;padding:13px 0;font-size:10px;font-weight:760;color:#6e7976}.facts-more summary::-webkit-details-marker{display:none}.facts-more summary:after{content:"＋";float:right}.facts-more[open] summary:after{content:"－"}.facts-more .facts{margin-top:0;border-top:0}
+.media{border-radius:14px;margin-top:30px;background:#e8ebe9}.caption{font-size:9px;max-width:48ch}
+.block{margin-top:42px}.block-title{font-size:10px;letter-spacing:.06em;text-transform:none;color:#7e8785;margin-bottom:13px}
+.lead-action{border-radius:14px;padding:16px;background:#17201f}.lead-action strong{font-size:24px}
+.rule-list{border-top:1px solid var(--line)}.rule{grid-template-columns:72px 1fr;gap:14px;padding:15px 0}.branch-grid{gap:0;border-top:1px solid var(--line)}.branch{border:0;border-radius:0;background:transparent;padding:15px 0;border-bottom:1px solid var(--line)}.branch.hot,.branch.warn,.branch.danger{background:transparent;border-color:var(--line)}.branch.hot b{color:var(--accent-ink)}.branch.warn b{color:#875f23}.branch.danger b{color:var(--danger)}
+.order-card,.order-textonly{border:0;border-radius:0;background:transparent;padding:0}.order-card{grid-template-columns:96px 1fr;gap:15px}.order-card img{width:96px;height:96px;border-radius:10px}.meal-extras{margin-top:18px;border-top:1px solid var(--line)}.meal-extra{border-bottom:1px solid var(--line);padding:12px 0}
+.shot-list{gap:0;border-top:1px solid var(--line)}.shot{grid-template-columns:78px 1fr;gap:14px;border:0;border-radius:0;background:transparent;padding:15px 0;border-bottom:1px solid var(--line)}.lens{font-size:16px}
+.weather-grid{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}.weather{border:0;border-radius:0;background:transparent;padding:13px 0;border-bottom:1px solid var(--line)}.weather.good,.weather.warn{border-top:0}.weather.good b{color:var(--accent-ink)}.weather.warn b{color:#875f23}
+.compare{grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}.compare>div{border:0;border-radius:0;background:transparent;padding:14px 0;border-bottom:1px solid var(--line)}
+.alert{border:0;border-left:2px solid #c7b58e;border-radius:0;background:transparent;padding:4px 0 4px 14px;margin-top:18px}.alert.danger{border-color:#c78686;background:transparent}
+.cutoff{border-left-width:2px;padding-left:14px;margin-top:28px}.cutoff strong{font-size:21px}
+.photo-map-wrap{border:0;border-radius:0;background:transparent}.photo-map{height:220px;border-radius:14px;overflow:hidden}.photo-map-legend{padding:10px 0;border:0;display:flex;gap:6px;flex-wrap:wrap}.photo-map-legend span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 8px}.map-help{border-top:1px solid var(--line)}.map-help summary{list-style:none;padding:11px 0;font-size:9px;color:#7d8784;cursor:pointer}.map-help summary::-webkit-details-marker{display:none}.map-help summary:after{content:"＋";float:right}.map-help[open] summary:after{content:"－"}.map-help p{font-size:10px;line-height:1.5;color:var(--muted);margin:0 0 12px}
+.ref-grid{gap:34px}.ref-card{margin:0;border:0;border-radius:0;background:transparent;overflow:visible}.ref-card img{border-radius:12px;background:#e7e9e7}.ref-card .ref-copy{padding:12px 0 0}.ref-card small{font-size:9px;letter-spacing:.03em}.ref-card b{font-size:17px;letter-spacing:-.025em;margin:4px 0 5px}.ref-card p{font-size:11px;line-height:1.52;max-width:46ch}.ref-source{display:inline-block;margin-top:9px;font-size:9px}.ref-tags{display:none!important}
+.pro-ref-grid{gap:0;border-top:1px solid var(--line)}.pro-ref{border:0;border-radius:0;background:transparent;padding:15px 30px 15px 0;border-bottom:1px solid var(--line)}.pro-ref:after{background:transparent;right:0}.pro-ref-note{margin-top:10px}
+.disclosure{margin-top:16px}.disclosure summary{padding:15px 0}
+.next-hop{border-radius:14px;margin-top:42px;padding:16px;background:#17201f}.next-hop strong{font-size:18px}.next-actions button{border-radius:8px}
+.sticky-actions{background:rgba(247,247,244,.94);border-top-color:rgba(24,32,31,.08)}
+.guide-intro{background:transparent;border:0;border-radius:0;padding:6px 0 18px;border-bottom:1px solid var(--line)}.guide-intro h2{font-size:38px}.privacy-note{margin-top:18px}.guide-group{margin-top:32px}.status-list{border-top:1px solid var(--line)}.status-row{border-bottom:1px solid var(--line);padding:14px 0;background:transparent}
+#realMap{border:0;border-radius:14px;height:420px}.map-inspector{border-radius:14px}.map-note{font-size:9px}
+@media(max-width:560px){.main{padding-left:14px;padding-right:14px}.article{padding-left:14px;padding-right:14px}.live-strip{grid-template-columns:1fr 1fr}.stop{grid-template-columns:50px 28px minmax(0,1fr)}.timeline:before{left:63px}.route-link{margin-left:76px}.stop.major .stop-card{padding-left:12px;padding-right:12px}.facts{grid-template-columns:1fr 1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.detail{transition:none}.viewstage img{transition:none}}
 </style>
 </head>
@@ -101,7 +137,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC4.5",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.0",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -162,7 +198,7 @@ const DAYS={
     {id:"lailai",time:"15:05",title:"萊萊小籠",sub:"松茸鮮肉／純鮮肉小籠 · 15:35前走",kind:"食",move:"南京東路",coord:[121.477126,31.236125],address:"天津路506號"},
     {id:"taikang",time:"15:35",title:"泰康食品",sub:"鮮肉月餅 1 個 · 15:45左右食物段硬 cutoff",kind:"補給",move:"16:10 外白渡橋",coord:[121.475983,31.235152],address:"南京東路766號"},
     {id:"bund",time:"16:10",title:"外白渡橋 → 外灘",sub:"日光 → 日落 → 藍調時段 → 亮燈，一路向南拍",kind:"攝影",anchor:true,move:"18:15／18:30 金陵東路渡口",coord:[121.490060,31.242896],address:"外白渡橋／外灘"},
-    {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",move:"19:15 收機叫車",coord:[121.498989,31.232071],address:"東昌路渡口 · 濱江大道3528號"},
+    {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",anchor:true,move:"19:15 收機叫車",coord:[121.498989,31.232071],address:"東昌路渡口 · 濱江大道3528號"},
     {id:"gundam",time:"19:45",title:"1:1 Freedom Gundam",sub:"夜攝＋等一輪夜間演出 · 場次臨行再核",kind:"主力拍攝",anchor:true,move:"20:40 上4F",coord:[121.603823,31.252264],address:"LaLaport上海金橋 · 新金橋路738號"},
     {id:"gundambase",time:"20:40",title:"THE GUNDAM BASE",sub:"金橋店 · 21:10前離開",kind:"ACG",move:"去晚餐",coord:[121.603823,31.252264],address:"新金橋路738號 LaLaport 4F 429–430"},
     {id:"dongtaixiang",time:"21:40",title:"東泰祥",sub:"特色生煎＋咖喱牛肉湯 · Day 1晚餐",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
@@ -177,10 +213,10 @@ const DAYS={
   ]},
   3:{date:"11月2日 · 星期一",title:"武康＋徐家匯＋張園",cover:IMG.wukang,items:[
     {id:"wangji",time:"08:00",title:"王記葱油餅",sub:"原味葱油餅＋黑米粥／甜豆漿",kind:"早餐",move:"09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
-    {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"源點廣場主片 → 邊走邊拍",kind:"攝影",move:"10:15 前去徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
+    {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"源點廣場主片 → 邊走邊拍",kind:"攝影",anchor:true,move:"10:15 前去徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
     {id:"xjh",time:"10:30",title:"徐家匯 ACG／科技",sub:"美羅城 5–6F → TPY B2 → 新六百外牆",kind:"區域",move:"向東北收線",coord:[121.439649,31.192944],address:"肇嘉浜路1111號起"},
     {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯 · 13:30 後轉後備方案",kind:"本幫菜",move:"張園",coord:[121.457505,31.221176],address:"進賢路240號"},
-    {id:"zhangyuan",time:"13:50",title:"張園 → 路易號",sub:"西進東出 · 15:15 收機",kind:"城市攝影",move:"返住宿取行李",coord:[121.460064,31.227971],address:"張園／南京西路789號"},
+    {id:"zhangyuan",time:"13:50",title:"張園 → 路易號",sub:"西進東出 · 15:15 收機",kind:"城市攝影",anchor:true,move:"返住宿取行李",coord:[121.460064,31.227971],address:"張園／南京西路789號"},
     {id:"airport",time:"15:30",title:"返住宿 → PVG",sub:"15:30–15:40較舒服 · 15:50只作最遲正常值",kind:"交通",anchor:true,move:"19:05 航班",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"}
   ]}
 };
@@ -219,7 +255,7 @@ const $=s=>document.querySelector(s);
 
 function esc(s=''){return String(s).replaceAll('\\','\\\\').replaceAll("'","\\'")}
 function factRows(items=[]){return items.map(([a,b])=>`<div class="fact"><small>${a}</small><b>${b}</b></div>`).join("")}
-function pageHead(kicker,title,deck,facts=[]){return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${facts.length?`<div class="facts">${factRows(facts)}</div>`:""}`}
+function pageHead(kicker,title,deck,facts=[]){const key=facts.slice(0,2),rest=facts.slice(2);return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${key.length?`<div class="facts">${factRows(key)}</div>`:""}${rest.length?`<details class="facts-more"><summary>快速資料</summary><div class="facts">${factRows(rest)}</div></details>`:""}`}
 function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" loading="lazy" decoding="async" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
 function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
 function lead(title,sub,badge=""){return `<div class="lead-action"><div><small>現場先做</small><strong>${title}</strong>${sub?`<p>${sub}</p>`:""}</div>${badge?`<div class="badge">${badge}</div>`:""}</div>`}
@@ -236,9 +272,9 @@ function more(items){return `<div class="disclosure">${items.map(x=>`<details><s
 function nextHop(a,b){return `<div class="next-hop"><small>下一站</small><strong>${a} → ${b}</strong><div class="next-actions"><button class="a" onclick="copyText('${esc(a)}')">複製起點</button><button class="b" onclick="copyText('${esc(b)}')">複製終點</button></div></div>`}
 function sticky(primary,address,secondary="複製地址"){return `<div class="sticky-actions"><button class="primary" onclick="copyText('${esc(primary)} ${esc(address)}')">複製名稱＋地址</button><button class="secondary" onclick="copyText('${esc(address)}')">${secondary}</button></div>`}
 function mealExtras(rows){return `<div class="meal-extras">${rows.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`}
-function referenceGallery(items){return `<div class="ref-grid">${items.map(x=>`<div class="ref-card"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><div class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">參考圖來源 · ${x[6]||"原作者頁"}</a>`:""}</div></div>`).join("")}</div>`}
+function referenceGallery(items){return `<div class="ref-grid">${items.map((x,i)=>`<figure class="ref-card ${i===0?"featured":""}"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><figcaption class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">原圖 · ${x[6]||"作者頁"}</a>`:""}</figcaption></figure>`).join("")}</div>`}
 function photographerRefs(items){return `<div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><div class="author">${x[2]}</div><p>${x[3]}</p>${x[4]?.length?`<div class="ref-tags">${x[4].map(t=>`<span>${t}</span>`).join("")}</div>`:""}</a>`).join("")}</div><div class="pro-ref-note">攝影師作品只連去原作者頁面，不把原圖重新發布到本站；用嚟學站位、構圖、主體比例同夜景處理。</div>`}
-function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…<br>地圖只用嚟認位；現場導航仍交畀高德。</div></div>${legend}<div class="photo-map-note">機位圖係認位工具：睇街道／附近地標同機位相對位置；唔當即時步行導航。地圖載入失敗時，上面標籤仍可直接拎去高德認位。</div></div>`}
+function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…</div></div>${legend}<details class="map-help"><summary>地圖用途</summary><p>只用嚟認街道、地標同機位相對位置；現場導航仍交畀高德。</p></details></div>`}
 function shotWeatherCommon(){return weather([
  ["晴／少雲","追暖光、天空層次；長焦壓縮價值最高。","good"],
  ["全陰","放棄金光，改建築質感、幾何、人物。",""],
@@ -589,7 +625,7 @@ function init(){
  const autoDay=todayTripDay(); if(autoDay) currentDay=autoDay;
  document.getElementById('app').innerHTML=`
  <div class="shell">
-  <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><button id="privacyBtnTop" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></header>
+  <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><span class="top-spacer" aria-hidden="true"></span></header>
   <main class="main">
    <section id="tripView">
     <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1><p>行程、攝影、飲食、活動規則全部壓成現場可執行版本。先睇下一步，需要時先展開詳細資料。</p><div class="cover-meta"><span class="chip-dark">Nikon Z8 + 24–120/4 S</span><span class="chip-dark">資料更新 · ${SITE.updated}</span></div></div><div class="cover-bottom"><div class="eyebrow">主線已鎖 · 時效資料臨行刷新</div></div></div>
@@ -601,7 +637,7 @@ function init(){
   </main>
   <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">行程</button><button id="navDay" class="nav" onclick="openDay(currentDay)">當日</button><button id="navGuide" class="nav" onclick="showGuide()">指南</button></nav>
  </div>
- <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><button id="privacyBtnDetail" class="privacy-btn" disabled aria-label="公開版已移除個資">公開</button></div><article id="article" class="article"></article></div>`;
+ <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div>`;
 
  $('#backBtn').onclick=()=>history.back();
  if(!location.hash)history.replaceState({v:'trip'},'','#trip');
@@ -626,7 +662,7 @@ function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayVie
 function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
 function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
 function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active',+b.dataset.d===currentDay));$('#tBtn').classList.toggle('active',mode==='timeline');$('#mBtn').classList.toggle('active',mode==='map');$('#timelinePane').classList.toggle('hidden',mode!=='timeline');$('#mapPane').classList.toggle('hidden',mode!=='map');if(mode==='timeline')renderTimeline();else{renderMap();setTimeout(initMap,30)}}
-function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>`${i?`<div class="route-link">${items[i-1].move||''}</div>`:''}<div class="stop"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" onclick="openDetail('${x.id}')"><span class="stop-kind">${x.kind}</span><h3>${x.title}</h3><p>${x.sub}</p></button></div>`).join('')}</div>`}
+function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>`${i?`<div class="route-link">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'}"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`).join('')}</div>`}
 
 function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
 function inspectorHTML(x,mapped){if(!x)return'';const i=mapped.indexOf(x);return `<div class="map-inspector"><small>站點 ${i+1}/${mapped.length}</small><h3>${x.time} · ${x.title}</h3><p>${x.sub}${x.address?`<br>${x.address}`:''}</p><div class="map-actions"><button class="primary" onclick="openDetail('${x.id}')">打開詳細頁</button><button class="secondary" onclick="goTimeline()">回時間線</button></div></div>`}
