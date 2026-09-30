@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC5.5</title>
+<title>MWY2026 · 上海三日行程書</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
@@ -601,7 +601,7 @@ function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",tex
 function xjhVenue(k,btn){$("#venueCard").innerHTML=venueCard(k);btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
 
 function init(){
- document.title=`MWY2026 · 上海三日行程書 ${SITE.version}`;
+ document.title='MWY2026 · 上海三日行程書';
  const autoDay=todayTripDay(); if(autoDay) currentDay=autoDay;
  document.getElementById('app').innerHTML=`
  <div class="shell">
