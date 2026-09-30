@@ -304,7 +304,7 @@ ${block("排隊",branches([
 ${nextHop("萊萊小籠","泰康食品","萊萊小籠 天津路506號","泰康食品 南京東路766號")}${sticky("萊萊小籠","天津路506號")}`,
 
 taikang:()=>`${pageHead("第1日 · 15:35","泰康食品","沿途買一個鮮肉月餅就走。接近15:45或者見到長隊，直接放棄。",[["地址","南京東路766號"],["時段","15:35–15:50"],["買","鮮肉月餅 ×1"],["離開","約15:45"]])}
-${media(IMG.taikangStore,"南京東路店門面；只用嚟認店。")}
+${media(IMG.taikangStore,"南京東路店門面")}
 ${block("買咩",order(IMG.taikangFood,"鮮肉月餅 1 個","即買即走；唔因老字號身份入店慢慢逛。","買")+mealExtras([["想換口味","榨菜鮮肉月餅","只係隊短＋有胃先考慮；唔同時買兩三個。"],["飲品","沿路水／茶","補水即可，唔再新增排隊點。"]]))}
 ${block("排隊",branches([
  ["無隊／極短隊","買一個，直接向外白渡橋。","hot"],
@@ -430,7 +430,7 @@ ${block("按餓度",branches([
 ]))}`,
 
 wangji:()=>`${pageHead("第3日 · 早餐","王記葱油餅","最後一日早餐仍然食上海本地味，但要守住09:00武康街拍窗口。",[["地址","東諸安浜路191-5號"],["營業參考","約06:00–19:00"],["主點","原味葱油餅"],["等候預算","15–20分鐘"]])}
-${media(IMG.wangjiBrand,"品牌招牌參考；實際以東諸安浜路191-5號導航為準。")}
+${media(IMG.wangjiBrand,"王記葱油餅招牌")}
 ${block("今次點法",order(IMG.wangjiFood,"原味葱油餅＋黑米粥／甜豆漿二選一","先食原版招牌；唔再重複第2日油條、粢飯、鹹豆漿。")+mealExtras([["有胃再加","葱油餅加蛋／韭菜餅","原味主角食完先決定，唔一開始叫兩份。"],["飲品","黑米粥／甜豆漿","兩者已經係早餐飲品位，二選一。"]]))}
 ${block("現場判斷",branches([
  ["正常","出爐即食最有價值；食完直接去武康。","hot"],
@@ -499,40 +499,21 @@ ${block("收尾路線",route([
 };
 
 function towerPage(){
- return `${pageHead("備用景點","上海之巔 118F","正常行程唔安排上塔。只有能見度極佳、時間異常充裕，而且唔影響外灘同 Freedom，先臨時考慮。",[["高度","546m"],["觀景層","118F · 360°玻璃幕牆"],["安排","正常不去"],["條件","天氣極佳＋時間有餘"]])}
- ${block("先記四個方向",`<div class="tower-orient">
-   <div class="tower-dir"><div class="bearing">西／西北</div><div><b>黃浦江大彎＋外灘</b><p>24–50mm主力。第一個合適窗位就先完成；東方明珠可做近景 anchor。</p><span class="tower-priority main">第一優先</span></div></div>
-   <div class="tower-dir"><div class="bearing">東北</div><div><b>SWFC＋金茂高度差</b><p>50–120mm。利用118F俯視附近兩座超高樓，拍幾何、樓頂同城市密度。</p><span class="tower-priority secondary">第二輪</span></div></div>
-   <div class="tower-dir"><div class="bearing">北向</div><div><b>金茂／城市燈海</b><p>70–120mm。單一建築＋道路層次即可，唔需要每張都塞晒地標。</p><span class="tower-priority secondary">補充</span></div></div>
-   <div class="tower-dir"><div class="bearing">其他方向</div><div><b>道路＋城市紋理</b><p>能見度高先值得花時間；低雲／霧就提早收。</p><span class="tower-priority secondary">視條件</span></div></div>
- </div><p class="tower-note">實際窗位、玻璃反光同人流會令你左右移動，唔需要守死一格玻璃。</p>`)}
- ${block("主力夜景 例圖",例圖Gallery([
-  [IMG.towerNightRiver,"黃浦江大彎＋東方明珠","西／西北 · 24–35mm","第一張應該先建立江道、東方明珠、外灘三層關係。",["夜景實拍","第一主片"],"https://commons.wikimedia.org/wiki/File:View_from_the_Shanghai_Tower_observatory_deck.jpg","Wikimedia Commons"],
-  [IMG.towerNightBund,"外灘＋陸家嘴夜景","西向 · 35–50mm概念","收窄少少後，重點由純大景變成地標比例同城市層次。",["夜景實拍","地標比例"],"https://commons.wikimedia.org/wiki/File:20170130从上海中心大厦观景台眺望陆家嘴和外滩夜景.jpg","Wikimedia Commons"],
-  [IMG.freeTowerSWFC,"SWFC 夜景近景","東北 · 50–85mm方向","Bernd Dittrich 由上海中心拍 SWFC；非常直接嘅第二輪近景 例圖。",["上海中心實拍","SWFC","50–85mm"],"https://unsplash.com/photos/an-aerial-view-of-a-city-at-night-bAWkT81-E2g","Unsplash"]
+ return `${pageHead("備用景點","上海之巔 118F","正常行程唔上塔。只有能見度極佳、時間異常充裕，而且唔影響外灘同 Freedom，先臨時考慮。",[["高度","546m"],["安排","正常不去"],["條件","能見度極佳＋時間有餘"]])}
+ ${block("如果真係上",例圖Gallery([
+  [IMG.towerNightRiver,"黃浦江大彎＋東方明珠","24–35mm","先完成江道、東方明珠、外灘三層關係。",[],"https://commons.wikimedia.org/wiki/File:View_from_the_Shanghai_Tower_observatory_deck.jpg",""],
+  [IMG.freeTowerSWFC,"SWFC＋金茂方向","50–85mm","第二輪先抽附近超高樓同城市密度。",[],"https://unsplash.com/photos/an-aerial-view-of-a-city-at-night-bAWkT81-E2g",""]
  ]))}
- ${block("攝影師進階參考",photographerRefs([
-  ["西向 · 主力","Night lights of Pudong","Terry Allen","浦東前景 → 黃浦江 → 外灘背景；最值得學三層景深同城市尺度。",["西向","三層景深"],"https://www.flickr.com/photos/130819462@N04/30100921186/"],
-  ["西向 · 黃浦江大彎","Shanghai – Top of Shanghai","Markus Bahlmann","黃浦江大彎、外灘、蘇州河口同前景；最適合研究江道構圖。",["西向","江道構圖"],"https://www.flickr.com/photos/cnmark/51540253050"],
-  ["東北 · 超高樓群","Skyscrapers of Pudong","Terry Allen","SWFC在右、金茂在左下；直接學50–120mm點樣利用附近超高樓做主體。",["東北","SWFC＋金茂"],"https://www.flickr.com/photos/130819462@N04/30092106521/"]
+ ${block("拍攝順序",shots([
+  ["24–35","黃浦江大彎＋浦西","先完成一張完整主片。"],
+  ["35–50","東方明珠／外灘","收乾淨地標比例。"],
+  ["50–85","SWFC／金茂","利用附近高樓高度差。"]
  ]))}
- ${block("到場拍攝次序",shots([
-  ["24–35","黃浦江大彎＋浦西","先完成一張完整主片；三層關係成立先再巡。"],
-  ["35–50","東方明珠／外灘＋江面比例","自然視角收乾淨地標關係，避免所有畫面都係超廣角。"],
-  ["50–85","外灘建築群／SWFC＋金茂","開始拆成兩三個主體；利用附近高樓高度差。"],
-  ["85–120","道路燈線／單棟建築／城市紋理","能見度好先多拍；霧／低雲時唔硬拉遠。"]
+ ${block("值唔值得上",weather([
+  ["能見度高","可以考慮。","good"],
+  ["低雲／霧","直接唔去；118F價值大減。","warn"]
  ]))}
- ${block("先處理玻璃，再處理參數",rules([
-  ["鏡頭","盡量正對玻璃；遮光罩能貼就貼。"],
-  ["遮反光","不能貼就用黑外套包住鏡頭周圍；身後有亮屏／燈就先左右移位。"],
-  ["快門／ISO","先保畫面銳利，尤其50–120mm；唔為低ISO硬壓極慢快門。"],
-  ["CPL","唔以CPL作夜景主要解法。"]
- ]))}
- ${block("值唔值得上去，由能見度決定",weather([
-  ["能見度高","85–120mm價值大升；可以抽道路、樓群同遠處建築帶。","good"],
-  ["低雲／霧","雲底接近／低於約550–600m，或者城市能見度差，118F價值大減。","warn"]
- ]))}
- ${alertBox("正常情況唔加返上塔","慳返門票同約90分鐘，將時間留畀浦東反拍＋Freedom。",true)}`;
+ ${alertBox("正常情況唔上塔","慳返門票同約90分鐘，留畀浦東反拍＋Freedom。",true)}`;
 }
 
 function mwyPage(){
