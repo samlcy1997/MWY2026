@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f4f2ed">
-<title>MWY2026 · 上海三日行程書 RC5.2</title>
+<title>MWY2026 · 上海三日行程書 RC5.3</title>
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
@@ -137,7 +137,7 @@ body{letter-spacing:-.005em}
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.2",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.3",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -271,9 +271,9 @@ function alertBox(title,note,danger=false){return `<div class="alert ${danger?'d
 function more(items){return `<div class="disclosure">${items.map(x=>`<details><summary>${x[0]}</summary><div class="more">${x[1]}</div></details>`).join("")}</div>`}
 function nextHop(a,b,copyA=a,copyB=b){const actions=[copyA?`<button class="a" onclick="copyText('${esc(copyA)}')">複製起點</button>`:"",copyB?`<button class="b" onclick="copyText('${esc(copyB)}')">複製終點</button>`:""].filter(Boolean).join("");return `<div class="next-hop"><small>下一站</small><strong>${a} → ${b}</strong>${actions?`<div class="next-actions">${actions}</div>`:""}</div>`}
 function sticky(primary,address,secondary="複製地址"){return `<div class="sticky-actions"><button class="primary" onclick="copyText('${esc(primary)} ${esc(address)}')">複製名稱＋地址</button><button class="secondary" onclick="copyText('${esc(address)}')">${secondary}</button></div>`}
-function mealExtras(rows){return `<div class="meal-extras">${rows.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`}
-function 例圖Gallery(items){return `<div class="ref-grid">${items.map((x,i)=>`<figure class="ref-card ${i===0?"featured":""}"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><figcaption class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">原圖 · ${x[6]||"作者頁"}</a>`:""}</figcaption></figure>`).join("")}</div>`}
-function photographerRefs(items){return `<details class="secondary-disclosure"><summary>更多攝影師參考</summary><div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><div class="author">${x[2]}</div><p>${x[3]}</p></a>`).join("")}</div><div class="pro-ref-note">只連原作者頁，用嚟補站位、構圖同主體比例。</div></details>`}
+function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return useful.length?`<div class="meal-extras">${useful.map(r=>`<div class="meal-extra"><small>${r[0]}</small><b>${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`:""}
+function 例圖Gallery(items){return `<div class="ref-grid">${items.map((x,i)=>`<figure class="ref-card ${i===0?"featured":""}"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><figcaption class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">原圖 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
+function photographerRefs(items){return `<details class="secondary-disclosure"><summary>更多構圖參考</summary><div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[3]}</p></a>`).join("")}</div></details>`}
 function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…</div></div>${legend}<details class="map-help"><summary>地圖用途</summary><p>只用嚟認街道、地標同機位相對位置；現場導航仍交畀高德。</p></details></div>`}
 function shotWeatherCommon(){return `<details class="secondary-disclosure"><summary>天氣分支</summary>${weather([
  ["晴／少雲","追暖光、天空層次；長焦壓縮價值最高。","good"],
@@ -370,7 +370,7 @@ ${block("落船後節奏",route([
 ]))}
 ${block("無腳架夜景設定思路",rules([
  ["快門優先於低ISO","JC Terry 例圖係8–15秒長曝；你無腳架，唔追同款水面。寧願拉高ISO保住建築銳利。"],
- ["85–120mm更怕手震／風","江邊有風就提高快門；Z8 IBIS係保險，唔係叫你硬壓極慢快門。"],
+ ["85–120mm更怕手震／風","江邊有風就提高快門；機身防震係保險，唔係叫你硬壓極慢快門。"],
  ["亮部先保住","外灘立面同鐘樓燈位容易爆；先保高光，再接受江面偏暗。"]
 ]))}
 ${cutoff("19:05開始收尾","Freedom Gundam 19:45先係下一個固定主拍。呢段如果渡輪延誤，先保50–70mm整體，再保一張85–120mm局部；其餘直接砍。","離開條件")}
@@ -380,7 +380,7 @@ tower:()=>towerPage(),
 
 xiandelai:()=>`${pageHead("備用餐廳","鮮得來","如果其他時間想補排骨年糕，可以再考慮；今次正常行程唔特別繞去。",[["主點","排骨年糕"],["位置","福建中路一帶"],["安排","順路先食"],["Day 1晚餐","東泰祥"]])}`,
 
-gundam:()=>`${pageHead("第1日 · 19:45–20:40","1:1 Freedom Gundam","到南廣場先影完整立像，再等一輪夜間演出；演出時間出發前再確認。",[["位置","LaLaport上海金橋南廣場"],["時段","19:45–20:40"],["拍攝","完整立像＋夜間演出"],["器材","Z8 + 24–120/4 S"]])}
+gundam:()=>`${pageHead("第1日 · 19:45–20:40","1:1 Freedom Gundam","到南廣場先影完整立像，再等一輪夜間演出；演出時間出發前再確認。",[["位置","LaLaport上海金橋南廣場"],["時段","19:45–20:40"],["拍攝","完整立像＋夜間演出"],["器材","相機"]])}
 ${media(IMG.gundamHero,"Unsplash 可重用實拍；先用嚟認立像、廣場同商場關係。實際到場係夜間，光線以現場燈光為準。")}
 ${block("認位圖",photoMap("gundam"))}
 ${block("先完成三種畫面",shots([
@@ -587,20 +587,20 @@ function mwyPage(){
   ["19:00","VIP夜場","演唱會本身係Day 2最硬時間點。"]
  ]))}
  ${block("相機規則：等主辦，唔估",branches([
-  ["最終容許 Z8／可換鏡頭相機","照原本Day 2行程；Z8可全日跟身。","hot"],
+  ["最終容許 可換鏡頭相機","照原本Day 2行程；相機可全日跟身。","hot"],
   ["最終禁止 Z8，但只持19:00夜場","下午場販／展示後插入『場館 → 住宿寄存 → 回汶水路』分支。","warn"],
   ["如果之後再有14:00日場票＋禁相機","最乾淨係早上已把Z8留住宿；唔好等下午先處理。","danger"]
  ]))}
  ${block("夜場-only＋禁相機時點做",route([
   ["≈15:45","離開場館區","如果高德／Didi顯示道路順暢，可以用錢換時間。"],
   ["15–25m","叫車去住宿","單程先預留約15–25分鐘；路況差就改用較穩定公共交通。"],
-  ["住宿","前台寄存 Z8＋24–120","可用乾淨軟布／衣物包好，以相機本體尺寸交前台；是否接受要先向住宿確認。"],
+  ["住宿","前台寄存 相機","可用乾淨軟布／衣物包好，以相機本體尺寸交前台；是否接受要先向住宿確認。"],
   ["≈16:40–16:55","回汶水路／協信廣場","順利就仍可保住小楊時段。"],
   ["18:00","返場館","如果16:00後先開始離場，小楊係第一個可砍項。"]
  ]))}
  ${alertBox("住宿寄存仍有兩件事未核實","要先確認：① 前台是否接受呢個尺寸嘅貴重物品；② 有冇寄存牌／收據，同當晚取回流程。住宿聯絡資料不存於公開版。")}
  ${more([
-  ["去年／其他活動禁相機可唔可以直接當2026規則？","唔可以。去年第三方整理同同場館其他2026活動，只能證明Z8被拒入場係實質風險，唔可以代替2026 MWY主辦最終公告。"],
+  ["去年／其他活動禁相機可唔可以直接當2026規則？","唔可以。去年第三方整理同同場館其他2026活動，只能證明可換鏡頭相機被拒入場係實質風險，唔可以代替2026 MWY主辦最終公告。"],
   ["場販區可唔可以自由再入？","影片作者話持當日票可自由進出，但而家未搵到官方公開文字確認，所以只作參考。"]
  ])}`;
 }
@@ -628,9 +628,8 @@ function init(){
   <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><span class="top-spacer" aria-hidden="true"></span></header>
   <main class="main">
    <section id="tripView">
-    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1><p>行程、攝影、飲食、活動規則全部壓成現場可執行版本。先睇下一步，需要時先展開詳細資料。</p><div class="cover-meta"><span class="chip-dark">Nikon Z8 + 24–120/4 S</span><span class="chip-dark">資料更新 · ${SITE.updated}</span></div></div></div>
+    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1></div></div>
     <div class="section"><div class="section-title"><h2>三日行程</h2><p>10/31—11/2</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
-    <div class="section"><div class="section-title"><h2>行程底線</h2></div><div class="baseline"><div class="baseline-row"><small>攝影</small><div><b>唔為相加站</b><p>超時先砍額外畫面；Day 1守自然光，Day 3守15:15收尾。</p></div></div><div class="baseline-row"><small>飲食</small><div><b>排隊係時間成本</b><p>每間店都有放棄條件；唔為名店破壞攝影、MWY或者機場緩衝。</p></div></div><div class="baseline-row"><small>Day 2</small><div><b>相機規則等主辦公告</b><p>場販已確認；相機、袋同再次入場安排出發前再確認。</p></div></div></div></div>
    </section>
    <section id="dayView" class="hidden"><div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div><div class="day-date" id="dayDate"></div></div><div id="liveStrip"></div><div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">第${d}日</button>`).join('')}</div><div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">時間線</button><button id="mBtn" onclick="setMode('map')">地圖</button></div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section>
    <section id="guideView" class="hidden">${guideHTML()}</section>
