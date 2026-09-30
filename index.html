@@ -606,6 +606,8 @@ function init(){
  $('#backBtn').onclick=()=>history.back();
  if(!location.hash)history.replaceState({v:'trip'},'','#trip');
  restoreFromHash();
+ setInterval(refreshLiveStrip,60000);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLiveStrip()});
 }
 function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
 function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
@@ -613,6 +615,7 @@ function shanghaiClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat(
 function todayTripDay(){return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[shanghaiClock().date]||0}
 function stopMinutes(t=''){const m=String(t).match(/(\d{1,2}):(\d{2})/);return m?(+m[1])*60+(+m[2]):9999}
 function liveStripHTML(){if(todayTripDay()!==currentDay)return'';const now=shanghaiClock().minutes,items=DAYS[currentDay].items;let idx=-1;for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)idx=i;const cur=idx>=0?items[idx]:null,nxt=items[idx+1]||null;if(!cur&&nxt)return `<div class="live-strip"><button class="live-jump next" onclick="openDetail('${nxt.id}')"><small>下一站</small><b>${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur&&nxt)return `<div class="live-strip"><button class="live-jump current" onclick="openDetail('${cur.id}')"><small>目前段落</small><b>${cur.time} · ${cur.title}</b><span>${cur.sub}</span></button><button class="live-jump next" onclick="openDetail('${nxt.id}')"><small>下一站</small><b>${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur)return `<div class="live-done">目前：<b>${cur.time} · ${cur.title}</b>。今日主線已到最後一站。</div>`;return''}
+function refreshLiveStrip(){const e=$('#liveStrip');if(e&&!$('#dayView').classList.contains('hidden'))e.innerHTML=liveStripHTML()}
 function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList.toggle('hidden',!b)}
 function nav(x){$('#navTrip').classList.toggle('active',x==='trip');$('#navDay').classList.toggle('active',x==='day');$('#navGuide').classList.toggle('active',x==='guide')}
 function hideMain(){['tripView','dayView','guideView'].forEach(id=>$('#'+id).classList.add('hidden'))}
