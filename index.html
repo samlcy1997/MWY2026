@@ -97,7 +97,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
  .main{padding-left:24px;padding-right:24px}.article{padding-left:24px;padding-right:24px}.day-grid{grid-template-columns:repeat(3,1fr)}.day-card,.day-copy{min-height:220px}.day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.8),rgba(9,17,18,.1) 75%)}.facts{grid-template-columns:repeat(4,1fr)}.branch-grid{grid-template-columns:repeat(2,1fr)}.weather-grid{grid-template-columns:repeat(4,1fr)}.article h1{max-width:14ch}.sticky-actions{margin-left:-24px;margin-right:-24px}.cover{min-height:370px}}
 @media(max-width:380px){.main{padding-left:13px;padding-right:13px}.article{padding-left:13px;padding-right:13px}.sticky-actions{margin-left:-13px;margin-right:-13px}.stop{grid-template-columns:50px 30px minmax(0,1fr)}.timeline:before{left:65px}.route-link{margin-left:80px}.facts{grid-template-columns:1fr 1fr}.weather-grid{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
 
-:root{--bg:#f7f7f4;--paper:#fff;--ink:#18201f;--muted:#727b79;--line:rgba(24,32,31,.09);--soft:#edf5f2;--accent:#11a79d;--accent-ink:#08736c;--radius:14px;--radius-sm:10px;--shadow:none}
+:root{--bg:#f7f7f4;--paper:#fff;--ink:#18201f;--muted:#65706d;--line:rgba(24,32,31,.09);--soft:#edf5f2;--accent:#11a79d;--accent-ink:#08736c;--radius:14px;--radius-sm:10px;--shadow:none}
 body{letter-spacing:-.005em}
 .topbar{background:rgba(247,247,244,.9);border-bottom-color:rgba(24,32,31,.06)}
 .top-spacer{width:44px;height:44px}
@@ -143,7 +143,7 @@ body{letter-spacing:-.005em}
 
 body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
 body.detail-active{overflow:hidden}
-button{touch-action:manipulation;transition:transform .16s ease,background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease}
+button{touch-action:manipulation;transition:transform .16s ease,background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease;-webkit-tap-highlight-color:transparent}
 .day-card img{transition:transform .5s cubic-bezier(.16,1,.3,1),filter .35s ease}
 .day-arrow{transition:transform .28s cubic-bezier(.16,1,.3,1),background-color .2s ease}
 .day-copy small{font-size:11px}
@@ -161,6 +161,12 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .status-row .state{font-size:10px}.status-row p{font-size:12px}
 .map-tools button,.map-actions button{font-size:11px}
 .copy-place span,.copy-place em{font-size:12px}
+.lead-action small,.order-card small,.order-textonly small,.compare small,.meal-extra small,.tower-priority,.status-pill,.panotag,.photo-pin{font-size:10px}
+.route-link{font-size:10px;color:#6c7774}.route-link.is-past{color:#5f6b68}
+.stop-time{color:#66716e}.stop.major .stop-time{color:var(--accent-ink)}
+.live-jump.next span{color:#5f6b68}
+.caption,.pro-ref-note,.map-help summary,.map-note{color:var(--muted)}
+
 .detail{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.997);transition:opacity .2s ease,transform .28s cubic-bezier(.16,1,.3,1),visibility 0s linear .28s}
 .detail.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
 .block{content-visibility:auto;contain-intrinsic-size:1px 240px}
@@ -204,7 +210,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.0",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.1",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -324,18 +330,18 @@ const PHOTO_MAPS={
 let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null, detailCurrentId="";
 const OSM_RASTER_STYLE={version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm",type:"raster",source:"osm"}]};
 let maplibrePromise=null;
+function loadExternalScript(src,timeout=4500){return new Promise(resolve=>{const el=document.createElement('script');let done=false;const finish=ok=>{if(done)return;done=true;clearTimeout(timer);resolve(ok)};const timer=setTimeout(()=>{el.remove();finish(false)},timeout);el.src=src;el.async=true;el.onload=()=>finish(true);el.onerror=()=>finish(false);document.head.appendChild(el)})}
 function ensureMapLibre(){
  if(window.maplibregl)return Promise.resolve(true);
  if(maplibrePromise)return maplibrePromise;
- maplibrePromise=new Promise(resolve=>{
+ maplibrePromise=(async()=>{
   if(!document.getElementById('maplibre-css')){
-   const css=document.createElement('link');css.id='maplibre-css';css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css';css.onerror=()=>{css.onerror=null;css.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'};document.head.appendChild(css);
+   const css=document.createElement('link');css.id='maplibre-css';css.rel='stylesheet';css.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css';css.onerror=()=>{css.onerror=null;css.href='https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css'};document.head.appendChild(css);
   }
-  const primary=document.createElement('script');primary.src='https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js';primary.async=true;
-  primary.onload=()=>resolve(!!window.maplibregl);
-  primary.onerror=()=>{const fallback=document.createElement('script');fallback.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js';fallback.async=true;fallback.onload=()=>resolve(!!window.maplibregl);fallback.onerror=()=>resolve(false);document.head.appendChild(fallback)};
-  document.head.appendChild(primary);
- });
+  let ok=await loadExternalScript('https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js');
+  if(!ok&&!window.maplibregl)ok=await loadExternalScript('https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js');
+  return !!window.maplibregl;
+ })();
  return maplibrePromise;
 }
 
