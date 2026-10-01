@@ -64,7 +64,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .alert{border:1px solid #e4d7bd;background:var(--warm);border-radius:16px;padding:13px;margin-top:12px}.alert.danger{border-color:#eccaca;background:var(--danger-soft)}.alert strong{display:block;font-size:12px}.alert p{font-size:11px;line-height:1.48;color:#655c4e;margin:4px 0 0}.alert.danger p{color:#6c4f4f}
 .callout{font-size:22px;line-height:1.25;letter-spacing:-.035em;font-weight:770;margin:28px 0 8px;max-width:18ch}.subnote{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
 .disclosure{margin-top:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.disclosure details{border-top:1px solid var(--line)}.disclosure details:first-child{border-top:0}.disclosure summary{list-style:none;padding:13px 2px;font-size:12px;font-weight:770;cursor:pointer}.disclosure summary::-webkit-details-marker{display:none}.disclosure summary:after{content:"＋";float:right;color:#7f8987}.disclosure details[open] summary:after{content:"－"}.disclosure .more{font-size:11px;line-height:1.55;color:var(--muted);padding:0 2px 13px}
-.next-hop{background:#172123;color:#fff;border-radius:20px;padding:14px;margin-top:28px}.next-hop strong{display:block;font-size:18px;line-height:1.28;margin:0 0 5px}.next-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:7px}.next-actions button{border:0;border-radius:11px;padding:10px 8px;font-size:10px;font-weight:820}.next-actions .a{background:var(--accent);color:#063d38}.next-actions .b{background:#2a3637;color:white}.sticky-actions{position:sticky;bottom:0;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));margin:26px -16px -110px;background:rgba(244,242,237,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky-actions button{border:0;border-radius:12px;padding:11px;font-size:10px;font-weight:850}.sticky-actions .primary{background:var(--accent);color:#073d39}.sticky-actions .secondary{background:var(--paper);border:1px solid var(--line)}
+.next-hop{background:#172123;color:#fff;border-radius:20px;padding:14px;margin-top:28px}.next-hop strong{display:block;font-size:18px;line-height:1.28;margin:0 0 5px}.next-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:7px}.next-actions button{border:0;border-radius:11px;padding:10px 8px;font-size:10px;font-weight:820}.next-actions .a{background:var(--accent);color:#063d38}.next-actions .b{background:#2a3637;color:white}.copy-places{display:grid;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.copy-place{display:grid;grid-template-columns:1fr auto;grid-template-areas:"b e" "s e";gap:2px 12px;align-items:center;width:100%;padding:13px 0;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;font:inherit;color:var(--ink)}.copy-place:last-child{border-bottom:0}.copy-place b{grid-area:b;font-size:13px}.copy-place span{grid-area:s;font-size:11px;line-height:1.4;color:var(--muted)}.copy-place em{grid-area:e;font-style:normal;font-size:11px;font-weight:800;color:var(--accent-ink)}.sticky-actions{position:sticky;bottom:0;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));margin:26px -16px -110px;background:rgba(244,242,237,.94);backdrop-filter:blur(18px);border-top:1px solid var(--line)}.sticky-actions button{border:0;border-radius:12px;padding:11px;font-size:10px;font-weight:850}.sticky-actions .primary{background:var(--accent);color:#073d39}.sticky-actions .secondary{background:var(--paper);border:1px solid var(--line)}
 .viewer{margin-top:17px}.viewstage{height:370px;border-radius:22px;overflow:hidden;background:#e4e7e5;position:relative}.viewstage img{width:100%;height:100%;object-fit:cover;transition:transform .22s ease,opacity .15s ease}.viewlabel{position:absolute;left:12px;top:12px;padding:7px 9px;border-radius:10px;background:rgba(17,27,29,.82);color:#fff;font-size:10px;font-weight:800}.viewmeta{font-size:10px;line-height:1.45;color:var(--muted);margin:7px 2px 0}.tabline{display:flex;gap:6px;overflow:auto;padding:9px 0 2px;scrollbar-width:none}.tabline button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;font-size:10px;font-weight:760}.tabline button.active{background:#172123;color:#fff;border-color:#172123}
 .pano{margin-top:12px}.panoview{height:240px;border-radius:19px;overflow:hidden;background:#dfe4e1;position:relative;touch-action:none;cursor:grab}.panoview img{height:100%;width:auto;max-width:none;position:absolute;left:0;top:0;user-select:none;pointer-events:none}.panotag{position:absolute;left:10px;bottom:10px;background:rgba(17,27,29,.8);color:white;border-radius:9px;padding:6px 8px;font-size:9px}
 .venue-card{border:1px solid var(--line);border-radius:18px;background:var(--paper);overflow:hidden}.venue-card img{width:100%;height:220px;object-fit:cover}.venue-card .copy{padding:13px}.venue-card h3{font-size:14px;margin:0 0 5px}.venue-card p{font-size:11px;line-height:1.48;color:var(--muted);margin:0}
@@ -144,7 +144,7 @@ body{letter-spacing:-.005em}
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.8",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.9",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -234,7 +234,7 @@ const DAYS={
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非行程"},xiandelai:{title:"鮮得來 · 非行程"},zhang:{title:"張師傅早餐店"},mwy:{title:"未來有你 2026"},mwyshow:{title:"未來有你 2026"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+ arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非行程"},xiandelai:{title:"鮮得來 · 非行程"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
 };
 
 const PHOTO_MAPS={
@@ -282,6 +282,7 @@ function compare(items){return `<div class="compare">${items.map(x=>`<div><small
 function alertBox(title,note,danger=false){return `<div class="alert ${danger?'danger':''}"><strong>${title}</strong><p>${note}</p></div>`}
 function more(items){return `<div class="disclosure">${items.map(x=>`<details><summary>${x[0]}</summary><div class="more">${x[1]}</div></details>`).join("")}</div>`}
 function nextHop(a,b,copyA=a,copyB=b){return copyB?`<div class="next-hop compact"><strong>${b}</strong><p>${copyB}</p><div class="next-actions"><button class="a" onclick="copyText('${esc(copyB)}')">複製目的地</button></div></div>`:""}
+function copyPlaces(items){return `<div class="copy-places">${items.map(x=>`<button class="copy-place" onclick="copyText('${esc(x[1])}')"><b>${x[0]}</b><span>${x[1]}</span><em>複製</em></button>`).join("")}</div>`}
 function sticky(){return""}
 function findItemPosition(id){for(const [d,day] of Object.entries(DAYS)){const i=day.items.findIndex(x=>x.id===id);if(i>=0)return{day:+d,index:i,items:day.items}}return null}
 function detailPagerHTML(id){const p=findItemPosition(id);if(!p)return"";const prev=p.items[p.index-1]||null,next=p.items[p.index+1]||null;return `<div class="detail-pager">${prev?`<button class="pager-prev" aria-label="上一站：${prev.title}" onclick="openAdjacentDetail(-1)"><b>← ${prev.title}</b></button>`:`<span></span>`}${next?`<button class="pager-next" aria-label="下一站：${next.title}" onclick="openAdjacentDetail(1)"><b>${next.title} →</b></button>`:`<div class="pager-end"><b>最後一站</b></div>`}</div>`}
@@ -302,15 +303,15 @@ function shotWeatherCommon(){return `<details class="secondary-disclosure"><summ
 ])}</details>`}
 
 const P={
-arrival:()=>`${pageHead("第1日 · 12:30","抵達上海","12:30 抵達 PVG T2。入境、取行李後直接入市區放低行李；14:15–14:45 完成就去第一餐。",[["抵達","12:30 · PVG T2"],["放行李","14:15–14:45"],["第一餐","15:05 · 萊萊小籠"],["離開食物段","約15:45"]])}
-${lead("入市區＋放行李","如果入境／交通慢，就縮短食物段；16:10前到外白渡橋。","16:10 外白渡橋")}
-${block("入市區節奏",route([
- ["12:30","PVG T2 落地","入境、取行李後入市區；交通方法按現場效率處理。"],
- ["14:15–14:45","住宿放行李","放低行李就出發；早到就多一點緩衝。"],
- ["15:05","萊萊小籠","食完直接沿南京東路向外灘方向走。"],
- ["≈15:45","離開食物段","如果前面延誤，就外帶或者直接砍一站。"]
+arrival:()=>`${pageHead("第1日 · 12:30","抵達上海","落地後先搭磁浮離開機場，再轉地鐵去上海站區放行李；前段慢就砍食物，唔侵蝕外灘光線。",[["抵達","12:30 · PVG T2"],["住宿基準","14:15–14:45"],["外灘目標","16:10前"]])}
+${lead("先搭磁浮","PVG → 龍陽路約8分鐘；之後2號線→人民廣場→1號線→上海火車站。","約53–58分鐘純乘車")}
+${block("落地後照住做",route([
+ ["入境後","浦東1號2號航站樓站","搭磁浮去龍陽路；普通票現行¥50，同日機票8折約¥40。"],
+ ["龍陽路","2號線 → 人民廣場","轉1號線去上海火車站；龍陽路到住宿區約45–50分鐘。"],
+ ["落雨／太攰","龍陽路直接叫車","行李唔方便就唔勉強轉線，Didi／高德叫車直接去住宿。"],
+ ["14:15–14:45","放低行李","早到係bonus；完成就出發去第一餐。"],
+ ["≈15:45","食物段截止","前面延誤就外帶／砍一站，16:10外白渡橋優先。"]
 ]))}
-
 ${nextHop("住宿","萊萊小籠","如家商旅酒店（上海火車站南廣場店）","萊萊小籠 天津路506號")}`,
 
 lailai:()=>`${pageHead("第1日 · 15:05–15:35","萊萊小籠","今次避開蟹粉主線，食松茸鮮肉或者純鮮肉小籠；15:35前完成。",[["地址","天津路506號"],["時段","15:05–15:35"],["營業","08:00–14:00 / 15:00–20:00"]])}
@@ -358,6 +359,11 @@ dahuchun:()=>`${pageHead("備用餐廳","大壺春","今次三日行程唔特別
 ${alertBox("唔為佢改線","如現場偶然經過而且時間異常充裕先再算；正常執行直接忽略。",true)}`,
 
 ferry:()=>`${pageHead("第1日 · 18:25–19:05","浦東反拍外灘","東昌路落船即拍：先50–70mm完整萬國建築群，再85–120mm抽海關大樓／和平飯店；19:05收尾。",[["拍攝","18:25–19:05"],["離開","約19:15"],["起點","東昌路渡口"],["焦段","50–120mm"]])}
+${block("先過江",route([
+ ["金陵東路渡口","→ 東昌路渡口","主線仍然係東金線輪渡；正常約15–30分鐘一班，但前一晚＋當日再核。"],
+ ["班次異常／停航","即轉地鐵／Didi","唔喺碼頭等；浦東反拍係bonus，後面Freedom時間優先。"],
+ ["東昌路落船","就近江邊開拍","唔沿江搵新機位，先完成50–70mm整體。"]
+]))}
 ${block("想影到",例圖Gallery([
  [IMG.pudongBund70,"萬國建築群整體","50–70mm","先完成整條建築帶。例圖係長曝，只睇構圖比例。",[],"https://www.pexels.com/photo/shanghai-bund-night-skyline-illuminated-30685872/",""],
  [IMG.pudongBund110,"海關／外灘局部","85–120mm","再抽單棟地標同立面壓縮；唔將整排樓塞入長焦。",[],"https://www.pexels.com/photo/shanghai-bund-night-skyline-reflecting-on-huangpu-river-30685862/",""]
@@ -431,7 +437,7 @@ ${block("排隊",branches([
 ]))}
 ${nextHop("張師傅早餐店","上海靜安體育中心","張師傅早餐店 石門二路487號","上海靜安體育中心 汶水路116號")}`,
 
-mwy:()=>mwyPage(),
+mwy:()=>mwyMarketPage(),
 
 qiqi:()=>`${pageHead("第2日 · 12:00–13:00","琪琪麵館","主食就食辣肉拌麵；午飯後期澆頭有機會賣剩，13:30後直接放棄。",[["地址","北寶興路296–298號"],["主食","辣肉拌麵"],["最遲","13:30"]])}
 ${foodFeature(IMG.qiqiNoodle,"上海澆頭麵","辣肉拌麵","呢餐重點唔係湯麵，而係麵＋辣肉澆頭。辣肉帶甜辣鹹香，拌開之後先係完整一碗。")}
@@ -460,11 +466,16 @@ ${block("排隊太耐",branches([
 ]))}
 ${nextHop("小楊生煎","上海靜安體育中心","小楊生煎 江場路1212號協信廣場B1","上海靜安體育中心 汶水路116號")}`,
 
-postshow:()=>`${pageHead("第2日 · 散場後","散場後","唔餓就返住宿；餓先沿返住宿方向搵熱食。",[["第一選擇","直接返住宿"],["有需要","順路食"],["最遲後備","全昌福約至23:00"]])}
+postshow:()=>`${pageHead("第2日 · 散場後","散場後","宵夜只服務體力：唔餓直接返住宿；想食先按『補上海小吃／純填肚』分支。",[["第一選擇","直接返住宿"],["上海小吃補票","鮮得來"],["緊急熱食","全昌福約至23:00"]])}
 ${block("按餓度",branches([
  ["唔餓","直接返住宿。","hot"],
- ["想補排骨年糕","鮮得來可以考慮，但唔係返住宿最直線。",""],
- ["只係要填肚","沿住宿方向搵仍營業嘅熱食／外賣。",""]
+ ["Day 1冇食鮮得來","去福建中路新店補排骨年糕；約至01:00，但唔係返住宿最直線。",""],
+ ["只係要填肚","唔追名店；返住宿方向搵晚市／外賣。",""]
+]))}
+${block("可直接複製",copyPlaces([
+ ["鮮得來 · 上海小吃補票","鮮得來 福建中路350號"],
+ ["全昌福 · 酒店附近安全網","全昌福 天目西路560號"],
+ ["直接返住宿","如家商旅酒店（上海火車站南廣場店）"]
 ]))}`,
 
 wangji:()=>`${pageHead("第3日 · 08:00","王記葱油餅","先食原味招牌葱油餅，配黑米粥／甜豆漿二選一；09:00去武康。",[["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
@@ -514,6 +525,7 @@ ${block("時間唔夠",branches([
 ${block("快速後備",foodList([
  ["味香齋","麻醬麵＋小牛湯","麻醬麵濃香，小牛湯負責解膩；同琪琪嘅辣肉澆頭麵係完全不同路線。"]
 ]))}
+${copyPlaces([["13:30後直接去味香齋","味香齋 雁蕩路14號"]])}
 ${nextHop("海金滋","張園","海金滋 進賢路240號","張園 南京西路789號")}`,
 
 zhangyuan:()=>`${pageHead("第3日 · 13:50–15:15","張園 → 路易號","由張園一路向東去興業太古匯，最後拍路易號；15:15收機返住宿。",[["張園","13:50–14:40"],["路易號","14:40–15:15"],["離開","15:15"],["方向","西進東出"]])}
@@ -532,17 +544,22 @@ ${block("一路向東",route([
 ${cutoff("15:15 收機","近景、快閃、排隊入展全部讓位畀機場時間。","離開")}
 ${nextHop("路易號","住宿","路易號 上海興業太古匯","如家商旅酒店（上海火車站南廣場店）")}`,
 
-airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服，15:50只當最遲正常值。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["航班","19:05 · PVG T2"]])}
+airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服，15:50只當最遲正常值。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["起飛","19:05 · PVG T2"]])}
 ${block("收尾路線",route([
  ["15:15","張園／路易號收工","相機收起，直接返住宿。"],
  ["15:30–15:40","住宿取行李並出發","呢個係較舒服嘅硬截止。"],
  ["15:50","只作最遲正常值","如果拖到呢個時間，唔再追加任何食／買／拍攝任務。"],
- ["≈17:00","PVG T2","機場餐只係補給，唔再追上海美食行程。"],
- ["19:05","返程航班","完成行程。"]
+ ["≈17:00","PVG T2","到埗後再食功能型晚餐；市區海金滋先係最後一餐主線。"],
+ ["19:05","返程","完成行程。"]
 ]))}
+${block("到機場後",rules([
+ ["上海美食坊","T2出發公眾區 · 國際／港澳台安檢入口挑高平台2A-20 · 約07:00–22:00。"],
+ ["先過安檢","D71–D75附近有功能型餐飲後備；唔再為食物改登機節奏。"]
+]))}
+${alertBox("市區→PVG交通方式暫未鎖","研究筆記已鎖出發時間同到機場目標，但未鎖最終交通模式；呢頁唔自行補一個未研究結論。")}
 `
 };
-P.mwyshow=()=>mwyPage();
+P.mwyshow=()=>mwyShowPage();
 
 function towerPage(){
  return `${pageHead("備用景點","上海之巔 118F","正常行程唔上塔。只有能見度極佳、時間異常充裕，而且唔影響外灘同 Freedom，先臨時考慮。",[["高度","546m"],["安排","正常不去"],["條件","能見度極佳＋時間有餘"]])}
@@ -562,24 +579,34 @@ function towerPage(){
  ${alertBox("正常情況唔上塔","慳返門票同約90分鐘，留畀浦東反拍＋Freedom。",true)}`;
 }
 
-function mwyPage(){
- return `${pageHead("第2日 · 19:00","未來有你 2026","場販同場地已確認；相機、袋、安檢同再次入場安排出發前再確認。",[["夜場","19:00 · VIP"],["場販","10:00–22:00"],["場地","上海靜安體育中心"],["相機規則","待公告"]])}
- ${block("場販／展示",route([
-  ["10:00","小羽毛球館","主要售賣區。"],
-  ["同時","大羽毛球館","展示區＋CALL棒單品購買點。"],
-  ["22:00","場販結束","以官方公告為準。"],
-  ["19:00","VIP夜場","18:00前返場館。"]
+function mwyMarketPage(){
+ return `${pageHead("第2日 · 10:00","MWY 場販／展示","早上只處理場販同展示：先小羽館買官方周邊，再去大羽館睇展示／CALL棒；午餐按現場進度決定。",[["開放","10:00–22:00"],["小羽館","主要官方場販"],["大羽館","展示＋CALL棒"]])}
+ ${block("到場順序",route([
+  ["10:00","小羽毛球館","先處理真係想買嘅官方周邊；唔為逐款慢慢睇拖午餐。"],
+  ["之後","大羽毛球館","展示為主；CALL棒可在呢邊單買。"],
+  ["午餐前","睇現場進度","場販拖時就先砍琪琪，唔壓夜場準備。"]
+ ]))}
+ ${alertBox("再次入場仍未鎖","目前只有非官方／影片經驗稱當日票可自由進出；正式進出規則等2026主辦公告，網站唔當成已確認。")}
+ ${nextHop("上海靜安體育中心","琪琪麵館","上海靜安體育中心 汶水路116號","琪琪麵館 北寶興路296–298號")}`;
+}
+function mwyShowPage(){
+ return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","18:00前返場館，夜場頁只處理入場同相機分支；相機、袋、安檢規則等2026官方公告先鎖。",[["夜場","19:00 · VIP"],["返場館","18:00前"],["相機／袋","待2026公告"]])}
+ ${block("入場前",route([
+  ["≈17:15","完成小楊","排隊太耐就縮單；唔壓18:00返場館。"],
+  ["18:00前","回上海靜安體育中心","預留安檢／入場buffer。"],
+  ["19:00","VIP夜場","演出規則以當日主辦公告為準。"]
  ]))}
  ${block("相機規則公布後",branches([
-  ["容許可換鏡頭相機","相機全日跟身。","hot"],
-  ["禁止可換鏡頭相機","下午返住宿寄存，再回汶水路。","warn"]
+  ["容許攜帶可換鏡頭相機","全日跟身；演出期間唔使用。","hot"],
+  ["禁止可換鏡頭相機","下午返住宿作貴重物品寄存，再回汶水路。","warn"]
  ]))}
- ${block("如果要寄存相機",route([
-  ["≈15:45","離開場館區","道路順就叫車；塞車就改公共交通。"],
-  ["住宿","寄存相機","出發前先確認前台接受貴重物品寄存。"],
-  ["≈16:40–16:55","回汶水路／協信廣場","時間夠先保留小楊生煎。"],
-  ["18:00","返場館","唔夠時間就先砍小楊。"]
- ]))}`;
+ ${block("如果要返住宿寄存",route([
+  ["≈15:45–16:00","由場館區離開","道路順就叫車；塞車就用1號線。"],
+  ["住宿","前台寄存","先確認是否接受相機尺寸、寄存牌／收據同當晚取回流程。"],
+  ["≈16:40–16:55","回汶水路／協信廣場","時間夠先保留小楊；16:00後先離場時，小楊係第一個可砍項。"],
+  ["18:00","返場館","入場優先。"]
+ ]))}
+ ${alertBox("未公布＝未決定","2025 precedent同同場館其他活動只用嚟衡量風險，唔會寫成2026既定禁帶規則。")}`;
 }
 function xjhPage(){
  return `${pageHead("第3日 · 10:30–12:20","徐家匯 ACG／科技","美羅城為主，TPY B2同新六百按當期內容決定停留；12:20左右離開去午飯。",[["時段","10:30–12:20"],["離開","約12:20"],["午飯","12:40 海金滋"]])}
@@ -587,6 +614,11 @@ function xjhPage(){
   ["01","美羅城 5–6F","HAPPY MALL／動漫主題影院／XR；三站之中最值得當主娛樂站。"],
   ["02","TPY Center B2","二次元街、谷店、卡牌、扭蛋、快閃；上層科技內容按興趣再睇。"],
   ["03","新六百YOUNG","先睇外部8K裸眼3D大屏；有當期IP活動先深入室內。"]
+ ]))}
+ ${block("導航",copyPlaces([
+  ["美羅城","美羅城 肇嘉浜路1111號"],
+  ["TPY Center","TPY Center 肇嘉浜路1117號"],
+  ["新六百YOUNG","新六百YOUNG 上海"]
  ]))}
  <div class="tabline"><button class="active" onclick="xjhVenue('happy',this)">美羅城</button><button onclick="xjhVenue('tpy',this)">TPY B2</button><button onclick="xjhVenue('young',this)">新六百YOUNG</button></div><div id="venueCard">${venueCard('happy')}</div>
  ${alertBox("10月底再查當期IP","有 Miku／PJSK／遊戲 IP 真正啱口味先延長；普通內容就照原定時間離開，唔因為『已經嚟到』而逐層行。")}
