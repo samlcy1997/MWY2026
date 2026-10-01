@@ -144,7 +144,7 @@ body{letter-spacing:-.005em}
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.9",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.10",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -315,7 +315,7 @@ ${block("落地後照住做",route([
 ${nextHop("住宿","萊萊小籠","如家商旅酒店（上海火車站南廣場店）","萊萊小籠 天津路506號")}`,
 
 lailai:()=>`${pageHead("第1日 · 15:05–15:35","萊萊小籠","今次避開蟹粉主線，食松茸鮮肉或者純鮮肉小籠；15:35前完成。",[["地址","天津路506號"],["時段","15:05–15:35"],["營業","08:00–14:00 / 15:00–20:00"]])}
-${foodFeature(IMG.xiaolongbaoRef,"小籠外觀參考","松茸鮮肉／純鮮肉小籠","小籠重點係薄皮包住肉餡同熱湯汁。想直接比較皮、肉、湯就揀純鮮肉；想多一層香氣就揀松茸鮮肉。")}
+${foodFeature(IMG.xiaolongbaoRef,"小籠外觀參考","松茸鮮肉／純鮮肉小籠","小籠重點係薄皮包住肉餡同熱湯汁。想直接比較皮、肉、湯就揀純鮮肉；想多一層香氣就揀松茸鮮肉。上圖只作小籠外觀參考，唔係萊萊店內實拍。")}
 ${block("點咩",foodList([
  ["主食","一籠小籠","松茸鮮肉／純鮮肉二選一；唔為招牌硬食蟹。"],
  ["有胃先加","雞鴨血湯","只加一碗湯，唔再開第二款主食。"]
@@ -426,7 +426,7 @@ ${block("點食",eatSteps([
 ${nextHop("東泰祥","住宿","東泰祥生煎館 重慶北路188號","如家商旅酒店（上海火車站南廣場店）")}`,
 
 zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","主線係鹹豆漿＋粢飯團；兩樣已經覆蓋上海傳統早餐最有特色嗰部分，10:00前去場館。",[["地址","石門二路487號"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
-${foodFeature(IMG.shanghaiBreakfastRef,"上海傳統早餐","鹹豆漿＋粢飯團","粢飯團係糯米包油條等餡料；鹹豆漿會加油條碎、紫菜、蝦皮、葱等，唔係普通一杯豆漿。")}
+${foodFeature(IMG.shanghaiBreakfastRef,"上海傳統早餐","鹹豆漿＋粢飯團","粢飯團係糯米包油條等餡料；鹹豆漿會加油條碎、紫菜、蝦皮、葱等，唔係普通一杯豆漿。上圖係上海傳統早餐參考，唔係張師傅店內實拍。")}
 ${block("兩樣主角",foodList([
  ["鹹豆漿","鹹香、有配料嘅豆漿","本身已經係一道早餐；唔當飲品附屬品。"],
  ["粢飯團","糯米＋油條做核心","軟糯外層配脆油條，夠飽而且方便快食。"],
@@ -544,19 +544,27 @@ ${block("一路向東",route([
 ${cutoff("15:15 收機","近景、快閃、排隊入展全部讓位畀機場時間。","離開")}
 ${nextHop("路易號","住宿","路易號 上海興業太古匯","如家商旅酒店（上海火車站南廣場店）")}`,
 
-airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服，15:50只當最遲正常值。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["起飛","19:05 · PVG T2"]])}
-${block("收尾路線",route([
+airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服。到酒店即睇高德／Didi ETA，再決定直接叫車定轉地鐵。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["起飛","19:05 · PVG T2"]])}
+${block("出發時只做一個判斷",branches([
+ ["叫車 ETA ≤70分鐘","直接 Didi／出租車去 PVG T2；少搬行李，正常情況最省腦。","hot"],
+ ["道路 ETA >70分鐘","改地鐵：上海火車站1號線 → 人民廣場 → 2號線 → 浦東1號2號航站樓站。","warn"]
+]))}
+${block("點解咁揀",rules([
+ ["叫車","官方2026基準：人民廣場↔PVG約50分鐘、約¥180；上海站同屬中心城區，實際以出發時ETA為準。"],
+ ["地鐵","官方2026基準：人民廣場→PVG約60分鐘；由上海站加1號線同轉乘時間，預約75–90分鐘。"],
+ ["唔主打機場四線","雖然上海火車站北廣場有直達PVG巴士，但官方班距20–70分鐘；等車波動太大，唔適合作今次19:05航班主線。"]
+]))}
+${block("收尾時間",route([
  ["15:15","張園／路易號收工","相機收起，直接返住宿。"],
- ["15:30–15:40","住宿取行李並出發","呢個係較舒服嘅硬截止。"],
- ["15:50","只作最遲正常值","如果拖到呢個時間，唔再追加任何食／買／拍攝任務。"],
- ["≈17:00","PVG T2","到埗後再食功能型晚餐；市區海金滋先係最後一餐主線。"],
+ ["15:30–15:40","住宿取行李並出發","先睇道路ETA，再按上面分支。"],
+ ["15:50","最遲正常值","拖到呢個時間就零額外任務；直接用最快穩妥方案去機場。"],
+ ["≈17:00","PVG T2","到埗後先處理check-in／安檢，再食功能型晚餐。"],
  ["19:05","返程","完成行程。"]
 ]))}
 ${block("到機場後",rules([
  ["上海美食坊","T2出發公眾區 · 國際／港澳台安檢入口挑高平台2A-20 · 約07:00–22:00。"],
  ["先過安檢","D71–D75附近有功能型餐飲後備；唔再為食物改登機節奏。"]
 ]))}
-${alertBox("市區→PVG交通方式暫未鎖","研究筆記已鎖出發時間同到機場目標，但未鎖最終交通模式；呢頁唔自行補一個未研究結論。")}
 `
 };
 P.mwyshow=()=>mwyShowPage();
@@ -618,14 +626,14 @@ function xjhPage(){
  ${block("導航",copyPlaces([
   ["美羅城","美羅城 肇嘉浜路1111號"],
   ["TPY Center","TPY Center 肇嘉浜路1117號"],
-  ["新六百YOUNG","新六百YOUNG 上海"]
+  ["新六百YOUNG","新六百YOUNG 衡山路932號"]
  ]))}
  <div class="tabline"><button class="active" onclick="xjhVenue('happy',this)">美羅城</button><button onclick="xjhVenue('tpy',this)">TPY B2</button><button onclick="xjhVenue('young',this)">新六百YOUNG</button></div><div id="venueCard">${venueCard('happy')}</div>
  ${alertBox("10月底再查當期IP","有 Miku／PJSK／遊戲 IP 真正啱口味先延長；普通內容就照原定時間離開，唔因為『已經嚟到』而逐層行。")}
  ${cutoff("徐家匯玩過鐘 → 午飯先降級","如果IP活動太好玩，可以延長；代價應該係海金滋轉味香齋快速方案，而唔係侵蝕張園收尾／機場。","時間交換")}
  ${nextHop("徐家匯","海金滋","美羅城 肇嘉浜路1111號","海金滋 進賢路240號")}`;
 }
-function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"先看外部裸眼3D大屏；有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" loading="lazy" decoding="async" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
+function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"衡山路932號 · 徐家匯站13號口；先看外部裸眼3D大屏，有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" loading="lazy" decoding="async" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
 function xjhVenue(k,btn){$("#venueCard").innerHTML=venueCard(k);btn.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
 
 function init(){
