@@ -167,6 +167,45 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .live-jump.next span{color:#5f6b68}
 .caption,.pro-ref-note,.map-help summary,.map-note{color:var(--muted)}
 .next-hop.compact p{color:#c1cbc8}
+.cover{isolation:isolate}
+.cover:before{inset:-12% -8% auto 34%;height:78%;background:radial-gradient(circle at 55% 38%,rgba(17,167,157,.16),rgba(17,167,157,0) 64%);z-index:-1}
+.cover-bottom{position:relative;z-index:1;margin-top:58px}
+.route-signature{width:100%;max-width:560px}
+.route-signature svg{display:block;width:100%;height:auto;overflow:visible}
+.route-signature path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.route-signature .route-ghost{stroke:rgba(255,255,255,.14);stroke-width:2}
+.route-signature .route-signal{stroke:var(--accent);stroke-width:2;stroke-dasharray:1 0}
+.route-signature circle{fill:var(--accent);stroke:#17201f;stroke-width:3}
+.cover-index{display:flex;justify-content:space-between;gap:18px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);font-size:11px;font-weight:760;color:#c9d3d0;font-variant-numeric:tabular-nums}
+.day-card{isolation:isolate}
+.day-index{position:absolute;z-index:2;left:14px;top:8px;font-size:clamp(44px,14vw,74px);line-height:1;font-weight:820;letter-spacing:-.07em;color:rgba(255,255,255,.16);font-variant-numeric:tabular-nums;pointer-events:none}
+.day-copy small{letter-spacing:.035em;text-transform:none}
+#dayView[data-day="1"] .timeline:before{background:linear-gradient(to bottom,rgba(24,32,31,.12) 0 24%,rgba(17,167,157,.48) 44% 68%,rgba(24,32,31,.26) 88% 100%)}
+#dayView[data-day="1"] .stop.major .stop-card{position:relative;overflow:hidden}
+#dayView[data-day="1"] .stop.major .stop-card:after{content:"";position:absolute;right:-26px;bottom:-30px;width:86px;height:86px;border:1px solid rgba(17,167,157,.12);border-radius:50%;pointer-events:none}
+.editorial-route{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0 4px;padding-top:17px;border-top:1px solid var(--line)}
+.editorial-route:before{content:"";position:absolute;left:5%;right:5%;top:-1px;height:1px;background:linear-gradient(90deg,var(--ink),var(--accent) 48%,var(--ink))}
+.editorial-node{position:relative;min-width:0}
+.editorial-node:before{content:"";position:absolute;top:-22px;left:0;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.editorial-node:nth-child(2):before{border-color:var(--accent);background:var(--accent)}
+.editorial-node span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:760;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.editorial-node b{display:block;margin-top:4px;font-size:12px;line-height:1.35;letter-spacing:-.01em}
+.detail[data-detail="bund"] .article h1{max-width:10ch}
+.detail[data-detail="bund"] .page-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+.detail[data-detail="bund"] .ref-card img{box-shadow:0 0 0 1px rgba(24,32,31,.05)}
+@media(min-width:720px){
+ .cover-bottom{margin-top:82px}
+ .cover-index{max-width:560px}
+ .day-index{left:18px;top:12px;font-size:72px}
+ .editorial-route{margin-top:34px}
+}
+@media(max-width:420px){
+ .cover-bottom{margin-top:44px}
+ .cover-index{font-size:10px}
+ .editorial-route{gap:7px}
+ .editorial-node b{font-size:11px}
+}
+
 
 .detail{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.997);transition:opacity .2s ease,transform .28s cubic-bezier(.16,1,.3,1),visibility 0s linear .28s}
 .detail.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
@@ -210,7 +249,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.2",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.3",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -354,6 +393,7 @@ function factRows(items=[]){return items.map(([a,b])=>`<div class="fact"><small>
 function pageHead(kicker,title,deck,facts=[]){const key=facts.slice(0,2),rest=facts.slice(2);return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${key.length?`<div class="facts">${factRows(key)}</div>`:""}${rest.length?`<details class="facts-more"><summary>快速資料</summary><div class="facts">${factRows(rest)}</div></details>`:""}`}
 function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" loading="lazy" decoding="async" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
 function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
+function editorialRoute(items){return `<div class="editorial-route" aria-label="路線節點">${items.map((x,i)=>`<div class="editorial-node"><span>${x[0]}</span><b>${x[1]}</b></div>`).join("")}</div>`}
 function lead(title,sub,badge=""){return `<div class="lead-action"><div><strong>${title}</strong>${sub?`<p>${sub}</p>`:""}</div>${badge?`<div class="badge">${badge}</div>`:""}</div>`}
 function rules(rows){return `<div class="rule-list">${rows.map(r=>`<div class="rule"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}</div>`}
 function branches(items){return `<div class="branch-grid">${items.map(x=>`<div class="branch ${x[2]||''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`}
@@ -431,6 +471,11 @@ ${block("排隊",branches([
 ${nextHop("泰康食品","外白渡橋","泰康食品 南京東路766號","外白渡橋 上海")}`,
 
 bund:()=>`${pageHead("第1日 · 16:10–18:15","外白渡橋 → 外灘","16:10由外白渡橋開始，一路向南；17:05後留喺江邊拍藍調時段，18:15／18:30去金陵東路渡口。",[["開始","16:10 · 外白渡橋"],["離開","18:15／18:30"],["日落","約17:06"],["藍調","17:05–18:00"]])}
+${editorialRoute([
+ ["16:10","外白渡橋"],
+ ["17:05","外灘主平台"],
+ ["18:15","金陵東路渡口"]
+])}
 ${block("想影到",例圖Gallery([
  [IMG.waibaidu,"外白渡橋日間結構","35–50mm","先用橋體做幾何；遠景好先帶浦東。",[],"https://commons.wikimedia.org/wiki/File:Waibaidu_Bridge_Shanghai.jpg",""],
  [IMG.bundNight48,"外灘主平台亮燈","35–50mm","主力畫面：建築比例夠大，亦較容易避開人頭、欄杆同過多黑水。",[],"https://commons.wikimedia.org/wiki/File:Shanghai_-_Bund_at_Night.jpg",""],
@@ -760,7 +805,19 @@ function init(){
   <header class="topbar"><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button><div class="topbar-title" id="pageTitle">MWY2026 · 上海三日行程書</div><span class="top-spacer" aria-hidden="true"></span></header>
   <main class="main">
    <section id="tripView">
-    <div class="cover"><div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1></div></div>
+    <div class="cover">
+     <div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1></div>
+     <div class="cover-bottom">
+      <div class="route-signature" aria-hidden="true">
+       <svg viewBox="0 0 520 120" role="presentation" focusable="false">
+        <path class="route-ghost" d="M8 92C72 96 84 34 150 39S222 108 284 76 348 20 405 35 448 102 512 70"/>
+        <path class="route-signal" d="M8 92C72 96 84 34 150 39S222 108 284 76 348 20 405 35 448 102 512 70"/>
+        <circle cx="8" cy="92" r="5"/><circle cx="284" cy="76" r="5"/><circle cx="512" cy="70" r="5"/>
+       </svg>
+      </div>
+      <div class="cover-index"><span>3日</span><span>21站</span><span>上海</span></div>
+     </div>
+    </div>
     <div class="section"><div class="section-title"><h2>三日行程</h2><p>10/31—11/2</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
    </section>
    <section id="dayView" class="hidden"><div class="dayhead"><div><h2 id="dayTitle"></h2><p id="daySub"></p></div><div class="day-date" id="dayDate"></div></div><div id="liveStrip"></div><div class="seg">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">第${d}日</button>`).join('')}</div><div class="viewseg"><button id="tBtn" onclick="setMode('timeline')">時間線</button><button id="mBtn" onclick="setMode('map')">地圖</button></div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section>
@@ -780,7 +837,7 @@ function init(){
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLiveStrip()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&detailOpen)closeDetail()});
 }
-function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
+function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-index" aria-hidden="true">0${d}</span><span class="day-arrow">›</span><div class="day-copy"><small>第${d}日 · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
 function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
 function shanghaiClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return{date:`${parts.year}-${parts.month}-${parts.day}`,minutes:+parts.hour*60+(+parts.minute)}}
 function todayTripDay(){return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[shanghaiClock().date]||0}
@@ -796,7 +853,7 @@ function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidde
 function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();resetMainScroll();if(push)history.pushState({v:'day',d,mode},'',`#day-${d}`)}
 function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
 function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
-function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>{const active=+b.dataset.d===currentDay;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const timelineActive=mode==='timeline';$('#tBtn').classList.toggle('active',timelineActive);$('#mBtn').classList.toggle('active',!timelineActive);$('#tBtn').setAttribute('aria-pressed',String(timelineActive));$('#mBtn').setAttribute('aria-pressed',String(!timelineActive));$('#timelinePane').classList.toggle('hidden',!timelineActive);$('#mapPane').classList.toggle('hidden',timelineActive);if(timelineActive)renderTimeline();else{renderMap();setTimeout(initMap,30)}}
+function renderDay(){const day=DAYS[currentDay];$('#dayView').dataset.day=String(currentDay);$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>{const active=+b.dataset.d===currentDay;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const timelineActive=mode==='timeline';$('#tBtn').classList.toggle('active',timelineActive);$('#mBtn').classList.toggle('active',!timelineActive);$('#tBtn').setAttribute('aria-pressed',String(timelineActive));$('#mBtn').setAttribute('aria-pressed',String(!timelineActive));$('#timelinePane').classList.toggle('hidden',!timelineActive);$('#mapPane').classList.toggle('hidden',timelineActive);if(timelineActive)renderTimeline();else{renderMap();setTimeout(initMap,30)}}
 function renderTimeline(){const items=DAYS[currentDay].items,live=todayTripDay()===currentDay,now=shanghaiClock().minutes;let currentIdx=-1;if(live){for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)currentIdx=i}$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>{const state=!live?"":i<currentIdx?"is-past":i===currentIdx?"is-now":i===currentIdx+1?"is-next":"";return `${i?`<div class="route-link ${live&&i<=currentIdx?"is-past":""}">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'} ${state}"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" ${state==="is-now"?'aria-current="step"':''} onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`}).join('')}</div>`}
 
 function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
@@ -828,7 +885,7 @@ function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以�
 </div></div>`}
 
 async function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;const libReady=await ensureMapLibre();if(!libReady||!el?.isConnected){if(el)el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
-function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');document.body.classList.add('detail-active');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
+function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#detail').dataset.detail=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');document.body.classList.add('detail-active');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
 function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');$('#detail').setAttribute('aria-hidden','true');document.body.classList.remove('detail-active');detailOpen=false;if(history.state?.v==='detail')history.back()}
 let toastTimer=null;
 function showToast(message){const el=$('#toast');if(!el)return;el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1300)}
