@@ -134,6 +134,16 @@ body{letter-spacing:-.005em}
 @media(max-width:560px){.main{padding-left:14px;padding-right:14px}.article{padding-left:14px;padding-right:14px}.live-strip{grid-template-columns:1fr 1fr}.stop{grid-template-columns:50px 28px minmax(0,1fr)}.timeline:before{left:63px}.route-link{margin-left:76px}.stop.major .stop-card{padding-left:12px;padding-right:12px}.facts{grid-template-columns:1fr 1fr}}
 
 .food-feature{margin-top:26px}.food-feature img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block;background:#e7e9e7}.food-feature-copy{padding:12px 0 0}.food-feature-copy strong{display:block;font-size:23px;line-height:1.05;letter-spacing:-.035em}.food-feature-copy p{font-size:12px;line-height:1.55;color:var(--muted);margin:7px 0 0;max-width:46ch}
+.food-visual-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:28px}
+.food-visual{margin:0;min-width:0}
+.food-visual img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:#e7e9e7}
+.food-visual.missing{display:none}
+.food-visual figcaption{padding-top:10px}
+.food-visual strong{display:block;font-size:17px;line-height:1.25;letter-spacing:-.02em}
+.food-visual p{font-size:12px;line-height:1.5;color:var(--muted);margin:5px 0 0;max-width:44ch}
+.visual-source{display:inline-block;margin-top:7px;font-size:11px;font-weight:760;color:var(--accent-ink);text-decoration:none;border-bottom:1px solid rgba(8,115,108,.22)}
+@media(min-width:620px){.food-visual-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.food-visual img{aspect-ratio:1/1}}
+
 .food-list{border-top:1px solid var(--line)}.food-row{padding:15px 0;border-bottom:1px solid var(--line)}.food-row b{display:block;font-size:15px;line-height:1.35;margin-bottom:4px}.food-row p{font-size:12px;line-height:1.5;color:var(--muted);margin:0}
 .eat-steps{counter-reset:eat;border-top:1px solid var(--line)}.eat-step{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.eat-step:before{counter-increment:eat;content:counter(eat);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#17201f;color:#fff;font-size:10px;font-weight:800}.eat-step b{display:block;font-size:13px;margin-bottom:3px}.eat-step p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
 .next-hop.compact{margin-top:36px}.next-hop.compact p{font-size:10px;color:#b7c3c0;margin:5px 0 0}.next-hop.compact .next-actions{grid-template-columns:1fr;margin-top:12px}.sticky-actions{display:none!important}
@@ -249,7 +259,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.5",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.6",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -271,6 +281,12 @@ const IMG={
   xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
   zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
   qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
+  lailaiStore:"https://www.woshiji.cn/uploadfile/2024/0308/20240308023754488.jpg",
+  lailaiFood:"https://www.woshiji.cn/uploadfile/2024/0308/20240308023754378.jpg",
+  zhangFood:"https://www.lemon8-app.com/seo/image?index=2&item_id=7413743356045459969&sign=5d985b79c9546cbeb8d05215512115d2",
+  xiaoyangBrandFood:"https://www.walkerland.com.tw/image/1200/0/article/2024/12/m37560/8814e41de660fa30d70774c990f793146ecf2953.jpg",
+  dongtaiStore:"https://rachelgouk.com/wp-content/uploads/2023/05/dong-tai-xiang-chinese-food-shanghai-1-768x512.jpg",
+  dongtaiFood:"https://n.sinaimg.cn/sinakd20240423s/290/w1080h810/20240423/7419-bc70bfd19f645e1eed7c94be2da7b64d.jpg",
   xiaolongbaoRef:"https://images.pexels.com/photos/6752827/pexels-photo-6752827.jpeg?auto=compress&dpr=1&h=750&w=1260",
   xiaolongGuide:"assets/xiaolongbao_steps_guide.jpg",
   bundRouteGuide:"assets/bund_shooting_route_guide.jpg",
@@ -412,7 +428,8 @@ function findItemPosition(id){for(const [d,day] of Object.entries(DAYS)){const i
 function detailPagerHTML(id){const p=findItemPosition(id);if(!p)return"";const prev=p.items[p.index-1]||null,next=p.items[p.index+1]||null;return `<div class="detail-pager">${prev?`<button class="pager-prev" aria-label="上一站：${prev.title}" onclick="openAdjacentDetail(-1)"><b>← ${prev.title}</b></button>`:`<span></span>`}${next?`<button class="pager-next" aria-label="下一站：${next.title}" onclick="openAdjacentDetail(1)"><b>${next.title} →</b></button>`:`<div class="pager-end"><b>最後一站</b></div>`}</div>`}
 function openAdjacentDetail(delta){const p=findItemPosition(detailCurrentId);if(!p)return;const target=p.items[p.index+delta];if(!target)return;openDetail(target.id,false);history.replaceState({v:'detail',id:target.id},'',`#detail-${target.id}`)}
 function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return useful.length?`<div class="meal-extras">${useful.map(r=>`<div class="meal-extra"><b>${r[0]} · ${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`:""}
-function foodFeature(img,kicker,title,note){return `<div class="food-feature">${img?`<img src="${img}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><strong>${title}</strong><p>${note}</p></div></div>`}
+function foodFeature(img,kicker,title,note,source=""){return `<div class="food-feature">${img?`<img src="${img}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><strong>${title}</strong><p>${note}</p>${source?`<a class="visual-source" href="${source}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</div></div>`}
+function foodVisuals(items){return `<div class="food-visual-grid">${items.map(x=>`<figure class="food-visual"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.closest('.food-visual').classList.add('missing');this.remove()"><figcaption><strong>${x[1]}</strong><p>${x[2]}</p>${x[3]?`<a class="visual-source" href="${x[3]}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
 function foodList(rows){return `<div class="food-list">${rows.map(r=>`<div class="food-row"><b>${r[0]} · ${r[1]}</b><p>${r[2]}</p></div>`).join("")}</div>`}
 function eatSteps(rows){return `<div class="eat-steps">${rows.map(r=>`<div class="eat-step"><div><b>${r[0]}</b><p>${r[1]}</p></div></div>`).join("")}</div>`}
 function guideAsset(src,alt){return `<div class="guide-asset"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"></div>`}
@@ -445,7 +462,10 @@ ${block("如果落地段慢咗",branches([
 ${nextHop("住宿","萊萊小籠","如家商旅酒店（上海火車站南廣場店）","萊萊小籠 天津路506號")}`,
 
 lailai:()=>`${pageHead("第1日 · 15:05–15:35","萊萊小籠","今次避開蟹粉主線，食松茸鮮肉或者純鮮肉小籠；15:35前完成。",[["地址","天津路506號"],["時段","15:05–15:35"],["營業","08:00–14:00 / 15:00–20:00"]])}
-${foodFeature(IMG.xiaolongbaoRef,"小籠外觀參考","松茸鮮肉／純鮮肉小籠","小籠重點係薄皮包住肉餡同熱湯汁。想直接比較皮、肉、湯就揀純鮮肉；想多一層香氣就揀松茸鮮肉。上圖只作小籠外觀參考，唔係萊萊店內實拍。")}
+${foodVisuals([
+ [IMG.lailaiStore,"到店認位","天津路506號門面；黃色「萊萊小籠」招牌就係認位重點。","https://www.woshiji.cn/show-20-1432-1.html"],
+ [IMG.lailaiFood,"店內小籠實拍","同店實拍可直接睇到蒸籠、小籠大小同皮餡比例；今次仍然只點松茸鮮肉／純鮮肉。","https://www.woshiji.cn/show-20-1432-1.html"]
+])}
 ${block("點咩",foodList([
  ["主食","一籠小籠","松茸鮮肉／純鮮肉二選一；唔為招牌硬食蟹。"],
  ["有胃先加","雞鴨血湯","只加一碗湯，唔再開第二款主食。"]
@@ -559,7 +579,10 @@ ${block("去東泰祥",route([
 ${nextHop("THE GUNDAM BASE","東泰祥","THE GUNDAM BASE SHANGHAI 新金橋路738號 LaLaport 4F 429–430","東泰祥生煎館 重慶北路188號")}${sticky("THE GUNDAM BASE SHANGHAI","新金橋路738號 LaLaport 4F 429–430")}`,
 
 dongtaixiang:()=>`${pageHead("第1日 · 約22:20後","東泰祥","東泰祥24小時，LaLaport離開後可以正常搭9號線返市中心，唔使為晚餐趕；到店再食特色生煎＋咖喱牛肉湯。",[["地址","重慶北路188號"],["到店","正常約22:20–22:40"],["營業","24小時"],["主食","特色生煎"]])}
-${foodFeature(IMG.shengjianRef,"東泰祥代表","特色生煎","東泰祥以半發酵生煎技藝出名；重點係煎香底部、麵皮同肉餡湯汁一齊食。")}
+${foodVisuals([
+ [IMG.dongtaiStore,"到店認位","重慶北路188號旗艦店門面；拱形招牌同藍色188號門牌係最直接認位。","https://rachelgouk.com/where-to-eat-guotie-shengjian-bao-in-shanghai/"],
+ [IMG.dongtaiFood,"特色生煎實拍","東泰祥特色生煎實拍；可見半發酵皮、芝麻葱花同煎底。","https://city.sina.cn/finance/2024-04-23/detail-inasuzcy8986078.d.html"]
+])}
 ${block("點咩",foodList([
  ["主食","特色生煎","先食本店核心；一兩就已經足夠做晚餐主角。"],
  ["配搭","咖喱牛肉湯","生煎嘅經典配搭，用湯去平衡煎包嘅油香。"],
@@ -573,7 +596,10 @@ ${block("點食",eatSteps([
 ${nextHop("東泰祥","住宿","東泰祥生煎館 重慶北路188號","如家商旅酒店（上海火車站南廣場店）")}`,
 
 zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","主線係鹹豆漿＋粢飯團；兩樣已經覆蓋上海傳統早餐最有特色嗰部分，10:00前去場館。",[["地址","石門二路487號"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
-${foodFeature(IMG.shanghaiBreakfastRef,"上海傳統早餐","鹹豆漿＋粢飯團","粢飯團係糯米包油條等餡料；鹹豆漿會加油條碎、紫菜、蝦皮、葱等，唔係普通一杯豆漿。上圖係上海傳統早餐參考，唔係張師傅店內實拍。")}
+${foodVisuals([
+ [IMG.zhangStore,"到店認位","石門二路487號係居民區小店；啡紅色「張師傅早餐店」招牌最易認。","https://map.baidu.com/place/e0c22309dbc684e616948e2c"],
+ [IMG.zhangFood,"店內早餐實拍","張師傅店內／食物實拍，可見粢飯、鹹豆漿、大餅油條等；今次主線只鎖鹹豆漿＋粢飯團。","https://www.lemon8-app.com/@ct.jw_/7413743356045459969?region=sg"]
+])}
 ${block("兩樣主角",foodList([
  ["鹹豆漿","鹹香、有配料嘅豆漿","本身已經係一道早餐；唔當飲品附屬品。"],
  ["粢飯團","糯米＋油條做核心","軟糯外層配脆油條，夠飽而且方便快食。"],
@@ -600,8 +626,11 @@ ${block("時間",branches([
 ]))}
 ${nextHop("琪琪麵館","上海靜安體育中心","琪琪麵館 北寶興路296–298號","上海靜安體育中心 汶水路116號")}`,
 
-xiaoyang:()=>`${pageHead("第2日 · 16:45–17:15","小楊生煎","演唱會前食最小份招牌生煎；17:15左右完成，18:00前返場館。",[["地址","江場路1212號協信廣場B1"],["時段","16:45–17:15"],["返場館","18:00前"]])}
-${foodFeature(IMG.xiaoyangFood,"Day 2 生煎","小楊招牌生煎","小楊係較薄皮、湯汁感強嘅現代生煎路線；同 Day 1 東泰祥半發酵做法正好係另一種口感。")}
+xiaoyang:()=>`${pageHead("第2日 · 16:45–17:15","小楊生煎","演唱會前食最小份招牌生煎；17:15左右完成，18:00前返場館。",[["地址","江場路1212號協信廣場北區B1"],["時段","16:45–17:15"],["返場館","18:00前"]])}
+${foodVisuals([
+ [IMG.xiaoyang,"認粉紅招牌","呢張係小楊其他分店門面，只用嚟認品牌招牌；今次實際目的地係協信星光廣場北區B1。","https://www.1px.tw/blog/post/9577236272"],
+ [IMG.xiaoyangBrandFood,"招牌生煎外觀","小楊品牌生煎實物參考；唔當成協信店當日實拍。重點係薄皮、湯汁同焦底。","https://www.walkerland.com.tw/article/view/402925"]
+])}
 ${block("點咩",foodList([
  ["主食","最小份招牌生煎","演唱會前只食一份，唔試一堆限定口味。"],
  ["仍然餓","老鴨粉絲湯／百葉包粉絲湯","二選一；唔再加麵。"]
