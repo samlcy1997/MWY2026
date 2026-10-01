@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.7 scope
+## Current RC5.8 scope
+
+- Microcopy hierarchy cleanup: fewer tiny meta labels, larger section headings, food categories folded into readable lines, and simpler next/previous navigation
 
 - Two restrained GPT Images guide assets are stored in-repo: xiaolongbao eating steps and the Bund north-to-south shooting sequence
 - Photography pages still keep real reference photos and real map geometry; the generated Bund guide replaces only the verbose route text
