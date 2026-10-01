@@ -197,6 +197,44 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .editorial-node:nth-child(2):before{border-color:var(--accent);background:var(--accent)}
 .editorial-node span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:760;color:var(--accent-ink);font-variant-numeric:tabular-nums}
 .editorial-node b{display:block;margin-top:4px;font-size:12px;line-height:1.35;letter-spacing:-.01em}
+.transport-diagram{position:relative;margin:28px 0 8px;padding:2px 0 0}
+.transport-stop{position:relative;display:grid;grid-template-columns:38px 1fr;gap:12px;min-height:74px}
+.transport-stop:not(:last-of-type):before{content:"";position:absolute;left:18px;top:30px;bottom:-2px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(17,167,157,.16))}
+.transport-node{position:relative;z-index:1;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid rgba(17,167,157,.42);box-shadow:0 0 0 5px var(--bg)}
+.transport-node span{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:800;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.transport-copy{padding:0 0 17px}
+.transport-copy b{display:block;font-size:16px;line-height:1.18;letter-spacing:-.02em}
+.transport-copy p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.transport-copy em{display:inline-block;margin-top:7px;padding:5px 7px;border:1px solid var(--line);border-radius:999px;font-style:normal;font-size:10px;font-weight:760;color:#53615f;background:var(--paper)}
+.transport-fallback{margin:4px 0 0 50px;padding:12px 0 0;border-top:1px solid var(--line)}
+.transport-fallback strong{display:block;font-size:13px;color:#875f23}
+.transport-fallback p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.decision-diagram{margin:28px 0 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.decision-head{padding:14px 0 13px}
+.decision-head span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.05em;color:var(--accent-ink)}
+.decision-head strong{display:block;margin-top:4px;font-size:19px;letter-spacing:-.025em}
+.decision-grid{display:grid;grid-template-columns:1fr;gap:0}
+.decision-path{padding:14px 0;border-top:1px solid var(--line)}
+.decision-path b{display:block;font-size:14px}
+.decision-path p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.decision-path.hot b{color:var(--accent-ink)}
+.decision-path.warn b{color:#875f23}
+.venue-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:20px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.venue-zone{background:var(--bg);padding:15px 12px}
+.venue-zone span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;color:var(--accent-ink)}
+.venue-zone b{display:block;margin-top:4px;font-size:15px;letter-spacing:-.02em}
+.venue-zone p{font-size:12px;line-height:1.45;color:var(--muted);margin:5px 0 0}
+@media(min-width:720px){
+ .transport-diagram{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:4px}
+ .transport-stop{display:block;min-height:132px;padding-right:18px}
+ .transport-stop:not(:last-of-type):before{left:38px;right:0;top:19px;bottom:auto;width:auto;height:1px;background:linear-gradient(to right,var(--accent),rgba(17,167,157,.16))}
+ .transport-copy{padding-top:12px}
+ .transport-fallback{grid-column:2 / span 2;margin:0;padding:12px 0 0;border-top:1px solid var(--line)}
+ .decision-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .decision-path{padding:15px 16px 15px 0}
+ .decision-path+ .decision-path{padding-left:16px;border-left:1px solid var(--line)}
+}
+
 .detail[data-detail="bund"] .article h1{max-width:10ch}
 .detail[data-detail="bund"] .page-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
 .detail[data-detail="bund"] .ref-card img{box-shadow:0 0 0 1px rgba(24,32,31,.05)}
@@ -259,7 +297,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.7",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.8",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -412,6 +450,9 @@ function pageHead(kicker,title,deck,facts=[]){const key=facts.slice(0,2),rest=fa
 function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" loading="lazy" decoding="async" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
 function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
 function editorialRoute(items){return `<div class="editorial-route" aria-label="路線節點">${items.map((x,i)=>`<div class="editorial-node"><span>${x[0]}</span><b>${x[1]}</b></div>`).join("")}</div>`}
+function transportDiagram(items,fallback=null){return `<div class="transport-diagram" role="img" aria-label="${items.map(x=>x[0]).join("，再到")}">${items.map((x,i)=>`<div class="transport-stop"><div class="transport-node"><span>${x[1]||String(i+1).padStart(2,"0")}</span></div><div class="transport-copy"><b>${x[0]}</b>${x[2]?`<p>${x[2]}</p>`:""}${i<items.length-1&&x[3]?`<em>${x[3]}</em>`:""}</div></div>`).join("")}${fallback?`<div class="transport-fallback"><strong>${fallback[0]}</strong><p>${fallback[1]}</p></div>`:""}</div>`}
+function decisionDiagram(title,items){return `<div class="decision-diagram"><div class="decision-head"><span>CHECKPOINT</span><strong>${title}</strong></div><div class="decision-grid">${items.map(x=>`<div class="decision-path ${x[2]||""}"><b>${x[0]}</b><p>${x[1]}</p></div>`).join("")}</div></div>`}
+
 function lead(title,sub,badge=""){return `<div class="lead-action"><div><strong>${title}</strong>${sub?`<p>${sub}</p>`:""}</div>${badge?`<div class="badge">${badge}</div>`:""}</div>`}
 function rules(rows){return `<div class="rule-list">${rows.map(r=>`<div class="rule"><b>${r[0]}</b><span>${r[1]}</span></div>`).join("")}</div>`}
 function branches(items){return `<div class="branch-grid">${items.map(x=>`<div class="branch ${x[2]||''}"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("")}</div>`}
@@ -448,6 +489,13 @@ function shotWeatherCommon(){return `<details class="secondary-disclosure"><summ
 const P={
 arrival:()=>`${pageHead("第1日 · 12:30","抵達上海","落地後先搭磁浮離開機場，再轉地鐵去上海站區放行李；前段慢就砍食物，唔侵蝕外灘光線。",[["抵達","12:30 · PVG T2"],["住宿基準","14:15–14:45"],["外灘目標","16:10前"]])}
 ${lead("先搭磁浮","PVG → 龍陽路約8分鐘；之後2號線→人民廣場→1號線→上海火車站。","約53–58分鐘純乘車")}
+${transportDiagram([
+ ["PVG T2","01","入境、取行李後去浦東1號2號航站樓站。","磁浮 · 約8分鐘"],
+ ["龍陽路","02","落磁浮後轉2號線。","2號線"],
+ ["人民廣場","03","轉1號線，方向去上海火車站。","1號線"],
+ ["上海火車站／住宿","04","出站去住宿放行李；完成後先開始食物段。",""]
+],["行李／天氣 fallback","去到龍陽路如果太攰、落雨或者拖行李麻煩，就唔轉兩次線，直接高德／Didi去住宿。"])}
+
 ${copyPlaces([["住宿","如家商旅酒店（上海火車站南廣場店）"]])}
 ${block("落地後照住做",route([
  ["入境後","浦東1號2號航站樓站","搭磁浮去龍陽路；普通票現行¥50，同日機票8折約¥40。"],
@@ -782,6 +830,11 @@ function towerPage(){
 
 function mwyMarketPage(){
  return `${pageHead("第2日 · 10:00","MWY 場販／展示","早上只處理場販同展示：先小羽館買官方周邊，再去大羽館睇展示／CALL棒；午餐按現場進度決定。",[["開放","10:00–22:00"],["小羽館","主要官方場販"],["大羽館","展示＋CALL棒"]])}
+ ${media(IMG.mwyHall,"上海靜安體育中心場館環境參考；實際2026入口與分流以當日主辦指示為準。")}
+ <div class="venue-split" aria-label="場館功能分工">
+  <div class="venue-zone"><span>01 · 先去</span><b>小羽毛球館</b><p>主要官方場販。先處理真係想買嘅周邊。</p></div>
+  <div class="venue-zone"><span>02 · 再去</span><b>大羽毛球館</b><p>展示為主；CALL棒可喺呢邊單買。</p></div>
+ </div>
  ${block("到場順序",route([
   ["10:00","小羽毛球館","先處理真係想買嘅官方周邊；唔為逐款慢慢睇拖午餐。"],
   ["之後","大羽毛球館","展示為主；CALL棒可在呢邊單買。"],
@@ -792,6 +845,10 @@ function mwyMarketPage(){
 }
 function mwyAfternoonPage(){
  return `${pageHead("第2日 · 13:15–16:45","返場館／展示","午餐後返場館繼續展示／場販；15:45左右做相機 checkpoint，呢個時間先決定要唔要返住宿寄存。",[["返場館","約13:15"],["checkpoint","約15:45"],["夜場","19:00 · VIP"]])}
+ ${decisionDiagram("15:45 · 相機／bag 規則",[
+  ["可以帶","唔返住宿；相機繼續跟身，照原線去小楊，再18:00前返場館。","hot"],
+  ["唔可以帶","立即啟動住宿寄存分支；道路順叫車，塞車就1號線。小楊變成可砍項。","warn"]
+ ])}
  ${block("下午主線",route([
   ["13:15後","返上海靜安體育中心","繼續展示／場販；唔再開新跨區行程。"],
   ["≈15:45","睇最新觀演須知","相機／bag規則已公布就即刻按結果走分支。"],
