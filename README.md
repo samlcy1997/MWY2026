@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.6 scope
+## Current RC6.7 scope
+
+- Food visual rollout completed for the remaining main stops: 泰康、琪琪、王記、海金滋 now use storefront + dish pairing with source links, preserving the same recognition→order→special-instruction structure
 
 - Food-page visual grammar: main restaurant pages now pair storefront recognition with food imagery; exact-store imagery is used where verified, non-exact brand references are explicitly labeled, and special instructional visuals remain optional
 
