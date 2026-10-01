@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.9 scope
+## Current RC5.10 scope
+
+- Final operational gaps: official 新六百YOUNG address, live PVG transport decision rule, and explicit labeling for generic food reference photos
 
 - Operational-data compile: arrival transport, ferry fallback, split MWY morning/night contexts, post-show branches, executable Day 3 backups and the PVG food point are surfaced from the latest research notes
 
