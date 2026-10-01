@@ -2,10 +2,10 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.6 scope
+## Current RC5.7 scope
 
-- Xiaolongbao eating steps use a native 2×2 vector UI for stable mobile rendering; no raster/base64 diagram asset
-- Photography pages keep real reference photos and real map geometry
+- Two restrained GPT Images guide assets are stored in-repo: xiaolongbao eating steps and the Bund north-to-south shooting sequence
+- Photography pages still keep real reference photos and real map geometry; the generated Bund guide replaces only the verbose route text
 
 - Event-specific detail layouts instead of one generic content skeleton
 - Food pages focus on dish visuals, what to order, relevant eating context, and only meaningful exceptions

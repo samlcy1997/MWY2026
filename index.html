@@ -136,7 +136,7 @@ body{letter-spacing:-.005em}
 .eat-steps{counter-reset:eat;border-top:1px solid var(--line)}.eat-step{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.eat-step:before{counter-increment:eat;content:counter(eat);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#17201f;color:#fff;font-size:10px;font-weight:800}.eat-step b{display:block;font-size:13px;margin-bottom:3px}.eat-step p{font-size:11px;line-height:1.5;color:var(--muted);margin:0}
 .next-hop.compact{margin-top:36px}.next-hop.compact p{font-size:10px;color:#b7c3c0;margin:5px 0 0}.next-hop.compact .next-actions{grid-template-columns:1fr;margin-top:12px}.sticky-actions{display:none!important}
 .detail-pager{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 84px;padding-top:18px;border-top:1px solid var(--line)}.detail-pager button,.pager-end{min-height:64px;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:11px 12px;text-align:left}.pager-next{text-align:right!important}.detail-pager small{display:block;font-size:8px;letter-spacing:.06em;color:#7b8582;margin-bottom:4px}.detail-pager b{font-size:12px;line-height:1.3}.pager-next{border-color:#bdddd8!important;background:#edf7f5!important}.pager-end{display:flex;flex-direction:column;justify-content:center}
-.eat-visual{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}.eat-visual-step{min-height:128px;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px;display:flex;flex-direction:column;justify-content:space-between}.eat-visual-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.eat-visual-num{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:11px;font-weight:850}.eat-visual-step svg{width:72px;height:54px;display:block;margin:8px auto 6px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.eat-visual-step svg .accent-fill{fill:rgba(17,167,157,.12);stroke:var(--accent)}.eat-visual-step svg .accent-stroke{stroke:var(--accent)}.eat-visual-step b{display:block;font-size:12px;line-height:1.25}.eat-visual-step p{margin:3px 0 0;font-size:9px;line-height:1.4;color:var(--muted)}.eat-visual-note{grid-column:1/-1;margin:2px 0 0;font-size:10px;line-height:1.5;color:var(--muted)}@media(max-width:360px){.eat-visual-step{min-height:122px;padding:10px}.eat-visual-step svg{width:64px;height:48px}}
+.guide-asset{margin-top:4px}.guide-asset img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--paper)}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.detail{transition:none}.viewstage img{transition:none}}
 </style>
 </head>
@@ -144,7 +144,7 @@ body{letter-spacing:-.005em}
 <div id="app"></div>
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.6",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC5.7",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -167,6 +167,8 @@ const IMG={
   zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
   qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
   xiaolongbaoRef:"https://images.pexels.com/photos/6752827/pexels-photo-6752827.jpeg?auto=compress&dpr=1&h=750&w=1260",
+  xiaolongGuide:"assets/xiaolongbao_steps_guide.jpg",
+  bundRouteGuide:"assets/bund_shooting_route_guide.jpg",
   shengjianRef:"https://english.shanghai.gov.cn/cmsres/7a/7af47e98a7df434d8dab44b36f87a0ef/77565a16a875edf1379a7e2f36a5d1cb.gif",
   shanghaiBreakfastRef:"https://english.shanghai.gov.cn/cmsres/24/24e4b3dffb8f45b18b5ba8948a9efbfb/1be6c7304fa48221dd54f0b62b448103.jpg",
   xiaoyang:"https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
@@ -288,13 +290,7 @@ function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return us
 function foodFeature(img,kicker,title,note){return `<div class="food-feature">${img?`<img src="${img}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><small>${kicker}</small><strong>${title}</strong><p>${note}</p></div></div>`}
 function foodList(rows){return `<div class="food-list">${rows.map(r=>`<div class="food-row"><small>${r[0]}</small><div><b>${r[1]}</b><p>${r[2]}</p></div></div>`).join("")}</div>`}
 function eatSteps(rows){return `<div class="eat-steps">${rows.map(r=>`<div class="eat-step"><div><b>${r[0]}</b><p>${r[1]}</p></div></div>`).join("")}</div>`}
-function xiaolongEatingDiagram(){return `<div class="eat-visual" aria-label="小籠食法四步">
-  <div class="eat-visual-step"><div class="eat-visual-head"><span class="eat-visual-num">1</span><b>放匙羹</b></div><svg viewBox="0 0 88 64" aria-hidden="true"><path d="M13 47c15 2 29 1 42-5"/><path d="M54 42c9-4 16-11 20-20"/><path d="M17 46c0-12 9-22 21-22s21 10 21 22"/><path d="M24 30c4-5 9-8 14-8s11 3 15 8"/><path class="accent-stroke" d="M29 25l-3-7m12 5v-8m11 10l4-7"/></svg><p>夾住褶頂，輕放匙羹。</p></div>
-  <div class="eat-visual-step"><div class="eat-visual-head"><span class="eat-visual-num">2</span><b>開小口</b></div><svg viewBox="0 0 88 64" aria-hidden="true"><path d="M18 48c0-13 10-24 24-24 12 0 22 8 24 19"/><path d="M24 31c5-6 11-9 18-9 6 0 12 2 17 7"/><path class="accent-stroke" d="M56 39c4-3 7-3 10 0"/><path d="M62 16c-3-4 3-6 0-10m-12 12c-3-4 3-6 0-10"/></svg><p>開少少，先散熱。</p></div>
-  <div class="eat-visual-step"><div class="eat-visual-head"><span class="eat-visual-num">3</span><b>先飲湯</b></div><svg viewBox="0 0 88 64" aria-hidden="true"><path d="M12 47c17 2 32 0 46-6"/><path d="M58 41c9-4 15-10 19-19"/><path d="M19 45c0-11 9-20 20-20 10 0 18 6 20 15"/><path class="accent-fill" d="M48 37c0 4-3 7-7 7s-7-3-7-7c0-5 7-11 7-11s7 6 7 11z"/></svg><p>湯汁熱，先小口試。</p></div>
-  <div class="eat-visual-step"><div class="eat-visual-head"><span class="eat-visual-num">4</span><b>再食餡</b></div><svg viewBox="0 0 88 64" aria-hidden="true"><path d="M18 48c0-13 10-24 24-24 10 0 19 6 23 15"/><path d="M24 31c5-6 11-9 18-9 5 0 10 2 15 5"/><path class="accent-stroke" d="M57 40l8-5m-6 11l9 1"/><path d="M29 46c7 4 15 4 23 0"/></svg><p>第一隻先原味。</p></div>
-  <p class="eat-visual-note">之後先按口味加少量黑醋＋薑絲。</p>
-</div>`}
+function guideAsset(src,alt){return `<div class="guide-asset"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"></div>`}
 function 例圖Gallery(items){return `<div class="ref-grid">${items.map((x,i)=>`<figure class="ref-card ${i===0?"featured":""}"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.remove()"><figcaption class="ref-copy"><small>${x[2]}</small><b>${x[1]}</b><p>${x[3]}</p>${x[5]?`<a class="ref-source" href="${x[5]}" target="_blank" rel="noopener noreferrer">原圖 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
 function photographerRefs(items){return `<details class="secondary-disclosure"><summary>更多構圖參考</summary><div class="pro-ref-grid">${items.map(x=>`<a class="pro-ref" href="${x[5]}" target="_blank" rel="noopener noreferrer"><small>${x[0]}</small><strong>${x[1]}</strong><p>${x[3]}</p></a>`).join("")}</div></details>`}
 function photoMap(id){const cfg=PHOTO_MAPS[id];const legend=cfg?`<div class="photo-map-legend">${cfg.points.map(p=>`<span><b>${p.label}</b>${p.name}</span>`).join("")}</div>`:"";return `<div class="photo-map-wrap"><div class="photo-map" id="photoMap-${id}"><div class="photo-map-fallback">載入機位圖…</div></div>${legend}<details class="map-help"><summary>地圖用途</summary><p>只用嚟認街道、地標同機位相對位置；現場導航仍交畀高德。</p></details></div>`}
@@ -323,7 +319,7 @@ ${block("點咩",foodList([
  ["主食","一籠小籠","松茸鮮肉／純鮮肉二選一；唔為招牌硬食蟹。"],
  ["有胃先加","雞鴨血湯","只加一碗湯，唔再開第二款主食。"]
 ]))}
-${block("點食",xiaolongEatingDiagram())}
+${block("點食",guideAsset(IMG.xiaolongGuide,"小籠四步食法：放匙羹、開小口、先飲湯、再食餡"))}
 ${block("只睇一個例外",branches([
  ["15:35前仲未出到餐","縮單或者直接走；唔將延誤帶去外灘。","danger"]
 ]))}
@@ -350,13 +346,7 @@ ${block("想影到",例圖Gallery([
  [IMG.freeBundTele,"浦東地標局部","85–120mm","一個主體＋一個陪體就夠；深藍／亮燈後再收緊。",[],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA",""]
 ]))}
 ${block("機位",photoMap("bund"))}
-${block("由北向南",route([
- ["16:10","外白渡橋／蘇州河口","35–50mm先拍橋體；24–28mm只補環境。"],
- ["16:40","沿外灘向南","邊行邊拍，唔倒頭搵位。"],
- ["17:05–18:00","外灘主平台","35–50mm主力；24mm補完整 skyline，85–120mm抽地標。"],
- ["≈18:00","景觀燈已亮就補一輪","燈未齊唔等；以渡輪時間為準。"],
- ["18:15／18:30","金陵東路渡口","到點過江。"]
-]))}
+${block("拍攝順序",guideAsset(IMG.bundRouteGuide,"外灘由北向南拍攝順序：外白渡橋、外灘主平台、金陵東路渡口"))}
 ${photographerRefs([
  ["外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","橋體同浦東地標點樣分配畫面。",[],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
  ["外灘主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同樓群間距。",[],"https://www.flickr.com/photos/kylehase/45486996424"]
