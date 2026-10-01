@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.5 scope
+## Current RC6.6 scope
+
+- Food-page visual grammar: main restaurant pages now pair storefront recognition with food imagery; exact-store imagery is used where verified, non-exact brand references are explicitly labeled, and special instructional visuals remain optional
 
 - Real-device correction: removed the abstract homepage route graphic and decorative stop count, shortened the masthead, forced the title to remain intact, retained only useful editorial numbering and the Bund time-route strip
 
