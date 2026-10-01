@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.0 scope
+## Current RC6.1 scope
+
+- Accessibility/performance hardening: stronger muted-text contrast, no intentional 8–9px visible labels in the final style layer, bounded lazy-map loading with CDN fallback, and touch feedback cleanup
 
 - Award-craft pass: live timeline state, visible copy feedback, accessible control states, quieter detail motion, larger microcopy, desktop composition refinement, and on-demand map loading
 
