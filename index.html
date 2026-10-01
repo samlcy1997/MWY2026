@@ -181,6 +181,8 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .day-index{position:absolute;z-index:2;left:14px;top:8px;font-size:clamp(44px,14vw,74px);line-height:1;font-weight:820;letter-spacing:-.07em;color:rgba(255,255,255,.16);font-variant-numeric:tabular-nums;pointer-events:none}
 .day-copy small{letter-spacing:.035em;text-transform:none}
 #dayView[data-day="1"] .timeline:before{background:linear-gradient(to bottom,rgba(24,32,31,.12) 0 24%,rgba(17,167,157,.48) 44% 68%,rgba(24,32,31,.26) 88% 100%)}
+#dayView[data-day="1"] .stop-time{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
 #dayView[data-day="1"] .stop.major .stop-card{position:relative;overflow:hidden}
 #dayView[data-day="1"] .stop.major .stop-card:after{content:"";position:absolute;right:-26px;bottom:-30px;width:86px;height:86px;border:1px solid rgba(17,167,157,.12);border-radius:50%;pointer-events:none}
 .editorial-route{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0 4px;padding-top:17px;border-top:1px solid var(--line)}
@@ -249,7 +251,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.3",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.4",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -815,7 +817,7 @@ function init(){
         <circle cx="8" cy="92" r="5"/><circle cx="284" cy="76" r="5"/><circle cx="512" cy="70" r="5"/>
        </svg>
       </div>
-      <div class="cover-index"><span>3日</span><span>21站</span><span>上海</span></div>
+      <div class="cover-index"><span>3日</span><span>${Object.values(DAYS).reduce((n,d)=>n+d.items.length,0)}站</span><span>上海</span></div>
      </div>
     </div>
     <div class="section"><div class="section-title"><h2>三日行程</h2><p>10/31—11/2</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
