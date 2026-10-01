@@ -167,24 +167,19 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .live-jump.next span{color:#5f6b68}
 .caption,.pro-ref-note,.map-help summary,.map-note{color:var(--muted)}
 .next-hop.compact p{color:#c1cbc8}
-.cover{isolation:isolate}
-.cover:before{inset:-12% -8% auto 34%;height:78%;background:radial-gradient(circle at 55% 38%,rgba(17,167,157,.16),rgba(17,167,157,0) 64%);z-index:-1}
-.cover-bottom{position:relative;z-index:1;margin-top:58px}
-.route-signature{width:100%;max-width:560px}
-.route-signature svg{display:block;width:100%;height:auto;overflow:visible}
-.route-signature path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.route-signature .route-ghost{stroke:rgba(255,255,255,.14);stroke-width:2}
-.route-signature .route-signal{stroke:var(--accent);stroke-width:2;stroke-dasharray:1 0}
-.route-signature circle{fill:var(--accent);stroke:#17201f;stroke-width:3}
-.cover-index{display:flex;justify-content:space-between;gap:18px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.14);font-size:11px;font-weight:760;color:#c9d3d0;font-variant-numeric:tabular-nums}
+.cover{min-height:214px;padding:24px 24px 22px;display:flex;align-items:flex-end;border-radius:22px;background:linear-gradient(145deg,#16201f 0%,#172321 62%,#13201e 100%)}
+.cover:before{content:"";position:absolute;inset:-44% -24% auto 46%;height:160%;background:radial-gradient(circle at 50% 50%,rgba(17,167,157,.10),rgba(17,167,157,0) 58%);pointer-events:none}
+.cover-top{width:100%;position:relative;z-index:1}
+.cover h1{font-size:clamp(40px,10.2vw,58px);line-height:.98;letter-spacing:-.055em;max-width:none;white-space:nowrap;margin:12px 0 12px}
+.cover .eyebrow{font-size:11px;letter-spacing:.11em}
+.cover-note{font-size:12px!important;line-height:1.45!important;color:#bfc9c6!important;max-width:none!important;margin:0!important}
+.section{margin-top:32px}
+.section-title{margin-bottom:13px}
+.section-title h2{font-size:21px}
+.stop-time{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .day-card{isolation:isolate}
-.day-index{position:absolute;z-index:2;left:14px;top:8px;font-size:clamp(44px,14vw,74px);line-height:1;font-weight:820;letter-spacing:-.07em;color:rgba(255,255,255,.16);font-variant-numeric:tabular-nums;pointer-events:none}
+.day-index{position:absolute;z-index:2;left:14px;top:10px;font-size:clamp(42px,13vw,62px);line-height:1;font-weight:800;letter-spacing:-.065em;color:rgba(255,255,255,.14);font-variant-numeric:tabular-nums;pointer-events:none}
 .day-copy small{letter-spacing:.035em;text-transform:none}
-#dayView[data-day="1"] .timeline:before{background:linear-gradient(to bottom,rgba(24,32,31,.12) 0 24%,rgba(17,167,157,.48) 44% 68%,rgba(24,32,31,.26) 88% 100%)}
-#dayView[data-day="1"] .stop-time{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-
-#dayView[data-day="1"] .stop.major .stop-card{position:relative;overflow:hidden}
-#dayView[data-day="1"] .stop.major .stop-card:after{content:"";position:absolute;right:-26px;bottom:-30px;width:86px;height:86px;border:1px solid rgba(17,167,157,.12);border-radius:50%;pointer-events:none}
 .editorial-route{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0 4px;padding-top:17px;border-top:1px solid var(--line)}
 .editorial-route:before{content:"";position:absolute;left:5%;right:5%;top:-1px;height:1px;background:linear-gradient(90deg,var(--ink),var(--accent) 48%,var(--ink))}
 .editorial-node{position:relative;min-width:0}
@@ -196,14 +191,10 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .detail[data-detail="bund"] .page-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
 .detail[data-detail="bund"] .ref-card img{box-shadow:0 0 0 1px rgba(24,32,31,.05)}
 @media(min-width:720px){
- .cover-bottom{margin-top:82px}
- .cover-index{max-width:560px}
- .day-index{left:18px;top:12px;font-size:72px}
+ .day-index{left:18px;top:14px;font-size:64px}
  .editorial-route{margin-top:34px}
 }
 @media(max-width:420px){
- .cover-bottom{margin-top:44px}
- .cover-index{font-size:10px}
  .editorial-route{gap:7px}
  .editorial-node b{font-size:11px}
 }
@@ -231,19 +222,26 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
  .main{padding-left:28px;padding-right:28px}
  .section{margin-top:44px}
  .day-grid{gap:1px;background:var(--line);border-top:0}
- .day-card{min-height:248px;border:0}
- .day-copy{min-height:248px;padding:22px}
+ .day-card{min-height:226px;border:0}
+ .day-copy{min-height:226px;padding:22px}
  .day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.86),rgba(9,17,18,.08) 78%)}
  .day-copy b{font-size:27px}
- .cover{min-height:390px;padding:30px}
+ .cover{min-height:250px;padding:30px}
  .article{max-width:860px;padding-left:28px;padding-right:28px;padding-top:34px}
  .article h1{font-size:clamp(50px,6vw,70px)}
  .deck{font-size:16px;max-width:44ch}
  .ref-grid{gap:22px}
 }
 @media(max-width:420px){
+ .main{padding-top:14px}
+ .cover{min-height:196px;padding:22px 20px 20px}
+ .cover h1{font-size:clamp(38px,10.6vw,46px)}
+ .cover-note{font-size:11px!important}
  .article h1{font-size:clamp(34px,11vw,48px)}
+ .day-card,.day-copy{min-height:146px}
+ .day-copy{padding:17px 15px}
  .day-copy b{font-size:23px}
+ .day-index{left:12px;top:9px;font-size:48px}
  .live-strip{grid-template-columns:1fr}
 }
 </style>
@@ -251,7 +249,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.4",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.5",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -808,17 +806,7 @@ function init(){
   <main class="main">
    <section id="tripView">
     <div class="cover">
-     <div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1></div>
-     <div class="cover-bottom">
-      <div class="route-signature" aria-hidden="true">
-       <svg viewBox="0 0 520 120" role="presentation" focusable="false">
-        <path class="route-ghost" d="M8 92C72 96 84 34 150 39S222 108 284 76 348 20 405 35 448 102 512 70"/>
-        <path class="route-signal" d="M8 92C72 96 84 34 150 39S222 108 284 76 348 20 405 35 448 102 512 70"/>
-        <circle cx="8" cy="92" r="5"/><circle cx="284" cy="76" r="5"/><circle cx="512" cy="70" r="5"/>
-       </svg>
-      </div>
-      <div class="cover-index"><span>3日</span><span>${Object.values(DAYS).reduce((n,d)=>n+d.items.length,0)}站</span><span>上海</span></div>
-     </div>
+     <div class="cover-top"><div class="eyebrow">Shanghai · ${SITE.tripLabel}</div><h1>三日行程書</h1><p class="cover-note">外灘夜景 · 未來有你 · 武康／徐家匯</p></div>
     </div>
     <div class="section"><div class="section-title"><h2>三日行程</h2><p>10/31—11/2</p></div><div class="day-grid">${[1,2,3].map(d=>dayCard(d)).join('')}</div></div>
    </section>
