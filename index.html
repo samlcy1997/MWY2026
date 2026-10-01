@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f4f2ed">
+<meta name="theme-color" content="#f7f7f4">
+<meta name="color-scheme" content="light">
+<meta name="description" content="MWY2026 上海三日行程書：現場用時間線、攝影機位、飲食決策與交通分支。">
+<meta name="format-detection" content="telephone=no">
 <title>MWY2026 · 上海三日行程書</title>
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'">
 <style>
 :root{
   --bg:#f4f2ed; --paper:#fffefa; --ink:#142022; --muted:#657170; --line:#d9dfdc;
@@ -137,14 +139,72 @@ body{letter-spacing:-.005em}
 .next-hop.compact{margin-top:36px}.next-hop.compact p{font-size:10px;color:#b7c3c0;margin:5px 0 0}.next-hop.compact .next-actions{grid-template-columns:1fr;margin-top:12px}.sticky-actions{display:none!important}
 .detail-pager{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0 84px;padding-top:18px;border-top:1px solid var(--line)}.detail-pager button,.pager-end{min-height:64px;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:11px 12px;text-align:left}.pager-next{text-align:right!important}.detail-pager b{font-size:13px;line-height:1.35}.pager-next{border-color:#bdddd8!important;background:#edf7f5!important}.pager-end{display:flex;flex-direction:column;justify-content:center}
 .guide-asset{margin-top:4px}.guide-asset img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--paper)}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.detail{transition:none}.viewstage img{transition:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}.detail{transition:none}.viewstage img{transition:none}}
+
+body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
+body.detail-active{overflow:hidden}
+button{touch-action:manipulation;transition:transform .16s ease,background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease}
+.day-card img{transition:transform .5s cubic-bezier(.16,1,.3,1),filter .35s ease}
+.day-arrow{transition:transform .28s cubic-bezier(.16,1,.3,1),background-color .2s ease}
+.day-copy small{font-size:11px}
+.section-title p{font-size:12px}
+.stop-time{font-size:11px}.stop.major .stop-time{font-size:12px}
+.stop-kind{font-size:10px}.route-link{font-size:10px;line-height:1.45}
+.live-jump b{font-size:13px}.live-jump span{font-size:11px;line-height:1.45}
+.page-kicker{font-size:11px;letter-spacing:.055em;color:var(--accent-ink)}
+.fact small{font-size:10px;letter-spacing:.025em}.fact b{font-size:13px}
+.block-title{font-size:15px;letter-spacing:-.012em;color:#58625f}
+.caption,.ref-card p,.pro-ref p,.map-note,.map-help p,.next-hop.compact p{font-size:11px}
+.ref-card small,.ref-source,.pro-ref small,.pro-ref-note,.map-help summary,.map-inspector small,.photo-map-legend span{font-size:10px}
+.secondary-disclosure>summary,.facts-more summary{font-size:11px}
+.branch span,.eat-step p{font-size:12px}
+.status-row .state{font-size:10px}.status-row p{font-size:12px}
+.map-tools button,.map-actions button{font-size:11px}
+.copy-place span,.copy-place em{font-size:12px}
+.detail{opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.997);transition:opacity .2s ease,transform .28s cubic-bezier(.16,1,.3,1),visibility 0s linear .28s}
+.detail.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
+.block{content-visibility:auto;contain-intrinsic-size:1px 240px}
+.stop.is-past .stop-dot{background:#8aa09b}
+.stop.is-past .stop-time{color:#7a8784}
+.stop.is-now .stop-dot{width:13px;height:13px;background:var(--accent);box-shadow:0 0 0 5px var(--bg),0 0 0 8px rgba(17,167,157,.16)}
+.stop.is-now .stop-card{background:var(--paper);border:1px solid rgba(17,167,157,.28)}
+.stop.is-now .stop-card h3{color:var(--ink)}
+.stop.is-next .stop-dot{background:#17201f}
+.route-link.is-past{color:#6f7b78}
+.toast{position:fixed;z-index:140;left:50%;bottom:calc(74px + env(safe-area-inset-bottom));transform:translate(-50%,10px);width:max-content;max-width:calc(100% - 28px);padding:10px 13px;border-radius:999px;background:#17201f;color:#fff;font-size:12px;font-weight:760;line-height:1.3;opacity:0;pointer-events:none;box-shadow:0 10px 30px rgba(20,32,31,.16);transition:opacity .2s ease,transform .25s cubic-bezier(.16,1,.3,1)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(hover:hover) and (pointer:fine){
+ .day-card:hover img{transform:scale(1.035);filter:saturate(1.04)}
+ .day-card:hover .day-arrow{transform:translateX(3px);background:rgba(255,255,255,.22)}
+ .stop-card:hover{background:rgba(255,255,255,.72)}
+ .copy-place:hover{background:rgba(255,255,255,.6)}
+ .nav:hover{color:var(--ink)}
+}
+@media(min-width:720px){
+ .main{padding-left:28px;padding-right:28px}
+ .section{margin-top:44px}
+ .day-grid{gap:1px;background:var(--line);border-top:0}
+ .day-card{min-height:248px;border:0}
+ .day-copy{min-height:248px;padding:22px}
+ .day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.86),rgba(9,17,18,.08) 78%)}
+ .day-copy b{font-size:27px}
+ .cover{min-height:390px;padding:30px}
+ .article{max-width:860px;padding-left:28px;padding-right:28px;padding-top:34px}
+ .article h1{font-size:clamp(50px,6vw,70px)}
+ .deck{font-size:16px;max-width:44ch}
+ .ref-grid{gap:22px}
+}
+@media(max-width:420px){
+ .article h1{font-size:clamp(34px,11vw,48px)}
+ .day-copy b{font-size:23px}
+ .live-strip{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div id="app"></div>
-<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js'"></script>
 <script>
-const SITE={version:"RC5.12",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.0",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -263,6 +323,21 @@ const PHOTO_MAPS={
 
 let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null, detailCurrentId="";
 const OSM_RASTER_STYLE={version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm",type:"raster",source:"osm"}]};
+let maplibrePromise=null;
+function ensureMapLibre(){
+ if(window.maplibregl)return Promise.resolve(true);
+ if(maplibrePromise)return maplibrePromise;
+ maplibrePromise=new Promise(resolve=>{
+  if(!document.getElementById('maplibre-css')){
+   const css=document.createElement('link');css.id='maplibre-css';css.rel='stylesheet';css.href='https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css';css.onerror=()=>{css.onerror=null;css.href='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.css'};document.head.appendChild(css);
+  }
+  const primary=document.createElement('script');primary.src='https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js';primary.async=true;
+  primary.onload=()=>resolve(!!window.maplibregl);
+  primary.onerror=()=>{const fallback=document.createElement('script');fallback.src='https://cdn.jsdelivr.net/npm/maplibre-gl@5/dist/maplibre-gl.js';fallback.async=true;fallback.onload=()=>resolve(!!window.maplibregl);fallback.onerror=()=>resolve(false);document.head.appendChild(fallback)};
+  document.head.appendChild(primary);
+ });
+ return maplibrePromise;
+}
 
 const $=s=>document.querySelector(s);
 
@@ -685,7 +760,7 @@ function init(){
   </main>
   <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">行程</button><button id="navDay" class="nav" onclick="openDay(currentDay)">當日</button><button id="navGuide" class="nav" onclick="showGuide()">指南</button></nav>
  </div>
- <div id="detail" class="detail"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div>`;
+ <div id="detail" class="detail" aria-hidden="true"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div><div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
 
  $('#backBtn').onclick=()=>history.back();
  let swipeX=0,swipeY=0,swipeTarget=null;
@@ -695,6 +770,7 @@ function init(){
  restoreFromHash();
  setInterval(refreshLiveStrip,60000);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLiveStrip()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&detailOpen)closeDetail()});
 }
 function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-arrow">›</span><div class="day-copy"><small>DAY ${d} · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
 function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
@@ -704,7 +780,7 @@ function stopMinutes(t=''){const m=String(t).match(/(\d{1,2}):(\d{2})/);return m
 function liveStripHTML(){if(todayTripDay()!==currentDay)return'';const now=shanghaiClock().minutes,items=DAYS[currentDay].items;let idx=-1;for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)idx=i;const cur=idx>=0?items[idx]:null,nxt=items[idx+1]||null;if(!cur&&nxt)return `<div class="live-strip"><button class="live-jump next" aria-label="下一站：${nxt.title}" onclick="openDetail('${nxt.id}')"><b>下一站 · ${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur&&nxt)return `<div class="live-strip"><button class="live-jump current" aria-label="目前：${cur.title}" onclick="openDetail('${cur.id}')"><b>現在 · ${cur.time} · ${cur.title}</b><span>${cur.sub}</span></button><button class="live-jump next" aria-label="下一站：${nxt.title}" onclick="openDetail('${nxt.id}')"><b>下一站 · ${nxt.time} · ${nxt.title}</b><span>${nxt.sub}</span></button></div>`;if(cur)return `<div class="live-done"><b>現在 · ${cur.time} · ${cur.title}</b>。今日行程已到最後一站。</div>`;return''}
 function refreshLiveStrip(){const e=$('#liveStrip');if(e&&!$('#dayView').classList.contains('hidden'))e.innerHTML=liveStripHTML()}
 function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList.toggle('hidden',!b)}
-function nav(x){$('#navTrip').classList.toggle('active',x==='trip');$('#navDay').classList.toggle('active',x==='day');$('#navGuide').classList.toggle('active',x==='guide')}
+function nav(x){[['navTrip','trip'],['navDay','day'],['navGuide','guide']].forEach(([id,key])=>{const el=$('#'+id),active=x===key;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')})}
 function hideMain(){['tripView','dayView','guideView'].forEach(id=>$('#'+id).classList.add('hidden'))}
 function resetMainScroll(){window.scrollTo({top:0,left:0,behavior:'instant'})}
 function showTrip(push=true){hideMain();$('#tripView').classList.remove('hidden');setTop('MWY2026 · 上海三日行程書');nav('trip');resetMainScroll();if(push)history.pushState({v:'trip'},'','#trip')}
@@ -712,8 +788,8 @@ function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidde
 function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();resetMainScroll();if(push)history.pushState({v:'day',d,mode},'',`#day-${d}`)}
 function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
 function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
-function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>b.classList.toggle('active',+b.dataset.d===currentDay));$('#tBtn').classList.toggle('active',mode==='timeline');$('#mBtn').classList.toggle('active',mode==='map');$('#timelinePane').classList.toggle('hidden',mode!=='timeline');$('#mapPane').classList.toggle('hidden',mode!=='map');if(mode==='timeline')renderTimeline();else{renderMap();setTimeout(initMap,30)}}
-function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>`${i?`<div class="route-link">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'}"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`).join('')}</div>`}
+function renderDay(){const day=DAYS[currentDay];$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>{const active=+b.dataset.d===currentDay;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const timelineActive=mode==='timeline';$('#tBtn').classList.toggle('active',timelineActive);$('#mBtn').classList.toggle('active',!timelineActive);$('#tBtn').setAttribute('aria-pressed',String(timelineActive));$('#mBtn').setAttribute('aria-pressed',String(!timelineActive));$('#timelinePane').classList.toggle('hidden',!timelineActive);$('#mapPane').classList.toggle('hidden',timelineActive);if(timelineActive)renderTimeline();else{renderMap();setTimeout(initMap,30)}}
+function renderTimeline(){const items=DAYS[currentDay].items,live=todayTripDay()===currentDay,now=shanghaiClock().minutes;let currentIdx=-1;if(live){for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)currentIdx=i}$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>{const state=!live?"":i<currentIdx?"is-past":i===currentIdx?"is-now":i===currentIdx+1?"is-next":"";return `${i?`<div class="route-link ${live&&i<=currentIdx?"is-past":""}">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'} ${state}"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" ${state==="is-now"?'aria-current="step"':''} onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`}).join('')}</div>`}
 
 function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
 function inspectorHTML(x,mapped){if(!x)return'';const i=mapped.indexOf(x);return `<div class="map-inspector"><small>站點 ${i+1}/${mapped.length}</small><h3>${x.time} · ${x.title}</h3><p>${x.sub}${x.address?`<br>${x.address}`:''}</p><div class="map-actions"><button class="primary" onclick="openDetail('${x.id}')">打開詳細頁</button><button class="secondary" onclick="goTimeline()">回時間線</button></div></div>`}
@@ -721,7 +797,7 @@ function outOfChina(lng,lat){return lng<72.004||lng>137.8347||lat<0.8293||lat>55
 function transformLat(x,y){let r=-100+2*x+3*y+.2*y*y+.1*x*y+.2*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3;r+=(20*Math.sin(y*Math.PI)+40*Math.sin(y/3*Math.PI))*2/3;r+=(160*Math.sin(y/12*Math.PI)+320*Math.sin(y*Math.PI/30))*2/3;return r}
 function transformLng(x,y){let r=300+x+2*y+.1*x*x+.1*x*y+.1*Math.sqrt(Math.abs(x));r+=(20*Math.sin(6*x*Math.PI)+20*Math.sin(2*x*Math.PI))*2/3;r+=(20*Math.sin(x*Math.PI)+40*Math.sin(x/3*Math.PI))*2/3;r+=(150*Math.sin(x/12*Math.PI)+300*Math.sin(x/30*Math.PI))*2/3;return r}
 function gcjToWgs(lng,lat){if(outOfChina(lng,lat))return[lng,lat];const a=6378245,ee=.00669342162296594323,dLat=transformLat(lng-105,lat-35),dLng=transformLng(lng-105,lat-35),rad=lat/180*Math.PI,s=Math.sin(rad),m=1-ee*s*s,sm=Math.sqrt(m),mgLat=lat+(dLat*180)/((a*(1-ee))/(m*sm)*Math.PI),mgLng=lng+(dLng*180)/(a/sm*Math.cos(rad)*Math.PI);return[lng*2-mgLng,lat*2-mgLat]}
-function initMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord),box=document.getElementById('realMap');if(typeof maplibregl==='undefined'){if(box)box.innerHTML='<div class="mapfallback">地圖元件載入失敗。可直接複製地址去高德。</div>';return}try{if(mapObj)mapObj.remove();mapMarkers=[];const coords=mapped.map(x=>gcjToWgs(...x.coord));box.innerHTML='';mapObj=new maplibregl.Map({container:box,style:OSM_RASTER_STYLE,center:coords[selected[currentDay]]||coords[0],zoom:12,attributionControl:true});mapObj.addControl(new maplibregl.NavigationControl({showCompass:true}),'top-right');let ready=false;const failTimer=setTimeout(()=>{if(!ready&&box)box.innerHTML='<div class="mapfallback">底圖載入逾時；站點資料仍可用，導航請交畀高德。</div>'},8000);mapObj.on('load',()=>{ready=true;clearTimeout(failTimer);mapMarkers=mapped.map((x,i)=>{const el=document.createElement('div');el.className='trip-marker'+(x.anchor?' anchor':'')+(selected[currentDay]===i?' selected':'');el.textContent=i+1;el.onclick=()=>selectMapStop(i,true);return new maplibregl.Marker({element:el}).setLngLat(coords[i]).addTo(mapObj)});if(coords.length>1){mapObj.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:coords}}});mapObj.addLayer({id:'route-line',type:'line',source:'route',paint:{'line-color':'#169f99','line-width':3,'line-opacity':.65,'line-dasharray':[1.2,1.5]}})}fitDay()})}catch(e){if(box)box.innerHTML='<div class="mapfallback">地圖喺目前環境載入唔到；詳細頁同地址複製功能仍可正常用。</div>'}}
+async function initMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord),box=document.getElementById('realMap');const libReady=await ensureMapLibre();if(!libReady||!box?.isConnected){if(box)box.innerHTML='<div class="mapfallback">地圖元件載入失敗。可直接複製地址去高德。</div>';return}try{if(mapObj)mapObj.remove();mapMarkers=[];const coords=mapped.map(x=>gcjToWgs(...x.coord));box.innerHTML='';mapObj=new maplibregl.Map({container:box,style:OSM_RASTER_STYLE,center:coords[selected[currentDay]]||coords[0],zoom:12,attributionControl:true});mapObj.addControl(new maplibregl.NavigationControl({showCompass:true}),'top-right');let ready=false;const failTimer=setTimeout(()=>{if(!ready&&box)box.innerHTML='<div class="mapfallback">底圖載入逾時；站點資料仍可用，導航請交畀高德。</div>'},8000);mapObj.on('load',()=>{ready=true;clearTimeout(failTimer);mapMarkers=mapped.map((x,i)=>{const el=document.createElement('div');el.className='trip-marker'+(x.anchor?' anchor':'')+(selected[currentDay]===i?' selected':'');el.textContent=i+1;el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label',`${i+1}. ${x.time} ${x.title}`);el.onclick=()=>selectMapStop(i,true);el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectMapStop(i,true)}};return new maplibregl.Marker({element:el}).setLngLat(coords[i]).addTo(mapObj)});if(coords.length>1){mapObj.addSource('route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:coords}}});mapObj.addLayer({id:'route-line',type:'line',source:'route',paint:{'line-color':'#169f99','line-width':3,'line-opacity':.65,'line-dasharray':[1.2,1.5]}})}fitDay()})}catch(e){if(box)box.innerHTML='<div class="mapfallback">地圖喺目前環境載入唔到；詳細頁同地址複製功能仍可正常用。</div>'}}
 function fitDay(){if(!mapObj)return;const cs=DAYS[currentDay].items.filter(x=>x.coord).map(x=>gcjToWgs(...x.coord));if(!cs.length)return;if(cs.length===1){mapObj.flyTo({center:cs[0],zoom:14});return}const b=cs.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(cs[0],cs[0]));mapObj.fitBounds(b,{padding:55,maxZoom:14,duration:350})}
 function selectMapStop(i,fly){const mapped=DAYS[currentDay].items.filter(x=>x.coord);selected[currentDay]=i;const x=mapped[i];if($('#mapInspector'))$('#mapInspector').innerHTML=inspectorHTML(x,mapped);mapMarkers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));if(fly&&mapObj&&x)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:14.5,duration:450})}
 function goTimeline(){setMode('timeline')}
@@ -743,13 +819,16 @@ function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以�
 <div class="status-row"><div class="state">返程</div><div><b>11/2 · 19:05 · PVG T2</b><p>15:30–15:40由住宿出發；15:50只當最遲正常值。</p></div></div>
 </div></div>`}
 
-function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;if(typeof maplibregl==='undefined'){el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
-function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
-function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');detailOpen=false;if(history.state?.v==='detail')history.back()}
-function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t);const old=$('#pageTitle').textContent,shown=String(t).length>22?String(t).slice(0,22)+'…':String(t);$('#pageTitle').textContent='已複製 · '+shown;setTimeout(()=>$('#pageTitle').textContent=old,900)}
+async function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;const libReady=await ensureMapLibre();if(!libReady||!el?.isConnected){if(el)el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
+function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');document.body.classList.add('detail-active');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
+function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');$('#detail').setAttribute('aria-hidden','true');document.body.classList.remove('detail-active');detailOpen=false;if(history.state?.v==='detail')history.back()}
+let toastTimer=null;
+function showToast(message){const el=$('#toast');if(!el)return;el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1300)}
+function legacyCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();return ok}
+async function copyText(t){let ok=false;try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(t);ok=true}}catch(e){}if(!ok)ok=legacyCopy(t);const shown=String(t).length>24?String(t).slice(0,24)+'…':String(t);showToast(ok?'已複製 · '+shown:'未能自動複製，請長按地址')}
 function restoreFromHash(){const h=location.hash;if(h.startsWith('#detail-')){const id=h.replace('#detail-','');openDay(findDayForId(id),false);openDetail(id,false);history.replaceState({v:'detail',id},'',h);return}if(h.startsWith('#day-')){const m=h.match(/^#day-(\d)(?:-(map|timeline))?$/);if(m){currentDay=+m[1];mode=m[2]||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();history.replaceState({v:'day',d:currentDay,mode},'',h);return}}if(h==='#guide'){showGuide(false);history.replaceState({v:'guide'},'',h);return}showTrip(false)}
 function findDayForId(id){for(const [d,x] of Object.entries(DAYS))if(x.items.some(i=>i.id===id))return +d;return 1}
-window.addEventListener('popstate',e=>{if(detailOpen&&e.state?.v!=='detail'){$('#detail').classList.remove('open');detailOpen=false}const s=e.state;if(!s||s.v==='trip'){showTrip(false);return}if(s.v==='day'){currentDay=s.d;mode=s.mode||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();return}if(s.v==='guide'){showGuide(false);return}if(s.v==='detail'){const d=findDayForId(s.id);openDay(d,false);openDetail(s.id,false)}});
+window.addEventListener('popstate',e=>{if(detailOpen&&e.state?.v!=='detail'){$('#detail').classList.remove('open');$('#detail').setAttribute('aria-hidden','true');document.body.classList.remove('detail-active');detailOpen=false}const s=e.state;if(!s||s.v==='trip'){showTrip(false);return}if(s.v==='day'){currentDay=s.d;mode=s.mode||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();return}if(s.v==='guide'){showGuide(false);return}if(s.v==='detail'){const d=findDayForId(s.id);openDay(d,false);openDetail(s.id,false)}});
 init();
 </script>
 </body>
