@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.3 scope
+## Current RC6.4 scope
+
+- Self-review refinement: dynamic stop count and Day 1 monospace time rhythm complete the route-line prototype without adding new content
 
 - Art-direction prototype: a single route-line visual language now links the homepage, Day 1 timeline, and Bund photography detail; day indexing and editorial route typography add identity without changing field-use logic
 
