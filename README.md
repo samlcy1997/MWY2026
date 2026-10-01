@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.7 scope
+## Current RC6.8 scope
+
+- Non-food visual pass: Arrival now has a transport schematic with a Longyang Road fallback, MWY morning has venue imagery plus hall-function split, and the 15:45 camera checkpoint is rendered as a two-branch decision diagram
 
 - Food visual rollout completed for the remaining main stops: 泰康、琪琪、王記、海金滋 now use storefront + dish pairing with source links, preserving the same recognition→order→special-instruction structure
 
