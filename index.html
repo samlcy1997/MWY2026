@@ -259,7 +259,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.6",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.7",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -281,6 +281,10 @@ const IMG={
   xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
   zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
   qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
+  qiqiStore:"https://dimg04.c-ctrip.com/images/01060120009ll4bntBB06_D_350_230_Q90.jpg?proc=autoorient",
+  wangjiStoreExact:"https://ak-d.tripcdn.com/images/0106h120009q2w5b0C48E_D_2208_1242_R5.jpg?proc=autoorient",
+  wangjiFoodExact:"https://ak-d.tripcdn.com/images/0100u120009sq3xx01086_D_300_200_R5.png",
+  haijinziStore:"https://imagepphcloud.thepaper.cn/pph/image/131/403/857.jpg",
   lailaiStore:"https://www.woshiji.cn/uploadfile/2024/0308/20240308023754488.jpg",
   lailaiFood:"https://www.woshiji.cn/uploadfile/2024/0308/20240308023754378.jpg",
   zhangFood:"https://www.lemon8-app.com/seo/image?index=2&item_id=7413743356045459969&sign=5d985b79c9546cbeb8d05215512115d2",
@@ -295,8 +299,6 @@ const IMG={
   xiaoyang:"https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
   xiaoyangFood:"https://ak-d.tripcdn.com/images/1mi3d224x906uswcp6BA9_Q90.jpg?proc=source%2Ftrip",
   mwyHall:"https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
-  wangjiBrand:"https://images.shobserver.com/img/2023/4/11/e455508d287240a69be373ceeafe7962.jpg?x-oss-process=image/resize,w_1200",
-  wangjiFood:"https://images.squarespace-cdn.com/content/v1/57e94430d2b8579f31ebcc38/1621767461573-D6UM8K1I8GFVIR0FWGS4/P1240770.JPG?format=2500w",
   wukang:"https://youimg1.c-ctrip.com/target/100b1900000169ysl903E.jpg",
   happy:"https://imgpai.thepaper.cn/pphimage/20260430/5c3cb078-bd58-42de-a37b-21d7adab359c.jpg",
   tpy:"https://n.sinaimg.cn/spider20240725/694/w640h854/20240725/db11-de07bc06f13596b163abf5967958f29f.jpg",
@@ -477,7 +479,10 @@ ${block("15:35 未出餐",branches([
 ${nextHop("萊萊小籠","泰康食品","萊萊小籠 天津路506號","泰康食品 南京東路766號")}`,
 
 taikang:()=>`${pageHead("第1日 · 15:35–15:50","泰康食品","沿途買一個鮮肉月餅，趁熱食；接近15:45或者見到長隊就放棄。",[["地址","南京東路766號"],["離開","約15:45"],["主食","鮮肉月餅 ×1"]])}
-${foodFeature(IMG.taikangFood,"上海鹹點","鮮肉月餅","外層係酥皮，入面係鹹鮮肉餡；呢類月餅最有價值係剛出爐、仲暖嘅時候。")}
+${foodVisuals([
+ [IMG.taikangStore,"到店認位","南京東路766號老字號門面；到步只認『泰康食品』招牌，唔入店慢逛。","https://www.jfdaily.com/sgh/detail?id=4056200"],
+ [IMG.taikangFood,"鮮肉月餅","現烤鮮肉月餅外層酥皮、入面鹹鮮肉餡；拎到就趁暖食。","https://www.jfdaily.com/sgh/detail?id=4056200"]
+])}
 ${block("點咩",foodList([
  ["主食","鮮肉月餅 1 個","一個已經夠試到酥皮＋肉香；唔需要一次買幾個。"],
  ["想換口味","榨菜鮮肉月餅","只係隊短＋仲有胃先換；唔兩款都買。"]
@@ -615,7 +620,10 @@ mwy:()=>mwyMarketPage(),
 mwyafternoon:()=>mwyAfternoonPage(),
 
 qiqi:()=>`${pageHead("第2日 · 12:00–13:00","琪琪麵館","主食就食辣肉拌麵；午飯後期澆頭有機會賣剩，13:30後直接放棄。",[["地址","北寶興路296–298號"],["主食","辣肉拌麵"],["最遲","13:30"]])}
-${foodFeature(IMG.qiqiNoodle,"上海澆頭麵","辣肉拌麵","呢餐重點唔係湯麵，而係麵＋辣肉澆頭。辣肉帶甜辣鹹香，拌開之後先係完整一碗。")}
+${foodVisuals([
+ [IMG.qiqiStore,"到店認位","北寶興路296–298號分店頁面主圖；呢間係社區麵館，門面唔大。","https://you.ctrip.com/food/shanghai2/4994887-dianping163733108.html"],
+ [IMG.qiqiNoodle,"辣肉麵外觀","琪琪辣肉麵實物參考；今次要拌麵版本，先將辣肉澆頭拌勻再食。","https://you.ctrip.com/food/shanghai2/4994887-dianping163733108.html"]
+])}
 ${block("點咩",foodList([
  ["主食","辣肉拌麵","一碗就夠建立上海澆頭麵基準。"],
  ["有胃先加","素雞／烤麩","只揀一款小澆頭，唔再堆第二碗麵。"]
@@ -657,7 +665,10 @@ ${block("可直接複製",copyPlaces([
 ]))}`,
 
 wangji:()=>`${pageHead("第3日 · 08:00","王記葱油餅","先食原味招牌葱油餅，配黑米粥／甜豆漿二選一；09:00去武康。",[["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
-${foodFeature(IMG.wangjiFood,"Day 3 早餐","原味葱油餅","重點係外皮酥香、入面較軟，同大量葱香；第一次先食原味，先知本體值唔值得再加蛋。")}
+${foodVisuals([
+ [IMG.wangjiStoreExact,"到店認位","東諸安浜路店頁面主圖；店面細，去到見到現做葱油餅窗口就係。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"],
+ [IMG.wangjiFoodExact,"原味葱油餅","目標係原味本體：外層酥、中心較軟、葱香重；第一個唔加蛋。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"]
+])}
 ${block("點咩",foodList([
  ["主食","原味葱油餅 1 個","先試招牌本體。"],
  ["配搭","黑米粥／甜豆漿","二選一，唔再重複 Day 2 鹹豆漿＋粢飯。"],
@@ -690,7 +701,10 @@ ${nextHop("武康路","美羅城","武康大樓 上海","美羅城 肇嘉浜路1
 xjh:()=>xjhPage(),
 
 haijinzi:()=>`${pageHead("第3日 · 12:40","海金滋","今次唯一完整本幫正餐：葱烤大排＋飯＋一個輕菜；13:30後唔再搏午市。",[["地址","進賢路240號"],["時間","45–60分鐘"],["最遲","13:30"]])}
-${foodFeature(IMG.haijinziFood,"本幫正餐","葱烤大排","大排係呢間最值得先食嘅招牌；用白飯承接醬汁，再用一個較輕嘅菜平衡成餐。")}
+${foodVisuals([
+ [IMG.haijinziStore,"到店認位","進賢路240號門面；深色石材外牆、左邊『海金滋』字樣同240號牌最好認。","https://www.thepaper.cn/newsDetail_forward_12651431"],
+ [IMG.haijinziFood,"葱烤大排","主線就係葱烤大排＋白飯；濃油赤醬用飯承接，第二道先揀較輕菜。","https://tw.trip.com/restaurant/china/shanghai/detail/hai-jin-zi-352394/"]
+])}
 ${block("一個人點法",foodList([
  ["必點","葱烤大排＋白飯","先完成本幫菜主角。"],
  ["第二道","酒香草頭／三鮮烤麩／當日時蔬","揀一個較輕菜，唔全部都係肉。"],
