@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC5.11 scope
+## Current RC5.12 scope
+
+- Scenario-walkthrough fixes: explicit Day 1 delay cuts, 18:45 ferry checkpoint, corrected LaLaport→東泰祥 late-night timing, Day 2 afternoon camera checkpoint, and arrival-time-based PVG transport choice
 
 - Copy-to-navigation actions added at the two transport points where the destination is needed immediately: arrival accommodation and PVG T2
 
