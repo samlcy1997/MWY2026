@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.9 scope
+## Current RC6.10 scope
+
+- Audit cleanup: removed repeated operational copy, exposed Shanghai Tower as a real Guide backup, removed unreachable standalone fallback pages, added missing image alt semantics, and deleted unused image constants
 
 - Final text-heavy page pass: Gundam Base now uses official exact-store visuals, post-show is a three-way decision with optional Xiandelai imagery, and PVG return uses an arrival-time checkpoint plus a subway fallback schematic
 
