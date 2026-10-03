@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.8 scope
+## Current RC6.9 scope
+
+- Final text-heavy page pass: Gundam Base now uses official exact-store visuals, post-show is a three-way decision with optional Xiandelai imagery, and PVG return uses an arrival-time checkpoint plus a subway fallback schematic
 
 - Non-food visual pass: Arrival now has a transport schematic with a Longyang Road fallback, MWY morning has venue imagery plus hall-function split, and the 15:45 camera checkpoint is rendered as a two-branch decision diagram
 
