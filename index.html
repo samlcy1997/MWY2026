@@ -297,7 +297,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.8",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.9",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   yuanmingyuan:"https://upload.wikimedia.org/wikipedia/commons/a/af/Yuanmingyuan_Rd._Shanghai.JPG",
@@ -361,6 +361,8 @@ const IMG={
   gundamHero:"https://images.unsplash.com/photo-1708227437495-c436ae150e7e?auto=format&fit=crop&fm=jpg&q=76&w=1800",
   gundamDetail:"https://images.unsplash.com/photo-1625235471526-67781e38eb57?auto=format&fit=crop&fm=jpg&q=76&w=1500",
   gundamAlt:"https://images.unsplash.com/photo-1625235471241-c1c50a8a18a1?auto=format&fit=crop&fm=jpg&q=76&w=1500",
+  gundamBaseEntrance:"https://staticcdn.bandaihobbysite.cn/www/assets/wandai/img/gbase/20231227/OfflineImg5_big.jpg",
+  gundamBaseInterior:"https://staticcdn.bandaihobbysite.cn/www/uploads/20231219/a3658496ff76f4b58bfa6d8d86d6a5ae.jpg",
   pudongBund70:"https://images.pexels.com/photos/30685872/pexels-photo-30685872/free-photo-of-shanghai-bund-night-skyline-illuminated.jpeg?auto=compress&cs=tinysrgb&w=1600",
   pudongBund110:"https://images.pexels.com/photos/30685862/pexels-photo-30685862/free-photo-of-shanghai-bund-night-skyline-reflecting-on-huangpu-river.jpeg?auto=compress&cs=tinysrgb&w=1600"
 };
@@ -473,6 +475,8 @@ function openAdjacentDetail(delta){const p=findItemPosition(detailCurrentId);if(
 function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return useful.length?`<div class="meal-extras">${useful.map(r=>`<div class="meal-extra"><b>${r[0]} · ${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`:""}
 function foodFeature(img,kicker,title,note,source=""){return `<div class="food-feature">${img?`<img src="${img}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><strong>${title}</strong><p>${note}</p>${source?`<a class="visual-source" href="${source}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</div></div>`}
 function foodVisuals(items){return `<div class="food-visual-grid">${items.map(x=>`<figure class="food-visual"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.closest('.food-visual').classList.add('missing');this.remove()"><figcaption><strong>${x[1]}</strong><p>${x[2]}</p>${x[3]?`<a class="visual-source" href="${x[3]}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
+function placeVisuals(items){return foodVisuals(items)}
+
 function foodList(rows){return `<div class="food-list">${rows.map(r=>`<div class="food-row"><b>${r[0]} · ${r[1]}</b><p>${r[2]}</p></div>`).join("")}</div>`}
 function eatSteps(rows){return `<div class="eat-steps">${rows.map(r=>`<div class="eat-step"><div><b>${r[0]}</b><p>${r[1]}</p></div></div>`).join("")}</div>`}
 function guideAsset(src,alt){return `<div class="guide-asset"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"></div>`}
@@ -620,6 +624,10 @@ ${cutoff("20:40 上4F","唔為第二輪演出拖晚餐。","離開")}
 ${nextHop("Freedom Gundam 南廣場","THE GUNDAM BASE","LaLaport上海金橋 1:1 Freedom Gundam","THE GUNDAM BASE SHANGHAI 新金橋路738號 LaLaport 4F 429–430")}`,
 
 gundambase:()=>`${pageHead("第1日 · 20:40–21:10","THE GUNDAM BASE SHANGHAI","夜攝後上 LaLaport 4F。先睇限定／最想買嘅品項，21:10離店去晚餐。",[["位置","LaLaport 4F 429–430"],["營業","10:00–22:00"],["停留","約30分鐘"],["離開","21:10"]])}
+${placeVisuals([
+ [IMG.gundamBaseEntrance,"4F 429–430 認位","官方金橋店入口實拍；去到4樓見到藍色 THE GUNDAM BASE SHANGHAI 燈牌同429／430門牌就係。","https://www.bandaihobbysite.cn/gbase/jin_qiao"],
+ [IMG.gundamBaseInterior,"店內先掃限定區","官方金橋店實拍；先處理限定／最想買品項，再睇展示，唔逐排慢慢掃。","https://bandaihobbysite.cn/index/gbase/news_detail/id/10"]
+])}
 ${block("入店次序",route([
  ["先","限定／最想買嘅品項","先處理真係想買嘅，唔逐排慢慢掃。"],
  ["有時間","SEED店裝／Freedom展示","順手睇同影。"],
@@ -701,11 +709,17 @@ ${block("排隊太耐",branches([
 ${nextHop("小楊生煎","上海靜安體育中心","小楊生煎 江場路1212號協信廣場B1","上海靜安體育中心 汶水路116號")}`,
 
 postshow:()=>`${pageHead("第2日 · 散場後","散場後","宵夜只服務體力：唔餓直接返住宿；想食先按『補上海小吃／純填肚』分支。",[["第一選擇","直接返住宿"],["上海小吃補票","鮮得來"],["緊急熱食","全昌福約至23:00"]])}
-${block("按餓度",branches([
- ["唔餓","直接返住宿。","hot"],
- ["Day 1冇食鮮得來","去福建中路新店補排骨年糕；約至01:00，但唔係返住宿最直線。",""],
- ["只係要填肚","唔追名店；返住宿方向搵晚市／外賣。",""]
-]))}
+${decisionDiagram("散場後 · 先問自己餓唔餓",[
+ ["唔餓","直接返住宿；唔為『已經出咗嚟』再開一餐。","hot"],
+ ["想補上海小吃","只有 Day 1 冇食鮮得來先去福建中路新店；接受佢唔係最直線。",""],
+ ["只係要填肚","返住宿方向搵晚市／外賣；全昌福只係23:00前嘅熱食安全網。","warn"]
+ ])}
+ <details class="secondary-disclosure"><summary>如果最後去鮮得來</summary>
+ ${placeVisuals([
+  [IMG.xiandelai,"到店認位","福建中路新店只作『Day 1冇食到』嘅補票分支。",""],
+  [IMG.xiandelaiFood,"排骨年糕","去到先食呢個核心，唔再擴成第二輪上海小吃巡禮。",""]
+ ])}
+ </details>
 ${block("可直接複製",copyPlaces([
  ["鮮得來 · 上海小吃補票","鮮得來 福建中路350號"],
  ["全昌福 · 酒店附近安全網","全昌福 天目西路560號"],
@@ -786,10 +800,16 @@ ${nextHop("路易號","住宿","路易號 上海興業太古匯","如家商旅�
 
 airport:()=>`${pageHead("第3日 · 15:30後","返住宿 → PVG","15:15收機後直接返住宿取行李；15:30–15:40出發較舒服。到酒店即用高德比較「直接叫車」同「地鐵」嘅預計抵達 T2 時間，再揀較穩陣方案。",[["返住宿","15:15後立即"],["出發","15:30–15:40"],["最遲","15:50"],["起飛","19:05 · PVG T2"]])}
 ${copyPlaces([["浦東機場 T2","上海浦東國際機場2號航站樓"]])}
-${block("出發時只做一個判斷",branches([
- ["叫車同地鐵預計到達時間接近","直接 Didi／出租車；少搬行李，正常情況最省腦。","hot"],
- ["地鐵顯示明顯更早到 T2","先改地鐵：上海火車站1號線 → 人民廣場 → 2號線 → 浦東1號2號航站樓站。","warn"]
-]))}
+${decisionDiagram("15:30–15:40 · 去 PVG T2",[
+ ["兩個方案到達時間接近","直接 Didi／出租車；少搬行李，正常情況最省腦。","hot"],
+ ["地鐵明顯更早到 T2","先改地鐵；唔睇『車程分鐘』，只比較預計抵達 T2 時間。","warn"]
+ ])}
+${block("地鐵後備路線",transportDiagram([
+ ["上海火車站","01","由住宿去上海火車站入閘。","1號線"],
+ ["人民廣場","02","轉2號線，之後一路向浦東機場。","2號線"],
+ ["浦東1號2號航站樓站","03","落車後跟 T2 指示。","步行"],
+ ["PVG T2","04","先處理 check-in／安檢，再食機場餐。",""]
+ ]))}
 ${block("比較方法",rules([
  ["唔比較『車程幾多分鐘』","直接睇高德兩個方案嘅預計抵達 T2 時間；邊個早先有意義。"],
  ["時間接近就叫車","避免拖行李轉乘；道路方案只有明顯落後先值得轉地鐵。"],
