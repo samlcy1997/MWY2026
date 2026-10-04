@@ -2,7 +2,9 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.10 scope
+## Current RC6.11 scope
+
+- Offline/weak-network resilience: added a service worker, navigation fallback, runtime caching for viewed images/CDN assets, a user-triggered prewarm for 13 critical recognition images, and a minimal web manifest
 
 - Audit cleanup: removed repeated operational copy, exposed Shanghai Tower as a real Guide backup, removed unreachable standalone fallback pages, added missing image alt semantics, and deleted unused image constants
 
