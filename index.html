@@ -7,6 +7,7 @@
 <meta name="color-scheme" content="light">
 <meta name="description" content="MWY2026 上海三日行程書：現場用時間線、攝影機位、飲食決策與交通分支。">
 <meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="./manifest.webmanifest">
 <title>MWY2026 · 上海三日行程書</title>
 <style>
 :root{
@@ -52,7 +53,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
 .guide-intro{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:18px}.guide-intro h2{font-size:27px;margin:0 0 8px;letter-spacing:-.04em}.guide-intro p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}.guide-group{margin-top:25px}.guide-group h3{font-size:12px;letter-spacing:.09em;color:#737e7c;text-transform:uppercase;margin:0 0 8px}.status-list{display:grid;gap:8px}.status-row{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:15px}.status-row .state{font-size:9px;font-weight:860;color:var(--accent-ink)}.status-row.warn .state{color:var(--warn)}.status-row b{font-size:12px}.status-row p{font-size:11px;line-height:1.48;color:var(--muted);margin:3px 0 0}
 .guide-action{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:10px;align-items:start;width:100%;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:15px;text-align:left;color:var(--ink);cursor:pointer}
 .guide-action .state{font-size:9px;font-weight:860;color:var(--accent-ink)}
-.guide-action b{font-size:12px}.guide-action p{font-size:11px;line-height:1.48;color:var(--muted);margin:3px 0 0}.guide-action em{font-style:normal;font-size:10px;font-weight:760;color:var(--accent-ink);padding-top:2px}.mini-route{display:grid;gap:7px}.mini-route .r{display:grid;grid-template-columns:66px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.mini-route .r:last-child{border-bottom:0}.mini-route strong{font-size:11px;color:var(--accent-ink)}.mini-route span{font-size:11px;line-height:1.45;color:var(--muted)}
+.guide-action b{font-size:12px}.guide-action p{font-size:11px;line-height:1.48;color:var(--muted);margin:3px 0 0}.guide-action em{font-style:normal;font-size:10px;font-weight:760;color:var(--accent-ink);padding-top:2px}.offline-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px;background:var(--paper);border:1px solid var(--line);border-radius:15px}.offline-panel strong{display:block;font-size:12px}.offline-panel p{font-size:11px;line-height:1.5;color:var(--muted);margin:4px 0 0}.offline-panel button{border:1px solid rgba(17,167,157,.24);background:var(--soft);color:var(--accent-ink);border-radius:12px;padding:9px 11px;font-size:11px;font-weight:800;cursor:pointer;white-space:nowrap}@media(max-width:420px){.offline-panel{grid-template-columns:1fr}.offline-panel button{width:100%}}.mini-route{display:grid;gap:7px}.mini-route .r{display:grid;grid-template-columns:66px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}.mini-route .r:last-child{border-bottom:0}.mini-route strong{font-size:11px;color:var(--accent-ink)}.mini-route span{font-size:11px;line-height:1.45;color:var(--muted)}
 
 
 .detail{position:fixed;inset:0;z-index:80;background:var(--bg);overflow:auto;transform:translateX(102%);transition:transform .25s cubic-bezier(.2,.8,.2,1)}.detail.open{transform:translateX(0)}.dtop{position:sticky;top:0;z-index:7;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 8px) 13px 8px;background:rgba(244,242,237,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.dtop strong{text-align:center;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.article{max-width:900px;margin:0 auto;padding:18px 16px 110px}.page-kicker{font-size:11px;font-weight:850;letter-spacing:.08em;color:var(--accent-ink);margin:4px 0 7px}.article h1{font-size:clamp(36px,9vw,54px);line-height:.98;letter-spacing:-.058em;margin:0 0 10px;max-width:12ch}.deck{font-size:14px;line-height:1.68;color:#4c5858;margin:0;max-width:52ch}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:17px}.fact{background:rgba(255,254,250,.7);border-top:1px solid var(--line);padding:10px 0}.fact small{display:block;font-size:10px;font-weight:760;color:#707b79;margin-bottom:3px}.fact b{display:block;font-size:12px;line-height:1.35}
@@ -300,7 +301,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.10",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.11",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -914,6 +915,9 @@ function init(){
  setInterval(refreshLiveStrip,60000);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLiveStrip()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&detailOpen)closeDetail()});
+ registerOfflineWorker();
+ window.addEventListener('offline',()=>showToast('離線模式 · 已快取內容仍可使用'));
+ window.addEventListener('online',()=>showToast('已重新連線'));
 }
 function dayCard(d){const x=DAYS[d];return `<button class="day-card" onclick="openDay(${d})"><img src="${x.cover}" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span class="day-index" aria-hidden="true">0${d}</span><span class="day-arrow">›</span><div class="day-copy"><small>第${d}日 · ${x.date.split(' · ')[0]}</small><b>${x.title}</b><span>${dayCardSub(d)}</span></div></button>`}
 function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
@@ -945,7 +949,29 @@ function fitDay(){if(!mapObj)return;const cs=DAYS[currentDay].items.filter(x=>x.
 function selectMapStop(i,fly){const mapped=DAYS[currentDay].items.filter(x=>x.coord);selected[currentDay]=i;const x=mapped[i];if($('#mapInspector'))$('#mapInspector').innerHTML=inspectorHTML(x,mapped);mapMarkers.forEach((m,j)=>m.getElement().classList.toggle('selected',j===i));if(fly&&mapObj&&x)mapObj.flyTo({center:gcjToWgs(...x.coord),zoom:14.5,duration:450})}
 function goTimeline(){setMode('timeline')}
 
+function registerOfflineWorker(){
+ if(!("serviceWorker" in navigator))return;
+ navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(()=>{});
+}
+async function prepareOffline(){
+ if(!("serviceWorker" in navigator)){showToast("此瀏覽器不支援離線快取");return}
+ try{
+  showToast("正在預載主要圖片…");
+  const reg=await navigator.serviceWorker.ready;
+  const worker=reg.active||navigator.serviceWorker.controller;
+  if(!worker)throw new Error("no worker");
+  const channel=new MessageChannel();
+  const result=await new Promise((resolve,reject)=>{
+   const timer=setTimeout(()=>reject(new Error("timeout")),45000);
+   channel.port1.onmessage=e=>{clearTimeout(timer);resolve(e.data||{})};
+   worker.postMessage({type:"PREWARM"},[channel.port2]);
+  });
+  const cached=Number(result.cached||0),failed=Number(result.failed||0);
+  showToast(failed?("已快取 "+cached+" 張 · "+failed+" 張稍後再試"):("離線圖片已準備 · "+cached+" 張"));
+ }catch(e){showToast("離線圖片未完全準備，稍後再試")}
+}
 function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以下幾樣會隨時間改變，臨出發再確認一次就夠。</p></div>
+<div class="guide-group"><h3>離線準備</h3><div class="offline-panel"><div><strong>核心行程可離線開啟</strong><p>行程頁同兩張本地指引會自動快取；出發前用 Wi-Fi 按一次，會再預載主要店門、場館同 Gundam Base 認位圖。其他外部相片會喺你睇過之後逐步快取。</p></div><button onclick="prepareOffline()">預載主要圖片</button></div></div>
 <div class="guide-group"><h3>要再確認</h3><div class="status-list">
 <div class="status-row"><div class="state">MWY</div><div><b>相機、袋、安檢、再次入場</b><p>等主辦最終公告；Day 2 出門前確認。</p></div></div>
 <div class="status-row"><div class="state">10/31</div><div><b>外灘景觀燈</b><p>確認當晚亮燈安排，同日落／藍調時段一齊睇。</p></div></div>
