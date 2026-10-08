@@ -155,38 +155,79 @@ body{letter-spacing:-.005em}
 .guide-asset{margin-top:4px}.guide-asset img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);background:var(--paper)}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}.detail{transition:none}.viewstage img{transition:none}}
 
-body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility}
+/* Field-use typography: body copy 14–16px, secondary labels 12px. */
+body{font-feature-settings:"kern" 1,"liga" 1;text-rendering:optimizeLegibility;line-height:1.5}
 body.detail-active{overflow:hidden}
 button{touch-action:manipulation;transition:transform .16s ease,background-color .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease;-webkit-tap-highlight-color:transparent}
 .day-card img{transition:transform .5s cubic-bezier(.16,1,.3,1),filter .35s ease}
 .day-arrow{transition:transform .28s cubic-bezier(.16,1,.3,1),background-color .2s ease}
-.day-copy small{font-size:11px}
-.section-title p{font-size:12px}
-.stop-time{font-size:11px}.stop.major .stop-time{font-size:12px}
-.stop-kind{font-size:10px}.route-link{font-size:10px;line-height:1.45}
-.live-jump b{font-size:13px}.live-jump span{font-size:11px;line-height:1.45}
-.page-kicker{font-size:11px;letter-spacing:.055em;color:var(--accent-ink)}
-.fact small{font-size:10px;letter-spacing:.025em}.fact b{font-size:13px}
-.block-title{font-size:15px;letter-spacing:-.012em;color:#58625f}
-.caption,.ref-card p,.pro-ref p,.map-note,.map-help p,.next-hop.compact p{font-size:11px}
-.ref-card small,.ref-source,.pro-ref small,.pro-ref-note,.map-help summary,.map-inspector small,.photo-map-legend span{font-size:10px}
-.secondary-disclosure>summary,.facts-more summary{font-size:11px}
-.branch span,.eat-step p{font-size:12px}
-.status-row .state{font-size:10px}.status-row p{font-size:12px}
-.map-tools button,.map-actions button{font-size:11px}
-.copy-place span,.copy-place em{font-size:12px}
-.lead-action small,.order-card small,.order-textonly small,.compare small,.meal-extra small,.tower-priority,.status-pill,.panotag,.photo-pin{font-size:10px}
-.route-link{font-size:10px;color:#6c7774}.route-link.is-past{color:#5f6b68}
+.topbar-title,.dtop strong{font-size:.875rem;font-weight:700}
+.nav,.seg button,.viewseg button,.tabline button{font-size:.875rem;font-weight:700}
+.nav{min-height:44px}
+.day-copy small,.section-title p,.stop-kind,.page-kicker,.fact small,
+.ref-card small,.pro-ref small,.pro-ref .author,.map-inspector small,
+.photo-map-legend span,.photo-map-legend b,.lead-action small,.lead-action .badge,
+.order-card small,.order-textonly small,.compare small,.meal-extra small,
+.tower-priority,.tower-dir .bearing,.status-row .state,.guide-action .state,
+.guide-action em,.status-pill,.panotag,.photo-pin,.viewlabel,.transport-node span,
+.transport-copy em,.decision-head span,.venue-zone span{font-size:.75rem;line-height:1.5}
+.stop-time,.stop.major .stop-time{font-size:.8125rem;line-height:1.3}
+.stop-time span{display:block;white-space:nowrap}.stop-time .time-alt{margin-top:3px;font-size:.75rem}
+.stop.minor .stop-card h3{font-size:1rem;line-height:1.4;margin:2px 0}
+.stop.major .stop-card h3{font-size:1.25rem;line-height:1.3;margin:4px 0 6px;letter-spacing:-.025em}
+.stop.major .stop-card p,.live-jump span{font-size:.875rem;line-height:1.55}
+.route-link{font-size:.75rem;line-height:1.5;color:#6c7774;margin-bottom:4px}
+.route-link.is-past{color:#5f6b68}
+.live-jump b,.fact b,.copy-place b,.transport-fallback strong{font-size:.9375rem;line-height:1.5}
+.page-kicker{letter-spacing:.035em;color:var(--accent-ink)}
+.fact small{letter-spacing:0;margin-bottom:4px}
+.block{margin-top:30px}
+.block-title{font-size:1rem;line-height:1.5;letter-spacing:-.015em;color:#58625f;margin:0 0 12px}
+.deck{font-size:1rem;line-height:1.65;max-width:44ch}
+.caption,.pro-ref-note,.map-note,.photo-map-note,.tower-note,.viewmeta,
+.subnote,.privacy-note,.live-done{font-size:.875rem;line-height:1.6}
+.ref-card p,.pro-ref p,.branch span,.eat-step p,.status-row p,.guide-action p,
+.copy-place span,.food-feature-copy p,.food-visual p,.food-row p,.rule span,
+.route-step p,.shot p,.weather span,.compare p,.alert p,.disclosure .more,
+.map-help p,.map-inspector p,.transport-copy p,.transport-fallback p,
+.decision-path p,.venue-zone p,.order-card p,.order-textonly p,.meal-extra p,
+.tower-dir p,.lead-action p,.offline-panel p,.venue-card p,.cutoff p{font-size:.875rem;line-height:1.6}
+.next-hop.compact p{font-size:.875rem;line-height:1.55;overflow-wrap:anywhere}
+.rule b,.weather b,.alert strong,.eat-step b,.meal-extra b,.status-row b,
+.guide-action b,.offline-panel strong,.copy-place em,.guide-intro p{font-size:.9375rem;line-height:1.5}
+.ref-card b,.food-visual strong,.food-row b,.pro-ref strong,.transport-copy b,
+.decision-path b,.venue-zone b,.route-step h3,.shot h3,.tower-dir b,
+.compare strong,.venue-card h3{font-size:1rem;line-height:1.4}
+.food-feature-copy strong{font-size:1.25rem;line-height:1.3}
+.guide-group h3{font-size:.875rem;letter-spacing:0}
+.map-tools button,.map-actions button,.next-actions button,.offline-panel button{font-size:.875rem;line-height:1.4}
+.facts-more summary,.secondary-disclosure>summary,.disclosure summary,.map-help summary{font-size:.875rem;line-height:1.5;min-height:48px;padding:14px 0;color:var(--muted)}
+.visual-source,.ref-source{font-size:.875rem;line-height:1.5;display:inline-flex;align-items:center;min-height:44px;margin-top:4px;padding:6px 2px;text-decoration:underline;text-underline-offset:4px;border-bottom:0}
+.mapfallback,.photo-map-fallback{font-size:.875rem;line-height:1.6}
+.mapfallback small{font-size:.75rem}
+.route-step{grid-template-columns:72px 18px minmax(0,1fr);column-gap:8px}
+.route-step .t{font-size:.75rem;line-height:1.4;overflow-wrap:anywhere}
+.route-step .track:before{left:8px}.route-step .track:after{left:4px}
+.rule{grid-template-columns:76px minmax(0,1fr);gap:12px}
+.guide-action{grid-template-columns:60px minmax(0,1fr) auto;gap:10px}
+.status-row{grid-template-columns:60px minmax(0,1fr)}
+.article{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.detail-pager{margin:24px 0 0;padding-top:20px;gap:10px}
+.detail-pager button,.pager-end{min-height:88px;padding:12px;overflow-wrap:anywhere}
+.detail-pager small{display:block;font-size:.75rem;color:var(--muted);margin-bottom:6px}
+.detail-pager b{font-size:.9375rem;line-height:1.5}
+.pager-next small{color:var(--accent-ink)}
+.toast{font-size:.875rem;line-height:1.5}
 .stop-time{color:#66716e}.stop.major .stop-time{color:var(--accent-ink)}
 .live-jump.next span{color:#5f6b68}
 .caption,.pro-ref-note,.map-help summary,.map-note{color:var(--muted)}
 .next-hop.compact p{color:#c1cbc8}
-.cover{min-height:214px;padding:24px 24px 22px;display:flex;align-items:flex-end;border-radius:22px;background:linear-gradient(145deg,#16201f 0%,#172321 62%,#13201e 100%)}
+.cover{min-height:176px;padding:24px;display:flex;align-items:flex-end;border-radius:22px;background:linear-gradient(145deg,#16201f 0%,#172321 62%,#13201e 100%)}
 .cover:before{content:"";position:absolute;inset:-44% -24% auto 46%;height:160%;background:radial-gradient(circle at 50% 50%,rgba(17,167,157,.10),rgba(17,167,157,0) 58%);pointer-events:none}
 .cover-top{width:100%;position:relative;z-index:1}
 .cover h1{font-size:clamp(40px,10.2vw,58px);line-height:.98;letter-spacing:-.055em;max-width:none;white-space:nowrap;margin:12px 0 12px}
-.cover .eyebrow{font-size:11px;letter-spacing:.11em}
-.cover-note{font-size:12px!important;line-height:1.45!important;color:#bfc9c6!important;max-width:none!important;margin:0!important}
+.cover .eyebrow{font-size:.75rem;letter-spacing:.065em}
+.cover-note{font-size:.875rem!important;line-height:1.5!important;color:#c7d1ce!important;max-width:none!important;margin:0!important}
 .section{margin-top:32px}
 .section-title{margin-bottom:13px}
 .section-title h2{font-size:21px}
@@ -205,29 +246,29 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .transport-stop{position:relative;display:grid;grid-template-columns:38px 1fr;gap:12px;min-height:74px}
 .transport-stop:not(:last-of-type):before{content:"";position:absolute;left:18px;top:30px;bottom:-2px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(17,167,157,.16))}
 .transport-node{position:relative;z-index:1;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid rgba(17,167,157,.42);box-shadow:0 0 0 5px var(--bg)}
-.transport-node span{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:800;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.transport-node span{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.75rem;font-weight:800;color:var(--accent-ink);font-variant-numeric:tabular-nums}
 .transport-copy{padding:0 0 17px}
 .transport-copy b{display:block;font-size:16px;line-height:1.18;letter-spacing:-.02em}
-.transport-copy p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
-.transport-copy em{display:inline-block;margin-top:7px;padding:5px 7px;border:1px solid var(--line);border-radius:999px;font-style:normal;font-size:10px;font-weight:760;color:#53615f;background:var(--paper)}
+.transport-copy p{font-size:.875rem;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.transport-copy em{display:inline-block;margin-top:7px;padding:5px 7px;border:1px solid var(--line);border-radius:999px;font-style:normal;font-size:.75rem;font-weight:760;color:#53615f;background:var(--paper)}
 .transport-fallback{margin:4px 0 0 50px;padding:12px 0 0;border-top:1px solid var(--line)}
-.transport-fallback strong{display:block;font-size:13px;color:#875f23}
-.transport-fallback p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.transport-fallback strong{display:block;font-size:.9375rem;color:#875f23}
+.transport-fallback p{font-size:.875rem;line-height:1.5;color:var(--muted);margin:4px 0 0}
 .decision-diagram{margin:28px 0 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .decision-head{padding:14px 0 13px}
-.decision-head span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.05em;color:var(--accent-ink)}
+.decision-head span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.75rem;letter-spacing:.05em;color:var(--accent-ink)}
 .decision-head strong{display:block;margin-top:4px;font-size:19px;letter-spacing:-.025em}
 .decision-grid{display:grid;grid-template-columns:1fr;gap:0}
 .decision-path{padding:14px 0;border-top:1px solid var(--line)}
-.decision-path b{display:block;font-size:14px}
-.decision-path p{font-size:12px;line-height:1.5;color:var(--muted);margin:4px 0 0}
+.decision-path b{display:block;font-size:1rem}
+.decision-path p{font-size:.875rem;line-height:1.5;color:var(--muted);margin:4px 0 0}
 .decision-path.hot b{color:var(--accent-ink)}
 .decision-path.warn b{color:#875f23}
 .venue-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:20px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .venue-zone{background:var(--bg);padding:15px 12px}
-.venue-zone span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;color:var(--accent-ink)}
-.venue-zone b{display:block;margin-top:4px;font-size:15px;letter-spacing:-.02em}
-.venue-zone p{font-size:12px;line-height:1.45;color:var(--muted);margin:5px 0 0}
+.venue-zone span{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.75rem;color:var(--accent-ink)}
+.venue-zone b{display:block;margin-top:4px;font-size:1rem;letter-spacing:-.02em}
+.venue-zone p{font-size:.875rem;line-height:1.45;color:var(--muted);margin:5px 0 0}
 @media(min-width:720px){
  .transport-diagram{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:4px}
  .transport-stop{display:block;min-height:132px;padding-right:18px}
@@ -239,7 +280,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
  .decision-path+ .decision-path{padding-left:16px;border-left:1px solid var(--line)}
 }
 
-.detail[data-detail="bund"] .article h1{max-width:10ch}
+.detail[data-detail="bund"] .article h1{max-width:none}
 .detail[data-detail="bund"] .page-kicker{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
 .detail[data-detail="bund"] .ref-card img{box-shadow:0 0 0 1px rgba(24,32,31,.05)}
 @media(min-width:720px){
@@ -261,7 +302,7 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
 .stop.is-now .stop-card h3{color:var(--ink)}
 .stop.is-next .stop-dot{background:#17201f}
 .route-link.is-past{color:#6f7b78}
-.toast{position:fixed;z-index:140;left:50%;bottom:calc(74px + env(safe-area-inset-bottom));transform:translate(-50%,10px);width:max-content;max-width:calc(100% - 28px);padding:10px 13px;border-radius:999px;background:#17201f;color:#fff;font-size:12px;font-weight:760;line-height:1.3;opacity:0;pointer-events:none;box-shadow:0 10px 30px rgba(20,32,31,.16);transition:opacity .2s ease,transform .25s cubic-bezier(.16,1,.3,1)}
+.toast{position:fixed;z-index:140;left:50%;bottom:calc(74px + env(safe-area-inset-bottom));transform:translate(-50%,10px);width:max-content;max-width:calc(100% - 28px);padding:10px 13px;border-radius:999px;background:#17201f;color:#fff;font-size:.875rem;font-weight:760;line-height:1.5;opacity:0;pointer-events:none;box-shadow:0 10px 30px rgba(20,32,31,.16);transition:opacity .2s ease,transform .25s cubic-bezier(.16,1,.3,1)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(hover:hover) and (pointer:fine){
  .day-card:hover img{transform:scale(1.035);filter:saturate(1.04)}
@@ -285,23 +326,54 @@ button{touch-action:manipulation;transition:transform .16s ease,background-color
  .ref-grid{gap:22px}
 }
 @media(max-width:420px){
- .main{padding-top:14px}
- .cover{min-height:196px;padding:22px 20px 20px}
- .cover h1{font-size:clamp(38px,10.6vw,46px)}
- .cover-note{font-size:11px!important}
- .article h1{font-size:clamp(34px,11vw,48px)}
- .day-card,.day-copy{min-height:146px}
- .day-copy{padding:17px 15px}
- .day-copy b{font-size:23px}
- .day-index{left:12px;top:9px;font-size:48px}
  .live-strip{grid-template-columns:1fr}
+}
+@media(max-width:719px){
+ .main{padding:14px 16px calc(88px + env(safe-area-inset-bottom))}
+ .cover{min-height:clamp(146px,18dvh,176px);padding:20px;border-radius:20px}
+ .cover h1{font-size:clamp(2rem,9.3vw,2.5rem);line-height:1.12;margin:8px 0 10px;letter-spacing:-.035em;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
+ .section{margin-top:24px}.section-title{margin-bottom:12px}.section-title h2{line-height:1.25}
+ .day-card,.day-copy{min-height:clamp(130px,calc(18dvh - 3px),164px)}
+ .day-copy{padding:14px 16px}.day-copy b{font-size:1.375rem;line-height:1.3;letter-spacing:-.025em}
+ .day-copy span{font-size:.8125rem;line-height:1.5}
+ .day-index{left:14px;top:8px;font-size:44px}
+ .dayhead{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px;margin:0 0 18px}
+ .dayhead>div:first-child{flex:1 1 180px;min-width:0}
+ .dayhead h2{font-size:2rem;line-height:1.25;letter-spacing:-.035em}
+ .dayhead p{font-size:.875rem;line-height:1.5;margin-top:6px}
+ .day-date{font-size:.75rem;padding:7px 9px}
+ .timeline{--time-column:max(64px,3.25rem)}
+ .stop{grid-template-columns:var(--time-column) 24px minmax(0,1fr)}
+ .timeline:before{left:calc(var(--time-column) + 12px)}.route-link{margin-left:calc(var(--time-column) + 24px)}
+ .stop-card h3,.stop-card p{overflow-wrap:anywhere}
+ .stop.minor{min-height:64px}.stop.minor .stop-card{padding:12px 8px}
+ .stop.major .stop-card{padding:14px 12px}
+ .stop.major .stop-time{padding-top:20px}
+ .article{padding:24px 16px calc(28px + env(safe-area-inset-bottom))}
+ .article h1{font-size:clamp(1.75rem,8.3vw,2.25rem);line-height:1.2;letter-spacing:-.035em;max-width:none;margin-bottom:14px;overflow-wrap:anywhere}
+ .deck{max-width:none}
+ .facts{margin-top:20px}.fact{padding:12px 12px 12px 0}
+ .editorial-route{gap:10px;margin-top:24px}
+ .editorial-node span{font-size:.8125rem}.editorial-node b{font-size:.875rem;line-height:1.5}
+ .venue-zone{padding:14px 10px}
+ .status-row .state,.guide-action .state{overflow-wrap:anywhere}
+ .tabline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+ .tabline button{padding:10px 6px;white-space:normal;overflow-wrap:anywhere}
+}
+@media(max-width:359px){
+ .dayhead{grid-template-columns:1fr}.day-date{justify-self:start}
+ .day-copy b{font-size:1.25rem}
+ .cover .eyebrow{letter-spacing:.02em}
+ .rule{grid-template-columns:64px minmax(0,1fr)}
+ .guide-action{grid-template-columns:48px minmax(0,1fr) auto;gap:8px}
+ .status-row{grid-template-columns:48px minmax(0,1fr)}
 }
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC6.11",updated:"09/30",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC6.12",updated:"10/08",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -405,6 +477,7 @@ const PHOTO_MAPS={
 };
 
 let currentDay=1, mode="timeline", selected={1:0,2:0,3:0}, mapObj=null, mapMarkers=[], detailOpen=false, detailMapObj=null, detailCurrentId="";
+let detailReturnFocus=null,detailReturnScroll=0,detailReturnView=null;
 const OSM_RASTER_STYLE={version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm",type:"raster",source:"osm"}]};
 let maplibrePromise=null;
 function loadExternalScript(src,timeout=4500){return new Promise(resolve=>{const el=document.createElement('script');let done=false;const finish=ok=>{if(done)return;done=true;clearTimeout(timer);resolve(ok)};const timer=setTimeout(()=>{el.remove();finish(false)},timeout);el.src=src;el.async=true;el.onload=()=>finish(true);el.onerror=()=>finish(false);document.head.appendChild(el)})}
@@ -430,7 +503,7 @@ function esc(s=''){return String(s).replaceAll('\\','\\\\').replaceAll("'","\\'"
 function factRows(items=[]){return items.map(([a,b])=>`<div class="fact"><small>${a}</small><b>${b}</b></div>`).join("")}
 function pageHead(kicker,title,deck,facts=[]){const key=facts.slice(0,2),rest=facts.slice(2);return `<div class="page-kicker">${kicker}</div><h1>${title}</h1><p class="deck">${deck}</p>${key.length?`<div class="facts">${factRows(key)}</div>`:""}${rest.length?`<details class="facts-more"><summary>快速資料</summary><div class="facts">${factRows(rest)}</div></details>`:""}`}
 function media(src,cap,pos="center"){return `<div class="media"><img src="${src}" alt="${cap||""}" loading="lazy" decoding="async" style="object-position:${pos}" onerror="this.closest('.media').classList.add('missing');this.remove()"></div>${cap?`<div class="caption">${cap}</div>`:""}`}
-function block(title,content){return `<section class="block"><div class="block-title">${title}</div>${content}</section>`}
+function block(title,content){return `<section class="block"><h2 class="block-title">${title}</h2>${content}</section>`}
 function editorialRoute(items){return `<div class="editorial-route" aria-label="路線節點">${items.map((x,i)=>`<div class="editorial-node"><span>${x[0]}</span><b>${x[1]}</b></div>`).join("")}</div>`}
 function transportDiagram(items,fallback=null){return `<div class="transport-diagram" role="img" aria-label="${items.map(x=>x[0]).join("，再到")}">${items.map((x,i)=>`<div class="transport-stop"><div class="transport-node"><span>${x[1]||String(i+1).padStart(2,"0")}</span></div><div class="transport-copy"><b>${x[0]}</b>${x[2]?`<p>${x[2]}</p>`:""}${i<items.length-1&&x[3]?`<em>${x[3]}</em>`:""}</div></div>`).join("")}${fallback?`<div class="transport-fallback"><strong>${fallback[0]}</strong><p>${fallback[1]}</p></div>`:""}</div>`}
 function decisionDiagram(title,items){return `<div class="decision-diagram"><div class="decision-head"><span>CHECKPOINT</span><strong>${title}</strong></div><div class="decision-grid">${items.map(x=>`<div class="decision-path ${x[2]||""}"><b>${x[0]}</b><p>${x[1]}</p></div>`).join("")}</div></div>`}
@@ -450,8 +523,8 @@ function nextHop(a,b,copyA=a,copyB=b){return copyB?`<div class="next-hop compact
 function copyPlaces(items){return `<div class="copy-places">${items.map(x=>`<button class="copy-place" onclick="copyText('${esc(x[1])}')"><b>${x[0]}</b><span>${x[1]}</span><em>複製</em></button>`).join("")}</div>`}
 function sticky(){return""}
 function findItemPosition(id){for(const [d,day] of Object.entries(DAYS)){const i=day.items.findIndex(x=>x.id===id);if(i>=0)return{day:+d,index:i,items:day.items}}return null}
-function detailPagerHTML(id){const p=findItemPosition(id);if(!p)return"";const prev=p.items[p.index-1]||null,next=p.items[p.index+1]||null;return `<div class="detail-pager">${prev?`<button class="pager-prev" aria-label="上一站：${prev.title}" onclick="openAdjacentDetail(-1)"><b>← ${prev.title}</b></button>`:`<span></span>`}${next?`<button class="pager-next" aria-label="下一站：${next.title}" onclick="openAdjacentDetail(1)"><b>${next.title} →</b></button>`:`<div class="pager-end"><b>最後一站</b></div>`}</div>`}
-function openAdjacentDetail(delta){const p=findItemPosition(detailCurrentId);if(!p)return;const target=p.items[p.index+delta];if(!target)return;openDetail(target.id,false);history.replaceState({v:'detail',id:target.id},'',`#detail-${target.id}`)}
+function detailPagerHTML(id){const p=findItemPosition(id);if(!p)return"";const prev=p.items[p.index-1]||null,next=p.items[p.index+1]||null;return `<nav class="detail-pager" aria-label="行程站點">${prev?`<button class="pager-prev" aria-label="上一站：${prev.title}" onclick="openAdjacentDetail(-1)"><small>← 上一站</small><b>${prev.title}</b></button>`:`<span></span>`}${next?`<button class="pager-next" aria-label="下一站：${next.title}" onclick="openAdjacentDetail(1)"><small>下一站 →</small><b>${next.title}</b></button>`:`<div class="pager-end"><b>最後一站</b></div>`}</nav>`}
+function openAdjacentDetail(delta){const p=findItemPosition(detailCurrentId);if(!p)return;const target=p.items[p.index+delta];if(!target)return;openDetail(target.id,false);history.replaceState({...history.state,v:'detail',id:target.id},'',`#detail-${target.id}`)}
 function mealExtras(rows){const useful=rows.filter(r=>r[0]!=="飲品");return useful.length?`<div class="meal-extras">${useful.map(r=>`<div class="meal-extra"><b>${r[0]} · ${r[1]}</b>${r[2]?`<p>${r[2]}</p>`:""}</div>`).join("")}</div>`:""}
 function foodFeature(img,kicker,title,note,source=""){return `<div class="food-feature">${img?`<img src="${img}" alt="${title}" loading="lazy" decoding="async" onerror="this.remove()">`:""}<div class="food-feature-copy"><strong>${title}</strong><p>${note}</p>${source?`<a class="visual-source" href="${source}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</div></div>`}
 function foodVisuals(items){return `<div class="food-visual-grid">${items.map(x=>`<figure class="food-visual"><img src="${x[0]}" alt="${x[1]}" loading="lazy" decoding="async" onerror="this.closest('.food-visual').classList.add('missing');this.remove()"><figcaption><strong>${x[1]}</strong><p>${x[2]}</p>${x[3]?`<a class="visual-source" href="${x[3]}" target="_blank" rel="noopener noreferrer">圖源 ↗</a>`:""}</figcaption></figure>`).join("")}</div>`}
@@ -904,9 +977,9 @@ function init(){
   </main>
   <nav class="bottomnav"><button id="navTrip" class="nav active" onclick="showTrip()">行程</button><button id="navDay" class="nav" onclick="openDay(currentDay)">當日</button><button id="navGuide" class="nav" onclick="showGuide()">指南</button></nav>
  </div>
- <div id="detail" class="detail" aria-hidden="true"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div><div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
+ <div id="detail" class="detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle" aria-hidden="true" inert><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><article id="article" class="article"></article></div><div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
 
- $('#backBtn').onclick=()=>history.back();
+ $('#backBtn').onclick=()=>{if(history.state?.hasParent)history.back();else{showTrip(false);history.replaceState({v:'trip'},'','#trip')}};
  let swipeX=0,swipeY=0,swipeTarget=null;
  $('#detail').addEventListener('touchstart',e=>{if(e.touches.length!==1)return;swipeX=e.touches[0].clientX;swipeY=e.touches[0].clientY;swipeTarget=e.target},{passive:true});
  $('#detail').addEventListener('touchend',e=>{if(!detailOpen||!e.changedTouches.length)return;if(swipeTarget?.closest('button,a,summary,input,select,textarea,.photo-map,.maplibregl-map,.tabline'))return;const dx=e.changedTouches[0].clientX-swipeX,dy=e.changedTouches[0].clientY-swipeY;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.35)openAdjacentDetail(dx<0?1:-1)},{passive:true});
@@ -914,7 +987,15 @@ function init(){
  restoreFromHash();
  setInterval(refreshLiveStrip,60000);
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshLiveStrip()});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&detailOpen)closeDetail()});
+ document.addEventListener('keydown',e=>{
+  if(!detailOpen)return;
+  if(e.key==='Escape'){e.preventDefault();closeDetail();return}
+  if(e.key!=='Tab')return;
+  const controls=[...$('#detail').querySelectorAll('button,a[href],summary,[tabindex="0"]')].filter(el=>!el.disabled&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
+  const first=controls[0],last=controls[controls.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus({preventScroll:true})}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus({preventScroll:true})}
+ });
  registerOfflineWorker();
  window.addEventListener('offline',()=>showToast('離線模式 · 已快取內容仍可使用'));
  window.addEventListener('online',()=>showToast('已重新連線'));
@@ -930,13 +1011,14 @@ function setTop(t,b=false){$('#pageTitle').textContent=t;$('#backBtn').classList
 function nav(x){[['navTrip','trip'],['navDay','day'],['navGuide','guide']].forEach(([id,key])=>{const el=$('#'+id),active=x===key;el.classList.toggle('active',active);if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')})}
 function hideMain(){['tripView','dayView','guideView'].forEach(id=>$('#'+id).classList.add('hidden'))}
 function resetMainScroll(){window.scrollTo({top:0,left:0,behavior:'instant'})}
-function showTrip(push=true){hideMain();$('#tripView').classList.remove('hidden');setTop('MWY2026 · 上海三日行程書');nav('trip');resetMainScroll();if(push)history.pushState({v:'trip'},'','#trip')}
-function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidden');setTop('指南',true);nav('guide');resetMainScroll();if(push)history.pushState({v:'guide'},'','#guide')}
-function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();resetMainScroll();if(push)history.pushState({v:'day',d,mode},'',`#day-${d}`)}
-function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({v:'day',d,mode},'',`#day-${d}-${mode}`)}
-function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
+function showTrip(push=true){hideMain();$('#tripView').classList.remove('hidden');setTop('MWY2026 · 上海三日行程書');nav('trip');resetMainScroll();if(push)history.pushState({v:'trip',hasParent:true},'','#trip')}
+function showGuide(push=true){hideMain();$('#guideView').classList.remove('hidden');setTop('指南',true);nav('guide');resetMainScroll();if(push)history.pushState({v:'guide',hasParent:true},'','#guide')}
+function openDay(d,push=true){currentDay=d;mode='timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${d}日 · ${DAYS[d].title}`,true);nav('day');renderDay();resetMainScroll();if(push)history.pushState({v:'day',d,mode,hasParent:true},'',`#day-${d}`)}
+function switchDay(d){currentDay=d;renderDay();setTop(`第${d}日 · ${DAYS[d].title}`,true);resetMainScroll();history.replaceState({...history.state,v:'day',d,mode},'',`#day-${d}-${mode}`)}
+function setMode(m){mode=m;renderDay();resetMainScroll();history.replaceState({...history.state,v:'day',d:currentDay,mode},'',`#day-${currentDay}-${mode}`)}
 function renderDay(){const day=DAYS[currentDay];$('#dayView').dataset.day=String(currentDay);$('#dayTitle').textContent=`第${currentDay}日`;$('#daySub').textContent=day.title;$('#dayDate').textContent=day.date;$('#liveStrip').innerHTML=liveStripHTML();document.querySelectorAll('.seg button').forEach(b=>{const active=+b.dataset.d===currentDay;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});const timelineActive=mode==='timeline';$('#tBtn').classList.toggle('active',timelineActive);$('#mBtn').classList.toggle('active',!timelineActive);$('#tBtn').setAttribute('aria-pressed',String(timelineActive));$('#mBtn').setAttribute('aria-pressed',String(!timelineActive));$('#timelinePane').classList.toggle('hidden',!timelineActive);$('#mapPane').classList.toggle('hidden',timelineActive);if(timelineActive)renderTimeline();else{renderMap();setTimeout(initMap,30)}}
-function renderTimeline(){const items=DAYS[currentDay].items,live=todayTripDay()===currentDay,now=shanghaiClock().minutes;let currentIdx=-1;if(live){for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)currentIdx=i}$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>{const state=!live?"":i<currentIdx?"is-past":i===currentIdx?"is-now":i===currentIdx+1?"is-next":"";return `${i?`<div class="route-link ${live&&i<=currentIdx?"is-past":""}">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'} ${state}"><div class="stop-time">${x.time}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" ${state==="is-now"?'aria-current="step"':''} onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`}).join('')}</div>`}
+function timelineTime(time){return String(time).split('/').map((t,i)=>`<span${i?' class="time-alt"':''}>${i?'／':''}${t}</span>`).join('')}
+function renderTimeline(){const items=DAYS[currentDay].items,live=todayTripDay()===currentDay,now=shanghaiClock().minutes;let currentIdx=-1;if(live){for(let i=0;i<items.length;i++)if(stopMinutes(items[i].time)<=now)currentIdx=i}$('#timelinePane').innerHTML=`<div class="timeline">${items.map((x,i)=>{const state=!live?"":i<currentIdx?"is-past":i===currentIdx?"is-now":i===currentIdx+1?"is-next":"";return `${i?`<div class="route-link ${live&&i<=currentIdx?"is-past":""}">${items[i-1].move||''}</div>`:''}<div class="stop ${x.anchor?'major':'minor'} ${state}"><div class="stop-time">${timelineTime(x.time)}</div><div class="stop-track"><div class="stop-dot ${x.anchor?'anchor':''}"></div></div><button class="stop-card" ${state==="is-now"?'aria-current="step"':''} onclick="openDetail('${x.id}')">${x.anchor?`<span class="stop-kind">${x.kind}</span>`:''}<h3>${x.title}</h3><p>${x.sub}</p></button></div>`}).join('')}</div>`}
 
 function renderMap(){const mapped=DAYS[currentDay].items.filter(x=>x.coord);const x=mapped[selected[currentDay]]||mapped[0];$('#mapPane').innerHTML=`<div id="realMap"><div class="mapfallback">載入互動地圖…<br><small>地圖只用嚟理解站點位置；實際導航交畀高德。</small></div></div><div class="map-tools"><button onclick="fitDay()">顯示全日</button><button onclick="selectMapStop(0,true)">第一站</button><button onclick="selectMapStop(${Math.max(0,mapped.length-1)},true)">最後一站</button></div><div id="mapInspector">${inspectorHTML(x,mapped)}</div><div class="map-note">地圖唔負責即時路況／轉乘。地址同現場時間規則先係行程書主資料。</div>`}
 function inspectorHTML(x,mapped){if(!x)return'';const i=mapped.indexOf(x);return `<div class="map-inspector"><small>站點 ${i+1}/${mapped.length}</small><h3>${x.time} · ${x.title}</h3><p>${x.sub}${x.address?`<br>${x.address}`:''}</p><div class="map-actions"><button class="primary" onclick="openDetail('${x.id}')">打開詳細頁</button><button class="secondary" onclick="goTimeline()">回時間線</button></div></div>`}
@@ -992,15 +1074,66 @@ function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以�
 </div></div>`}
 
 async function initDetailPhotoMap(id){if(detailMapObj){try{detailMapObj.remove()}catch(e){}detailMapObj=null}const cfg=PHOTO_MAPS[id],el=document.getElementById(`photoMap-${id}`);if(!cfg||!el)return;const libReady=await ensureMapLibre();if(!libReady||!el?.isConnected){if(el)el.innerHTML='<div class="photo-map-fallback">地圖元件載入唔到；下面嘅站位／焦段仍然可用。</div>';return}try{const pts=cfg.points.map(p=>p.wgs);el.innerHTML='';detailMapObj=new maplibregl.Map({container:el,style:OSM_RASTER_STYLE,center:pts[0],zoom:cfg.zoom||15,interactive:false,attributionControl:true});let ready=false;const failTimer=setTimeout(()=>{if(!ready)el.innerHTML='<div class="photo-map-fallback">機位底圖載入逾時；用下面站位名稱去高德認位即可。</div>'},8000);detailMapObj.on('load',()=>{ready=true;clearTimeout(failTimer);cfg.points.forEach(p=>{const m=document.createElement('div');m.className='photo-pin'+(p.hot?' hot':'');m.textContent=p.label;m.title=p.name;new maplibregl.Marker({element:m}).setLngLat(p.wgs).addTo(detailMapObj)});if(pts.length>1){detailMapObj.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:pts}}});detailMapObj.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0f9f97','line-width':3,'line-opacity':.8,'line-dasharray':[1.1,1.2]}});const b=pts.reduce((bb,c)=>bb.extend(c),new maplibregl.LngLatBounds(pts[0],pts[0]));detailMapObj.fitBounds(b,{padding:42,maxZoom:cfg.zoom||15,duration:0})}})}catch(e){el.innerHTML='<div class="photo-map-fallback">機位圖喺目前環境載入唔到；用下面站位名稱去高德認位即可。</div>'}}
-function openDetail(id,push=true){const fn=P[id]||(()=>`${pageHead('詳細頁',id,'暫未有內容。')}`);detailCurrentId=id;$('#detail').dataset.detail=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');document.body.classList.add('detail-active');detailOpen=true;$('#detail').scrollTop=0;setTimeout(()=>initDetailPhotoMap(id),35);if(push)history.pushState({v:'detail',id},'',`#detail-${id}`)}
-function closeDetail(){if(!detailOpen)return;$('#detail').classList.remove('open');$('#detail').setAttribute('aria-hidden','true');document.body.classList.remove('detail-active');detailOpen=false;if(history.state?.v==='detail')history.back()}
+function currentViewState(){
+ const v=!$('#guideView').classList.contains('hidden')?'guide':!$('#dayView').classList.contains('hidden')?'day':'trip';
+ return {v,...(v==='day'?{d:currentDay,mode}:{}),hasParent:history.state?.v===v&&!!history.state.hasParent};
+}
+function viewHash(s){return s?.v==='guide'?'#guide':s?.v==='day'?`#day-${s.d}-${s.mode||'timeline'}`:'#trip'}
+function renderViewState(s){
+ if(s?.v==='guide'){showGuide(false);return}
+ if(s?.v==='day'&&DAYS[s.d]){currentDay=s.d;mode=s.mode||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();return}
+ showTrip(false);
+}
+let pendingDetailRestore=false;
+function restoreDetailFocus(){
+ if(!pendingDetailRestore)return;
+ pendingDetailRestore=false;
+ let target=detailReturnFocus?.element;
+ if(!target?.isConnected||!target.getClientRects().length){target=[...$('.shell').querySelectorAll('button')].find(el=>el.getClientRects().length&&el.getAttribute('onclick')===detailReturnFocus?.onclick)}
+ (target||(!$('#backBtn').classList.contains('hidden')?$('#backBtn'):$('.nav.active')))?.focus({preventScroll:true});
+ window.scrollTo({top:detailReturnScroll,left:0,behavior:'instant'});
+}
+function hideDetail(){
+ if($('#detail').contains(document.activeElement))document.activeElement.blur();
+ $('#detail').classList.remove('open');$('#detail').inert=true;$('#detail').setAttribute('aria-hidden','true');
+ $('.shell').inert=false;document.body.classList.remove('detail-active');detailOpen=false;pendingDetailRestore=true;
+}
+function openDetail(id,push=true){
+ const fn=P[id];if(!fn)return;
+ const wasOpen=detailOpen;
+ if(!wasOpen){detailReturnFocus={element:document.activeElement,onclick:document.activeElement?.getAttribute('onclick')};detailReturnScroll=window.scrollY;detailReturnView=currentViewState()}
+ detailCurrentId=id;$('#detail').dataset.detail=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;
+ $('#detail').inert=false;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');
+ document.body.classList.add('detail-active');detailOpen=true;pendingDetailRestore=false;$('#detail').scrollTop=0;
+ const heading=$('#article h1');heading?.setAttribute('tabindex','-1');
+ (wasOpen?heading:$('#detail .dtop button'))?.focus({preventScroll:true});$('.shell').inert=true;
+ setTimeout(()=>initDetailPhotoMap(id),35);
+ if(push)history.pushState({v:'detail',id,from:detailReturnView,hasParent:true},'',`#detail-${id}`);
+}
+function closeDetail(){
+ if(!detailOpen)return;
+ const state=history.state,from=state?.from||detailReturnView||{v:'day',d:findDayForId(detailCurrentId),mode:'timeline'};
+ hideDetail();
+ if(state?.v==='detail'&&state.hasParent){history.back();return}
+ renderViewState(from);history.replaceState(from,'',viewHash(from));restoreDetailFocus();
+}
 let toastTimer=null;
 function showToast(message){const el=$('#toast');if(!el)return;el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1300)}
 function legacyCopy(t){const ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();return ok}
 async function copyText(t){let ok=false;try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(t);ok=true}}catch(e){}if(!ok)ok=legacyCopy(t);const shown=String(t).length>24?String(t).slice(0,24)+'…':String(t);showToast(ok?'已複製 · '+shown:'未能自動複製，請長按地址')}
-function restoreFromHash(){const h=location.hash;if(h.startsWith('#detail-')){const id=h.replace('#detail-','');openDay(findDayForId(id),false);openDetail(id,false);history.replaceState({v:'detail',id},'',h);return}if(h.startsWith('#day-')){const m=h.match(/^#day-(\d)(?:-(map|timeline))?$/);if(m){currentDay=+m[1];mode=m[2]||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();history.replaceState({v:'day',d:currentDay,mode},'',h);return}}if(h==='#guide'){showGuide(false);history.replaceState({v:'guide'},'',h);return}showTrip(false)}
+function restoreFromHash(){
+ const h=location.hash,prior=history.state;
+ if(h.startsWith('#detail-')){
+  const id=h.slice(8);
+  if(P[id]){const from=prior?.v==='detail'&&prior.from?prior.from:id==='tower'?{v:'guide'}:{v:'day',d:findDayForId(id),mode:'timeline'};renderViewState(from);history.replaceState(from,'',viewHash(from));openDetail(id,false);history.replaceState({v:'detail',id,from,hasParent:!!prior?.hasParent},'',h);return}
+ }
+ const m=h.match(/^#day-([123])(?:-(map|timeline))?$/);
+ if(m){const state={v:'day',d:+m[1],mode:m[2]||'timeline',hasParent:!!prior?.hasParent};renderViewState(state);history.replaceState(state,'',h);return}
+ if(h==='#guide'){showGuide(false);history.replaceState({v:'guide',hasParent:!!prior?.hasParent},'',h);return}
+ showTrip(false);history.replaceState({v:'trip'},'','#trip');
+}
 function findDayForId(id){for(const [d,x] of Object.entries(DAYS))if(x.items.some(i=>i.id===id))return +d;return 1}
-window.addEventListener('popstate',e=>{if(detailOpen&&e.state?.v!=='detail'){$('#detail').classList.remove('open');$('#detail').setAttribute('aria-hidden','true');document.body.classList.remove('detail-active');detailOpen=false}const s=e.state;if(!s||s.v==='trip'){showTrip(false);return}if(s.v==='day'){currentDay=s.d;mode=s.mode||'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop(`第${currentDay}日 · ${DAYS[currentDay].title}`,true);nav('day');renderDay();return}if(s.v==='guide'){showGuide(false);return}if(s.v==='detail'){const d=findDayForId(s.id);openDay(d,false);openDetail(s.id,false)}});
+window.addEventListener('popstate',e=>{const s=e.state;if(!s){if(detailOpen)hideDetail();restoreFromHash();restoreDetailFocus();return}if(s.v==='detail'){renderViewState(s.from||{v:'day',d:findDayForId(s.id),mode:'timeline'});openDetail(s.id,false);return}if(detailOpen)hideDetail();renderViewState(s);restoreDetailFocus()});
 init();
 </script>
 </body>
