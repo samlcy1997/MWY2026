@@ -372,7 +372,6 @@ button{transition:transform .16s ease,background-color .2s ease,border-color .2s
 /* Touch navigation responds without scale recovery or full-page motion. */
 @media(hover:none) and (pointer:coarse){
  html{scroll-behavior:auto}
- html,body,.detail{overscroll-behavior-y:none}
  body,.shell{min-height:100svh}
  button{transition:none}
  button:active{transform:none;opacity:.86}
@@ -505,7 +504,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 .toast{background:var(--inverted);color:var(--on-inverted);border-radius:4px;box-shadow:none;font-weight:500;transition:none;bottom:calc(88px + env(safe-area-inset-bottom))}
 @media(max-width:359px){.main{padding-left:18px;padding-right:18px}.trip-summary{margin-left:-18px;margin-right:-18px}.article{padding-left:18px;padding-right:18px}.article h1,.dayhead h1,.guide-intro h2{font-size:28px}.day-number{display:none}.stop{grid-template-columns:64px minmax(0,1fr);gap:8px}.route-link{margin-left:72px}.stop-card h2{font-size:15px}.detail-actions{padding-left:18px;padding-right:18px}.detail-next span{display:none}}
 @media(min-width:720px){.main{padding-left:32px;padding-right:32px}.trip-summary{margin-left:-32px;margin-right:-32px}.trip-summary summary{min-height:210px;padding:32px}.summary-copy b{font-size:44px}.summary-body{padding-left:32px;padding-right:32px}.summary-day{grid-template-columns:42px minmax(0,1fr) 20px}.summary-index{font-size:32px}.dayhead h1,.guide-intro h2,.article h1{font-size:42px}.article{padding-left:32px;padding-right:32px}.stop{grid-template-columns:96px minmax(0,1fr)}.stop-time{font-size:13px}.stop-card h2{font-size:18px}.stop-card p{font-size:14px}.route-link{margin-left:106px}.detail-actions{padding-left:32px;padding-right:32px}}
-@media(hover:none) and (pointer:coarse){html,body,.detail{overscroll-behavior-y:none}.detail,.detail.open,button,.toast{transition:none;animation:none}.detail,.detail.open{transform:none}.toast,.toast.show{transform:translateX(-50%)}}
+@media(hover:none) and (pointer:coarse){.detail,.detail.open,button,.toast{transition:none;animation:none}.detail,.detail.open{transform:none}.toast,.toast.show{transform:translateX(-50%)}}
 
 .alert p{color:var(--warn)}.alert.danger p{color:var(--danger)}
 
@@ -528,7 +527,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC7.0",updated:"10/08",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC7.1",updated:"10/08",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
