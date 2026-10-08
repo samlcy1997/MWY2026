@@ -2,7 +2,11 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC6.11 scope
+## Current RC6.12 scope
+
+- Portrait-mobile refinement: compact three-day overview, consistent readable type, smaller detail titles, clear previous/next labels and comfortable source-link targets
+- Timeline alternatives no longer collide with the route track; detail return preserves its day/map/guide context, scroll and focus, including directly opened links
+- Detail pages expose section headings and modal semantics, contain keyboard focus and keep the background inactive while open
 
 - Offline/weak-network resilience: added a service worker, navigation fallback, runtime caching for viewed images/CDN assets, a user-triggered prewarm for 13 critical recognition images, and a minimal web manifest
 
