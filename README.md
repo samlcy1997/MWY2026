@@ -2,7 +2,7 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC7.0 scope
+## Current RC7.1 scope
 
 - Blue photography-led visual system, local serif headings and monospace times, with matching light and dark themes
 - Unified itinerary entry: collapsible three-day summary above the full daily timeline; bottom navigation is Itinerary / Map / Guide
@@ -10,6 +10,7 @@ A mobile-first three-day Shanghai field guide built around 未來有你 2026, ph
 - Timeline and map share day and stop selection; details preserve the originating view, scroll and keyboard focus
 - Full existing 21-stop itinerary and 22 detailed guides retained, including photography, food, event, transport and fallback content
 - Camera checkpoint supports confirmed carry/storage choices and updates the destination action accordingly
+- Native browser pull-to-refresh restored by removing vertical overscroll suppression
 - Immediate mobile response without scaling, spring recovery or full-page motion
 - Offline app shell includes the city cover, local fonts, MapLibre 5.24.0 and the two instructional images; viewed remote images and map assets retain runtime caching
 
