@@ -491,9 +491,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 .detail-actions button{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;min-height:48px;padding:10px 8px;border:1px solid var(--line);border-radius:3px;background:var(--paper);font-size:13px;font-weight:500;line-height:1.5}
 .detail-actions .detail-next{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 .detail-next span{font-size:11px;white-space:nowrap}.detail-next b{font-size:13px;line-height:1.4;font-weight:500;overflow-wrap:anywhere}
-.field-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 0 14px}
-.field-choice button{min-height:44px;padding:10px 6px;font-size:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:3px}
-.field-choice button[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 .guide-intro{padding:0;border:0;background:none}
 .guide-intro p{font-size:14px;line-height:1.7;margin-top:12px;color:var(--muted)}
 .guide-group h3{font-weight:500;color:var(--muted)}
@@ -527,7 +524,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC7.1",updated:"10/08",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC7.2",updated:"10/09",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -535,8 +532,6 @@ const IMG={
   wukangExample:"https://commons.wikimedia.org/wiki/Special:Redirect/file/20191027_Wukang_Mansion.jpg",
   taikangStore:"https://wenhui.whb.cn/u/cms/www/202009/13193420g9ue.jpg",
   taikangFood:"https://p4.itc.cn/q_70/images03/20220831/6bfdc50a9fff4aa593d4e55309a68521.png",
-  xiandelai:"https://k.sinaimg.cn/n/sinakd20240108s/114/w1080h1434/20240108/98fe-e5f5acbf76287939ec9546e7b572a8d6.png/w700d1q75cms.jpg",
-  xiandelaiFood:"https://touch.shio.gov.cn/upload/images/2024/1/20240108231832959.png",
   zhangStore:"https://taojin-pic-gz.cdn.bcebos.com/bos_gz_ae3eda78f31bd2fb81c2bed622ac96ea.jpg?x-bce-process=image%2Fcrop%2Cx_430%2Cy_0%2Cw_562%2Ch_562",
   qiqiNoodle:"https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
   qiqiStore:"https://dimg04.c-ctrip.com/images/01060120009ll4bntBB06_D_350_230_Q90.jpg?proc=autoorient",
@@ -582,29 +577,29 @@ const DAYS={
     {id:"ferry",time:"18:15/18:30",title:"輪渡＋浦東反拍",sub:"東昌路落船後正式拍外灘亮燈夜景",kind:"交通＋攝影",anchor:true,move:"19:15 收機叫車",coord:[121.498989,31.232071],address:"東昌路渡口 · 濱江大道3528號"},
     {id:"gundam",time:"19:45",title:"1:1 Freedom Gundam",sub:"夜攝＋等一輪夜間演出 · 場次臨行再核",kind:"攝影",anchor:true,move:"20:40 上4F",coord:[121.603823,31.252264],address:"LaLaport上海金橋 · 新金橋路738號"},
     {id:"gundambase",time:"20:40",title:"THE GUNDAM BASE",sub:"金橋店 · 21:10前離開",kind:"ACG",move:"台兒莊路站 → 9號線返市中心",coord:[121.603823,31.252264],address:"新金橋路738號 LaLaport 4F 429–430"},
-    {id:"dongtaixiang",time:"22:20",title:"東泰祥",sub:"24小時 · 特色生煎＋咖喱牛肉湯",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
+    {id:"dongtaixiang",time:"22:20",title:"東泰祥",sub:"24小時 · 特色生煎4隻＋咖喱牛肉湯",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
   ]},
   2:{date:"11月1日 · 星期日",title:"未來有你 2026",cover:IMG.mwyHall,items:[
-    {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"鹹豆漿＋粢飯團 · 隊長就只買核心兩樣",kind:"早餐",move:"10:00 前到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
+    {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"出門前Z8留酒店 · 鹹豆漿＋粢飯團",kind:"早餐",move:"10:00 到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
     {id:"mwy",time:"10:00",title:"MWY 場販／展示",sub:"小羽館主售 · 大羽館展示＋CALL棒",kind:"活動",anchor:true,move:"午餐按現場進度",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
     {id:"qiqi",time:"12:00",title:"琪琪麵館",sub:"辣肉拌麵 · 13:30 後直接放棄",kind:"午餐",move:"返場館",coord:[121.461815,31.277407],address:"北寶興路296–298號"},
-    {id:"mwyafternoon",time:"13:15",title:"返場館／展示",sub:"繼續展示＋場販 · 15:45做相機 checkpoint",kind:"活動",move:"16:45–17:15 小楊／寄存分支",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
-    {id:"xiaoyang",time:"16:50",title:"小楊生煎",sub:"最小份招牌生煎 · 18:00 前返場館",kind:"補給",move:"演唱會入場",coord:[121.458164,31.298158],address:"江場路1212號協信廣場B1"},
-    {id:"mwyshow",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · 相機／袋安排出發前再確認",kind:"演唱會",anchor:true,move:"散場按餓度分支",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"mwyafternoon",time:"13:15",title:"返場館／展示",sub:"午餐後參考時間 · 下午按Part.2／現場活動調整",kind:"活動",move:"約17:00 小楊快食",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"xiaoyang",time:"17:00",title:"小楊生煎",sub:"最小份招牌生煎 · 長隊即砍 · 18:00前返場館",kind:"補給",move:"演唱會入場",coord:[121.458164,31.298158],address:"江場路1212號協信廣場B1"},
+    {id:"mwyshow",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · Z8已留酒店 · 18:00前返場館",kind:"演唱會",anchor:true,move:"散場按體力即場決定",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
     {id:"postshow",time:"21:30+",title:"散場後",sub:"不再鎖餐廳 · 宵夜只服務體力",kind:"彈性",move:"返住宿",coord:null,address:""}
   ]},
   3:{date:"11月2日 · 星期一",title:"武康＋徐家匯＋張園",cover:IMG.wukang,items:[
-    {id:"wangji",time:"08:00",title:"王記葱油餅",sub:"原味葱油餅＋黑米粥／甜豆漿",kind:"早餐",move:"09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
+    {id:"wangji",time:"08:30",title:"退房 → 王記葱油餅",sub:"先寄大件行李 · Z8跟身 · 原味葱油餅＋粥／豆漿",kind:"退房＋早餐",move:"約09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
     {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"源點廣場主片 → 邊走邊拍",kind:"攝影",anchor:true,move:"10:15 前去徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
     {id:"xjh",time:"10:30",title:"徐家匯 ACG／科技",sub:"美羅城 5–6F → TPY B2 → 新六百外牆",kind:"區域",move:"向東北收線",coord:[121.439649,31.192944],address:"肇嘉浜路1111號起"},
-    {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯 · 13:30 後轉後備方案",kind:"本幫菜",move:"張園",coord:[121.457505,31.221176],address:"進賢路240號"},
+    {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯 · 13:15未能入座就轉味香齋",kind:"本幫菜",move:"張園",coord:[121.457505,31.221176],address:"進賢路240號"},
     {id:"zhangyuan",time:"13:50",title:"張園 → 路易號",sub:"西進東出 · 15:15 收機",kind:"城市攝影",anchor:true,move:"返住宿取行李",coord:[121.460064,31.227971],address:"張園／南京西路789號"},
     {id:"airport",time:"15:30",title:"返住宿 → PVG",sub:"15:30–15:40較舒服 · 15:50只作最遲正常值",kind:"交通",anchor:true,move:"19:05 航班",coord:[121.8055,31.1500],address:"上海浦東國際機場 T2"}
   ]}
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},dahuchun:{title:"大壺春 · 非行程"},xiandelai:{title:"鮮得來 · 非行程"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyafternoon:{title:"返場館／展示"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+ arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyafternoon:{title:"返場館／展示"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"退房 → 王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
 };
 
 const PHOTO_MAPS={
@@ -635,7 +630,7 @@ let detailReturnFocus=null,detailReturnScroll=0,detailReturnView=null;
 const UI_ICONS={"list":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"M3 5h.01\" />\n  <path d=\"M3 12h.01\" />\n  <path d=\"M3 19h.01\" />\n  <path d=\"M8 5h13\" />\n  <path d=\"M8 12h13\" />\n  <path d=\"M8 19h13\" />\n</svg>","map":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z\" />\n  <path d=\"M15 5.764v15\" />\n  <path d=\"M9 3.236v15\" />\n</svg>","bookmark":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"M17 3a2 2 0 0 1 2 2v15a1 1 0 0 1-1.496.868l-4.512-2.578a2 2 0 0 0-1.984 0l-4.512 2.578A1 1 0 0 1 5 20V5a2 2 0 0 1 2-2z\" />\n</svg>","clock-3":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M12 6v6h4\" />\n</svg>","chevron-down":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"m6 9 6 6 6-6\" />\n</svg>","chevron-right":"<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\n  <path d=\"m9 18 6-6-6-6\" />\n</svg>"};
 const HOTEL="如家商旅酒店（上海火車站南廣場店）";
 const mainScrolls={},selectedStopIds={1:null,2:null,3:null};
-let timelineSelectionChanged=false,cameraChoice="unknown";
+let timelineSelectionChanged=false;
 const OSM_RASTER_STYLE={version:8,sources:{osm:{type:"raster",tiles:["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],tileSize:256,attribution:"© OpenStreetMap contributors"}},layers:[{id:"osm",type:"raster",source:"osm"}]};
 let maplibrePromise=null;
 function loadExternalScript(src,timeout=4500){return new Promise(resolve=>{const el=document.createElement('script');let done=false;const finish=ok=>{if(done)return;done=true;clearTimeout(timer);resolve(ok)};const timer=setTimeout(()=>{el.remove();finish(false)},timeout);el.src=src;el.async=true;el.onload=()=>finish(true);el.onerror=()=>finish(false);document.head.appendChild(el)})}
@@ -717,6 +712,7 @@ ${block("落地後照住做",route([
  ["龍陽路","2號線 → 人民廣場","轉1號線去上海火車站；龍陽路到住宿區約45–50分鐘。"],
  ["落雨／太攰","龍陽路直接叫車","行李唔方便就唔勉強轉線，Didi／高德叫車直接去住宿。"],
  ["14:15–14:45","放低行李","早到係bonus；完成就出發去第一餐。"],
+ ["check-in","順手問前台貴重物品保管","確認保險櫃可否放相機本體、接受方式同寄存憑證；唔合適就按Day 2房內保管方案。"],
  ["≈15:45","食物段截止","前面延誤就外帶／砍一站，16:10外白渡橋優先。"]
 ]))}
 ${block("如果落地段慢咗",branches([
@@ -853,9 +849,9 @@ ${foodVisuals([
  [IMG.dongtaiFood,"特色生煎實拍","東泰祥特色生煎實拍；可見半發酵皮、芝麻葱花同煎底。","https://city.sina.cn/finance/2024-04-23/detail-inasuzcy8986078.d.html"]
 ])}
 ${block("點咩",foodList([
- ["主食","特色生煎","先食本店核心；一兩就已經足夠做晚餐主角。"],
+ ["主食","特色生煎4隻","先食本店核心，配咖喱牛肉湯。"],
  ["配搭","咖喱牛肉湯","生煎嘅經典配搭，用湯去平衡煎包嘅油香。"],
- ["仲餓","開洋葱油拌麵／鮮肉小餛飩","二選一，唔兩款都加。"]
+ ["有胃先加","蝦仁小餛飩","主餐食完再決定，唔再加第二款主食。"]
 ]))}
 ${block("點食",eatSteps([
  ["先開口","放匙羹，先開小口散熱同飲湯，避免一咬爆汁。"],
@@ -864,7 +860,14 @@ ${block("點食",eatSteps([
 ]))}
 ${nextHop("東泰祥","住宿","東泰祥生煎館 重慶北路188號","如家商旅酒店（上海火車站南廣場店）")}`,
 
-zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","主線係鹹豆漿＋粢飯團；兩樣已經覆蓋上海傳統早餐最有特色嗰部分，10:00前去場館。",[["地址","石門二路487號"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
+zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","出門前先把Z8留酒店，再食鹹豆漿＋粢飯團；約10:00去場館。",[["地址","石門二路487號"],["相機","早上留酒店"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
+${block("出門前 · 相機留酒店",rules([
+ ["現行安排","攝影／攝像器材屬禁帶範圍；Day 2不帶Z8去場館，唔以去年搜袋經驗推翻現行規則。"],
+ ["房內保管","Z8＋24-120鎖入行李箱，收在不顯眼位置；掛DND／要求當日不執房。"],
+ ["記憶卡跟身","Day 1已拍內容的CFexpress卡自行帶走。"],
+ ["前台正式保管","check-in時已確認保險櫃尺寸合適、接受相機並有寄存憑證，先升級用前台保管。"],
+ ["更改條件","只有主辦其後明確放寬為可攜帶、演出中禁用，先再考慮帶相機。"]
+]))}
 ${foodVisuals([
  [IMG.zhangStore,"到店認位","石門二路487號係居民區小店；啡紅色「張師傅早餐店」招牌最易認。","https://map.baidu.com/place/e0c22309dbc684e616948e2c"],
  [IMG.zhangFood,"店內早餐實拍","張師傅店內／食物實拍，可見粢飯、鹹豆漿、大餅油條等；今次主線只鎖鹹豆漿＋粢飯團。","https://www.lemon8-app.com/@ct.jw_/7413743356045459969?region=sg"]
@@ -898,7 +901,7 @@ ${block("時間",branches([
 ]))}
 ${nextHop("琪琪麵館","上海靜安體育中心","琪琪麵館 北寶興路296–298號","上海靜安體育中心 汶水路116號")}`,
 
-xiaoyang:()=>`${pageHead("第2日 · 16:45–17:15","小楊生煎","演唱會前食最小份招牌生煎；17:15左右完成，18:00前返場館。",[["地址","江場路1212號協信廣場北區B1"],["時段","16:45–17:15"],["返場館","18:00前"]])}
+xiaoyang:()=>`${pageHead("第2日 · 約17:00","小楊生煎","演唱會前快食最小份招牌生煎；見到明顯排隊就立即砍或改快食，18:00前返場館。",[["地址","江場路1212號協信廣場北區B1"],["時段","約17:00"],["返場館","18:00前"]])}
 ${foodVisuals([
  [IMG.xiaoyang,"認粉紅招牌","呢張係小楊其他分店門面，只用嚟認品牌招牌；今次實際目的地係協信星光廣場北區B1。","https://www.1px.tw/blog/post/9577236272"],
  [IMG.xiaoyangBrandFood,"招牌生煎外觀","小楊品牌生煎實物參考；唔當成協信店當日實拍。重點係薄皮、湯汁同焦底。","https://www.walkerland.com.tw/article/view/402925"]
@@ -912,29 +915,19 @@ ${block("點食",eatSteps([
  ["最後食焦底","肉餡食完後，再將焦脆底部配少量醋。"]
 ]))}
 ${block("排隊太耐",branches([
- ["排隊 >15分鐘","轉最快出餐方案；唔壓縮18:00前返場館。","danger"]
+ ["見到明顯排隊","立即砍小楊或改最快出餐方案；唔等足15分鐘先決定，18:00前返場館優先。","danger"]
 ]))}
 ${nextHop("小楊生煎","上海靜安體育中心","小楊生煎 江場路1212號協信廣場B1","上海靜安體育中心 汶水路116號")}`,
 
-postshow:()=>`${pageHead("第2日 · 散場後","散場後","宵夜只服務體力：唔餓直接返住宿；想食先按『補上海小吃／純填肚』分支。",[["第一選擇","直接返住宿"],["上海小吃補票","鮮得來"],["緊急熱食","全昌福約至23:00"]])}
-${decisionDiagram("散場後 · 先問自己餓唔餓",[
- ["唔餓","直接返住宿；唔為『已經出咗嚟』再開一餐。","hot"],
- ["想補上海小吃","只有 Day 1 冇食鮮得來先去福建中路新店；接受佢唔係最直線。",""],
- ["只係要填肚","返住宿方向搵晚市／外賣；全昌福只係23:00前嘅熱食安全網。","warn"]
- ])}
- <details class="secondary-disclosure"><summary>如果最後去鮮得來</summary>
- ${placeVisuals([
-  [IMG.xiandelai,"到店認位","福建中路新店只作『Day 1冇食到』嘅補票分支。",""],
-  [IMG.xiandelaiFood,"排骨年糕","去到先食呢個核心，唔再擴成第二輪上海小吃巡禮。",""]
- ])}
- </details>
-${block("可直接複製",copyPlaces([
- ["鮮得來 · 上海小吃補票","鮮得來 福建中路350號"],
- ["全昌福 · 酒店附近安全網","全昌福 天目西路560號"],
- ["直接返住宿","如家商旅酒店（上海火車站南廣場店）"]
-]))}`,
+postshow:()=>`${pageHead("第2日 · 散場後","散場後","宵夜不硬鎖店；按體力、餓度同仍營業餐廳即場決定。",[["唔餓／太攰","直接返住宿"],["想食","先查仍營業餐廳"]])}
+${decisionDiagram("散場後 · 體力先行",[
+ ["唔餓／太攰","直接返住宿，唔再跨區追食店。","hot"],
+ ["想食而且有體力","即場查附近或返住宿方向仍營業餐廳，先睇車程同排隊再決定。",""],
+ ["只想快快填肚","用返住宿方向嘅快食／外賣；食完就休息。","warn"]
+])}
+${copyPlaces([["返住宿","如家商旅酒店（上海火車站南廣場店）"]])}`,
 
-wangji:()=>`${pageHead("第3日 · 08:00","王記葱油餅","先食原味招牌葱油餅，配黑米粥／甜豆漿二選一；09:00去武康。",[["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
+wangji:()=>`${pageHead("第3日 · 退房後早餐","退房 → 王記葱油餅","約08:30–09:00退房，大件行李寄酒店、Z8＋24-120跟身；再食原味葱油餅，配黑米粥／甜豆漿二選一，接住去武康。",[["退房","約08:30–09:00"],["行李","大件寄酒店 · 相機跟身"],["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
 ${foodVisuals([
  [IMG.wangjiStoreExact,"到店認位","東諸安浜路店頁面主圖；店面細，去到見到現做葱油餅窗口就係。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"],
  [IMG.wangjiFoodExact,"原味葱油餅","目標係原味本體：外層酥、中心較軟、葱香重；第一個唔加蛋。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"]
@@ -945,7 +938,7 @@ ${block("點咩",foodList([
  ["有胃先加","葱油餅加蛋／韭菜餅","食完原味先決定。"]
 ]))}
 ${block("排隊",branches([
- ["隊太長","外帶，路上處理；唔為早餐延遲09:00街拍。","danger"]
+ ["隊太長","外帶，路上處理；唔為早餐拖長武康街拍，10:15前去徐家匯。","danger"]
 ]))}
 ${nextHop("王記葱油餅","武康大樓","王記葱油餅 東諸安浜路191-5號","武康大樓 上海")}`,
 
@@ -965,12 +958,13 @@ ${block("09:20 · 武康路",rules([
  ["70–120mm","窗、陽台、梧桐、遠處人物。"],
  ["見到先停","唔等光、唔折返。"]
 ]))}
+${alertBox("30–45分鐘已滿足就提早走","武康只做純街拍，唔做人文深挖；影齊想要嘅畫面就去徐家匯。")}
 ${cutoff("10:15 前走","武康路唔拖成半日；準時去徐家匯。","離開")}
 ${nextHop("武康路","美羅城","武康大樓 上海","美羅城 肇嘉浜路1111號")}`,
 
 xjh:()=>xjhPage(),
 
-haijinzi:()=>`${pageHead("第3日 · 12:40","海金滋","今次唯一完整本幫正餐：葱烤大排＋飯＋一個輕菜；13:30後唔再搏午市。",[["地址","進賢路240號"],["時間","45–60分鐘"],["最遲","13:30"]])}
+haijinzi:()=>`${pageHead("第3日 · 12:40","海金滋","主選葱烤大排＋飯＋一個輕菜；13:15做決定，徐家匯超時、排隊或午市狀態不穩就直接轉味香齋。",[["地址","進賢路240號"],["時間","45–60分鐘"],["決定時間","13:15"]])}
 ${foodVisuals([
  [IMG.haijinziStore,"到店認位","進賢路240號門面；深色石材外牆、左邊『海金滋』字樣同240號牌最好認。","https://www.thepaper.cn/newsDetail_forward_12651431"],
  [IMG.haijinziFood,"葱烤大排","主線就係葱烤大排＋白飯；濃油赤醬用飯承接，第二道先揀較輕菜。","https://tw.trip.com/restaurant/china/shanghai/detail/hai-jin-zi-352394/"]
@@ -981,13 +975,13 @@ ${block("一個人點法",foodList([
  ["胃夠先加","醬爆豬肝／響油鱔絲","兩款都係真正招牌，二選一。"]
 ]))}
 ${block("時間唔夠",branches([
- ["13:15仍未到／未入座","開始考慮轉味香齋。","warn"],
- ["13:30後","直接味香齋：麻醬麵＋小牛湯。","danger"]
+ ["13:15仍未到／未入座","直接轉味香齋，唔再等到13:30。","danger"],
+ ["徐家匯已超時／午市狀態不穩","立即用快速後備：麻醬麵＋小牛湯。","warn"]
 ]))}
 ${block("快速後備",foodList([
  ["味香齋","麻醬麵＋小牛湯","麻醬麵濃香，小牛湯負責解膩；同琪琪嘅辣肉澆頭麵係完全不同路線。"]
 ]))}
-${copyPlaces([["13:30後直接去味香齋","味香齋 雁蕩路14號"]])}
+${copyPlaces([["13:15轉快速後備","味香齋 雁蕩路14號"]])}
 ${nextHop("海金滋","張園","海金滋 進賢路240號","張園 南京西路789號")}`,
 
 zhangyuan:()=>`${pageHead("第3日 · 13:50–15:15","張園 → 路易號","由張園一路向東去興業太古匯，最後拍路易號；15:15收機返住宿。",[["張園","13:50–14:40"],["路易號","14:40–15:15"],["離開","15:15"],["方向","西進東出"]])}
@@ -1000,6 +994,7 @@ ${block("一路向東",route([
  ["13:50","張園","24–35mm拍窄巷／門洞；50–85mm補紅磚、窗同人物。"],
  ["→","東區步行長廊","一路向興業太古匯，唔逐層逛商場。"],
  ["14:40","路易號","50–70mm先收完整船形＋高樓。"],
+ ["內部展覽","已預約／低排隊先入","外觀必拍；唔為入展侵蝕15:15收尾。"],
  ["補一兩張","船頭近景","24–35mm；人太多就直接放棄。"],
  ["15:15","收機","返住宿取行李。"]
 ]))}
@@ -1055,48 +1050,39 @@ function towerPage(){
 }
 
 function mwyMarketPage(){
- return `${pageHead("第2日 · 10:00","MWY 場販／展示","早上只處理場販同展示：先小羽館買官方周邊，再去大羽館睇展示／CALL棒；午餐按現場進度決定。",[["開放","10:00–22:00"],["小羽館","主要官方場販"],["大羽館","展示＋CALL棒"]])}
+ return `${pageHead("第2日 · 10:00","MWY 場販／展示","先小羽館買官方周邊，再去大羽館睇展示／CALL棒；上午保留約1.5–2.5小時可伸縮窗口，唔預設買完即走。",[["場販","10/31–11/1 · 10:00–22:00"],["上午窗口","約1.5–2.5小時"],["小羽館","主要官方場販"],["大羽館","展示＋CALL棒 · 細節等Part.2"]])}
  ${media(IMG.mwyHall,"上海靜安體育中心場館環境參考；實際2026入口與分流以當日主辦指示為準。")}
  <div class="venue-split" aria-label="場館功能分工">
   <div class="venue-zone"><span>01 · 先去</span><b>小羽毛球館</b><p>主要官方場販。先處理真係想買嘅周邊。</p></div>
   <div class="venue-zone"><span>02 · 再去</span><b>大羽毛球館</b><p>展示為主；CALL棒可喺呢邊單買。</p></div>
  </div>
  ${block("午餐前",rules([
-  ["場販拖時","先砍琪琪，唔壓夜場準備。"]
+  ["場販／展示拖時","先砍琪琪，13:30後未成行就放棄；午餐唔倒逼逛館時間。"],
+  ["展示與現場活動","Part.2／最終公告未出，唔把去年展項或場販開放時間當今年展示時段。"]
  ]))}
  ${alertBox("再次入場仍未鎖","目前只有非官方／影片經驗稱當日票可自由進出；正式進出規則等2026主辦公告，網站唔當成已確認。")}
  ${nextHop("上海靜安體育中心","琪琪麵館","上海靜安體育中心 汶水路116號","琪琪麵館 北寶興路296–298號")}`;
 }
 function mwyAfternoonPage(){
- return `${pageHead("第2日 · 13:15–16:45","返場館／展示","午餐後返場館繼續展示／場販；15:45左右做相機 checkpoint，呢個時間先決定要唔要返住宿寄存。",[["返場館","約13:15"],["checkpoint","約15:45"],["夜場","19:00 · VIP"]])}
- ${decisionDiagram("15:45 · 相機／bag 規則",[
-  ["可以帶","唔返住宿；相機繼續跟身，照原線去小楊，再18:00前返場館。","hot"],
-  ["唔可以帶","立即啟動住宿寄存分支；道路順叫車，塞車就1號線。小楊變成可砍項。","warn"]
- ])}
+ return `${pageHead("第2日 · 下午彈性窗口","返場館／展示","午餐後繼續展示／場販，把下午留畀Part.2同現場活動；相機早上已留酒店，唔需要下午往返寄存。",[["返場館","午餐後 · 約13:15只作參考"],["快食","約17:00 · 小楊"],["夜場","19:00 · VIP"]])}
  ${block("下午主線",route([
-  ["13:15後","返上海靜安體育中心","繼續展示／場販；唔再開新跨區行程。"],
-  ["≈15:45","睇最新觀演須知","相機／bag規則已公布就即刻按結果走分支。"],
-  ["16:45–17:15","小楊時段","只有寄存分支順利／時間夠先保留。"],
+  ["午餐後","返上海靜安體育中心","繼續展示／場販；琪琪被砍就留場館，唔為時間表折返。"],
+  ["下午","按Part.2／現場活動調整","有指定活動時段先按公告安排；唔排死，唔再加跨區站。"],
+  ["≈17:00","小楊快食","明顯排隊就立即砍或改快食。"],
   ["18:00前","返場館","入場buffer優先。"]
  ]))}
-
- ${block("如果要寄存",route([
-  ["≈15:45–16:00","離開場館區","叫車單程可先用15–25分鐘級作規劃；當日睇高德。"],
-  ["住宿","前台交收相機","確認寄存牌／收據同當晚取回流程。"],
-  ["≈16:40–16:55","回汶水路／協信廣場","時間夠先食小楊；16:00後先離場時，小楊第一個砍。"],
-  ["18:00","返場館","唔用食物換入場buffer。"]
- ]))}
+ ${alertBox("14:00日場尚未納入","只有額外搶到日場票，先另行重排Day 2；目前仍以19:00 VIP夜場為主。")}
  ${nextHop("上海靜安體育中心","小楊生煎","上海靜安體育中心 汶水路116號","小楊生煎 江場路1212號協信廣場B1")}`;
 }
 function mwyShowPage(){
- return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","18:00前返場館。呢頁只做最後入場確認；相機寄存決策應該已經喺15:45 checkpoint完成。",[["夜場","19:00 · VIP"],["返場館","18:00前"],["相機／袋","以2026最新公告為準"]])}
+ return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","18:00前返場館；Z8早上已留酒店，入場前再核票、袋、安檢同再次進入規則。",[["夜場","19:00 · VIP"],["返場館","18:00前"],["相機","早上已留酒店"]])}
  ${block("入場前",route([
-  ["≈17:15","完成小楊","排隊太耐就縮單；唔壓18:00返場館。"],
+  ["≈17:00","演出前快食","小楊有明顯排隊就立即砍或改快食；唔壓18:00返場館。"],
   ["18:00前","回上海靜安體育中心","預留安檢／入場buffer。"],
-  ["入場前","最後核一次規則","票、bag、相機狀態同公告一致先排隊。"],
+  ["入場前","最後核一次規則","票、bag、安檢同再次進入安排以主辦最新公告為準。"],
   ["19:00","VIP夜場","演出期間按主辦規則執行。"]
  ]))}
- ${alertBox("如果18:00先發現相機唔准帶","唔好再照原餐飲節奏處理；以入場為第一優先，即場按最新公告／場館安排解決。",true)}`;
+ ${alertBox("相機安排出門前已完成","現行安排係Day 2不帶Z8；只有主辦明確放寬可攜帶，先再考慮翻案。")}`;
 }
 function xjhPage(){
  return `${pageHead("第3日 · 10:30–12:20","徐家匯 ACG／科技","美羅城為主，TPY B2同新六百按當期內容決定停留；12:20左右離開去午飯。",[["時段","10:30–12:20"],["離開","約12:20"],["午飯","12:40 海金滋"]])}
@@ -1112,7 +1098,7 @@ function xjhPage(){
  ]))}
  <div class="tabline"><button class="active" onclick="xjhVenue('happy',this)">美羅城</button><button onclick="xjhVenue('tpy',this)">TPY B2</button><button onclick="xjhVenue('young',this)">新六百YOUNG</button></div><div id="venueCard">${venueCard('happy')}</div>
  ${alertBox("10月底再查當期IP","有 Miku／PJSK／遊戲 IP 真正啱口味先延長；普通內容就照原定時間離開，唔因為『已經嚟到』而逐層行。")}
- ${cutoff("徐家匯玩過鐘 → 午飯先降級","如果IP活動太好玩，可以延長；代價應該係海金滋轉味香齋快速方案，而唔係侵蝕張園收尾／機場。","時間交換")}
+ ${cutoff("徐家匯延長 → 壓縮午餐／張園","撞正啱口味IP可以自然延長；13:15午市不穩就轉味香齋，或縮短張園。唔再加站，15:15收機同機場buffer保持。","時間交換")}
  ${nextHop("徐家匯","海金滋","美羅城 肇嘉浜路1111號","海金滋 進賢路240號")}`;
 }
 function venueCard(k){const d={happy:{img:IMG.happy,title:"美羅城 5–6F",text:"HAPPY MALL、動漫主題影院、XR／互動內容；主娛樂站。"},tpy:{img:IMG.tpy,title:"TPY Center B2",text:"二次元街、谷店、卡牌、扭蛋、快閃；只掃最有興趣內容。"},young:{img:IMG.young,title:"新六百YOUNG",text:"衡山路932號 · 徐家匯站13號口；先看外部裸眼3D大屏，有當期IP先深入。"}}[k];return `<div class="venue-card"><img src="${d.img}" alt="${d.title}" loading="lazy" decoding="async" onerror="this.remove()"><div class="copy"><h3>${d.title}</h3><p>${d.text}</p></div></div>`}
@@ -1197,12 +1183,9 @@ function goTimeline(){setMode('timeline')}
 function currentViewState(){const v=!$('#guideView').classList.contains('hidden')?'guide':'day';return{v,...(v==='day'?{d:currentDay,mode}:{}),hasParent:history.state?.v===v&&!!history.state.hasParent}}
 function viewHash(s){return s?.v==='guide'?'#guide':`#day-${s?.d||currentDay}-${s?.mode||'timeline'}`}
 function renderViewState(s){if(s?.v==='guide'){showGuide(false);return}currentDay=DAYS[s?.d]?s.d:currentDay;mode=s?.v==='day'?s.mode||'timeline':'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop('上海 · 私人行程');nav(mode);renderDay()}
-function detailActionHTML(id){const p=findItemPosition(id);if(!p)return'';const item=p.items[p.index],next=p.items[p.index+1];const address=item.id==='arrival'?HOTEL:item.address;const cameraStore=id==='mwyafternoon'&&cameraChoice==='store';return `<button class="detail-copy" onclick="copyText('${esc(address||HOTEL)}')">${item.id==='arrival'?'住宿地址':address?'本站地址':'住宿地址'}</button>${cameraStore?`<button class="detail-next" onclick="copyText('${esc(HOTEL)}')">住宿寄存地址 →</button>`:next?`<button class="detail-next" onclick="openAdjacentDetail(1)"><span>下一站</span><b>${next.title}</b> →</button>`:`<button class="detail-next" onclick="closeDetail()">返回行程</button>`}`}
-function setupDetailChoices(id){if(id!=='mwyafternoon')return;const head=$('#article .decision-head');head?.insertAdjacentHTML('afterend',`<div class="field-choice" aria-label="已確認的相機規則"><button onclick="chooseCamera('carry')" data-camera="carry" aria-pressed="${cameraChoice==='carry'}">確認可以帶</button><button onclick="chooseCamera('store')" data-camera="store" aria-pressed="${cameraChoice==='store'}">確認不可以帶</button></div>`);updateCameraDestination()}
-function chooseCamera(choice){cameraChoice=choice;$('#article').querySelectorAll('[data-camera]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.camera===choice)));updateCameraDestination();$('#detailActions').innerHTML=detailActionHTML(detailCurrentId)}
-function updateCameraDestination(){if(detailCurrentId!=='mwyafternoon')return;const hop=$('#article .next-hop');if(!hop)return;const store=cameraChoice==='store',address=store?HOTEL:'小楊生煎 江場路1212號協信廣場B1';hop.querySelector('strong').textContent=store?'返住宿寄存':'小楊生煎';hop.querySelector('p').textContent=address;hop.querySelector('button').onclick=()=>copyText(address)}
+function detailActionHTML(id){const p=findItemPosition(id);if(!p)return'';const item=p.items[p.index],next=p.items[p.index+1];const address=item.id==='arrival'?HOTEL:item.address;return `<button class="detail-copy" onclick="copyText('${esc(address||HOTEL)}')">${item.id==='arrival'?'住宿地址':address?'本站地址':'住宿地址'}</button>${next?`<button class="detail-next" onclick="openAdjacentDetail(1)"><span>下一站</span><b>${next.title}</b> →</button>`:`<button class="detail-next" onclick="closeDetail()">返回行程</button>`}`}
 
-function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'早餐 → 場販／展示 → 19:00 VIP 夜場':'葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
+function dayCardSub(d){return d===1?'抵達 → 外灘深藍／亮燈 → 浦東反拍 → Freedom':d===2?'相機留酒店 → 早餐 → 場販／展示 → 19:00 VIP 夜場':'退房／葱油餅 → 武康 → 徐家匯 → 張園 → PVG'}
 function shanghaiClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return{date:`${parts.year}-${parts.month}-${parts.day}`,minutes:+parts.hour*60+(+parts.minute)}}
 function todayTripDay(){return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[shanghaiClock().date]||0}
 function stopMinutes(t=''){const m=String(t).match(/(\d{1,2}):(\d{2})/);return m?(+m[1])*60+(+m[2]):9999}
@@ -1234,21 +1217,24 @@ async function prepareOffline(){
 function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>以下幾樣會隨時間改變，臨出發再確認一次就夠。</p></div>
 <div class="guide-group"><h3>離線準備</h3><div class="offline-panel"><div><strong>核心行程可離線開啟</strong><p>行程頁同兩張本地指引會自動快取；出發前用 Wi-Fi 按一次，會再預載主要店門、場館同 Gundam Base 認位圖。其他外部相片會喺你睇過之後逐步快取。</p></div><button onclick="prepareOffline()">預載主要圖片</button></div></div>
 <div class="guide-group"><h3>要再確認</h3><div class="status-list">
-<div class="status-row"><div class="state">MWY</div><div><b>相機、袋、安檢、再次入場</b><p>等主辦最終公告；Day 2 出門前確認。</p></div></div>
+<div class="status-row"><div class="state">MWY</div><div><b>Part.2、袋、安檢、再次入場</b><p>展示／現場活動同進出規則等最終公告；Day 2相機預設早上留酒店，只有官方明確放寬先改。</p></div></div>
 <div class="status-row"><div class="state">10/31</div><div><b>外灘景觀燈</b><p>確認當晚亮燈安排，同日落／藍調時段一齊睇。</p></div></div>
 <div class="status-row"><div class="state">輪渡</div><div><b>東金線班次</b><p>前一晚再睇班次同有冇臨時停航。</p></div></div>
 <div class="status-row"><div class="state">Freedom</div><div><b>夜間演出時間</b><p>出發前確認當日場次；19:45左右到南廣場。</p></div></div>
+<div class="status-row"><div class="state">Base</div><div><b>Gundam Base營業狀態</b><p>再確認金橋店最後營業時間，20:40–21:10逛店。</p></div></div>
+<div class="status-row"><div class="state">Day 3</div><div><b>當期IP／天氣與返程交通</b><p>臨行刷新徐家匯、張園、太古匯的Miku／PJSK／ACG活動；按天氣同去PVG的ETA調整。</p></div></div>
 <div class="status-row"><div class="state">食店</div><div><b>當日有冇休息／提早收舖</b><p>萊萊、泰康、東泰祥、張師傅、琪琪、小楊、王記、海金滋、味香齋。</p></div></div>
 </div></div>
 <div class="guide-group"><h3>拖延時點處理</h3><div class="status-list">
 <div class="status-row"><div class="state">Day 1</div><div><b>15:45後唔再等食</b><p>先保16:10外白渡橋、外灘藍調時段同19:45 Freedom。</p></div></div>
+<div class="status-row"><div class="state">午餐</div><div><b>Day 3 · 13:15決定</b><p>徐家匯超時、海金滋排隊或午市不穩，就直接轉味香齋。</p></div></div>
 <div class="status-row"><div class="state">Day 3</div><div><b>15:15收機</b><p>返住宿取行李；15:30–15:40出發去PVG較舒服。</p></div></div>
 </div></div>
 <div class="guide-group"><h3>備用方案</h3><div class="status-list">
 <button class="guide-action" onclick="openDetail('tower')"><span class="state">備用</span><span><b>上海之巔 118F</b><p>正常唔去；只有能見度極佳＋時間異常充裕先臨時考慮。</p></span><em>打開 ›</em></button>
 </div></div>
 <div class="guide-group"><h3>住宿與返程</h3><div class="status-list">
-<div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>Day 2如果相機禁帶，先問前台貴重物品寄存。</p></div></div>
+<div class="status-row"><div class="state">住宿</div><div><b>如家商旅酒店（上海火車站南廣場店）</b><p>Day 1／3相機跟身；Day 2鎖入行李箱、收好、掛DND／不執房，CFexpress卡跟身。前台保管只在已確認尺寸、接受方式及寄存憑證後使用。</p></div></div>
 <div class="status-row"><div class="state">返程</div><div><b>11/2 · 19:05 · PVG T2</b><p>15:30–15:40由住宿出發；15:50只當最遲正常值。</p></div></div>
 </div></div>`}
 
@@ -1273,7 +1259,7 @@ function openDetail(id,push=true,selectOrigin=true){
  if(!wasOpen){detailReturnFocus={element:document.activeElement,onclick:document.activeElement?.getAttribute('onclick')};detailReturnScroll=window.scrollY;detailReturnView=currentViewState()}
  if(!wasOpen&&selectOrigin&&DAYS[currentDay].items.some(x=>x.id===id)){selectedStopIds[currentDay]=id;selected[currentDay]=Math.max(0,mappedStops().findIndex(x=>x.id===id));document.querySelectorAll('.stop-card').forEach(button=>{const active=button.dataset.stopId===id;button.classList.toggle('selected',active);if(active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current')})}
  detailCurrentId=id;$('#detail').dataset.detail=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;
- $('#detailActions').innerHTML=detailActionHTML(id);setupDetailChoices(id);
+ $('#detailActions').innerHTML=detailActionHTML(id);
  $('#detail').inert=false;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');
  document.body.classList.add('detail-active');detailOpen=true;pendingDetailRestore=false;$('#detail').scrollTop=0;
  const heading=$('#article h1');heading?.setAttribute('tabindex','-1');
