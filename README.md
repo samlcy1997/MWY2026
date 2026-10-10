@@ -2,8 +2,13 @@
 
 A mobile-first three-day Shanghai field guide built around 未來有你 2026, photography, food, transport and time-critical decision branches.
 
-## Current RC7.2 scope
+## Current RC7.3 scope
 
+- RC7.3 is a fixing / consolidation pass over RC7.2, not a redesign: navigation, itinerary IA, timeline/map behavior and field-guide art direction stay unchanged
+- Public-source privacy cleanup removes camera body and lens model identifiers while keeping the same carry/storage decisions
+- RC7 light/dark tokens are now the single theme source of truth; superseded root token blocks were removed
+- Detail pages now expose stable archetype hooks (food / photo / transport / event / place / decision) for consistent styling without changing content structure
+- Field-use metadata and captions are raised to a more readable floor, and residual large-radius imagery / decorative event glow are normalized to the RC7 visual system
 - Blue photography-led visual system, local serif headings and monospace times, with matching light and dark themes
 - Unified itinerary entry: collapsible three-day summary above the full daily timeline; bottom navigation is Itinerary / Map / Guide
 - Dates remain manually selected. Shanghai time affects only the floating planned-stop shortcut, which returns to the original browsing context
