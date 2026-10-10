@@ -1,4 +1,4 @@
-const VERSION="mwy2026-rc7.2";
+const VERSION="mwy2026-rc7.3";
 const CORE_CACHE=VERSION+"-core";
 const MEDIA_CACHE=VERSION+"-media";
 const RUNTIME_CACHE=VERSION+"-runtime";
