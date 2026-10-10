@@ -3,19 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f1f4f3">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f4f3">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101c25">
 <meta name="color-scheme" content="light dark">
 <meta name="description" content="MWY2026 上海三日行程書：現場用時間線、攝影機位、飲食決策與交通分支。">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="./manifest.webmanifest">
 <title>MWY2026 · 上海三日行程書</title>
 <style>
-:root{
-  --bg:#f4f2ed; --paper:#fffefa; --ink:#142022; --muted:#657170; --line:#d9dfdc;
-  --soft:#e9f7f4; --accent:var(--accent-ink); --accent-ink:var(--accent-ink); --ink-soft:#273335;
-  --warm:#f7efe1; --warn:#8c5f18; --danger:#a04343; --danger-soft:#fbebeb;
-  --radius:20px; --radius-sm:14px; --shadow:0 18px 55px rgba(26,37,38,.08);
-}
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth}
 body{margin:0;min-height:100dvh;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;-webkit-font-smoothing:antialiased}
@@ -101,7 +96,6 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid rgb
  .main{padding-left:24px;padding-right:24px}.article{padding-left:24px;padding-right:24px}.day-grid{grid-template-columns:repeat(3,1fr)}.day-card,.day-copy{min-height:220px}.day-card:after{background:linear-gradient(0deg,rgba(9,17,18,.8),rgba(9,17,18,.1) 75%)}.facts{grid-template-columns:repeat(4,1fr)}.branch-grid{grid-template-columns:repeat(2,1fr)}.weather-grid{grid-template-columns:repeat(4,1fr)}.article h1{max-width:14ch}.sticky-actions{margin-left:-24px;margin-right:-24px}.cover{min-height:370px}}
 @media(max-width:380px){.main{padding-left:13px;padding-right:13px}.article{padding-left:13px;padding-right:13px}.sticky-actions{margin-left:-13px;margin-right:-13px}.stop{grid-template-columns:50px 30px minmax(0,1fr)}.timeline:before{left:65px}.route-link{margin-left:80px}.facts{grid-template-columns:1fr 1fr}.weather-grid{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
 
-:root{--bg:#f7f7f4;--paper:#fff;--ink:#18201f;--muted:#65706d;--line:rgba(24,32,31,.09);--soft:#edf5f2;--accent:var(--accent-ink);--accent-ink:var(--accent-ink);--radius:14px;--radius-sm:10px;--shadow:none}
 body{letter-spacing:-.005em}
 .topbar{background:rgba(247,247,244,.9);border-bottom-color:rgba(24,32,31,.06)}
 .top-spacer{width:44px;height:44px}
@@ -383,7 +377,7 @@ button{transition:transform .16s ease,background-color .2s ease,border-color .2s
 /* Blue city field guide. Local fonts are cached with the app shell. */
 @font-face{font-family:MWYEditorial;src:url('./assets/fonts/editorial.ttf') format('truetype');font-weight:500;font-display:swap}
 @font-face{font-family:MWYMono;src:url('./assets/fonts/mono.ttf') format('truetype');font-weight:400;font-display:swap}
-:root{color-scheme:light dark;--bg:#f1f4f3;--paper:#f8faf7;--ink:#183043;--muted:#526a78;--line:#cedbdd;--soft:#e0e9ec;--accent:#1b425c;--accent-ink:#1b425c;--ink-soft:#244252;--radius:4px;--radius-sm:3px;--shadow:none;--header:#f1f4f3;--focus:#447d9d;--photo-ink:#f9f6ea;--photo-shade:rgba(6,31,57,.52);--inverted:#17384e;--on-inverted:#f4f7f7;--on-inverted-muted:#cbdce5;--inverted-button:#bed7e1;--on-inverted-button:#163346}
+:root{color-scheme:light dark;--bg:#f1f4f3;--paper:#f8faf7;--ink:#183043;--muted:#526a78;--line:#cedbdd;--soft:#e0e9ec;--accent:#1b425c;--accent-ink:#1b425c;--ink-soft:#244252;--warm:#f7efe1;--warn:#8c5f18;--danger:#a04343;--danger-soft:#fbebeb;--radius:4px;--radius-sm:3px;--shadow:none;--header:#f1f4f3;--focus:#447d9d;--photo-ink:#f9f6ea;--photo-shade:rgba(6,31,57,.52);--inverted:#17384e;--on-inverted:#f4f7f7;--on-inverted-muted:#cbdce5;--inverted-button:#bed7e1;--on-inverted-button:#163346}
 @media(prefers-color-scheme:dark){:root{--bg:#101c25;--paper:#142630;--ink:#ecf0f1;--muted:#a8bcc8;--line:#304651;--soft:#1a303c;--accent:#aecfda;--accent-ink:#aecfda;--ink-soft:#c0d4df;--header:#101c25;--focus:#aecfda;--warm:#3d3320;--warn:#e2bd78;--danger:#edaaaa;--danger-soft:#392a2a;--inverted:#1a303c;--on-inverted:#edf4f6;--on-inverted-muted:#bdcfda;--inverted-button:#aecfda;--on-inverted-button:#163346}}
 html{scroll-behavior:auto}
 body,.shell{min-height:100svh}
@@ -519,12 +513,25 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 .event-pass:after{display:none}
 .food-visual img,.food-feature img,.guide-asset img,.viewstage,.panoview,.photo-map-wrap{border-radius:3px}
 @media(hover:hover) and (pointer:fine){.stop-card:hover,.copy-place:hover{background:var(--soft)}}
+
+/* RC7.3 fixing pass: preserve RC7.2 composition while consolidating detail-page visual grammar. */
+.food-feature img,.food-visual img,.guide-asset img,.viewstage,.ref-card img,.photo-map,.media{border-radius:3px}
+@media(min-width:620px){.food-visual img{aspect-ratio:4/3}}
+.event-pass{border-radius:3px;background:var(--inverted);color:var(--on-inverted)}
+.event-pass:after{display:none}
+.event-pass small,.event-pass p{color:var(--on-inverted-muted)}
+.caption,.visual-source,.ref-source,.pro-ref-note,.photo-map-note,.map-help summary,.map-note,.viewmeta,.viewlabel,
+.status-row .state,.guide-action .state,.ref-card small,.pro-ref small{font-size:11px;line-height:1.5}
+.status-pill,.ref-tags span,.tower-priority,.tower-note{font-size:10px;line-height:1.45}
+.tabline button{font-size:11px}
+[data-kind="food"] .food-visual strong,[data-kind="photo"] .ref-card b{font-weight:500}
+[data-kind="transport"] .transport-copy b,[data-kind="event"] .decision-path b{font-weight:500}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC7.2",updated:"10/09",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
+const SITE={version:"RC7.3",updated:"10/11",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／張園"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -580,16 +587,16 @@ const DAYS={
     {id:"dongtaixiang",time:"22:20",title:"東泰祥",sub:"24小時 · 特色生煎4隻＋咖喱牛肉湯",kind:"晚餐",move:"返住宿",coord:[121.470227,31.226184],address:"重慶北路188號"}
   ]},
   2:{date:"11月1日 · 星期日",title:"未來有你 2026",cover:IMG.mwyHall,items:[
-    {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"出門前Z8留酒店 · 鹹豆漿＋粢飯團",kind:"早餐",move:"10:00 到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
+    {id:"zhang",time:"08:00",title:"張師傅早餐店",sub:"出門前相機留酒店 · 鹹豆漿＋粢飯團",kind:"早餐",move:"10:00 到場館",coord:[121.458896,31.236694],address:"石門二路487號"},
     {id:"mwy",time:"10:00",title:"MWY 場販／展示",sub:"小羽館主售 · 大羽館展示＋CALL棒",kind:"活動",anchor:true,move:"午餐按現場進度",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
     {id:"qiqi",time:"12:00",title:"琪琪麵館",sub:"辣肉拌麵 · 13:30 後直接放棄",kind:"午餐",move:"返場館",coord:[121.461815,31.277407],address:"北寶興路296–298號"},
     {id:"mwyafternoon",time:"13:15",title:"返場館／展示",sub:"午餐後參考時間 · 下午按Part.2／現場活動調整",kind:"活動",move:"約17:00 小楊快食",coord:[121.453255,31.291619],address:"上海靜安體育中心 · 汶水路116號"},
     {id:"xiaoyang",time:"17:00",title:"小楊生煎",sub:"最小份招牌生煎 · 長隊即砍 · 18:00前返場館",kind:"補給",move:"演唱會入場",coord:[121.458164,31.298158],address:"江場路1212號協信廣場B1"},
-    {id:"mwyshow",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · Z8已留酒店 · 18:00前返場館",kind:"演唱會",anchor:true,move:"散場按體力即場決定",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
+    {id:"mwyshow",time:"19:00",title:"未來有你 2026",sub:"VIP 夜場 · 相機已留酒店 · 18:00前返場館",kind:"演唱會",anchor:true,move:"散場按體力即場決定",coord:null,address:"上海靜安體育中心 · 汶水路116號"},
     {id:"postshow",time:"21:30+",title:"散場後",sub:"不再鎖餐廳 · 宵夜只服務體力",kind:"彈性",move:"返住宿",coord:null,address:""}
   ]},
   3:{date:"11月2日 · 星期一",title:"武康＋徐家匯＋張園",cover:IMG.wukang,items:[
-    {id:"wangji",time:"08:30",title:"退房 → 王記葱油餅",sub:"先寄大件行李 · Z8跟身 · 原味葱油餅＋粥／豆漿",kind:"退房＋早餐",move:"約09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
+    {id:"wangji",time:"08:30",title:"退房 → 王記葱油餅",sub:"先寄大件行李 · 相機跟身 · 原味葱油餅＋粥／豆漿",kind:"退房＋早餐",move:"約09:00 武康大樓",coord:[121.436485,31.218589],address:"東諸安浜路191-5號"},
     {id:"wukang",time:"09:00",title:"武康大樓＋武康路",sub:"源點廣場主片 → 邊走邊拍",kind:"攝影",anchor:true,move:"10:15 前去徐家匯",coord:[121.438278,31.204430],address:"淮海中路1850號"},
     {id:"xjh",time:"10:30",title:"徐家匯 ACG／科技",sub:"美羅城 5–6F → TPY B2 → 新六百外牆",kind:"區域",move:"向東北收線",coord:[121.439649,31.192944],address:"肇嘉浜路1111號起"},
     {id:"haijinzi",time:"12:40",title:"海金滋",sub:"葱烤大排＋白飯 · 13:15未能入座就轉味香齋",kind:"本幫菜",move:"張園",coord:[121.457505,31.221176],address:"進賢路240號"},
@@ -600,6 +607,14 @@ const DAYS={
 
 const PAGE_META={
  arrival:{title:"抵達上海"},lailai:{title:"萊萊小籠"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyafternoon:{title:"返場館／展示"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"琪琪麵館"},xiaoyang:{title:"小楊生煎"},postshow:{title:"散場後"},wangji:{title:"退房 → 王記葱油餅"},wukang:{title:"武康大樓＋武康路"},xjh:{title:"徐家匯 ACG／科技"},haijinzi:{title:"海金滋"},zhangyuan:{title:"張園 → 路易號"},airport:{title:"返住宿 → PVG"}
+};
+
+const DETAIL_KIND={
+  arrival:"transport",airport:"transport",
+  lailai:"food",taikang:"food",dongtaixiang:"food",zhang:"food",qiqi:"food",xiaoyang:"food",wangji:"food",haijinzi:"food",
+  bund:"photo",ferry:"photo",gundam:"photo",wukang:"photo",zhangyuan:"photo",tower:"photo",
+  mwy:"event",mwyafternoon:"event",mwyshow:"event",gundambase:"event",
+  xjh:"place",postshow:"decision"
 };
 
 const PHOTO_MAPS={
@@ -860,10 +875,10 @@ ${block("點食",eatSteps([
 ]))}
 ${nextHop("東泰祥","住宿","東泰祥生煎館 重慶北路188號","如家商旅酒店（上海火車站南廣場店）")}`,
 
-zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","出門前先把Z8留酒店，再食鹹豆漿＋粢飯團；約10:00去場館。",[["地址","石門二路487號"],["相機","早上留酒店"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
+zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","出門前先把相機留酒店，再食鹹豆漿＋粢飯團；約10:00去場館。",[["地址","石門二路487號"],["相機","早上留酒店"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
 ${block("出門前 · 相機留酒店",rules([
- ["現行安排","攝影／攝像器材屬禁帶範圍；Day 2不帶Z8去場館，唔以去年搜袋經驗推翻現行規則。"],
- ["房內保管","Z8＋24-120鎖入行李箱，收在不顯眼位置；掛DND／要求當日不執房。"],
+ ["現行安排","攝影／攝像器材屬禁帶範圍；Day 2不帶相機去場館，唔以去年搜袋經驗推翻現行規則。"],
+ ["房內保管","攝影裝備鎖入行李箱，收在不顯眼位置；掛DND／要求當日不執房。"],
  ["記憶卡跟身","Day 1已拍內容的CFexpress卡自行帶走。"],
  ["前台正式保管","check-in時已確認保險櫃尺寸合適、接受相機並有寄存憑證，先升級用前台保管。"],
  ["更改條件","只有主辦其後明確放寬為可攜帶、演出中禁用，先再考慮帶相機。"]
@@ -927,7 +942,7 @@ ${decisionDiagram("散場後 · 體力先行",[
 ])}
 ${copyPlaces([["返住宿","如家商旅酒店（上海火車站南廣場店）"]])}`,
 
-wangji:()=>`${pageHead("第3日 · 退房後早餐","退房 → 王記葱油餅","約08:30–09:00退房，大件行李寄酒店、Z8＋24-120跟身；再食原味葱油餅，配黑米粥／甜豆漿二選一，接住去武康。",[["退房","約08:30–09:00"],["行李","大件寄酒店 · 相機跟身"],["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
+wangji:()=>`${pageHead("第3日 · 退房後早餐","退房 → 王記葱油餅","約08:30–09:00退房，大件行李寄酒店、相機跟身；再食原味葱油餅，配黑米粥／甜豆漿二選一，接住去武康。",[["退房","約08:30–09:00"],["行李","大件寄酒店 · 相機跟身"],["地址","東諸安浜路191-5號"],["營業","約06:00–19:00"],["等候","最多15–20分鐘"]])}
 ${foodVisuals([
  [IMG.wangjiStoreExact,"到店認位","東諸安浜路店頁面主圖；店面細，去到見到現做葱油餅窗口就係。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"],
  [IMG.wangjiFoodExact,"原味葱油餅","目標係原味本體：外層酥、中心較軟、葱香重；第一個唔加蛋。","https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-11165013/"]
@@ -1075,14 +1090,14 @@ function mwyAfternoonPage(){
  ${nextHop("上海靜安體育中心","小楊生煎","上海靜安體育中心 汶水路116號","小楊生煎 江場路1212號協信廣場B1")}`;
 }
 function mwyShowPage(){
- return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","18:00前返場館；Z8早上已留酒店，入場前再核票、袋、安檢同再次進入規則。",[["夜場","19:00 · VIP"],["返場館","18:00前"],["相機","早上已留酒店"]])}
+ return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","18:00前返場館；相機早上已留酒店，入場前再核票、袋、安檢同再次進入規則。",[["夜場","19:00 · VIP"],["返場館","18:00前"],["相機","早上已留酒店"]])}
  ${block("入場前",route([
   ["≈17:00","演出前快食","小楊有明顯排隊就立即砍或改快食；唔壓18:00返場館。"],
   ["18:00前","回上海靜安體育中心","預留安檢／入場buffer。"],
   ["入場前","最後核一次規則","票、bag、安檢同再次進入安排以主辦最新公告為準。"],
   ["19:00","VIP夜場","演出期間按主辦規則執行。"]
  ]))}
- ${alertBox("相機安排出門前已完成","現行安排係Day 2不帶Z8；只有主辦明確放寬可攜帶，先再考慮翻案。")}`;
+ ${alertBox("相機安排出門前已完成","現行安排係Day 2不帶相機；只有主辦明確放寬可攜帶，先再考慮翻案。")}`;
 }
 function xjhPage(){
  return `${pageHead("第3日 · 10:30–12:20","徐家匯 ACG／科技","美羅城為主，TPY B2同新六百按當期內容決定停留；12:20左右離開去午飯。",[["時段","10:30–12:20"],["離開","約12:20"],["午飯","12:40 海金滋"]])}
@@ -1258,7 +1273,7 @@ function openDetail(id,push=true,selectOrigin=true){
  const wasOpen=detailOpen;
  if(!wasOpen){detailReturnFocus={element:document.activeElement,onclick:document.activeElement?.getAttribute('onclick')};detailReturnScroll=window.scrollY;detailReturnView=currentViewState()}
  if(!wasOpen&&selectOrigin&&DAYS[currentDay].items.some(x=>x.id===id)){selectedStopIds[currentDay]=id;selected[currentDay]=Math.max(0,mappedStops().findIndex(x=>x.id===id));document.querySelectorAll('.stop-card').forEach(button=>{const active=button.dataset.stopId===id;button.classList.toggle('selected',active);if(active)button.setAttribute('aria-current','true');else button.removeAttribute('aria-current')})}
- detailCurrentId=id;$('#detail').dataset.detail=id;$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;
+ detailCurrentId=id;$('#detail').dataset.detail=id;$('#detail').dataset.kind=DETAIL_KIND[id]||'utility';$('#article').innerHTML=fn()+detailPagerHTML(id);$('#detailTitle').textContent=PAGE_META[id]?.title||id;
  $('#detailActions').innerHTML=detailActionHTML(id);
  $('#detail').inert=false;$('#detail').classList.add('open');$('#detail').setAttribute('aria-hidden','false');
  document.body.classList.add('detail-active');detailOpen=true;pendingDetailRestore=false;$('#detail').scrollTop=0;
