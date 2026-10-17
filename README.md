@@ -2,9 +2,15 @@
 
 A mobile-first three-day Shanghai itinerary for photography, local food and 未來有你 2026.
 
-## RC7.3.4: MASTER v2026-10-17.1 timeline sync
+## RC7.3.5: current planned phase (MASTER v2026-10-17.1)
 
-Only the current MASTER defines the executable plan. Historical research and decision-log snapshots do not override it. This release starts from shipped RC7.3.1; the rejected RC7.3.2 UI changes are excluded. Existing CSS, fonts, colors, photos, navigation structure and manifest are retained.
+Only the current MASTER defines the executable plan. Historical research and decision-log snapshots do not override it. The rejected RC7.3.2 UI changes remain excluded. Existing inline CSS, fonts, colors, photos, navigation structure and manifest are retained; `assets/current-plan.css` styles only the new current-phase block and its spacing above the existing cover.
+
+At the top of the main view, **此刻行程** shows the device clock converted to Shanghai time, the current **planned** phase, its time window, relevant conditional branch and the next step. It does not locate the traveler or infer completed stops. Day selection remains manual and does not affect the current phase. The existing floating shortcut opens the same phase's detailed guide. Before 10/31 it shows the upcoming trip; after 11/2 it shows completion instead of retaining a stale airport/restaurant stop.
+
+`PLAN_PHASES` splits the MASTER into travel, photography, meals, camera storage and admission stages. Conditional EVA and optional shopping retain their branch notes; ferry and transport estimates stay explicitly provisional. Update these subphases alongside `DAYS` whenever the MASTER changes. Refresh is aligned to each minute and runs immediately when the page becomes visible or returns from browser history. Updates keep the same DOM controls and focus; the clock is outside the polite live region so every minute is not announced.
+
+For a clearly labeled, frozen preview, use `?planPreview=2026-11-01T15:50`; only valid times on the three trip dates are accepted. The block says **預覽** and offers **使用現在時間** to return to the device clock. Ordinary URLs always use the real device time.
 
 - **Day 1:** allow about 15:20–16:05 for a full meal. Lailai is check-first; unavailable or queued means a quick full meal nearby. Taikang is an optional snack. If still eating at 16:05, skip Waibaidu Bridge. The 16:15–16:45 bridge/walking window is flexible; photograph from the main Bund position around 16:45–17:40, then start south at 17:40 with 20–25 minutes for walking and quick photos. Aim for the ferry at 18:00–18:05; 18:15/18:30 sailings and last sailing remain unconfirmed. If waiting endangers Freedom, go directly to LaLaport and skip Pudong. Arrival around 19:45–20:15 is a traffic estimate; prioritize the robot, with Base shopping around 20:50–21:15 flexible. Leave LaLaport around 21:10–21:30. Carry water and supplementary savory food before Dong Taixiang supper.
 - **Day 2:** protect both meals. With reliable daytime camera permission and favorable timing, leave MWY around 14:00, photograph EVA around 14:20–14:55, travel directly to the hotel at 14:55–15:45, then reserve **15:45–16:00 separately for secure camera storage and changing to a light load**. Return to the venue area at 16:00–16:40; dinner/rest is 16:40–17:25. If still at MWY at 14:20, EVA access is blocked, transport runs late or VIP checking needs more time, skip EVA and secure the camera. Without confirmed permission, leave the camera at the hotel all day and do not activate EVA photography. Cameras never enter the evening concert. 17:45–18:00 is a provisional VIP entrance target subject to official guidance; the only concert is 19:00 VIP.
@@ -14,9 +20,9 @@ Each daily timeline has an existing-style disclosure for the MASTER Trip Brief: 
 
 ## Verification
 
-Run `node tests/master-content.cjs` from the checkout. It checks source-content requirements, detail rendering, next-stop chronology, map-picker entries, legacy-link redirects, unchanged RC7.3.1 CSS/fonts/manifest, public-data exclusions and the service-worker cache key. These are static/runtime contracts with a minimal DOM harness, not a browser layout test or verification of actual transport, restaurant service, venue access or trip feasibility.
+Run `node tests/current-plan.cjs` from the checkout. It also runs the MASTER content checks: detail rendering, next-stop chronology, map-picker entries, legacy-link redirects, unchanged RC7.3.1 inline CSS/fonts/manifest, public-data exclusions and cache version. Current-phase checks cover Shanghai timezone conversion, trip-date and phase boundaries, all 4,320 trip minutes, conditional routes, next steps, preserved day selection, stable controls, refresh scheduling and labeled previews. These are static/runtime contracts with a minimal DOM harness, not a browser layout or mobile-device test, and do not verify actual transport, restaurant service, venue access or trip feasibility.
 
-The offline cache is `mwy2026-rc7.3.4-master-20261017.1`. Existing app-shell assets, MapLibre and local reference images are retained. Updated itinerary and Trip Brief are part of the cached HTML. External media and street tiles still depend on connectivity or runtime cache. The Bund route image illustrates locations/sequence; current written times take precedence over times embedded in the image.
+The offline cache is `mwy2026-rc7.3.5-master-20261017.1`; it includes the new stylesheet. Current-phase logic is part of the cached HTML and works offline using the device clock. Existing app-shell assets, MapLibre and local reference images are retained. External media and street tiles still depend on connectivity or runtime cache. The Bund route image illustrates locations/sequence; current written times take precedence over times embedded in the image.
 
 ## Still pending
 
