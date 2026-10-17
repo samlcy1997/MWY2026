@@ -17,18 +17,22 @@ assert.equal(state('2026-11-01','00:00').phase.title,'休息／早餐前準備')
 assert.equal(state('2026-11-02','00:00').phase.title,'休息／退房前準備');
 assert.equal(state('2026-11-03','00:00').state,'finished');
 assert.equal(state('2027-01-01','12:00').state,'finished');
+assert.equal(evaluate("daysUntilTrip('2026-10-18')"),13);
+assert.equal(evaluate("daysUntilTrip('2026-10-30')"),1);
+assert.equal(evaluate("daysUntilTrip('2026-10-31')"),0);
+assert.equal(evaluate("daysUntilTrip('2026-11-01')"),0);
 assert.equal(evaluate("currentPlanTarget({date:'2026-10-18',minutes:74})"),null);
 assert.equal(evaluate("currentPlanTarget({date:'2026-11-03',minutes:0})"),null);
 
 phase('2026-10-31','17:39','外灘日落／藍調攝影','bund');
 phase('2026-10-31','17:40','沿外灘往金陵東路渡口','ferry');
 phase('2026-10-31','18:04','沿外灘往金陵東路渡口','ferry');
-assert.ok(phase('2026-10-31','18:05','輪渡候船／過江','ferry').phase.note.includes('班次仍待核'));
+assert.ok(phase('2026-10-31','18:05','輪渡候船／過江','ferry').phase.note.includes('班次仍待確認'));
 assert.ok(phase('2026-10-31','18:25','浦東濱江反拍外灘','ferry').phase.note.includes('過江順利才拍'));
-phase('2026-11-01','14:19','相機分支：步行往EVA','mwyafternoon');
-assert.ok(phase('2026-11-01','14:20','相機分支：EVA攝影','mwyafternoon').phase.note.includes('無帶機留MWY'));
-phase('2026-11-01','14:55','相機分支：直接返酒店','mwyafternoon');
-phase('2026-11-01','15:44','相機分支：直接返酒店','mwyafternoon');
+phase('2026-11-01','14:19','步行前往EVA','mwyafternoon');
+assert.ok(phase('2026-11-01','14:20','EVA攝影','mwyafternoon').phase.note.includes('無帶機留MWY'));
+phase('2026-11-01','14:55','帶相機返回酒店','mwyafternoon');
+phase('2026-11-01','15:44','帶相機返回酒店','mwyafternoon');
 phase('2026-11-01','15:45','酒店放相機／整理輕裝','mwyafternoon');
 phase('2026-11-01','15:59','酒店放相機／整理輕裝','mwyafternoon');
 phase('2026-11-01','16:00','輕裝返回MWY會場附近','mwyafternoon');
@@ -90,19 +94,24 @@ assert.equal(writes,1);
 assert.equal(node('#currentPlanTitle').textContent,'輕裝返回MWY會場附近');
 
 evaluate('shanghaiClock=()=>({date:"2026-10-18",minutes:74});refreshPlanShortcut()');
-assert.equal(node('#currentPlanTitle').textContent,'行程尚未開始');
+assert.equal(node('#currentPlanTitle').textContent,'10/31 出發');
+assert.equal(node('#currentPlanLabel').textContent,'還有 13 天');
+assert.equal(node('#currentPlan').dataset.state,'upcoming');
+assert.equal(node('#currentPlanNote').textContent,'');
+assert.equal(node('#currentPlanNextRow').classList.contains('hidden'),true,'Before departure, the one-row reminder has no extra instruction rows');
 assert.equal(node('#currentPlanNext').textContent,'10/31 09:45 啟程前往上海');
 assert.equal(node('#planShortcut').classList.contains('hidden'),true);
 evaluate('openPlanShortcut()');assert.equal(evaluate('detailCurrentId'),'arrival');evaluate('hideDetail()');
 evaluate('shanghaiClock=()=>({date:"2026-11-03",minutes:0});refreshPlanShortcut()');
-assert.equal(node('#currentPlanTitle').textContent,'三日行程已結束');
+assert.equal(node('#currentPlanTitle').textContent,'行程已結束');
+assert.equal(node('#currentPlan').dataset.state,'finished');
 assert.equal(node('#currentPlanNextRow').classList.contains('hidden'),true);
 assert.equal(node('#planShortcut').classList.contains('hidden'),true);
 evaluate('openPlanShortcut()');assert.equal(evaluate('currentDay'),3);
 
 // A preview must be explicit, bounded to the trip, and never persist on ordinary URLs.
 evaluate('location.search="?planPreview=2026-11-01T15:50";refreshPlanShortcut()');
-assert.equal(node('#currentPlanLabel').textContent,'預覽 · 第2日 · 按計劃');
+assert.equal(node('#currentPlanLabel').textContent,'時段預覽 · 第2天');
 assert.equal(node('#currentPlanTitle').textContent,'酒店放相機／整理輕裝');
 assert.equal(node('#currentPlanLive').classList.contains('hidden'),false);
 assert.equal(read('planClock()').preview,true);
@@ -112,7 +121,7 @@ for(const value of ['2026-11-01T24:00','2026-11-01T15:60','2026-11-04T15:50','in
 }
 evaluate('location.search="";refreshPlanShortcut()');
 assert.equal(node('#currentPlanLive').classList.contains('hidden'),true);
-assert.equal(node('#currentPlanTitle').textContent,'三日行程已結束');
+assert.equal(node('#currentPlanTitle').textContent,'行程已結束');
 
 // Minute-aligned scheduling also refreshes after returning to the tab / BFCache.
 let scheduled;
@@ -144,10 +153,10 @@ assert.equal(node('#currentPlan'),originalPanel,'No second panel or duplicate cu
 assert.equal(originalPanel.parentNode,node('#detailPlanSlot'));
 assert.equal(node('.shell').inert,true,'The current-phase control must be inside the active modal, outside the inert background');
 assert.equal(node('#currentPlanTitle').textContent,'酒店放相機／整理輕裝','Reading Day1 Bund must still display the Day2 timed phase');
-assert.equal(node('#currentPlanRange').textContent,'15:45–16:00 · 有帶機分支');
+assert.equal(node('#currentPlanRange').textContent,'15:45–16:00 · 有帶相機時');
 assert.equal(node('#currentPlanClock').textContent,'15:50');
 assert.equal(node('#currentPlanClock').getAttribute('aria-label'),'上海時間 2026-11-01 15:50');
-assert.equal(node('#currentPlanLabel').textContent,'D2 預覽·帶機');
+assert.equal(node('#currentPlanLabel').textContent,'第2天・預覽');
 assert.equal(node('#currentPlanLive').parentNode,node('#detailPreviewSlot'));
 assert.equal(node('#currentPlanLive').textContent,'即時');
 assert.equal(node('#currentPlanNext').textContent,'16:00 輕裝返回MWY會場附近');

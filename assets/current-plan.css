@@ -39,3 +39,16 @@
 #detailPreviewSlot .now-live{display:flex;align-items:center;justify-content:center;width:44px;min-height:44px;padding:0;margin:0;color:var(--accent-ink);font-size:12px;text-decoration:none}
 @media(max-width:359px){.detail-header .now-plan{padding-left:18px;padding-right:18px;grid-template-columns:72px minmax(0,1fr);gap:12px}.detail-header .now-top{padding-right:8px}.detail-header .now-title{font-size:14px}}
 @media(min-width:720px){.detail-header .now-plan{padding-left:32px;padding-right:32px}}
+
+/* Outside the trip dates, a single quiet row replaces the live itinerary panel. */
+.now-plan:is([data-state="upcoming"],[data-state="finished"]){display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 16px;padding:0 0 10px}
+.now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-top{order:2;flex:0 0 auto;display:block;padding:0}
+.now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-top>span{font-size:12px;font-weight:400;letter-spacing:0;white-space:nowrap;color:var(--muted)}
+.now-plan:is([data-state="upcoming"],[data-state="finished"])>[role="status"]{order:1;flex:1;min-width:0}
+.now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-title{margin:0;font:500 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif;letter-spacing:0}
+.now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-title button{justify-content:flex-start;gap:8px;padding:0}
+.now-plan:is([data-state="upcoming"],[data-state="finished"]) :is(time,.now-range,.now-note,.now-next),.now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-top:after{display:none}
+.detail-header .now-plan:is([data-state="upcoming"],[data-state="finished"]){margin:0 auto;padding:4px 22px}
+.detail-header .now-plan:is([data-state="upcoming"],[data-state="finished"]) .now-top>span{color:var(--on-inverted-muted)}
+@media(max-width:359px){.detail-header .now-plan:is([data-state="upcoming"],[data-state="finished"]){padding-left:18px;padding-right:18px}}
+@media(min-width:720px){.detail-header .now-plan:is([data-state="upcoming"],[data-state="finished"]){padding-left:32px;padding-right:32px}}
