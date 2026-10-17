@@ -24,7 +24,7 @@ class Tokens{
 const nodes=new Map();
 const node=key=>{
  if(!nodes.has(key))nodes.set(key,{innerHTML:'',textContent:'',dataset:{},classList:new Tokens(key==='#guideView'?['hidden']:[]),scrollTop:0,inert:false,
-  setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},getAttribute(k){return this[k]??null},focus(){},blur(){},contains(){return false},getClientRects(){return[{}]},querySelectorAll(){return[]},scrollIntoView(){}});
+  append(child){child.parentNode=this},setAttribute(k,v){this[k]=v},removeAttribute(k){delete this[k]},getAttribute(k){return this[k]??null},focus(){},blur(){},contains(){return false},getClientRects(){return[{}]},querySelectorAll(){return[]},scrollIntoView(){}});
  return nodes.get(key);
 };
 const history={state:{},pushState(s,_,hash){this.state=s;location.hash=hash},replaceState(s,_,hash){this.state=s;location.hash=hash},back(){}};
@@ -37,7 +37,7 @@ new vm.Script(script);
 vm.runInContext(script,context);
 const evaluate=source=>vm.runInContext(source,context);
 const data=JSON.parse(evaluate('JSON.stringify({SITE,DAYS,PAGE_META,DETAIL_KIND,TRIP_BRIEFS})'));
-assert.equal(data.SITE.version,'RC7.3.5');
+assert.equal(data.SITE.version,'RC7.3.6');
 assert.equal(data.SITE.master,'v2026-10-17.1');
 assert.equal(data.DAYS[1].items.find(x=>x.id==='lailai').time,'15:20');
 assert.equal(data.DAYS[1].items.find(x=>x.id==='bund').time,'16:15');
@@ -67,12 +67,14 @@ for(const day of [1,2,3]){
   assert.ok(timeline.includes(`data-stop-id="${item.id}"`));
   evaluate(`openDetail(${JSON.stringify(item.id)},false,false)`);
   assert.equal(evaluate('detailCurrentId'),item.id);
+  assert.equal(node('#currentPlan').parentNode,node('#detailPlanSlot'),'Current phase moves into the dialog for every detail');
   assert.ok(node('#article').innerHTML.includes('<h1>'));
   const index=items.indexOf(item),next=items[index+1];
   if(next)assert.ok(node('#detailActions').innerHTML.includes(next.title),`${item.id} footer follows updated chronology`);
   evaluate('hideDetail()');
   assert.equal(evaluate('detailOpen'),false);
   assert.equal(node('.shell').inert,false);
+  assert.equal(node('#currentPlan').parentNode,node('#mainPlanSlot'),'The same current-phase element returns to the main view');
  }
  evaluate('renderMap()');
  for(const item of items)assert.ok(node('#mapPane').innerHTML.includes(`<option value="${item.id}"`));
@@ -108,7 +110,7 @@ assert.equal(evaluate("currentPlanTarget({date:'2026-11-01',minutes:16*60+39}).i
 assert.equal(evaluate("currentPlanTarget({date:'2026-11-01',minutes:16*60+40}).item.id"),'xiaoyang');
 assert.ok(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(html),'Private trip data is not published');
 const worker=fs.readFileSync(path.join(root,'sw.js'),'utf8');
-assert.ok(worker.includes('mwy2026-rc7.3.5-master-20261017.1'));
+assert.ok(worker.includes('mwy2026-rc7.3.6-master-20261017.1'));
 assert.ok(worker.includes('"./index.html"'));
 assert.ok(!/overscroll-behavior(?:-y)?:\s*(none|contain)/.test(html),'The content update does not suppress native refresh');
 const output=process.env.CONTENT_REPORT;
