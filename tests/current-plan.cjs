@@ -128,8 +128,9 @@ const markup=evaluate('currentPlanHTML()');
 assert.ok(markup.includes('aria-live="polite"')&&markup.includes('aria-atomic="true"'));
 assert.ok(markup.includes('aria-describedby="currentPlanRange currentPlanNote"'));
 assert.ok(markup.includes('<button')&&markup.includes('<time'));
-assert.ok(html.includes('href="./assets/current-plan.css"'));
-assert.ok(fs.readFileSync(path.join(root,'sw.js'),'utf8').includes('"./assets/current-plan.css"'));
+const cssAsset='./assets/current-plan.css?v='+data.SITE.version.toLowerCase().replaceAll('.','');
+assert.ok(html.includes(`href="${cssAsset}"`),'A versioned CSS URL bypasses the previous service worker asset cache on first navigation');
+assert.ok(fs.readFileSync(path.join(root,'sw.js'),'utf8').includes(JSON.stringify(cssAsset)),'The same versioned CSS URL must be precached for offline use');
 
 // Detail keeps the same panel outside the scrollable article, in a combined sticky header.
 assert.ok(html.includes('<div class="detail-header"><div class="dtop">'));
