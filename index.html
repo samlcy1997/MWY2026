@@ -531,7 +531,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC7.3.3",updated:"10/16",master:"v2026-10-16.1",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／條件式EVA"};
+const SITE={version:"RC7.3.4",updated:"10/18",master:"v2026-10-17.1",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／條件式EVA"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -587,7 +587,7 @@ const DAYS={
         "title": "抵達上海",
         "sub": "14:15–14:45到酒店僅順利估算；放行李後先吃足量正餐",
         "kind": "交通",
-        "move": "約15:05 上海正餐",
+        "move": "約15:20–16:05 上海正餐；延誤先保用餐",
         "coord": [
           121.8055,
           31.15
@@ -596,9 +596,9 @@ const DAYS={
       },
       {
         "id": "lailai",
-        "time": "15:05",
+        "time": "15:20",
         "title": "上海正餐 · 萊萊優先",
-        "sub": "未開／長龍即轉快捷正餐；15:45仍未食妥就省略橋，不省一餐",
+        "sub": "正餐預留15:20–16:05；未開／長龍即換，16:05未食妥就略過橋",
         "kind": "正餐",
         "move": "有時間才加泰康；否則往外灘",
         "coord": [
@@ -609,9 +609,9 @@ const DAYS={
       },
       {
         "id": "taikang",
-        "time": "15:35",
+        "time": "16:05",
         "title": "泰康食品 · 額外加餐",
-        "sub": "鮮肉月餅1個，有胃且順路才買；不可取代正餐",
+        "sub": "餐後有胃且順路才買1個；時間緊直接略過，不取代正餐",
         "kind": "可略過",
         "move": "已食正餐才開始攝影",
         "coord": [
@@ -622,9 +622,9 @@ const DAYS={
       },
       {
         "id": "bund",
-        "time": "16:10",
+        "time": "16:15",
         "title": "外白渡橋 → 外灘",
-        "sub": "正餐延誤就略過橋；約17:06日落，17:45–17:50往碼頭",
+        "sub": "16:15–16:45彈性移動／橋上短拍；16:45–17:40外灘，17:40向南",
         "kind": "攝影",
         "move": "目標18:00–18:05到金陵東路渡口",
         "coord": [
@@ -649,9 +649,9 @@ const DAYS={
         "id": "gundam",
         "time": "19:45",
         "title": "1:1 Freedom Gundam",
-        "sub": "抵達時間視路況；若近20:30才到，先拍機體、縮購物",
+        "sub": "約19:45–20:15到場，視交通；先拍機體，遲到就縮購物",
         "kind": "攝影",
-        "move": "目標20:40上4F，遲到就縮短",
+        "move": "約20:50上4F；已拍足可提早，入店時間彈性",
         "coord": [
           121.603823,
           31.252264
@@ -661,9 +661,9 @@ const DAYS={
       },
       {
         "id": "gundambase",
-        "time": "20:40",
+        "time": "20:50",
         "title": "THE GUNDAM BASE",
-        "sub": "目標21:10前離開；到得遲先保Freedom拍攝",
+        "sub": "約20:50–21:15彈性逛店；21:10–21:30離LaLaport，先保機甲拍攝",
         "kind": "ACG",
         "move": "台兒莊路站 → 9號線返市中心",
         "coord": [
@@ -733,9 +733,9 @@ const DAYS={
         "id": "mwyafternoon",
         "time": "13:15",
         "title": "MWY → EVA／酒店放機分支",
-        "sub": "帶機且準時：14:20–14:55 EVA → 酒店放機；14:20未離MWY即跳EVA",
+        "sub": "帶機且準時：EVA至14:55 → 15:45–16:00酒店放機；14:20未離MWY即跳EVA",
         "kind": "條件分支",
-        "move": "酒店放妥後輕裝回會場；無帶機就留MWY",
+        "move": "16:00–16:40輕裝回場；無帶機就留MWY",
         "coord": [
           121.453255,
           31.291619
@@ -744,9 +744,9 @@ const DAYS={
       },
       {
         "id": "xiaoyang",
-        "time": "16:30",
+        "time": "16:40",
         "title": "附近晚餐／休息 · 小楊候選",
-        "sub": "16:30–17:30吃足量晚餐；不排長隊，17:45–18:00到VIP入口",
+        "sub": "16:40–17:25足量晚餐／休息；17:45–18:00到VIP入口，以官方為準",
         "kind": "晚餐",
         "move": "依官方VIP核驗時間，必要時提早",
         "coord": null,
@@ -821,8 +821,8 @@ const DAYS={
       {
         "id": "newworld",
         "time": "12:05",
-        "title": "新世界城 · 有時間才去",
-        "sub": "4F CAPCOM等目標店；12:20–12:25前走，ZX超時即略過",
+        "title": "新世界城 · 正常保留／可縮短",
+        "sub": "12:05–12:30重點看4F CAPCOM；12:25–12:30走，前段超時先縮／略過",
         "kind": "可略過",
         "move": "人民廣場1號線 → 陝西南路，約25–35分鐘",
         "coord": null,
@@ -830,11 +830,11 @@ const DAYS={
       },
       {
         "id": "haijinzi",
-        "time": "12:50",
+        "time": "13:00",
         "title": "海金滋 · 午市待核",
-        "sub": "目標12:50–13:00到；13:05不穩即換快捷正餐，13:45前走",
+        "sub": "約13:00入座目標；預留45–55分鐘，13:10–13:15未能落單即換",
         "kind": "正餐",
-        "move": "13:35–13:40食妥，返陝西南路站",
+        "move": "目標13:45–13:55食妥，14:00前離午餐區",
         "coord": [
           121.457505,
           31.221176
@@ -843,19 +843,19 @@ const DAYS={
       },
       {
         "id": "hotelreturn",
-        "time": "13:40",
+        "time": "13:50",
         "title": "返酒店取行李",
-        "sub": "1號線返上海火車站；目標14:15–14:30到，最遲14:45前",
+        "sub": "1號線返上海火車站；約14:30–14:50回酒店，留20–40分鐘取整行李",
         "kind": "交通",
-        "move": "提取及整理，15:00帶行李出發",
+        "move": "正常15:15–15:25帶行李離店",
         "coord": null,
         "address": "如家商旅酒店（上海火車站南廣場店）"
       },
       {
         "id": "airport",
-        "time": "15:00",
+        "time": "15:15",
         "title": "前往 PVG T2",
-        "sub": "15:00出發、15:10小容差；15:25屬高風險，目標17:00前到T2",
+        "sub": "正常15:15–15:25離店；15:30仍未走即重查交通，目標17:00前後到T2",
         "kind": "交通",
         "move": "19:05航班；先辦check-in／安檢",
         "coord": [
@@ -870,7 +870,7 @@ const DAYS={
 };
 
 const PAGE_META={
- arrival:{title:"抵達上海"},lailai:{title:"上海正餐 · 萊萊優先"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyafternoon:{title:"MWY → EVA／酒店放機"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"會場附近午餐"},xiaoyang:{title:"附近晚餐／休息"},postshow:{title:"散場後"},wangji:{title:"退房 → 王記葱油餅"},wukang:{title:"武康大樓＋武康路"},zx:{title:"百聯ZX創趣場"},newworld:{title:"新世界城 · 可略過"},haijinzi:{title:"海金滋"},hotelreturn:{title:"返酒店取行李"},airport:{title:"前往 PVG T2"}
+ arrival:{title:"抵達上海"},lailai:{title:"上海正餐 · 萊萊優先"},taikang:{title:"泰康食品"},bund:{title:"外白渡橋 → 外灘"},ferry:{title:"浦東反拍外灘"},gundam:{title:"1:1 Freedom Gundam"},gundambase:{title:"THE GUNDAM BASE"},dongtaixiang:{title:"東泰祥"},tower:{title:"上海之巔 118F · Bonus"},zhang:{title:"張師傅早餐店"},mwy:{title:"MWY 場販／展示"},mwyafternoon:{title:"MWY → EVA／酒店放機"},mwyshow:{title:"未來有你 2026 · 夜場"},qiqi:{title:"會場附近午餐"},xiaoyang:{title:"附近晚餐／休息"},postshow:{title:"散場後"},wangji:{title:"退房 → 王記葱油餅"},wukang:{title:"武康大樓＋武康路"},zx:{title:"百聯ZX創趣場"},newworld:{title:"新世界城 · 正常保留／可縮短"},haijinzi:{title:"海金滋"},hotelreturn:{title:"返酒店取行李"},airport:{title:"前往 PVG T2"}
 };
 
 const DETAIL_KIND={
@@ -981,16 +981,16 @@ ${transportDiagram([
 ],["門到門估算","候車、轉線、步行及check-in都要留時間；以當日導航調整，不保證原定到店時間。"])}
 ${copyPlaces([["住宿",HOTEL]])}
 ${block("放行李後下一步",route([
- ["約15:05","萊萊先看營業／排隊","下午15:30重開為第三方資訊，當日仍待核。"],
+ ["約15:20–16:05","下午正餐","萊萊第三方列15:30重開；抵達早可核實，但不為等指定店拖日落。"],
  ["未開／長龍","立即轉快捷正餐","南京東路沿線可快出的麵、餛飩、生煎；沈大成南京東路636號為待核候選。"],
- ["15:45仍未食妥","省略外白渡橋","先完成或買足量可攜正餐，再直接去外灘主機位；月餅不當正餐。"],
+ ["16:05仍未食妥","省略外白渡橋","先完成或買足量可攜正餐，再直接去外灘主機位；月餅不當正餐。"],
  ["18:30–21:00","保留補食和飲水","帶水及可隨身補充的鹹食；不空腹等到22:00後宵夜。"],
  ["check-in","順手問前台相機正式保管","核對空間、接受方式及寄存憑證；不能假設現場有器材寄存。"]
 ]))}
 ${cutoff("先保正餐，再決定攝影長度","延誤就刪橋上取景或縮短浦東反拍，不刪一餐。")}
 ${nextHop("住宿","萊萊／快捷正餐","", "萊萊小籠 天津路506號")}`,
 
-lailai:()=>`${pageHead("第1日 · 15:05先核實營業","萊萊小籠","約15:05先核實營業與出餐。未開、長龍或估計等唔切，就轉南京東路快捷正餐；15:45仍未食妥就縮／取消外白渡橋，不刪午餐。",[["地址","天津路506號"],["判斷","15:05到店 · 有來源列15:30重開"],["15:45仍未食妥","先保正餐，略過外白渡橋"]])}
+lailai:()=>`${pageHead("第1日 · 約15:20–16:05正餐","萊萊小籠","下午正餐預留約15:20–16:05，按酒店實際抵達調整。先核實萊萊營業與出餐。未開、長龍或估計等唔切，就轉南京東路快捷正餐；16:05仍未食妥就縮／取消外白渡橋，不刪午餐。",[["地址","天津路506號"],["判斷","約15:20到店 · 有來源列15:30重開"],["16:05仍未食妥","先保正餐，略過外白渡橋"]])}
 ${foodVisuals([
  [IMG.lailaiStore,"到店認位","天津路506號門面；黃色「萊萊小籠」招牌就係認位重點。","https://www.woshiji.cn/show-20-1432-1.html"],
  [IMG.lailaiFood,"店內小籠實拍","同店實拍可直接睇到蒸籠、小籠大小同皮餡比例；今次仍然只點松茸鮮肉／純鮮肉。","https://www.woshiji.cn/show-20-1432-1.html"]
@@ -1002,7 +1002,7 @@ ${block("點咩",foodList([
 ${block("點食",guideAsset(IMG.xiaolongGuide,"小籠四步食法：放匙羹、開小口、先飲湯、再食餡"))}
 ${block("營業與出餐分支",branches([
  ["未開／長龍／明顯等唔切","立即找可快速出餐的正餐；沈大成南京東路636號待核。泰康月餅只作加餐。","danger"],
- ["15:45仍未食妥","吃妥或買足量可攜正餐，再直接去外灘主機位，省略橋。","warn"]
+ ["16:05仍未食妥","吃妥或買足量可攜正餐，再直接去外灘主機位，省略橋。","warn"]
 ]))}
 ${copyPlaces([["快捷正餐候選 · 營業／出餐待核","沈大成 南京東路636號"]])}${placeSearch("沈大成","沈大成 南京東路636號")}
 <div class="next-actions"><button class="a" onclick="openDetail('bund')">不加餐，直接看外灘安排</button></div>${nextHop("不加餐時直接去","外灘主機位","","外灘陳毅廣場")}`,
@@ -1020,14 +1020,15 @@ ${block("點食",eatSteps([
  ["拎到就食","趁暖食酥皮同肉餡最好；唔留到外灘先食。"]
 ]))}
 ${block("排隊",branches([
- ["有明顯隊／接近15:45","直接略過泰康，先吃妥正餐再去外灘；不為月餅排隊。","danger"]
+ ["有明顯隊／時間緊","直接略過泰康，先吃妥正餐再去外灘；不為月餅排隊。","danger"]
 ]))}
 ${nextHop("泰康食品","外白渡橋","泰康食品 南京東路766號","外白渡橋 上海")}`,
 
-bund:()=>`${pageHead("第1日 · 正餐後–約17:50","外白渡橋 → 外灘","吃妥正餐、時間順利才約16:10由外白渡橋向南。約17:06–17:07日落，之後20–30分鐘為藍調主要窗口；17:45–17:50開始往渡口，目標18:00–18:05到碼頭。天氣、亮燈及實際步程待當日確認。",[["開始","16:10 · 外白渡橋"],["往碼頭","約17:45–17:50"],["日落","約17:06–17:07"],["藍調","日落後約20–30分鐘"]])}
+bund:()=>`${pageHead("第1日 · 16:15–17:40彈性攝影","外白渡橋 → 外灘","16:15–16:45是餐後往橋／外灘移動及短拍的彈性窗口，不代表16:15必到橋。約16:45–17:40在外灘主機位拍日落與藍調；17:40開始向南移動，預留20–25分鐘步行及沿途快拍，目標18:00–18:05到渡口。餐後遲或疲累就直接外灘。",[["橋／移動","16:15–16:45 · 可略過"],["外灘主機位","16:45–17:40"],["日落","約17:06–17:07"],["向南往碼頭","17:40起 · 預留20–25分鐘"]])}
 ${editorialRoute([
- ["16:10","外白渡橋"],
- ["17:05","外灘主平台"],
+ ["16:15–16:45","橋／移動彈性窗口"],
+ ["16:45–17:40","外灘主機位"],
+ ["17:40起","向南移動、沿途快拍"],
  ["18:00–18:05","目標到金陵東路渡口"]
 ])}
 ${block("想影到",例圖Gallery([
@@ -1036,16 +1037,17 @@ ${block("想影到",例圖Gallery([
  [IMG.freeBundTele,"浦東地標局部","85–120mm","一個主體＋一個陪體就夠；深藍／亮燈後再收緊。",[],"https://unsplash.com/photos/shanghai-skyline-at-night-with-the-pearl-tower-4lVW16_QwVA",""]
 ]))}
 ${block("機位",photoMap("bund"))}
-${block("拍攝順序",guideAsset(IMG.bundRouteGuide,"外灘由北向南拍攝順序；圖上18:15／18:30僅為待核班次目標"))}<p class="map-note">此圖供認拍攝順序；圖內18:15／18:30並非已確認的10/31船期。</p>
+${block("拍攝順序",guideAsset(IMG.bundRouteGuide,"外灘由北向南拍攝順序；圖中時刻只作示意，以本頁最新時間為準"))}<p class="map-note">此圖只供認位置及拍攝順序，圖中舊時刻以本頁最新安排為準；18:15／18:30並非已確認的10/31船期。</p>
 ${block("遲到點砍",branches([
- ["16:40後先到外白渡橋","視時間略過橋，直接去外灘主機位；不逆走補打卡。","warn"],
+ ["餐後遲／步行慢／疲累","直接去外灘主機位，略過橋；不逆走補打卡。","warn"],
  ["接近17:00先到","直接去外灘主平台，按當日光線拍日落／藍調；再縮短或取消浦東反拍。","danger"]
 ]))}
 ${photographerRefs([
  ["外白渡橋","Night Reflections of Shanghai Landmarks","Yoo-Sang Choo","橋體同浦東地標點樣分配畫面。",[],"https://www.flickr.com/photos/184932483@N06/54250673437/"],
  ["外灘主平台","Pudong Panorama","Kyle Hasegawa","完整 skyline、江面份量同樓群間距。",[],"https://www.flickr.com/photos/kylehase/45486996424"]
 ])}
-${cutoff("約17:45–17:50開始往碼頭","目標18:00–18:05到渡口；18:15／18:30僅待核班次目標。外灘拍得超時，就縮／取消浦東反拍。","目標")}
+${block("光線與步程",rules([["藍調","日落後約20–30分鐘為主要窗口，實際光線與亮燈按當天天氣。"],["步程","17:40開始向南，預留約20–25分鐘；取景位置不同會影響距離，不跑步追未核船班。"]]))}
+${cutoff("約17:40開始往碼頭","目標18:00–18:05到渡口；18:15／18:30僅待核班次目標。外灘拍得超時，就縮／取消浦東反拍。","目標")}
 ${nextHop("外灘主平台","金陵東路渡口","外灘陳毅廣場","金陵東路渡口 上海")}`,
 
 
@@ -1070,7 +1072,7 @@ ${block("落船後",route([
  ["+10分鐘","85–120mm","海關鐘樓、和平飯店、亮燈立面。"],
  ["有船先拍","50–85mm","順手利用江面前景；唔等船。"],
  ["≈19:05","最後一輪","只補缺少嘅一組。"],
- ["約19:05–19:15","按實際位置叫車","去金橋LaLaport；19:45到達只屬順利目標。"]
+ ["約19:05–19:15","按實際位置叫車","去金橋LaLaport；約19:45–20:15抵達為交通預算，非保證。"]
 ]))}
 ${cutoff("19:05 收尾","可縮至整體一張＋長焦一張；已拖累金橋就整段取消。觀光隧道不作江景攝影替代。","離開")}
 ${nextHop("東昌路渡口","LaLaport上海金橋","東昌路渡口 濱江大道3528號","LaLaport上海金橋 新金橋路738號")}`,
@@ -1078,7 +1080,7 @@ ${nextHop("東昌路渡口","LaLaport上海金橋","東昌路渡口 濱江大道
 tower:()=>towerPage(),
 
 
-gundam:()=>`${pageHead("第1日 · 19:45–20:40","1:1 Freedom Gundam","到南廣場先完成靜態主片，再按當日演出時間決定是否等一輪。19:45抵達僅順利目標；若近20:30才到，先拍機體，縮／取消店內購物及指定演出等待。",[["位置","LaLaport上海金橋南廣場"],["離開","20:40"],["演出","出發前再確認"],["下一站","Gundam Base"]])}
+gundam:()=>`${pageHead("第1日 · 約19:45–20:50，視抵達調整","1:1 Freedom Gundam","約19:45–20:15抵達LaLaport是順暢至略慢交通預算，非保證。先拍機體，再按當日演出時間決定是否等一輪；20:15才到就縮取景與排隊，不能硬追固定入店時間。更遲到則再縮／取消購物，先保主片。",[["位置","LaLaport上海金橋南廣場"],["攝影","約19:45–20:50 · 可伸縮"],["演出","當日場次待核"],["下一站","Gundam Base · 約20:50起"]])}
 ${block("想影到",例圖Gallery([
  [IMG.gundamHero,"完整立像＋環境","24–35mm","先完成一張全身，保留少量廣場同商場尺度。",[],"https://unsplash.com/photos/a-giant-robot-standing-next-to-a-tall-pole-IoxeD-rCJJo",""],
  [IMG.gundamDetail,"頭胸比例","50–70mm","收走廣場雜物，保留巨大尺度感。",[],"https://unsplash.com/photos/white-and-red-robot-statue-h8Yc16kCcK8",""],
@@ -1095,10 +1097,10 @@ ${block("夜間演出",rules([
  ["演出開始","先保動作同燈光變化，唔慢慢重構圖。"],
  ["一輪完成","影完主片就上 Gundam Base。"]
 ]))}
-${cutoff("20:40 上4F","唔為第二輪演出拖晚餐。","離開")}
+${cutoff("約20:50上4F，可提早或縮短","先拍足Freedom，按實際到達與營業安排入店；不為等第二輪演出拖累休息與宵夜。","彈性")}
 ${nextHop("Freedom Gundam 南廣場","THE GUNDAM BASE","LaLaport上海金橋 1:1 Freedom Gundam","THE GUNDAM BASE SHANGHAI 新金橋路738號 LaLaport 4F 429–430")}`,
 
-gundambase:()=>`${pageHead("第1日 · 20:40–21:10","THE GUNDAM BASE SHANGHAI","夜攝後上 LaLaport 4F。先睇限定／最想買嘅品項，21:10離店去晚餐。",[["位置","LaLaport 4F 429–430"],["營業","10:00–22:00"],["停留","約30分鐘"],["離開","21:10"]])}
+gundambase:()=>`${pageHead("第1日 · 約20:50–21:15彈性逛店","THE GUNDAM BASE SHANGHAI","夜攝後上LaLaport 4F；機甲已拍足可提早入店。先看限定／最想買品項，按當日營業與人流縮短；約21:10–21:30離開LaLaport，搭9號線回市中心吃宵夜。",[["位置","LaLaport 4F 429–430"],["營業","當日營業仍待核"],["逛店預算","約20:50–21:15 · 可伸縮"],["離LaLaport","約21:10–21:30"]])}
 ${placeVisuals([
  [IMG.gundamBaseEntrance,"4F 429–430 認位","官方金橋店入口實拍；去到4樓見到藍色 THE GUNDAM BASE SHANGHAI 燈牌同429／430門牌就係。","https://www.bandaihobbysite.cn/gbase/jin_qiao"],
  [IMG.gundamBaseInterior,"店內先掃限定區","官方金橋店實拍；先處理限定／最想買品項，再睇展示，唔逐排慢慢掃。","https://bandaihobbysite.cn/index/gbase/news_detail/id/10"]
@@ -1106,7 +1108,7 @@ ${placeVisuals([
 ${block("入店次序",route([
  ["先","限定／最想買嘅品項","先處理真係想買嘅，唔逐排慢慢掃。"],
  ["有時間","SEED店裝／Freedom展示","順手睇同影。"],
- ["21:10","離店","唔需要為晚餐趕；東泰祥24小時。"]
+ ["約21:15","結束重點逛店","按當日營業、人流與體力縮短；東泰祥是宵夜，途中仍要有補食。"]
 ]))}
 ${block("去東泰祥",route([
  ["21:10–21:30","離開 LaLaport","步行去台兒莊路站。"],
@@ -1133,7 +1135,7 @@ ${nextHop("東泰祥","住宿","東泰祥生煎館 重慶北路188號","如家�
 
 zhang:()=>`${pageHead("第2日 · 08:00","張師傅早餐店","鹹豆漿＋粢飯團；08:15–08:30出發，09:00到場確認入口。展區規則可靠確認可帶可拍，才在上午攜相機。",[["地址","石門二路487號"],["相機","展區確認可帶可拍才跟身"],["營業","約04:00–12:00"],["排隊上限","15–20分鐘"]])}
 ${block("出門前 · 相機方案判斷",rules([
- ["優先爭取","可靠確認2026展區可帶可換鏡頭相機且可拍，先帶機拍展；午後若順利先拍EVA，再約15:35–15:50返酒店放妥。夜場禁帶為獨立規則。"],
+ ["優先爭取","可靠確認2026展區可帶可換鏡頭相機且可拍，先帶機拍展；午後若順利先拍EVA，14:55–15:45返酒店，15:45–16:00獨立放妥相機。夜場禁帶為獨立規則。"],
  ["房內保管","攝影裝備鎖入行李箱，收在不顯眼位置；掛DND／要求當日不執房。"],
  ["記憶卡跟身","Day 1／2已拍內容的記憶卡自行帶走。"],
  ["前台正式保管","check-in時已確認保險櫃尺寸合適、接受相機並有寄存憑證，先升級用前台保管。"],
@@ -1172,7 +1174,7 @@ ${block("時間",branches([
 ]))}
 ${nextHop("琪琪麵館","上海靜安體育中心","琪琪麵館 北寶興路296–298號","上海靜安體育中心 汶水路116號")}`,
 
-xiaoyang:()=>`${pageHead("第2日 · 16:30–17:30","附近晚餐／休息","16:30–17:30附近吃足量晚餐、補水及休息；小楊只在無長隊時選用。酒店返程延誤就省剩餘展區／攝影，不省晚餐與VIP核驗。以下為小楊備案資料。",[["地址","江場路1212號協信廣場北區B1"],["晚餐","16:30–17:30"],["入場區","17:45–18:00"]])}
+xiaoyang:()=>`${pageHead("第2日 · 16:40–17:25","附近晚餐／休息","16:40–17:25附近吃足量晚餐、補水及休息；小楊只在無長隊時選用。酒店返程延誤就省剩餘展區／攝影，不省晚餐與VIP核驗。以下為小楊備案資料。",[["地址","江場路1212號協信廣場北區B1"],["晚餐","16:40–17:25"],["入場區","17:45–18:00"]])}
 ${foodVisuals([
  [IMG.xiaoyang,"認粉紅招牌","呢張係小楊其他分店門面，只用嚟認品牌招牌；今次實際目的地係協信星光廣場北區B1。","https://www.1px.tw/blog/post/9577236272"],
  [IMG.xiaoyangBrandFood,"招牌生煎外觀","小楊品牌生煎實物參考；唔當成協信店當日實拍。重點係薄皮、湯汁同焦底。","https://www.walkerland.com.tw/article/view/402925"]
@@ -1237,7 +1239,7 @@ zx:()=>zxPage(),
 
 newworld:()=>newWorldPage(),
 
-haijinzi:()=>`${pageHead("第3日 · 12:50–13:00目標到店","海金滋","主選葱烤大排＋白飯＋輕菜。午休／最後接單有來源衝突，13:00不保證入座；約13:05仍停收、長龍或不能即時落單，就改快捷正餐。13:45前食妥或帶足量食物離開午餐區。",[["地址","進賢路240號"],["完成目標","13:35–13:40"],["轉後備","約13:05"],["離開午餐區","13:45前"]])}
+haijinzi:()=>`${pageHead("第3日 · 約13:00午餐目標","海金滋","主選葱烤大排＋白飯＋輕菜，預留45–55分鐘給落單、等菜、用餐及結帳。目標約12:55–13:05到店，慢端約13:10；午休／最後接單有來源衝突，13:00不保證入座。到店後5–10分鐘內判斷，13:10–13:15仍未能落單即轉快捷正餐。目標13:45–13:55食妥，14:00前帶足食物離開。",[["地址","進賢路240號"],["用餐預留","約45–55分鐘"],["完成目標","13:45–13:55"],["離開午餐區","14:00前"]])}
 ${foodVisuals([
  [IMG.haijinziStore,"到店認位","進賢路240號門面；深色石材外牆、左邊『海金滋』字樣同240號牌最好認。","https://www.thepaper.cn/newsDetail_forward_12651431"],
  [IMG.haijinziFood,"葱烤大排","主線就係葱烤大排＋白飯；濃油赤醬用飯承接，第二道先揀較輕菜。","https://tw.trip.com/restaurant/china/shanghai/detail/hai-jin-zi-352394/"]
@@ -1247,26 +1249,26 @@ ${block("一個人點法",foodList([
  ["第二道","酒香草頭／三鮮烤麩／當日時蔬","揀一個較輕菜，唔全部都係肉。"],
  ["胃夠先加","醬爆豬肝／響油鱔絲","兩款都係真正招牌，二選一。"]
 ]))}
-${block("約13:05不能即時落單",branches([
+${block("13:10–13:15仍未能落單",branches([
  ["玲瓏確實有位且可即時落單","玲瓏餐廳 · 陝西南路57號；營業與排隊仍待核，不排第二間炒菜館。","warn"],
  ["未確認／仍要排隊","按回陝西南路站方向，買可快速吃／外帶的麵、餛飩等足量正餐。","danger"],
- ["13:45前仍未食妥","帶足量食物上路返酒店；不可直接取消午餐。","danger"]
+ ["接近14:00仍未食妥","帶足量食物上路返酒店；不可直接取消午餐。","danger"]
 ]))}
 ${copyPlaces([["有位且即時落單才用","玲瓏餐廳 陝西南路57號"]])}${placeSearch("玲瓏餐廳","玲瓏餐廳 陝西南路57號")}
 ${nextHop("午餐區","酒店取行李","",HOTEL)}`,
 
-hotelreturn:()=>`${pageHead("第3日 · 約13:40起","返酒店取行李","13:45前從午餐區出發，步行回陝西南路站，1號線直達上海火車站。整段約30–45分鐘連步行，目標14:15–14:30到酒店，最遲14:45前；取已打包行李，15:00離店。",[["回程","陝西南路1號線 → 上海火車站"],["酒店到達目標","14:15–14:30"],["最遲到酒店","14:45前"],["機場出發","15:00目標 · 15:10小容差"]])}
+hotelreturn:()=>`${pageHead("第3日 · 約13:50起返酒店","返酒店取行李","目標13:45–13:55食妥，14:00前離開午餐區，步行回陝西南路站、1號線直達上海火車站。連步行預算約30–45分鐘，約14:30–14:50返酒店取早上已打包的行李；預留20–40分鐘提取、整理及離店，正常15:15–15:25出發。",[["回程","陝西南路1號線 → 上海火車站"],["酒店取行李","約14:30–14:50"],["提取及整理","約20–40分鐘預算"],["正常離店","15:15–15:25"]])}
 ${copyPlaces([["取行李",HOTEL]])}
 ${block("取好就出發",route([
- ["13:40–13:45前","離開午餐區","吃妥或帶足量食物；取消額外購物與攝影。"],
- ["14:15–14:30","目標回酒店","預先打包，提取及必要整理；不再插新景點。"],
- ["15:00","帶行李去PVG","15:10只是小容差；15:25為高風險警戒，不是正常安全出發時間。"]
+ ["14:00前","離開午餐區","吃妥或帶足量食物，不再加購物／攝影。"],
+ ["約14:30–14:50","回酒店取行李","早上退房已打包；提取、必要整理及離店預留20–40分鐘。"],
+ ["15:15–15:25","正常帶行李去PVG","15:25仍在正常規劃窗口；15:30尚未離店即重查即時交通及T2抵達預測。"]
 ]))}
 ${nextHop("酒店","浦東機場T2","", "上海浦東國際機場2號航站樓")}`,
 
-airport:()=>`${pageHead("第3日 · 15:00目標出發","前往 PVG T2","取妥行李後15:00離店；15:10作小延誤容差，15:25已屬高風險。主線為1號線→2號線→龍陽路磁浮，目標17:00前到T2，19:05起飛。時間為規劃目標，當日交通仍待核。",[["酒店出發","15:00目標"],["小容差","15:10"],["高風險警戒","15:25"],["機場目標","17:00前 · T2"]])}
+airport:()=>`${pageHead("第3日 · 15:15–15:25正常離店","前往 PVG T2","取妥行李後正常15:15–15:25離店；15:30尚未離店則即時重查交通。主線為1號線→2號線→龍陽路磁浮，酒店至T2櫃檯周邊預算75–100分鐘，目標約16:30–17:05、即17:00前後抵達，19:05起飛。均屬規劃估算，非當日實測或到達保證。",[["正常酒店出發","15:15–15:25"],["延誤重查","15:30尚未離店"],["門到門預算","約75–100分鐘"],["機場目標","約16:30–17:05 · T2"]])}
 ${copyPlaces([["浦東機場 T2","上海浦東國際機場2號航站樓"]])}
-${decisionDiagram("15:00帶行李去PVG",[
+${decisionDiagram("15:15–15:25帶行李去PVG",[
  ["磁浮正常","1號線→人民廣場2號線→龍陽路磁浮；到站跟T2指示。","hot"],
  ["磁浮異常／交通不穩","立即按官方資訊及導航比較2號線續往機場或其他可行方式，不無限等恢復。","warn"]
 ])}
@@ -1278,13 +1280,13 @@ ${block("主線：地鐵轉磁浮",transportDiagram([
  ["PVG T2","05","先check-in及安檢，按訂單／當日營運核對截止時間。",""]
 ]))}
 ${block("時間順序",route([
- ["13:45前","離開午餐區","正餐食妥或帶足量食物，開始返酒店。"],
- ["14:15–14:30","目標取行李","最遲14:45前到酒店，不再加景點。"],
- ["15:00","酒店離店目標","15:10小容差，15:25已屬高風險。"],
- ["17:00前","目標PVG T2","交通規劃估算，不是到達保證。"],
- ["19:05","航班起飛","櫃檯／自助託運截止按航空公司訂單與當日規則再核。"]
+ ["14:00前","離開午餐區","正餐食妥或帶足量食物，開始返酒店。"],
+ ["約14:30–14:50","回酒店取行李","提取、整理及離店留20–40分鐘，不再加景點。"],
+ ["15:15–15:25","正常酒店離店","15:30尚未離店即重查地鐵／磁浮班次及預計T2抵達時間。"],
+ ["約16:30–17:05","目標PVG T2／櫃檯周邊","75–100分鐘含步行、候車、兩次轉乘及磁浮，屬預算。"],
+ ["19:05","航班起飛","櫃檯／自助託運截止按航空公司訂單與當日規則再核；截止時間不能當計劃抵達時間。"]
 ]))}
-${alertBox("不再用機場緩衝換景點","臨時購物、外灘補拍及排隊都不能拖延返程；15:25不屬正常可安全採用的出發時間。")}`
+${alertBox("機場緩衝保留給實際交通","正常15:15–15:25離店；15:30仍未離店就即時核對班次、T2到達預測及改道需要。購物、餐廳等位與臨時攝影不能侵蝕登機時間。")}`
 
 };
 P.mwyshow=()=>mwyShowPage();
@@ -1322,7 +1324,7 @@ function mwyMarketPage(){
  ${nextHop("上海靜安體育中心","場館周邊快食","上海靜安體育中心 汶水路116號","上海靜安體育中心 汶水路116號")}`;
 }
 function mwyAfternoonPage(){
- return `${pageHead("第2日 · 13:15起的條件路線","MWY → EVA → 酒店放機","13:15–13:55繼續MWY展示。只有日間展區相機准帶、准拍獲可靠確認，且約14:00順利離場，才帶機順路拍EVA，再返酒店放妥。未帶機就留MWY，不為EVA折返取機。",[["MWY離場目標","約14:00"],["EVA目標","14:20–14:55"],["酒店放機","約15:35–15:50"],["回會場／晚餐","約16:00–16:30回；16:30–17:30晚餐"]])}
+ return `${pageHead("第2日 · 13:15起的條件路線","MWY → EVA → 酒店放機","13:15–13:55繼續MWY展示。只有日間展區相機准帶、准拍獲可靠確認，且約14:00順利離場，才帶機順路拍EVA，再返酒店放妥。未帶機就留MWY，不為EVA折返取機。",[["MWY離場目標","約14:00"],["EVA目標","14:20–14:55"],["酒店放機","15:45–16:00"],["回會場／晚餐","16:00–16:40回；16:40–17:25晚餐"]])}
  ${decisionDiagram("按你實際有沒有帶機",[
   ["有帶機且時間順利","約14:00離MWY → 靜安新業坊EVA → 酒店安全放機 → 輕裝回會場晚餐／休息。","hot"],
   ["有帶機但已延誤","14:20仍未離場、EVA圍封／不准拍、導航超預算或VIP需更早核驗：CUT EVA，直接酒店放機。","warn"],
@@ -1332,9 +1334,10 @@ function mwyAfternoonPage(){
   ["13:15–13:55","MWY展示／粉絲活動","如有重要官方指定節目，按時段重排；不假設可重入。"],
   ["約14:00","離開MWY往EVA","步行暫估15–25分鐘，按實際入口及導航核對。"],
   ["14:20–14:55","EVA初號機","靜安新業坊 · 萬榮路1056號；拍攝25–35分鐘，現場狀態仍待核。"],
-  ["約15:00","EVA直接去酒店","約35–50分鐘門到門為規劃估算；不先回MWY。"],
-  ["15:35–15:50","酒店安全放機","預先核對保管方式，已拍記憶卡跟身；酒店放機不可CUT。"],
-  ["約16:00–16:30","輕裝回會場附近","吃足量晚餐、飲水、休息，17:45–18:00到VIP入口；官方要求更早則提早。"]
+  ["14:55–15:45","EVA直接去酒店","約14:55離開，門到門預留約50分鐘，屬規劃估算；不先回MWY。"],
+  ["15:45–16:00","酒店安全放機／整理輕裝","獨立保留15分鐘，不與交通混算；預先核對保管方式，已拍記憶卡跟身；酒店放機不可CUT。"],
+  ["16:00–16:40","輕裝回會場附近","按當日導航；延誤先縮EVA／展項，不壓縮放機、正餐及VIP核驗。"],
+  ["16:40–17:25","足量晚餐／補水／休息","17:45–18:00到VIP入口；官方要求更早則提早。"]
  ]))}
  ${copyPlaces([["EVA · 准帶機且準時才去","靜安新業坊 EVA初號機 萬榮路1056號"],["酒店放機",HOTEL],["輕裝回場","上海靜安體育中心 汶水路116號"]])}
  ${placeSearch("EVA初號機","靜安新業坊 EVA初號機 萬榮路1056號")}
@@ -1345,7 +1348,7 @@ function mwyAfternoonPage(){
 function mwyShowPage(){
  return `${pageHead("第2日 · 19:00","未來有你 2026 · 夜場","17:45–18:00到夜場入場區；上午若有帶相機，已於下午安全放酒店。VIP入場時間、袋及安檢以主辦最終公告為準。",[["夜場","19:00 · VIP"],["入場區","17:45–18:00"],["相機","夜場絕不帶"]])}
  ${block("入場前",route([
-  ["16:30–17:30","足量晚餐／補水／休息","小楊有隊就換快捷正餐，不刪晚餐。"],
+  ["16:40–17:25","足量晚餐／補水／休息","小楊有隊就換快捷正餐，不刪晚餐。"],
   ["17:45–18:00","到夜場入場區","如VIP公告要求提早就提前，預留安檢buffer。"],
   ["入場前","最後核一次規則","有效實名證件原件、票務資料一致性、袋、飲水、螢光棒及電池、安檢與重入，分別按2026官方公告核實。"],
   ["19:00","VIP夜場","演出期間按主辦規則執行。"]
@@ -1355,17 +1358,18 @@ function mwyShowPage(){
 function zxPage(){return `${pageHead("第3日 · 10:50–11:45目標","百聯ZX創趣場","從武康經交通大學10號線直達南京東路，門到門預留約30–40分鐘。只逛TAMASHII NATIONS等模型展示、遊戲IP及有興趣的當期店；不逐層掃店。11/2營業／展示仍待核。",[["地址","南京東路340號"],["時段","10:50–11:45"],["多留的交換","先取消新世界城"]])}
 ${block("逛完下一步",branches([
  ["約11:45完成","沿南京東路向西步行約20分鐘到新世界城；途中只簡單街拍。","hot"],
- ["ZX有興趣想多留／武康超時","直接取消新世界城；仍保正餐及15:00酒店出發，不用午飯換購物。","warn"],
+ ["ZX有興趣想多留／武康超時","直接取消新世界城；仍保正餐及15:15–15:25酒店出發，不用午飯換購物。","warn"],
  ["Day1夜景不理想、天氣與時間合適","外灘日間補拍只能取代新世界城或部分ZX；不能完整兩間商場後再額外加插。",""]
 ]))}
 ${copyPlaces([["百聯ZX創趣場","百聯ZX創趣場 南京東路340號"]])}${placeSearch("百聯ZX","百聯ZX創趣場 南京東路340號")}
 ${block("已決定省略",rules([["不列主線","百米香榭、迪美、徐家匯及元界薩姆；不為它們跨區。"]]))}
-<div class="next-actions"><button class="a" onclick="openDetail('haijinzi')">略過新世界城，去午餐安排</button></div>${nextHop("百聯ZX","新世界城 · 有時間才去","","新世界城 南京西路2–68號")}`}
-function newWorldPage(){return `${pageHead("第3日 · 約12:05–12:20／12:25","新世界城 · 可略過","只重點看4樓CAPCOM等有興趣的遊戲IP。ZX逛得超時就取消此站；目標12:20–12:25前離開去午飯，不為排隊購物延長。11/2目標店營業及展出待核。",[["地址","南京西路2–68號"],["重點","4樓CAPCOM等遊戲IP"],["離開目標","12:20–12:25前"]])}
+<div class="next-actions"><button class="a" onclick="openDetail('haijinzi')">略過新世界城，去午餐安排</button></div>${nextHop("百聯ZX","新世界城 · 正常保留／可縮短","","新世界城 南京西路2–68號")}`}
+function newWorldPage(){return `${pageHead("第3日 · 約12:05–12:30","新世界城 · 正常保留／可縮短","正常保留20–25分鐘重點看4樓CAPCOM等遊戲IP；約12:25–12:30離開去午飯。ZX好逛或前段超時就先縮短／取消此站，不以午餐和機場緩衝補數。11/2目標店營業及展出待核。",[["地址","南京西路2–68號"],["重點","4樓CAPCOM等遊戲IP"],["離開目標","12:25–12:30"]])}
 ${block("去海金滋",route([
  ["離商場","步行到人民廣場站","乘1號線往陝西南路，連步行估約25–35分鐘。"],
- ["12:50–13:00","目標到海金滋","午市最後接單仍待核；約13:05不能即時落單，就改快捷正餐。"],
- ["13:45前","離午餐區返酒店","帶足量食物，不取消午餐。"]
+ ["約12:55–13:05","目標到海金滋","慢端約13:10，門到門估25–35分鐘；若午市接單更早，須提早離商場。"],
+ ["13:10–13:15仍未落單","立即換快捷正餐","到店後5–10分鐘內判斷；玲瓏只有確實即時有位才去。"],
+ ["14:00前","離午餐區返酒店","預留45–55分鐘吃飯，帶足量食物，不取消午餐。"]
 ]))}
 ${copyPlaces([["新世界城","新世界城 南京西路2–68號"]])}${placeSearch("新世界城","新世界城 南京西路2–68號")}
 ${nextHop("新世界城","海金滋","","海金滋 進賢路240號")}`}
@@ -1412,7 +1416,29 @@ function switchDay(d){rememberMainScroll();currentDay=d;renderDay();resetMainScr
 function setMode(m,push=true){const origin=currentViewState();rememberMainScroll();mode=m;hideMain();$('#dayView').classList.remove('hidden');setTop('上海 · 私人行程');nav(m);renderDay();const key=scrollKey();if(m==='timeline'&&origin.mode==='map'&&timelineSelectionChanged){timelineSelectionChanged=false;const button=$(`[data-stop-id="${selectedStopIds[currentDay]}"]`);button?.scrollIntoView({block:'center',behavior:'instant'});mainScrolls[key]=window.scrollY}else restoreMainScroll(key);if(push)history.pushState({v:'day',d:currentDay,mode,hasParent:true},'',`#day-${currentDay}-${mode}`)}
 function renderDay(){const day=DAYS[currentDay],timeline=mode==='timeline';$('#dayView').dataset.day=String(currentDay);$('#dayTitle').textContent=timeline?day.title:'地圖';$('#dayDate').textContent=`第${currentDay}日 · ${day.date}`;$('#daySub').textContent=timeline?'':day.title;$('#daySub').classList.toggle('hidden',timeline);$('#tripSummary').classList.toggle('hidden',!timeline);document.querySelectorAll('.seg button').forEach(b=>{const active=+b.dataset.d===currentDay;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active))});$('#timelinePane').classList.toggle('hidden',!timeline);$('#mapPane').classList.toggle('hidden',timeline);if(timeline){renderTimeline();if(mapObj){mapObj.remove();mapObj=null;mapMarkers=[]}}else{renderMap();initMap()}}
 function timelineTime(time){return String(time).split('/').map((t,i)=>`<span${i?' class="time-alt"':''}>${i?'／':''}${t}</span>`).join('')}
-const TRIP_BRIEFS={"1": ["正餐 → 外灘 → 輪渡／浦東 → Freedom → Gundam Base → 東泰祥宵夜。", "酒店／午餐延誤：先吃妥正餐，略過外白渡橋、直接外灘。", "外灘拍超時或錯過渡輪：縮／取消浦東，按當前位置導航直接去LaLaport，不在碼頭白等。", "到Freedom太遲：先拍機體，縮店內購物；18:30–21:00另保補食及飲水。", "約17:06日落；約17:45–17:50往碼頭，18:00–18:05目標到渡口；18:15／18:30船班仍待核。"], "2": ["早餐 → MWY展示／場販 → 附近正餐 → 有帶機且準時才EVA → 酒店放機 → 輕裝回會場晚餐／休息 → 19:00 VIP。", "日間相機未確認准帶准拍：從早留酒店，全日手機玩MWY，不啟動EVA分支。", "帶機但14:20仍未離MWY、EVA圍封／不准拍、交通或VIP時間不容許：CUT EVA，直接酒店放機。", "可以縮展項與EVA，不能省午／晚餐、酒店放機或VIP核驗；夜場絕不帶相機。", "目標14:00離MWY、14:20–14:55 EVA、約15:35–15:50酒店；17:45–18:00 VIP入口須依官方通知調整。"], "3": ["退房寄行李 → 王記早餐 → 武康 → 百聯ZX → 有時間才新世界城 → 海金滋 → 酒店取行李 → PVG T2。", "武康好拍／ZX好逛：多留就先取消新世界城，不壓午餐及機場時間。", "海金滋約13:05不能即時落單：玲瓏只在確實有位可即時點餐時用，否則改回站方向的快捷正餐；不連續排兩間炒菜館。", "13:45前食妥或帶足量食物離開午餐區；外灘補拍只能取代商場，不在末段加插。", "12:20–12:25前離新世界城；15:00酒店帶行李出發、15:10小容差、15:25高風險；目標17:00前到T2。"]};
+const TRIP_BRIEFS={
+  "1": [
+    "正餐 → 有時間才外白渡橋 → 外灘 → 輪渡／浦東 → Freedom → Gundam Base → 東泰祥宵夜。",
+    "15:20–16:05正餐；16:05仍未食妥就先吃完，略過橋、直接去外灘。CUT景點，不CUT一餐。",
+    "16:15–16:45為移動及橋上短拍的彈性窗口；16:45–17:40外灘主機位，17:40起向南移動，目標18:00–18:05到渡口。",
+    "外灘拍超時或候船拖累金橋：縮／取消浦東，按當前位置直接去LaLaport；18:15／18:30船班與末班仍待核。",
+    "19:45–20:15抵LaLaport僅交通預算；先拍Freedom，Base約20:50–21:15可伸縮。18:30–21:00另保補食及飲水。"
+  ],
+  "2": [
+    "早餐 → MWY展示／場販 → 附近正餐 → 有帶機且準時才EVA → 酒店放機 → 輕裝回場晚餐／休息 → 19:00 VIP。",
+    "日間相機未確認准帶准拍：從早留酒店，全日手機玩MWY，不啟動EVA分支。",
+    "帶機但14:20仍未離MWY、EVA圍封／不准拍、交通或VIP時間不容許：CUT EVA，直接酒店放機。",
+    "14:55離EVA、14:55–15:45返酒店；15:45–16:00獨立存放相機及整理輕裝；16:00–16:40回場，16:40–17:25晚餐／休息。",
+    "可以縮展項與EVA，不能省午晚餐、酒店放機及VIP核驗；17:45–18:00入口目標依官方調整，夜場絕不帶相機。"
+  ],
+  "3": [
+    "退房寄行李 → 王記早餐 → 武康 → 百聯ZX → 新世界城（正常保留，可縮短）→ 海金滋 → 酒店取行李 → PVG T2。",
+    "武康好拍／ZX好逛：多留就先縮短或取消新世界城，不壓午餐及機場時間；外灘補拍只能取代商場。",
+    "12:25–12:30離新世界城、約13:00午餐；到店後5–10分鐘內判斷，13:10–13:15未落單就換快捷正餐。玲瓏只在即時有位時去，不連排兩間炒菜館。",
+    "午餐留45–55分鐘，目標13:45–13:55食妥，14:00前帶足食物離開；約14:30–14:50回酒店，留20–40分鐘取整行李。",
+    "正常15:15–15:25離店；15:30尚未離店即重查交通及T2到達預測。酒店至T2預算75–100分鐘，目標16:30–17:05、17:00前後抵達，非保證。"
+  ]
+};
 function dayBriefHTML(day){return `<details class="secondary-disclosure"><summary>今日照走／延誤時下一步</summary><div class="more"><p>${TRIP_BRIEFS[day][0]}</p>${rules(TRIP_BRIEFS[day].slice(1,-1).map(text=>["下一步",text]))}<p>${TRIP_BRIEFS[day].at(-1)}</p><p>各段時間為規劃估算；正常進食、相機安全、VIP及航班優先。</p></div></details>`}
 function renderTimeline(){const items=DAYS[currentDay].items;$('#timelinePane').innerHTML=dayBriefHTML(currentDay)+`<div class="timeline">${items.map((x,i)=>`${i&&items[i-1].move?`<div class="route-link">${items[i-1].move}</div>`:''}<div class="stop ${x.anchor?'major':'minor'}"><div class="stop-time">${timelineTime(x.time)}</div><button class="stop-card ${selectedStopIds[currentDay]===x.id?'selected':''}" data-stop-id="${x.id}" ${selectedStopIds[currentDay]===x.id?'aria-current="true"':''} onclick="openDetail('${x.id}')"><span><h2>${x.title}</h2><p>${x.sub}</p></span>${uiIcon('chevron-right')}</button></div>`).join('')}</div>`}
 function mapCoordinate(item){if(item.coord)return item.coord;if(item.id==='mwyshow')return DAYS[2].items.find(x=>x.id==='mwy').coord;return null}
@@ -1454,7 +1480,7 @@ function viewHash(s){return s?.v==='guide'?'#guide':`#day-${s?.d||currentDay}-${
 function renderViewState(s){if(s?.v==='guide'){showGuide(false);return}currentDay=DAYS[s?.d]?s.d:currentDay;mode=s?.v==='day'?s.mode||'timeline':'timeline';hideMain();$('#dayView').classList.remove('hidden');setTop('上海 · 私人行程');nav(mode);renderDay()}
 function detailActionHTML(id){const p=findItemPosition(id);if(!p)return'';const item=p.items[p.index],next=p.items[p.index+1];const address=item.id==='arrival'?HOTEL:item.address;return `<button class="detail-copy" onclick="copyText('${esc(address||HOTEL)}')">${item.id==='arrival'?'住宿地址':address?'本站地址':'住宿地址'}</button>${next?`<button class="detail-next" onclick="openAdjacentDetail(1)"><span>下一站</span><b>${next.title}</b> →</button>`:`<button class="detail-next" onclick="closeDetail()">返回行程</button>`}`}
 
-function dayCardSub(d){return d===1?'正餐 → 外灘 → 輪渡／浦東按時況 → Freedom':d===2?'MWY → EVA條件分支 → 酒店放機 → VIP':'退房／早餐 → 武康 → 百聯ZX → 新世界城可略 → 正餐 → PVG'}
+function dayCardSub(d){return d===1?'正餐 → 外灘 → 輪渡／浦東按時況 → Freedom':d===2?'MWY → EVA條件分支 → 酒店放機 → VIP':'退房／早餐 → 武康 → 百聯ZX → 新世界城可縮 → 正餐 → PVG'}
 function shanghaiClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));return{date:`${parts.year}-${parts.month}-${parts.day}`,minutes:+parts.hour*60+(+parts.minute)}}
 function todayTripDay(){return {'2026-10-31':1,'2026-11-01':2,'2026-11-02':3}[shanghaiClock().date]||0}
 function stopMinutes(t=''){const m=String(t).match(/(\d{1,2}):(\d{2})/);return m?(+m[1])*60+(+m[2]):9999}
@@ -1483,7 +1509,7 @@ async function prepareOffline(){
   showToast(failed?("已快取 "+cached+" 張 · "+failed+" 張稍後再試"):("離線圖片已準備 · "+cached+" 張"));
  }catch(e){showToast("離線圖片未完全準備，稍後再試")}
 }
-function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>行程依MASTER v2026-10-16.1同步。各日時間線頂部可打開「今日照走／延誤時下一步」；景點可略過，正餐、相機安全、VIP與航班不可CUT。</p></div>
+function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>行程依MASTER v2026-10-17.1同步。各日時間線頂部可打開「今日照走／延誤時下一步」；景點可略過，正餐、相機安全、VIP與航班不可CUT。</p></div>
 <div class="guide-group"><h3>離線準備</h3><div class="offline-panel"><div><strong>核心行程可離線開啟</strong><p>核心行程、三日Trip Brief與本地指引會自動快取；外部照片及街道底圖仍視網絡／已快取狀態。出發前用Wi-Fi預載主要圖片。</p></div><button onclick="prepareOffline()">預載主要圖片</button></div></div>
 <div class="guide-group"><h3>仍需確認</h3><div class="status-list">
 <div class="status-row"><div class="state">Day 1</div><div><b>亮燈、輪渡、Freedom與Base</b><p>10/31東金線18:15／18:30實際船班、末班及特別公告仍待核；國慶10/1–7停航不得套用10/31。確認當晚亮燈、Freedom場次及Base營業。</p></div></div>
@@ -1494,10 +1520,10 @@ function guideHTML(){return `<div class="guide-intro"><h2>出發前</h2><p>行�
 <div class="status-row"><div class="state">交通</div><div><b>天氣與機場門到門ETA</b><p>步行、候車、轉線、排隊均需計入。Day3磁浮異常即按官方及導航選地鐵續行等可行方案，不無限等待恢復。</p></div></div>
 </div></div>
 <div class="guide-group"><h3>延誤時照住做</h3><div class="status-list">
-<div class="status-row"><div class="state">Day 1</div><div><b>保正餐，先刪橋／浦東</b><p>15:45仍未食妥：省略外白渡橋，食妥或帶足量正餐後直接外灘。候船影響金橋就取消浦東，按當前位置直接LaLaport。</p></div></div>
+<div class="status-row"><div class="state">Day 1</div><div><b>保正餐，先刪橋／浦東</b><p>16:05仍未食妥：省略外白渡橋，食妥或帶足量正餐後直接外灘。候船影響金橋就取消浦東，按當前位置直接LaLaport。</p></div></div>
 <div class="status-row"><div class="state">Day 2</div><div><b>EVA可CUT，酒店放機不可CUT</b><p>准帶機且準時才拍EVA；14:20未離MWY、圍封、交通或VIP時間不容許就直接酒店。無帶機留MWY，不折返取機；午晚餐照常保障。</p></div></div>
-<div class="status-row"><div class="state">Day 3</div><div><b>先刪新世界城，13:45離午餐區</b><p>ZX值得多留就換掉新世界城。海金滋約13:05不能落單即轉快捷正餐；玲瓏只在即時有位時用，不排第二間炒菜館。</p></div></div>
-<div class="status-row"><div class="state">機場</div><div><b>15:00酒店出發；15:25高風險</b><p>14:15–14:30目標取行李、最遲14:45前回酒店；15:10只作小容差。17:00前到T2是規劃目標，19:05起飛，截止時間依航空公司訂單與當日規則核實。</p></div></div>
+<div class="status-row"><div class="state">Day 3</div><div><b>先縮新世界城，14:00前離午餐區</b><p>ZX值得多留就換掉新世界城。海金滋到店後5–10分鐘內判斷，13:10–13:15未落單即轉快捷正餐；玲瓏只在即時有位時用，不排第二間炒菜館。</p></div></div>
+<div class="status-row"><div class="state">機場</div><div><b>正常15:15–15:25酒店出發</b><p>約14:30–14:50回酒店，預留20–40分鐘取整行李；15:30尚未離店即重查交通。酒店至T2預算75–100分鐘，目標16:30–17:05、17:00前後抵達，非保證。19:05起飛，櫃檯截止另按航空公司核實。</p></div></div>
 </div></div>
 <div class="guide-group"><h3>可替代的攝影</h3><div class="status-list"><div class="status-row"><div class="state">外灘</div><div><b>Day3只作商場時間的替代</b><p>Day1夜景不理想、天氣與時間合適才考慮；必須取代新世界城或部分ZX，不在完整商場＋午餐之後加插。</p></div></div></div></div>
 <div class="guide-group"><h3>住宿與相機</h3><div class="status-list"><div class="status-row"><div class="state">住宿</div><div><b>${HOTEL}</b><p>Day1／3相機跟身；Day2展區准帶准拍獲確認才帶機，午後EVA條件分支後必須酒店安全放機。已拍記憶卡跟身；正式前台保管須先確認空間及憑證，不假設會場有寄存。</p></div></div></div></div>`}
