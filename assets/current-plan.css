@@ -19,15 +19,23 @@
 /* The entire detail header sticks, including navigation and the same live panel. */
 .detail-header{position:sticky;top:0;z-index:7;background:var(--header)}
 .detail-header>.dtop{position:static}
-.detail-header .now-plan{max-width:900px;margin:0 auto;padding:8px 22px 12px;border:0;background:var(--inverted);color:var(--on-inverted)}
-.detail-header .now-top{gap:4px 12px}
-.detail-header .now-top>span,.detail-header .now-top time,.detail-header .now-range,.detail-header .now-next>span{color:var(--on-inverted-muted)}
-.detail-header .now-title{font:600 16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif;letter-spacing:0;margin:4px 0 0}
+.detail-header .now-plan{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:14px;max-width:900px;margin:0 auto;padding:10px 22px 12px;border:0;background:var(--inverted);color:var(--on-inverted)}
+.detail-header .now-plan>[role="status"]{min-width:0}
+.detail-header .now-top{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:6px;align-self:stretch;padding:4px 12px 4px 0}
+.detail-header .now-top:after{content:"";position:absolute;inset:4px 0 4px auto;width:1px;background:var(--on-inverted-muted);opacity:.2}
+.detail-header .now-top>span{font-size:10px;line-height:1.3;font-weight:500;letter-spacing:0;white-space:nowrap;color:var(--on-inverted-muted)}
+.detail-header .now-top time{font:22px/1.1 MWYMono,monospace;letter-spacing:-.06em;color:var(--on-inverted)}
+.detail-header .now-title{font:600 15px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Noto Sans TC",sans-serif;letter-spacing:0;margin:0}
+.detail-header .now-title button{padding:2px 0;gap:8px}
 .detail-header .now-title button,.detail-header .now-title svg,.detail-header .now-next{color:var(--on-inverted)}
-.detail-header .now-range{font-size:11px;margin:0}
+.detail-header .now-title svg{width:14px;height:14px;flex-basis:14px}
+/* Full time range remains available to assistive technology and in the linked guide. */
+.detail-header .now-range{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .detail-header .now-note{display:none}
-.detail-header .now-next{margin-top:4px;font-size:12px;gap:4px 8px}
-.detail-header .now-live{color:var(--on-inverted-muted);margin-top:0}
-.detail-header .now-title button:focus-visible,.detail-header .now-live:focus-visible{outline-color:var(--on-inverted)}
-@media(max-width:359px){.detail-header .now-plan{padding-left:18px;padding-right:18px}}
+.detail-header .now-next{flex-wrap:nowrap;align-items:baseline;margin-top:0;font-size:12px;line-height:1.5;gap:6px}
+.detail-header .now-next>span{flex-shrink:0;font-size:10px;color:var(--on-inverted-muted)}
+.detail-header .now-next b{font-weight:400;color:var(--on-inverted-muted)}
+.detail-header .now-title button:focus-visible{outline-color:var(--on-inverted)}
+#detailPreviewSlot .now-live{display:flex;align-items:center;justify-content:center;width:44px;min-height:44px;padding:0;margin:0;color:var(--accent-ink);font-size:12px;text-decoration:none}
+@media(max-width:359px){.detail-header .now-plan{padding-left:18px;padding-right:18px;grid-template-columns:72px minmax(0,1fr);gap:12px}.detail-header .now-top{padding-right:8px}.detail-header .now-title{font-size:14px}}
 @media(min-width:720px){.detail-header .now-plan{padding-left:32px;padding-right:32px}}

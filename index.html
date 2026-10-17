@@ -532,7 +532,7 @@ button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{
 <body>
 <div id="app"></div>
 <script>
-const SITE={version:"RC7.3.6",updated:"10/18",master:"v2026-10-17.1",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／條件式EVA"};
+const SITE={version:"RC7.3.7",updated:"10/18",master:"v2026-10-17.1",tripLabel:"2026.10.31—11.02",photoStatus:"外灘／浦東反拍／Freedom／武康／條件式EVA"};
 const IMG={
   bund:"https://images.gochinafreely.com/AJ010/shanghai-bund-historical-building-lights-at-dusk-blues-hour-800.webp",
   waibaidu:"https://upload.wikimedia.org/wikipedia/commons/1/14/Waibaidu_Bridge_Shanghai.jpg",
@@ -1381,7 +1381,7 @@ function tripSummaryHTML(){return `<details id="tripSummary" class="trip-summary
 function openSummaryDay(d){$('#tripSummary').open=false;openDay(d)}
 function init(){
  document.title='MWY2026 · 上海三日行程書';
- document.getElementById('app').innerHTML=`<div class="shell"><header class="topbar"><div class="brand-mark">MWY<small>2026</small></div><div class="topbar-title" id="pageTitle">上海 · 私人行程</div><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button></header><main class="main"><div id="mainPlanSlot">${currentPlanHTML()}</div><section id="dayView">${tripSummaryHTML()}<div class="dayhead"><div><p id="dayDate"></p><h1 id="dayTitle"></h1><p id="daySub"></p></div></div><div class="seg" aria-label="行程日期">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">${['10/31','11/01','11/02'][d-1]}<span class="day-number"> · 第${d}日</span></button>`).join('')}</div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section><section id="guideView" class="hidden">${guideHTML()}</section></main><button id="planShortcut" class="plan-shortcut hidden" onclick="openPlanShortcut()">${uiIcon('clock-3')}<span id="planShortcutLabel">此刻計劃</span></button><nav class="bottomnav" aria-label="主要導覽"><button id="navTrip" class="nav active" onclick="setMode('timeline')">${uiIcon('list')}<span>行程</span></button><button id="navMap" class="nav" onclick="setMode('map')">${uiIcon('map')}<span>地圖</span></button><button id="navGuide" class="nav" onclick="showGuide()">${uiIcon('bookmark')}<span>指南</span></button></nav></div><div id="detail" class="detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle" aria-hidden="true" inert><div class="detail-header"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span class="top-spacer" aria-hidden="true"></span></div><div id="detailPlanSlot"></div></div><article id="article" class="article"></article><div id="detailActions" class="detail-actions"></div></div><div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
+ document.getElementById('app').innerHTML=`<div class="shell"><header class="topbar"><div class="brand-mark">MWY<small>2026</small></div><div class="topbar-title" id="pageTitle">上海 · 私人行程</div><button id="backBtn" class="iconbtn ghost hidden" aria-label="返回"><span>‹</span></button></header><main class="main"><div id="mainPlanSlot">${currentPlanHTML()}</div><section id="dayView">${tripSummaryHTML()}<div class="dayhead"><div><p id="dayDate"></p><h1 id="dayTitle"></h1><p id="daySub"></p></div></div><div class="seg" aria-label="行程日期">${[1,2,3].map(d=>`<button data-d="${d}" onclick="switchDay(${d})">${['10/31','11/01','11/02'][d-1]}<span class="day-number"> · 第${d}日</span></button>`).join('')}</div><div id="timelinePane"></div><div id="mapPane" class="hidden"></div></section><section id="guideView" class="hidden">${guideHTML()}</section></main><button id="planShortcut" class="plan-shortcut hidden" onclick="openPlanShortcut()">${uiIcon('clock-3')}<span id="planShortcutLabel">此刻計劃</span></button><nav class="bottomnav" aria-label="主要導覽"><button id="navTrip" class="nav active" onclick="setMode('timeline')">${uiIcon('list')}<span>行程</span></button><button id="navMap" class="nav" onclick="setMode('map')">${uiIcon('map')}<span>地圖</span></button><button id="navGuide" class="nav" onclick="showGuide()">${uiIcon('bookmark')}<span>指南</span></button></nav></div><div id="detail" class="detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle" aria-hidden="true" inert><div class="detail-header"><div class="dtop"><button class="iconbtn" onclick="closeDetail()" aria-label="返回"><span>‹</span></button><strong id="detailTitle"></strong><span id="detailPreviewSlot" class="top-spacer"></span></div><div id="detailPlanSlot"></div></div><article id="article" class="article"></article><div id="detailActions" class="detail-actions"></div></div><div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>`;
  $('#backBtn').onclick=()=>setMode('timeline');
  let swipeX=0,swipeY=0,swipeTarget=null;
  $('#detail').addEventListener('touchstart',e=>{if(e.touches.length!==1)return;swipeX=e.touches[0].clientX;swipeY=e.touches[0].clientY;swipeTarget=e.target},{passive:true});
@@ -1482,20 +1482,24 @@ function currentPlanTarget(clock=planClock()){
  return{day:state.day,phase:state.phase,item:DAYS[state.day].items.find(x=>x.id===state.phase.detailId)};
 }
 function currentPlanHTML(){return `<section id="currentPlan" class="now-plan" aria-label="此刻行程"><div class="now-top"><span id="currentPlanLabel">此刻行程 · 按計劃</span><time id="currentPlanClock"></time></div><div role="status" aria-live="polite" aria-atomic="true"><h2 class="now-title"><button id="currentPlanOpen" onclick="openPlanShortcut()" aria-describedby="currentPlanRange currentPlanNote"><span id="currentPlanTitle"></span>${uiIcon('chevron-right')}</button></h2><p id="currentPlanRange" class="now-range"></p><p id="currentPlanNote" class="now-note"></p><p id="currentPlanNextRow" class="now-next"><span>下一步</span><b id="currentPlanNext"></b></p></div><a id="currentPlanLive" class="now-live hidden" href="./">使用現在時間</a></section>`}
-function moveCurrentPlan(slotId){const panel=$('#currentPlan'),slot=$('#'+slotId);if(panel&&slot&&panel.parentNode!==slot)slot.append(panel)}
+function moveCurrentPlan(slotId){
+ const panel=$('#currentPlan'),slot=$('#'+slotId);if(panel&&slot&&panel.parentNode!==slot)slot.append(panel);
+ const exit=$('#currentPlanLive'),exitSlot=slotId==='detailPlanSlot'?$('#detailPreviewSlot'):panel;
+ if(exit&&exitSlot&&exit.parentNode!==exitSlot)exitSlot.append(exit);
+}
 function refreshPlanShortcut(){
  const state=planState(),{clock,phase,next}=state,time=planClockText(clock.minutes),inDetail=detailOpen;
  const clockNode=$('#currentPlanClock');
- if(clockNode){clockNode.textContent=inDetail?`上海 ${time}`:`上海 ${clock.date.slice(5).replace('-','/')} ${time}`;clockNode.setAttribute('datetime',`${clock.date}T${time}:00+08:00`)}
+ if(clockNode){clockNode.textContent=inDetail?time:`上海 ${clock.date.slice(5).replace('-','/')} ${time}`;clockNode.setAttribute('datetime',`${clock.date}T${time}:00+08:00`);clockNode.setAttribute('aria-label',`上海時間 ${clock.date} ${time}`);clockNode.title=`上海時間 ${clock.date} ${time}`}
  const active=state.state==='active',upcoming=state.state==='upcoming';
  const title=active?phase.title:upcoming?'行程尚未開始':'三日行程已結束';
- const label=active?`${clock.preview?'預覽':inDetail?'此刻':'此刻行程'} · 第${state.day}日 · 按計劃`:'此刻行程 · 按計劃';
  const cameraBranch=active&&state.day===2&&clock.minutes>=14*60&&clock.minutes<16*60+40;
+ const label=active?(inDetail?`D${state.day} ${clock.preview?'預覽':'計劃'}${cameraBranch?'·帶機':''}`:`${clock.preview?'預覽':'此刻行程'} · 第${state.day}日 · 按計劃`):inDetail?'上海 · 計劃':'此刻行程 · 按計劃';
  const range=active?`${phase.start}${phase.end==='24:00'?' 起':'–'+phase.end}${inDetail&&cameraBranch?' · 有帶機分支':''}`:'10/31–11/02 · 上海三日';
  const note=active?phase.note:upcoming?'到行程日期後，按上海時間顯示目前計劃階段。':'可查看三日行程；此區塊依時間顯示計劃，並非實際定位。';
  for(const [selector,value] of [['#currentPlanLabel',label],['#currentPlanTitle',title],['#currentPlanRange',range],['#currentPlanNote',note]]){const el=$(selector);if(el&&el.textContent!==value)el.textContent=value}
  const noteNode=$('#currentPlanNote');if(noteNode)noteNode.classList.toggle('hidden',!note);
- const liveLink=$('#currentPlanLive');if(liveLink)liveLink.classList.toggle('hidden',!clock.preview);
+ const liveLink=$('#currentPlanLive');if(liveLink){liveLink.classList.toggle('hidden',!clock.preview);liveLink.textContent=inDetail?'即時':'使用現在時間';liveLink.setAttribute('aria-label','結束預覽，使用現在時間')}
  const nextRow=$('#currentPlanNextRow'),nextNode=$('#currentPlanNext');
  if(nextRow)nextRow.classList.toggle('hidden',!next);
  if(nextNode&&next){const date=!active||next.day!==state.day?`${Object.keys(TRIP_DATES).find(date=>TRIP_DATES[date]===next.day).slice(5).replace('-','/')} `:'';const value=`${date}${next.start} ${next.title}`;if(nextNode.textContent!==value)nextNode.textContent=value}

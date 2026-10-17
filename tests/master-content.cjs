@@ -37,7 +37,7 @@ new vm.Script(script);
 vm.runInContext(script,context);
 const evaluate=source=>vm.runInContext(source,context);
 const data=JSON.parse(evaluate('JSON.stringify({SITE,DAYS,PAGE_META,DETAIL_KIND,TRIP_BRIEFS})'));
-assert.equal(data.SITE.version,'RC7.3.6');
+assert.equal(data.SITE.version,'RC7.3.7');
 assert.equal(data.SITE.master,'v2026-10-17.1');
 assert.equal(data.DAYS[1].items.find(x=>x.id==='lailai').time,'15:20');
 assert.equal(data.DAYS[1].items.find(x=>x.id==='bund').time,'16:15');
@@ -110,7 +110,7 @@ assert.equal(evaluate("currentPlanTarget({date:'2026-11-01',minutes:16*60+39}).i
 assert.equal(evaluate("currentPlanTarget({date:'2026-11-01',minutes:16*60+40}).item.id"),'xiaoyang');
 assert.ok(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(html),'Private trip data is not published');
 const worker=fs.readFileSync(path.join(root,'sw.js'),'utf8');
-assert.ok(worker.includes('mwy2026-rc7.3.6-master-20261017.1'));
+assert.ok(worker.includes('mwy2026-rc7.3.7-master-20261017.1'));
 assert.ok(worker.includes('"./index.html"'));
 assert.ok(!/overscroll-behavior(?:-y)?:\s*(none|contain)/.test(html),'The content update does not suppress native refresh');
 const output=process.env.CONTENT_REPORT;
