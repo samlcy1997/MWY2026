@@ -1,43 +1,13 @@
-# MWY2026 Shanghai Field Guide
+# MWY2026 · Meta framework test
 
-A mobile-first three-day Shanghai itinerary for photography, local food and 未來有你 2026.
+This branch adapts Meta's supplied `guidebook-3day.html` directly. The original inline stylesheet, varied timeline cards and 85vh detail sheet are retained. Current itinerary and behavior are connected through `assets/meta-data.js` and `assets/meta-integration.js`.
 
-## RC7.3.8: production copy and departure reminder (MASTER v2026-10-17.1)
+- Itinerary baseline: Google Drive MASTER v2026-10-17.1.
+- Independent test site: https://mwy2026-meta-framework-test.bravemelon.chatgpt.site
+- Main production branch: unchanged by this test branch.
+- Source HTML: `index.html`. Static hosting needs no build step.
+- Verification: `node tests/meta-framework.cjs`.
 
-Only the current MASTER defines the executable plan. Historical research and decision-log snapshots do not override it. The rejected RC7.3.2 UI changes remain excluded. Existing inline CSS, fonts, colors, photos, navigation behavior and manifest are retained; `assets/current-plan.css` scopes the current-phase block and combined Detail header.
+The tests cover all 4,320 trip minutes, phase references, cross-day navigation, and important arrival/departure boundaries. Browser layout and touch interaction QA remain unverified in the current environment.
 
-At the top of the main view, **目前行程** shows the device clock converted to Shanghai time, the current **planned** phase, its time window, relevant conditional branch and the next step. It does not locate the traveler or infer completed stops. Day selection remains manual and does not affect the current phase. The existing floating shortcut opens the same phase's detailed guide. Before 10/31, the large inactive panel is replaced by one row: **10/31 出發** and a Shanghai-date countdown (for example **還有 13 天** on 10/18). No clock, implementation explanation or next-step paragraph is shown in this state. After 11/2 the same compact row shows completion. The departure action still opens the first stop.
-
-Opening any Detail moves **the same element** into the dialog's combined sticky header, below the return toolbar and outside the article. A narrow left column anchors the blue banner with the current time in large local monospace; a wider right column presents the current phase above the quieter next step. The day/plan label marks the camera branch explicitly. The full time window remains available to assistive technology and in the linked guide. Preview exit moves into the toolbar's existing right slot, avoiding an extra banner row. Closing Detail returns both elements to the main presentation. Clock updates neither navigate the article nor reset its scroll; tapping the already open timed phase also preserves scroll/history. Adjacent-detail navigation keeps the header. There are no cloned IDs, duplicate timers or controls left behind the modal's inert background.
-
-This is a local visual refinement using the existing blue palette, sharp edges and cached fonts. Information density is high, motion stays at zero, and the original page layout and all stop times, addresses, coordinates and phase destinations remain unchanged. At narrow widths the clock column and gap shrink while full phase/next-step text can wrap; content is not truncated to fit. Both themes use the existing semantic contrast tokens.
-
-`PLAN_PHASES` splits the MASTER into travel, photography, meals, camera storage and admission stages. Conditional EVA and optional shopping retain their branch notes; ferry and transport estimates stay explicitly provisional. Update these subphases alongside `DAYS` whenever the MASTER changes. Refresh is aligned to each minute and runs immediately when the page becomes visible or returns from browser history. Updates keep the same DOM controls and focus; the clock is outside the polite live region so every minute is not announced.
-
-For a clearly labeled, frozen preview, use `?planPreview=2026-11-01T15:50`; only valid times on the three trip dates are accepted. The block says **預覽** and offers **使用現在時間** to return to the device clock. Ordinary URLs always use the real device time.
-
-- **Day 1:** allow about 15:20–16:05 for a full meal. Lailai is check-first; unavailable or queued means a quick full meal nearby. Taikang is an optional snack. If still eating at 16:05, skip Waibaidu Bridge. The 16:15–16:45 bridge/walking window is flexible; photograph from the main Bund position around 16:45–17:40, then start south at 17:40 with 20–25 minutes for walking and quick photos. Aim for the ferry at 18:00–18:05; 18:15/18:30 sailings and last sailing remain unconfirmed. If waiting endangers Freedom, go directly to LaLaport and skip Pudong. Arrival around 19:45–20:15 is a traffic estimate; prioritize the robot, with Base shopping around 20:50–21:15 flexible. Leave LaLaport around 21:10–21:30. Carry water and supplementary savory food before Dong Taixiang supper.
-- **Day 2:** protect both meals. With reliable daytime camera permission and favorable timing, leave MWY around 14:00, photograph EVA around 14:20–14:55, travel directly to the hotel at 14:55–15:45, then reserve **15:45–16:00 separately for secure camera storage and changing to a light load**. Return to the venue area at 16:00–16:40; dinner/rest is 16:40–17:25. If still at MWY at 14:20, EVA access is blocked, transport runs late or VIP checking needs more time, skip EVA and secure the camera. Without confirmed permission, leave the camera at the hotel all day and do not activate EVA photography. Cameras never enter the evening concert. 17:45–18:00 is a provisional VIP entrance target subject to official guidance; the only concert is 19:00 VIP.
-- **Day 3:** retains the MASTER's v2026-10-16.2 revision: checkout/breakfast, Wukang, ZX, New World City/CAPCOM, Haijinzi, hotel luggage, PVG T2. New World City is normally retained for 20–25 minutes but shortened or skipped first if earlier stops overrun; leave around 12:25–12:30. Aim for lunch around 13:00, allowing 45–55 minutes for ordering, preparation, eating and payment. Decide within 5–10 minutes of arrival; if unable to order by 13:10–13:15, use Linglong only with an immediate seat/order or get a quick full meal on the way to the station. Aim to finish at 13:45–13:55 and leave the lunch area with enough food before 14:00. Return to the hotel around 14:30–14:50 and reserve 20–40 minutes for luggage/necessary organization. **15:15–15:25 is the normal hotel departure window**; if not out at 15:30, recheck current services and T2 ETA. Hotel-to-T2 budget is 75–100 minutes including walking/waiting/transfers, targeting roughly 16:30–17:05 for the 19:05 flight. These are planning estimates. A daytime Bund revisit replaces shopping, never follows the full shopping/lunch plan.
-
-Each daily timeline has an existing-style disclosure for the MASTER Trip Brief: default sequence, delay branches and next step. Details, map selection, copy addresses, summaries and the clock shortcut use the updated itinerary. Old Xujiahui and Zhangyuan detail links redirect to ZX and hotel luggage return. Locations without verified coordinates keep their addresses and Amap keyword searches rather than fabricated pins.
-
-Public headings now name the actual day or activity: **外灘夜景與高達**, **未來有你 2026**, **武康路與南京路**, and **EVA拍攝與相機寄放**. Developer/planning labels such as MASTER versions, conditional “分支”, CUT and buffer are removed from rendered interface copy. Conditions and uncertainty remain as direct travel instructions; the version stays in source metadata and this README.
-
-## Verification
-
-Run `node tests/current-plan.cjs` from the checkout. It also runs the MASTER content checks: detail rendering, next-stop chronology, map-picker entries, legacy-link redirects, unchanged RC7.3.1 inline CSS/fonts/manifest, public-data exclusions and cache version. A regression check compares route facts against the prior deployed release, and an audit covers rendered page, guide, timeline, map and phase copy. Countdown checks cover before and after the departure date. Current-phase checks cover Shanghai timezone conversion, trip-date and phase boundaries, all 4,320 trip minutes, conditional routes, next steps, preserved day selection, stable controls, refresh scheduling and labeled previews. Detail tests cover shared-element movement for every stop, a sticky header outside the article, reading another day's guide, live phase changes without scroll/navigation, adjacent navigation and repeated current-phase taps. These are static/runtime contracts with a minimal DOM harness, not a browser layout or mobile-device test, and do not verify actual transport, restaurant service, venue access or trip feasibility.
-
-The offline cache is `mwy2026-rc7.3.8-master-20261017.1`; it includes the updated stylesheet at a release-versioned URL, also used by the HTML so a previous worker cannot serve the older layout on the first navigation. Current-phase logic is part of the cached HTML and works offline using the device clock. Existing app-shell assets, MapLibre and local reference images are retained. External media and street tiles still depend on connectivity or runtime cache. The Bund route image illustrates locations/sequence; current written times take precedence over times embedded in the image.
-
-## Still pending
-
-- 10/31 lighting, ferry sailings/last sailing/date-specific notices, Freedom performances and Gundam Base operation.
-- MWY 2026 daytime eligibility, cameras/photography/re-entry/timed programs; VIP ID, checking, bags, water/rest facilities, glowsticks and batteries. Daytime and concert rules are independent.
-- EVA condition/access/photography and actual door-to-door navigation estimates.
-- 11/2 ZX, New World City and target shops/pop-ups; Haijinzi lunch last-order/closure; quick meal fallbacks and seating.
-- Restaurant operation, weather, Maglev, airport ETA and airline check-in/bag-drop deadlines.
-
-## Public-data rule
-
-The hotel name is intentionally retained for navigation. Do not publish flight numbers, hotel street address/phone, camera/lens model identifiers, booking/payment details, guest details, private notes or identity numbers. The private MASTER document is not copied into this repository.
+Ferry schedules, day exhibition camera admission, VIP entry details and restaurant hours retain their pending labels. Scheduled suggestions are planning estimates, not live location tracking.

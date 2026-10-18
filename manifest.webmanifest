@@ -1,11 +1,11 @@
 {
-  "name": "MWY2026 · 上海三日行程書",
-  "short_name": "MWY2026",
-  "description": "上海三日行程 field guide",
+  "name": "MWY2026 · 上海三日手帳",
+  "short_name": "上海手帳",
+  "description": "上海三日攝影、飲食與未來有你行程手帳",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f1f4f3",
-  "theme_color": "#1b425c",
+  "background_color": "#f6f6f5",
+  "theme_color": "#0a84ff",
   "lang": "zh-Hant"
 }
