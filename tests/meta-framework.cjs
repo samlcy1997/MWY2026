@@ -26,13 +26,20 @@ for(const file of ['meta-data.js','meta-integration.js'])vm.runInContext(fs.read
 const data=window.MWY_DATA,api=window.MWY_FRAMEWORK;
 const plain=x=>JSON.parse(JSON.stringify(x));
 assert.deepEqual(plain(data.sourceDays),baseline.DAYS);
-assert.deepEqual(plain(data.phases),baseline.PLAN_PHASES);
+assert.deepEqual(plain(Object.fromEntries(Object.entries(data.phases).map(([day,rows])=>[day,rows.map(r=>[r[0],r[2]])]))),Object.fromEntries(Object.entries(baseline.PLAN_PHASES).map(([day,rows])=>[day,rows.map(r=>[r[0],r[2]])])));
 assert.deepEqual(plain(data.photoMaps),baseline.PHOTO_MAPS);
-assert.deepEqual(plain(data.briefs),baseline.TRIP_BRIEFS);
+for(const day of [1,2,3])assert(data.briefs[day].length>=3);
 const stops=data.days.flatMap(day=>day.stops),all=[...stops,...Object.values(data.extras)];
 assert.equal(stops.length,22);assert.equal(new Set(stops.map(s=>s.id)).size,22);
-for(const [id,expected]of Object.entries(baseline.pageBodies))assert.equal(hash(api.find(id).stop.richHtml),expected,id+' body');
-assert.equal(hash(data.extras.guide.richHtml),baseline.guide);
+assert.deepEqual(plain(data.days.map(d=>d.stops.map(({id,time,endTime,addr})=>({id,time,endTime,addr})))),baseline.displayRoute);
+const references=JSON.parse(fs.readFileSync(path.join(__dirname,'content-references.json'),'utf8'));
+const unescape=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'");
+function contentReferences(html){const refs=[];for(const [,tag,attributes]of html.matchAll(/<([a-z][\w-]*)\b([^>]*?)>/gi)){for(const field of ['src','href','onclick']){const match=attributes.match(new RegExp('\\b'+field+'=(?:"([^"]*)"|\'([^\']*)\')'));if(match)refs.push([tag,field,unescape(match[1]??match[2])])}}return refs}
+for(const [id,expected]of Object.entries(references))assert.deepEqual(contentReferences(api.find(id).stop.richHtml),expected,id+' retains images, links and actions');
+const facts={arrival:['12:30','14:15–14:45','龍陽路','人民廣場'],lailai:['天津路506號','松茸鮮肉','純鮮肉','沈大成'],bund:['16:45–17:40','17:40','18:00–18:05','17:06–17:07'],ferry:['18:15','18:30','19:05'],mwyafternoon:['萬榮路1056號','14:20','14:55–15:45','15:45–16:00','16:00–16:40','16:40–17:25'],haijinzi:['進賢路240號','葱烤大排','13:10–13:15','陝西南路57號','14:00'],hotelreturn:['14:30–14:50','15:15–15:25','15:30'],airport:['15:15–15:25','15:30','75–100','T2','19:05']};
+for(const [id,required]of Object.entries(facts))for(const fact of required)assert(api.find(id).stop.richHtml.includes(fact),id+' retains '+fact);
+const readerCopy=all.map(s=>[s.title,s.subtitle,s.why,s.desc,s.tip,...s.tips,s.richHtml.replace(/<[^>]*>/g,' ')].join(' ')).join(' ');
+assert(!/足量正餐|先保主片|慢端|補數|保正餐|保住|顧好|門到門預算|規劃預算|先完成/.test(readerCopy),'Reader-facing copy uses ordinary language');
 assert.equal(hash(html.match(/<style>([\s\S]*?)<\/style>/)[1]),baseline.inlineStyle);
 for(const day of data.days){assert.deepEqual(plain(day.mapPlaces.map(p=>p.id)),plain(day.stops.map(s=>s.id)));for(const place of day.mapPlaces)if(place.longitude!==null)assert(Number.isFinite(place.longitude)&&Number.isFinite(place.latitude))}
 assert.equal(data.days.reduce((sum,d)=>sum+api.mappedPlaces(d.mapPlaces).length,0),15);
@@ -42,12 +49,12 @@ let minutes=0;
 for(const day of data.days)for(let m=0;m<1440;m++){
  const at=day.dateISO+'T'+String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0')+':00+08:00',state=api.plan(new Date(at));
  const rows=baseline.PLAN_PHASES[data.days.indexOf(day)+1];let index=0;for(let i=1;i<rows.length;i++){if(api.minutes(rows[i][0])>m)break;index=i}
- assert.equal(state.current.id,rows[index][2]);assert.equal(state.phase.note,rows[index][3]);minutes++;
+ assert.equal(state.current.id,rows[index][2]);assert(state.phase.note.length>0);minutes++;
 }
 assert.equal(api.plan(new Date('2026-10-30T23:59:00+08:00')).state,'upcoming');
 assert.equal(api.plan(new Date('2026-11-03T00:00:00+08:00')).state,'finished');
-assert(api.plan(new Date('2026-11-01T14:20:00+08:00')).compact.includes('帶機且準時'));
-assert(api.plan(new Date('2026-11-01T13:15:00+08:00')).sub.includes('帶機且準時'));
+assert(api.plan(new Date('2026-11-01T14:20:00+08:00')).compact.includes('有相機先去'));
+assert(api.plan(new Date('2026-11-01T13:15:00+08:00')).sub.includes('有相機先去'));
 assert(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(JSON.stringify(data)),'Private MASTER fields remain excluded');
 assert.equal(api.actionAddress(api.find('arrival').stop),data.hotel);assert.equal(api.actionAddress(api.find('postshow').stop),data.hotel);
 assert.equal(api.actionAddress(api.find('zx').stop),api.find('zx').stop.addr);
@@ -70,7 +77,7 @@ assert(text(tree).includes(data.briefs[1][0]));
 window.openDetail('mwyafternoon');tree=render();
 assert.equal(nodes(tree,n=>n.props.id==='metaNowBar').length,1);
 assert(text(nodes(tree,n=>n.props.className==='mwy-phase-note')[0]).includes(api.plan().phase.note));
-assert(text(tree).includes('帶機且準時'));
+assert(text(tree).includes('有相機先去'));
 const sheet=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];assert.equal(typeof sheet.props.onTouchStart,'function');assert.equal(typeof sheet.props.onTouchEnd,'function');
 const before=history.calls.length;nodes(tree,n=>n.type==='button'&&n.props.className==='mwy-now-jump')[0].props.onClick();assert.equal(history.calls.length,before,'Opening the current detail again does not navigate');
 window.openDetail('arrival');tree=render();
@@ -78,9 +85,9 @@ const arrivalCopy=nodes(tree,n=>n.type==='button'&&text(n).trim()==='複製住�
 const arrivalNav=nodes(tree,n=>n.type==='button'&&text(n).trim()==='前往酒店')[0];assert(arrivalNav);arrivalNav.props.onClick();assert(opened.at(-1).includes(encodeURIComponent(data.hotel)));
 let scroller=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];
 scroller.props.onTouchStart({touches:[{clientX:200,clientY:100}],target:{closest:()=>null}});scroller.props.onTouchEnd({changedTouches:[{clientX:90,clientY:105}]});tree=render();
-assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'上海正餐 · 萊萊優先');
+assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊萊小籠');
 scroller=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];scroller.props.onTouchStart({touches:[{clientX:200,clientY:100}],target:{closest:()=>({})}});scroller.props.onTouchEnd({changedTouches:[{clientX:90,clientY:100}]});tree=render();
-assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'上海正餐 · 萊萊優先');
+assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊萊小籠');
 
 (async()=>{
  assert.equal(await api.copy('天津路506號'),true);assert.equal(appendTarget,'dialog');assert.equal(clipboard.at(-1),'天津路506號');
@@ -102,6 +109,6 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'上
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta2-master-20261017.1'));assert(!html.includes('?v=meta1'));
- console.log('PASS: source parity (22 stops / 23 bodies / guide / 49 phases), '+minutes+' trip minutes, all map stops, component actions, conditional notes, swipe, clipboard fallback, worker timeouts and photo-map lifecycle.');
+ assert(sw.includes('mwy2026-meta3-master-20261017.1'));assert(!/\?v=meta[12]/.test(html));
+ console.log('PASS: unchanged route facts, reference media/links, practical details, '+minutes+' trip minutes, ordinary reader copy and all migration controls.');
 })().catch(error=>{console.error(error);process.exitCode=1});

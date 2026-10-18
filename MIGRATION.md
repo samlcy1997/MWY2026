@@ -2,7 +2,7 @@
 
 The user selected this Meta-based design as the project's core. Preserve its layout when adding future features.
 
-The previous production snapshot is `60aa9b8294b0b3f39a3fa287443b27b630f55ff2` (RC7.3.8). All 22 timeline stops, 23 detail bodies, the guide, 49 planned phases and 4 photo-map datasets are retained. `tests/migration-baseline.json` records the route/data snapshot and content hashes for reproducible parity checks.
+The previous production snapshot is `60aa9b8294b0b3f39a3fa287443b27b630f55ff2` (RC7.3.8). All 22 timeline stops, the 23 detail destinations, guide, 49 planned phases and 4 photo-map datasets are retained. `tests/migration-baseline.json` records route/data facts, and `tests/content-references.json` records source media, links and actions. Reader-facing copy has been rewritten as a travel guide: what to see, eat and photograph first, with timings in the time fields and practical exceptions in the notes. Tests protect facts and functions rather than preserving the old planning prose.
 
 The migration now includes:
 

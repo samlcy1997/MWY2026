@@ -700,31 +700,145 @@
       "正常15:15–15:25離店；15:30尚未離店即重查交通及T2到達預測。酒店至T2預算75–100分鐘，目標16:30–17:05、17:00前後抵達，非保證。"
     ]
   },
-  "pageBodies": {
-    "arrival": "dd900727f8c52ed28fcbcbe2dcc9c3520e0cb33d8d8a2c5efe0f90eeb5b56aba",
-    "lailai": "03af3f4021ca55eff9ff553f79ac85903e7552640c77f4d8e7775eda7a61fd48",
-    "taikang": "029f28c644c198dd5b306709ff85fbbe366c87eb77e48b8ee3c67c1825247daa",
-    "bund": "a7a29c37b80ee04c1fe8d85bca040714a5e843cd1972fd2ad4462fb198218994",
-    "ferry": "dc705e4bdc5a7cbf7f3f57fdb5e211e53261cc159ce276e75976ee2734952c28",
-    "tower": "e1f55e5c7a129161db49cc1afa7530900a859872203f3017b17b13c3330102db",
-    "gundam": "7fd6d75275d86a7d27299a91c2057877cd289dfb12d8778105e8ca794cb0967a",
-    "gundambase": "e9c49b69126c189a92c8de5520dff62196b1f3e1c5f62dc119d733f3d9e01d5f",
-    "dongtaixiang": "67ca88dc0d3f1ae71ddbc616259ff23cd04c3b76d085ea2c1ff8afd087fc98b0",
-    "zhang": "0a4f5c69f696ec97d5da2c9eeacbb2ac94ce3b4f07ca7faca0c5db539a25a157",
-    "mwy": "a00462cb9bfca33868a228a40d23e062dadbcaefed4f3055ea5fab5d84ddf514",
-    "mwyafternoon": "4e3fa9c33cddfe387660d085cb9c1e1badd183fff01daf1f9d95ca69619ce361",
-    "qiqi": "0dca0851b8ca83b5443ae9e787a5c837988d73072453a552eaa93ae82cf27647",
-    "xiaoyang": "fc38e2cb3b2c5e981eee6ee67582da8b7093b0ecf1a6ee5065d2559a0ebf4d09",
-    "postshow": "d80ceab3566e78457f6bd924823327774bd6fb0f1b14115d0ad81ef3ebd79c53",
-    "wangji": "99a6c274e537332e2bbc49f2fc389def839539c54dc76a3f50f10959f0ed9c77",
-    "wukang": "ee43e12f6a2229089d0a4cf25892f4b71e05c5671a302d92aa85d6f0ca7dae13",
-    "zx": "30af9bd9b1d06f8d4e127351443f8ccbd6a0f4e37042f471a3920444e2c0f6ac",
-    "newworld": "426661089fddb0d8dd567095c156a5509df93c44c68b77358573ae6edec70aa0",
-    "haijinzi": "9779a4287768a94f96b236f1f319858bea01ac4377051210eb3b1edc0339050b",
-    "hotelreturn": "e57a9436c71fe9fe4a4a1bb9152f8882109c28241016a4ed6e70a422d737073c",
-    "airport": "f7e0ee2d5b0feca74d115a1903548be5985af0ae81185b92cb103aae9254e6e6",
-    "mwyshow": "fd789a8f6a141d9fe23bde0a203c6e425c626e92a5e24c8f7a93b05289ab9ef9"
-  },
-  "guide": "afdfd8229b44e59331128cfcbda6783fb309a73790e96adf0aa5557b17489478",
-  "inlineStyle": "3aafe1a05ada79e8ac8edd0619784ad85ccaddf46d8b9d088c9d113715e8a2ca"
+  "inlineStyle": "3aafe1a05ada79e8ac8edd0619784ad85ccaddf46d8b9d088c9d113715e8a2ca",
+  "displayRoute": [
+    [
+      {
+        "id": "arrival",
+        "time": "12:30",
+        "endTime": "14:45",
+        "addr": "上海浦東國際機場 T2"
+      },
+      {
+        "id": "lailai",
+        "time": "15:20",
+        "endTime": "16:05",
+        "addr": "天津路506號"
+      },
+      {
+        "id": "taikang",
+        "time": "16:05",
+        "endTime": "16:15",
+        "addr": "南京東路766號"
+      },
+      {
+        "id": "bund",
+        "time": "16:15",
+        "endTime": "17:40",
+        "addr": "外白渡橋／外灘"
+      },
+      {
+        "id": "ferry",
+        "time": "18:15",
+        "endTime": "19:05",
+        "addr": "金陵東路渡口 上海"
+      },
+      {
+        "id": "gundam",
+        "time": "19:45",
+        "endTime": "20:50",
+        "addr": "LaLaport上海金橋 · 新金橋路738號"
+      },
+      {
+        "id": "gundambase",
+        "time": "20:50",
+        "endTime": "21:15",
+        "addr": "新金橋路738號 LaLaport 4F 429–430"
+      },
+      {
+        "id": "dongtaixiang",
+        "time": "22:20",
+        "endTime": "23:15",
+        "addr": "重慶北路188號"
+      }
+    ],
+    [
+      {
+        "id": "zhang",
+        "time": "08:00",
+        "endTime": "08:30",
+        "addr": "石門二路487號"
+      },
+      {
+        "id": "mwy",
+        "time": "09:00",
+        "endTime": "12:30",
+        "addr": "上海靜安體育中心 · 汶水路116號"
+      },
+      {
+        "id": "qiqi",
+        "time": "12:30",
+        "endTime": "13:15",
+        "addr": "上海靜安體育中心附近餐飲"
+      },
+      {
+        "id": "mwyafternoon",
+        "time": "13:15",
+        "endTime": "16:40",
+        "addr": "上海靜安體育中心 · 汶水路116號"
+      },
+      {
+        "id": "xiaoyang",
+        "time": "16:40",
+        "endTime": "17:25",
+        "addr": "上海靜安體育中心附近餐飲"
+      },
+      {
+        "id": "mwyshow",
+        "time": "19:00",
+        "endTime": "散場後",
+        "addr": "上海靜安體育中心 · 汶水路116號"
+      },
+      {
+        "id": "postshow",
+        "time": "21:30+",
+        "endTime": "休息",
+        "addr": "按現場情況決定"
+      }
+    ],
+    [
+      {
+        "id": "wangji",
+        "time": "07:45",
+        "endTime": "09:00",
+        "addr": "東諸安浜路191-5號"
+      },
+      {
+        "id": "wukang",
+        "time": "09:25",
+        "endTime": "10:15",
+        "addr": "淮海中路1850號"
+      },
+      {
+        "id": "zx",
+        "time": "10:50",
+        "endTime": "11:45",
+        "addr": "百聯ZX創趣場 南京東路340號"
+      },
+      {
+        "id": "newworld",
+        "time": "12:05",
+        "endTime": "12:30",
+        "addr": "新世界城 南京西路2–68號"
+      },
+      {
+        "id": "haijinzi",
+        "time": "13:00",
+        "endTime": "13:50",
+        "addr": "進賢路240號"
+      },
+      {
+        "id": "hotelreturn",
+        "time": "13:50",
+        "endTime": "15:15",
+        "addr": "如家商旅酒店（上海火車站南廣場店）"
+      },
+      {
+        "id": "airport",
+        "time": "15:15",
+        "endTime": "19:05",
+        "addr": "上海浦東國際機場 T2"
+      }
+    ]
+  ]
 }

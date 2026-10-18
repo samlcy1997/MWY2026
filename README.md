@@ -8,7 +8,7 @@ Migration restores the daily route/contingency brief, all 22 map-selector destin
 
 ## Validation
 
-Run `node tests/meta-framework.cjs` from the checkout. This checks the 22-stop route, 23 complete detail bodies, guide, 49 subphases and 4 photo-map datasets against the pre-migration baseline, all 4,320 trip minutes, component actions, conditional notes, swipe handlers, clipboard fallback, Service Worker timeouts and photo-map lifecycle. It also checks that the original Meta inline stylesheet is unchanged.
+Run `node tests/meta-framework.cjs` from the checkout. This checks the 22-stop route, practical detail facts, original reference media/links, 49 subphases and 4 photo-map datasets against the pre-migration baseline, all 4,320 trip minutes, component actions, conditional notes, swipe handlers, clipboard fallback, Service Worker timeouts and photo-map lifecycle. It also checks that the original Meta inline stylesheet is unchanged. Copy can be rewritten: the suite protects times, destinations, references and practical facts rather than requiring old sentences verbatim.
 
 These are source, component-tree and mocked-platform contracts. Mobile layout, touch feel, browser permissions, Android back behavior and physical-device offline operation still need device testing. External photos, tiles and transport/venue information are not verified by this suite.
 
