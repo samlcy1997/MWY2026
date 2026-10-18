@@ -17,4 +17,6 @@ The migration now includes:
 
 The three-day overview is represented by the existing day switcher; the old dashboard/bottom-navigation layout is not restored. Full detail bodies remain inside the existing disclosure. Completion marks and personal notes continue to use browser-local storage.
 
-Validation: `node tests/meta-framework.cjs`. This is not a browser layout or physical-device test. Actual S23 Ultra layout, clipboard permissions, touch behavior, Android back navigation and real offline reload remain unverified in this environment.
+The reading refinement preserves the original inline stylesheet and visual tokens. Stop times are 14px monospace, detail prose is 14px, and application labels are at least 11px. Daily maps are collapsed and initialize on demand, with failure text and all stop links retained. The settings drawer contains appearance, completion progress and offline downloads with progress from the actual worker. Address actions are grouped beside the address; notes remain at the bottom and show saving failures with a copy action for backup.
+
+Validation: `node tests/meta-framework.cjs`, including storage failure/recovery, settings/Escape, daily-map lazy loading/failure/reopening and worker progress. This is not a browser layout or physical-device test. Actual S23 Ultra layout, clipboard permissions, touch behavior, Android back navigation and real offline reload remain unverified in this environment.

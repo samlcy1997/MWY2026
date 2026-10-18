@@ -11,7 +11,7 @@ const local=new Map(),opened=[],clipboard=[],listeners={};
 const tokens={toggle(){},add(){},remove(){},contains(){return false}};
 let selectedField=null,execAllowed=true,appendTarget=null;
 const document={hidden:false,activeElement:{focus(){}},documentElement:{classList:tokens},body:{style:{},appendChild(el){appendTarget='body';selectedField=el}},querySelectorAll(){return[]},
- getElementById(id){if(id==='metaDialog')return{appendChild(el){appendTarget='dialog';selectedField=el},querySelectorAll(){return[]}};if(id==='metaSheetScroll')return{scrollTop:0};if(id==='metaSheetClose')return{focus(){}};return null},
+ getElementById(id){if(id==='metaDialog'||id==='metaSettings')return{appendChild(el){appendTarget='dialog';selectedField=el},querySelectorAll(){return[]}};if(id==='metaSheetScroll')return{scrollTop:0};if(id==='metaSheetClose'||id==='metaSettingsClose')return{focus(){}};return null},
  createElement(){return{style:{},setAttribute(){},focus(){},select(){},setSelectionRange(){},remove(){}}},execCommand(){if(execAllowed)clipboard.push(selectedField.value);return execAllowed},
  addEventListener(name,fn){listeners['document:'+name]=fn},removeEventListener(){}};
 const location={protocol:'file:',pathname:'/index.html',search:'?planPreview=2026-11-01T14:20',hash:''};
@@ -89,6 +89,29 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊
 scroller=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];scroller.props.onTouchStart({touches:[{clientX:200,clientY:100}],target:{closest:()=>({})}});scroller.props.onTouchEnd({changedTouches:[{clientX:90,clientY:100}]});tree=render();
 assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊萊小籠');
 
+// Storage failures stay visible, rather than presenting a successful save.
+const originalSet=ctx.localStorage.setItem;
+ctx.localStorage.setItem=()=>{throw Error('storage denied')};
+const note=nodes(tree,n=>n.type==='textarea')[0];note.props.onChange({target:{value:'test note'}});tree=render();tree=render();
+assert(text(tree).includes('未能儲存，請複製備份'));
+nodes(tree,n=>n.props.className==='mwy-complete-action')[0].props.onClick();tree=render();tree=render();
+assert(text(tree).includes('完成標記未能儲存'));
+ctx.localStorage.setItem=originalSet;
+nodes(tree,n=>n.type==='textarea')[0].props.onChange({target:{value:'saved note'}});tree=render();tree=render();
+assert.equal(JSON.parse(local.get('mwy-meta-notes')).lailai,'saved note');
+assert(!text(tree).includes('未能儲存，請複製備份'));
+
+// Settings contain the appearance/real offline controls; Escape closes and restores the day hash.
+nodes(tree,n=>n.props.id==='metaSheetClose')[0].props.onClick();tree=render();
+nodes(tree,n=>n.props['aria-label']==='外觀與離線設定')[0].props.onClick();tree=render();
+assert.equal(location.hash,'#settings');assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,1);
+assert.equal(nodes(tree,n=>n.props.className==='mwy-theme-options').length,1);
+assert.equal(nodes(tree,n=>n.props.className==='mwy-offline-download').length,1);
+nodes(tree,n=>n.type==='button'&&text(n)==='夜間')[0].props.onClick();tree=render();tree=render();
+assert.equal(nodes(tree,n=>n.type==='button'&&text(n)==='夜間')[0].props['aria-pressed'],true);
+listeners['document:keydown']({key:'Escape',preventDefault(){}});tree=render();
+assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(location.hash.startsWith('#day-'));
+
 (async()=>{
  assert.equal(await api.copy('天津路506號'),true);assert.equal(appendTarget,'dialog');assert.equal(clipboard.at(-1),'天津路506號');
  execAllowed=false;assert.equal(await api.copy('測試地址'),false);execAllowed=true;
@@ -97,6 +120,23 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊
  navigator.serviceWorker={ready:new Promise(()=>{})};const pending=api.warm();const timeout=[...timers.values()].find(t=>t.ms===15000);assert(timeout);timeout.fn();await assert.rejects(pending,/worker-timeout/);
  navigator.serviceWorker={ready:Promise.resolve({active:{postMessage(message,ports){assert.equal(message.type,'PREWARM');ports[0].postMessage({cached:2,failed:0,total:2})}}})};
  assert.deepEqual(await api.warm(),{cached:2,failed:0,total:2});
+ const progress=[];
+ navigator.serviceWorker={ready:Promise.resolve({active:{postMessage(_,ports){ports[0].postMessage({type:'progress',cached:1,failed:0,total:2});ports[0].postMessage({cached:2,failed:0,total:2})}}})};
+ assert.deepEqual(await api.warm(p=>progress.push(p)),{cached:2,failed:0,total:2});assert.equal(progress.length,1);assert.equal(progress[0].cached,1);
+
+ // The daily map makes no map request until expanded, and has a useful failure state.
+ hooks=[];
+ let dailyConstructed=0,dailyRemoved=0,dailyMap;
+ ctx.PV={};ctx.TV={};
+ class DailyMap{constructor(){dailyConstructed++;dailyMap=this;this.events={}}addControl(){}on(name,fn){this.events[name]=fn}remove(){dailyRemoved++}}
+ ctx.Pr={default:{Map:DailyMap,NavigationControl:class{}}};
+ vm.runInContext(moduleCode.slice(moduleCode.indexOf('function tF('),moduleCode.indexOf('function UW(){')),ctx);
+ function renderDaily(){cursor=0;effects=[];const result=vm.runInContext('tF({poster:"",places:MWY_META.find("arrival")?window.MWY_DATA.days[0].mapPlaces:[],title:"Day1",isDark:false})',ctx);for(const node of nodes(result,n=>n.props.ref))node.props.ref.current={};for(const run of effects)run();return result}
+ let daily=renderDaily();assert.equal(dailyConstructed,0);assert.equal(nodes(daily,n=>n.type==='button').length,data.days[0].stops.length);
+ nodes(daily,n=>n.type==='details')[0].props.onToggle({currentTarget:{open:true}});daily=renderDaily();assert.equal(dailyConstructed,1);
+ dailyMap.events.error();daily=renderDaily();assert(text(daily).includes('地圖暫時未能載入'));assert(dailyRemoved>0);
+ nodes(daily,n=>n.type==='details')[0].props.onToggle({currentTarget:{open:false}});daily=renderDaily();
+ nodes(daily,n=>n.type==='details')[0].props.onToggle({currentTarget:{open:true}});daily=renderDaily();assert.equal(dailyConstructed,2);
 
  // A hidden photo map waits for disclosure; load adds route/markers, failure gives a textual fallback.
  const previousGet=document.getElementById;let isOpen=false,constructed=0,removed=0,resized=0;const toggles=new Set(),markers=[],sources=[],layers=[];let map;
@@ -109,6 +149,13 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta3-master-20261017.1'));assert(!/\?v=meta[12]/.test(html));
- console.log('PASS: unchanged route facts, reference media/links, practical details, '+minutes+' trip minutes, ordinary reader copy and all migration controls.');
+ assert(sw.includes('mwy2026-meta4-master-20261017.1'));assert(!/\?v=meta[123]/.test(html));
+ const workerEvents={},workerMessages=[];let workerPending;
+ const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
+ vm.runInNewContext(sw,workerContext);
+ workerEvents.message({data:{type:'PREWARM'},ports:[{postMessage(message){workerMessages.push(message)}}],waitUntil(promise){workerPending=promise}});
+ await workerPending;
+ const workerResult=workerMessages.at(-1);assert.equal(workerResult.failed,0);assert.equal(workerResult.cached,workerResult.total);
+ assert.equal(workerMessages.filter(m=>m.type==='progress').length,workerResult.total);assert(workerMessages.some(m=>m.type==='progress'&&m.cached<workerResult.total));
+ console.log('PASS: unchanged route/style/media facts, '+minutes+' trip minutes, storage failures/recovery, settings/Escape, offline progress, lazy daily maps and migration controls.');
 })().catch(error=>{console.error(error);process.exitCode=1});

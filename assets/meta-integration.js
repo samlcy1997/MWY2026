@@ -63,7 +63,7 @@ async function offline(){
  if(!navigator.serviceWorker)return false;
  try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await withTimeout(navigator.serviceWorker.ready,15000,'worker-timeout');return true}catch{return false}
 }
-async function warm(){
+async function warm(onProgress){
  if(location.protocol==='file:')return{localFile:true,cached:0,failed:0,total:0};
  if(!navigator.serviceWorker)throw Error('unsupported');
  const registration=await withTimeout(navigator.serviceWorker.ready,15000,'worker-timeout');
@@ -73,7 +73,10 @@ async function warm(){
   const channel=new MessageChannel();let timer;
   const finish=(error,result)=>{clearTimeout(timer);channel.port1.close();channel.port2.close();error?reject(error):resolve(result)};
   timer=setTimeout(()=>finish(Error('media-timeout')),45000);
-  channel.port1.onmessage=e=>finish(null,e.data);
+  channel.port1.onmessage=e=>{
+   if(e.data?.type==='progress'){onProgress?.(e.data);return}
+   finish(null,e.data);
+  };
   channel.port1.onmessageerror=()=>finish(Error('message-error'));
   try{worker.postMessage({type:'PREWARM'},[channel.port2])}catch(error){finish(error)}
  });
