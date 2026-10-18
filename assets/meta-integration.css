@@ -70,3 +70,28 @@
 .mwy-offline-download{width:100%;min-height:44px;padding:10px 16px;border-radius:999px;background:var(--text);color:var(--surface);font-size:13px;font-weight:600;margin-top:12px}.mwy-offline-download:disabled{opacity:.6;cursor:wait}
 .mwy-settings-panel progress{display:block;width:100%;height:6px;border-radius:999px;accent-color:var(--accent);margin:12px 0}
 @media(max-width:359px){.mwy-now{gap:5px}.mwy-now-clock{font-size:11px}.mwy-now-title,.mwy-now-next{font-size:11px}.mwy-now-jump{font-size:11px;padding:0 7px}}
+
+/* Keep Meta's visual language; give time, route and cards their own space. */
+.mwy-integration{color:var(--text)}
+.mwy-now-dock,.mwy-day-tabs{background:var(--bg)}
+.mwy-content{position:relative;z-index:0}
+.mwy-timeline{padding-left:16px;padding-right:16px}
+.mwy-timeline-line{left:78px}
+.mwy-stop-row{display:grid;grid-template-columns:48px 12px minmax(0,1fr);column-gap:8px}
+.mwy-stop-times{position:static;grid-column:1;grid-row:2;align-self:start;width:auto;padding-top:2px}
+.mwy-stop-marker{position:static;grid-column:2;grid-row:2;align-self:start;justify-self:center;margin-top:18px}
+.mwy-stop-card{grid-column:3;grid-row:2;min-width:0;box-shadow:0 1px 2px rgba(17,17,17,.03),0 4px 12px rgba(17,17,17,.04)}
+.mwy-stop-card:hover{box-shadow:0 1px 2px rgba(17,17,17,.03),0 4px 12px rgba(17,17,17,.04)}
+.mwy-stop-optional{background:var(--surface);border-color:var(--border)}
+.mwy-stop-pending{background:var(--yellow);border-color:var(--yellow-border)}
+.mwy-pending-label{background:var(--yellow);color:var(--text);border:1px solid var(--yellow-border)}
+.mwy-transfer{grid-column:1/-1;grid-row:1;justify-content:center;gap:8px;margin:0 0 16px;color:var(--text-2)}
+.mwy-transfer>div:first-child{flex:1;min-width:8px}
+.mwy-transfer>div:last-child{min-width:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font-size:12px;line-height:1.6}
+.mwy-transfer>div:last-child svg{flex-shrink:0}
+.mwy-transfer:after{content:"";flex:1;min-width:8px;border-top:1px dashed var(--border)}
+.mwy-stop-card button{min-width:44px;min-height:44px}
+.mwy-now-clock{font-size:14px}
+.mwy-now-jump{min-height:36px}
+.mwy-integration :disabled{cursor:default}
+@media(prefers-reduced-motion:reduce){.mwy-integration{scroll-behavior:auto}}

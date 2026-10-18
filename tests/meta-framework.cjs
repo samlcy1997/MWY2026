@@ -36,7 +36,7 @@ const references=JSON.parse(fs.readFileSync(path.join(__dirname,'content-referen
 const unescape=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'");
 function contentReferences(html){const refs=[];for(const [,tag,attributes]of html.matchAll(/<([a-z][\w-]*)\b([^>]*?)>/gi)){for(const field of ['src','href','onclick']){const match=attributes.match(new RegExp('\\b'+field+'=(?:"([^"]*)"|\'([^\']*)\')'));if(match)refs.push([tag,field,unescape(match[1]??match[2])])}}return refs}
 for(const [id,expected]of Object.entries(references))assert.deepEqual(contentReferences(api.find(id).stop.richHtml),expected,id+' retains images, links and actions');
-const facts={arrival:['12:30','14:15–14:45','龍陽路','人民廣場'],lailai:['天津路506號','松茸鮮肉','純鮮肉','沈大成'],bund:['16:45–17:40','17:40','18:00–18:05','17:06–17:07'],ferry:['18:15','18:30','19:05'],mwyafternoon:['萬榮路1056號','14:20','14:55–15:45','15:45–16:00','16:00–16:40','16:40–17:25'],haijinzi:['進賢路240號','葱烤大排','13:10–13:15','陝西南路57號','14:00'],hotelreturn:['14:30–14:50','15:15–15:25','15:30'],airport:['15:15–15:25','15:30','75–100','T2','19:05']};
+const facts={arrival:['12:30','14:15–14:45','龍陽路','人民廣場'],lailai:['天津路506號','松茸鮮肉','純鮮肉','沈大成'],bund:['16:45–17:40','17:40','18:00–18:05','17:06–17:07'],ferry:['18:15','18:30','19:05'],mwyafternoon:['萬榮路1056號','14:20','14:55–15:45','15:45–16:00','16:00–16:40','16:40–17:25'],haijinzi:['進賢路240號','葱烤大排','13:10–13:15','陝西南路57號','14:00'],hotelreturn:['14:30–14:50','15:15–15:25','15:30'],airport:['15:15–15:25','15:30','75–100','T2','19:05','18:05','17:55']};
 for(const [id,required]of Object.entries(facts))for(const fact of required)assert(api.find(id).stop.richHtml.includes(fact),id+' retains '+fact);
 const readerCopy=all.map(s=>[s.title,s.subtitle,s.why,s.desc,s.tip,...s.tips,s.richHtml.replace(/<[^>]*>/g,' ')].join(' ')).join(' ');
 assert(!/足量正餐|先保主片|慢端|補數|保正餐|保住|顧好|門到門預算|規劃預算|先完成/.test(readerCopy),'Reader-facing copy uses ordinary language');
@@ -109,6 +109,13 @@ assert.equal(nodes(tree,n=>n.props.className==='mwy-theme-options').length,1);
 assert.equal(nodes(tree,n=>n.props.className==='mwy-offline-download').length,1);
 nodes(tree,n=>n.type==='button'&&text(n)==='夜間')[0].props.onClick();tree=render();tree=render();
 assert.equal(nodes(tree,n=>n.type==='button'&&text(n)==='夜間')[0].props['aria-pressed'],true);
+assert.equal(JSON.parse(local.get('mwy-meta-appearance')),'dark');
+ctx.localStorage.setItem=()=>{throw Error('storage denied')};
+nodes(tree,n=>n.type==='button'&&text(n)==='日間')[0].props.onClick();tree=render();tree=render();
+assert(text(tree).includes('外觀設定未能儲存'));
+ctx.localStorage.setItem=originalSet;
+nodes(tree,n=>n.type==='button'&&text(n)==='夜間')[0].props.onClick();tree=render();tree=render();
+assert(!text(tree).includes('外觀設定未能儲存'));
 listeners['document:keydown']({key:'Escape',preventDefault(){}});tree=render();
 assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(location.hash.startsWith('#day-'));
 
@@ -149,7 +156,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta4-master-20261017.1'));assert(!/\?v=meta[123]/.test(html));
+ assert(sw.includes('mwy2026-meta7-master-20261017.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(!/\?v=meta[123]/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);
