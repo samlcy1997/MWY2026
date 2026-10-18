@@ -16,6 +16,28 @@ function clock(input=now()){
 function find(id){id=aliases[id]||id;for(let dayIdx=0;dayIdx<DATA.days.length;dayIdx++){const idx=DATA.days[dayIdx].stops.findIndex(s=>s.id===id);if(idx>=0)return{stop:DATA.days[dayIdx].stops[idx],dayIdx,idx}}return DATA.extras[id]?{stop:DATA.extras[id],dayIdx:0,idx:-1}:null}
 function phase(day,index){const rows=DATA.phases[day],row=rows[index];return{day,start:row[0],end:rows[index+1]?.[0]||'24:00',title:row[1],id:row[2],note:row[3]||''}}
 function short(title){return labels[title]||title}
+function caption(phase){
+ const t=minutes(phase.start),title=short(phase.title);
+ if(phase.day===2&&t>=840&&t<895)return '帶機且準時・'+title;
+ if(phase.day===2&&t>=895&&t<1000)return '如有帶機・'+title;
+ if(phase.day===1&&phase.id==='ferry')return '船期待核・'+title;
+ return title;
+}
+function mappedPlaces(places){return places.filter(p=>Number.isFinite(p.longitude)&&Number.isFinite(p.latitude))}
+function actionIsHotel(stop){return stop?.id==='arrival'||stop?.id==='postshow'||!stop?.addr}
+function actionAddress(stop){return actionIsHotel(stop)?DATA.hotel:stop.addr}
+async function copy(text){
+ if(!text)return false;
+ try{if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(text);return true}}catch{}
+ let field,previous=document.activeElement;
+ try{
+  field=document.createElement('textarea');field.value=text;field.setAttribute('readonly','');field.setAttribute('aria-label','複製地址');
+  field.style.cssText='position:fixed;left:0;top:0;opacity:0;pointer-events:none';
+  // Keep the fallback inside the dialog: the background is intentionally inert.
+  (document.getElementById('metaDialog')||document.body).appendChild(field);field.focus();field.select();field.setSelectionRange?.(0,text.length);
+  return !!document.execCommand?.('copy');
+ }catch{return false}finally{field?.remove();try{previous?.focus({preventScroll:true})}catch{}}
+}
 function plan(input=now()){
  const c=clock(input),day=DATA.tripDates[c.date];
  if(!day){const upcoming=c.date<TRIP_START,countdown=Math.max(0,Math.round((Date.parse(TRIP_START)-Date.parse(c.date))/86400000));return{state:upcoming?'upcoming':'finished',timeStr:c.hhmm,todayIdx:upcoming?0:2,targetDay:0,current:null,next:upcoming?DATA.days[0].stops[0]:null,compact:upcoming?'10/31 出發':'行程已結束',sub:upcoming?`還有 ${countdown} 天`:'10/31–11/02',full:upcoming?`10月31日出發，還有${countdown}天`:'三日行程已結束',isDemo:!!preview(),phase:null,nextPhase:null}}
@@ -23,16 +45,73 @@ function plan(input=now()){
  const p=phase(day,index),n=index+1<rows.length?phase(day,index+1):day<3?phase(day+1,1):null;
  const current=find(p.id).stop,next=n?find(n.id).stop:null;
  const prefix=n&&n.day!==day?`${DATA.days[n.day-1].date.slice(0,5)} `:'';
- return{state:'active',timeStr:c.hhmm,todayIdx:day-1,targetDay:day-1,current,next,phase:p,nextPhase:n,compact:short(p.title),sub:n?`${prefix}${n.start} ${short(n.title)}`:'其後休息',full:`第${day}天，按行程：${p.title}，${p.start}至${p.end}。${p.note}${n?` 下一步${prefix}${n.start} ${n.title}`:''}`,isDemo:!!preview()};
+ return{state:'active',timeStr:c.hhmm,todayIdx:day-1,targetDay:day-1,current,next,phase:p,nextPhase:n,compact:caption(p),sub:n?`${prefix}${n.start} ${caption(n)}`:'其後休息',full:`第${day}天，按行程：${p.title}，${p.start}至${p.end}。${p.note}${n?` 下一步${prefix}${n.start} ${n.title}`:''}`,isDemo:!!preview()};
 }
 function adjacent(dayIdx,idx,delta){if(idx<0)return null;let d=dayIdx,i=idx+delta;if(i<0){if(d===0)return null;d--;i=DATA.days[d].stops.length-1}else if(i>=DATA.days[d].stops.length){if(d===DATA.days.length-1)return null;d++;i=0}return{stop:DATA.days[d].stops[i],dayIdx:d,idx:i}}
 function load(key,fallback){try{const value=JSON.parse(localStorage.getItem('mwy-meta-'+key));if(key==='completed')return Array.isArray(value)?value.filter(id=>find(id)?.idx>=0):fallback;if(key==='notes')return value&&typeof value==='object'&&!Array.isArray(value)?Object.fromEntries(Object.entries(value).filter(([id,note])=>find(id)&&typeof note==='string')):fallback;return value??fallback}catch{return fallback}}
 function save(key,value){try{localStorage.setItem('mwy-meta-'+key,JSON.stringify(value));return true}catch{return false}}
 function navigate(address){if(!address)return;window.open('https://uri.amap.com/search?keyword='+encodeURIComponent(address)+'&city='+encodeURIComponent('上海'),'_blank','noopener,noreferrer')}
-function closeHash(day){history.replaceState({mwyMeta:true,day},'','#day-'+(day+1)+'-timeline')}
-function openHash(stop,day,replace=false){const method=replace?'replaceState':'pushState';history[method]({mwyMeta:true,detail:stop.id,day},'','#detail-'+stop.id)}
-async function offline(){if(!navigator.serviceWorker)return false;try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await navigator.serviceWorker.ready;return true}catch{return false}}
-async function warm(){if(!navigator.serviceWorker)throw Error('unsupported');const registration=await navigator.serviceWorker.ready,worker=registration.active||navigator.serviceWorker.controller;if(!worker)throw Error('inactive');return new Promise((resolve,reject)=>{const channel=new MessageChannel(),timer=setTimeout(()=>reject(Error('timeout')),45000);channel.port1.onmessage=e=>{clearTimeout(timer);resolve(e.data)};worker.postMessage({type:'PREWARM'},[channel.port2])})}
-function richMaps(stop,library){const cfg=DATA.photoMaps[stop?.id];if(!cfg)return()=>{};const target=document.getElementById('photoMap-'+stop.id);if(!target)return()=>{};let map;try{map=new library.Map({container:target,style:{version:8,sources:{osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OpenStreetMap contributors'}},layers:[{id:'osm',type:'raster',source:'osm'}]},center:cfg.points[0].wgs,zoom:cfg.zoom||15,interactive:false});cfg.points.forEach(p=>{const el=document.createElement('div');el.className='mwy-photo-pin';el.textContent=p.label;new library.Marker({element:el}).setLngLat(p.wgs).addTo(map)});if(cfg.points.length>1){const bounds=new library.LngLatBounds;cfg.points.forEach(p=>bounds.extend(p.wgs));map.fitBounds(bounds,{padding:40,maxZoom:cfg.zoom||15})}}catch{target.textContent='底圖暫時無法載入，請參考下方站位名稱。'}return()=>{try{map?.remove()}catch{}}}
-window.MWY_FRAMEWORK={clock,now,preview,minutes,find,plan,phase,short,adjacent,load,save,navigate,closeHash,openHash,offline,warm,richMaps};
+function setHistory(method,state,hash){try{history[method](state,'',hash)}catch{location.hash=hash}}
+function closeHash(day){setHistory('replaceState',{mwyMeta:true,day},'#day-'+(day+1)+'-timeline')}
+function openHash(stop,day,replace=false){setHistory(replace?'replaceState':'pushState',{mwyMeta:true,detail:stop.id,day},'#detail-'+stop.id)}
+function withTimeout(promise,ms,label){return new Promise((resolve,reject)=>{
+ const timer=setTimeout(()=>reject(Error(label||'timeout')),ms);
+ Promise.resolve(promise).then(value=>{clearTimeout(timer);resolve(value)},error=>{clearTimeout(timer);reject(error)});
+})}
+async function offline(){
+ if(location.protocol==='file:')return true;
+ if(!navigator.serviceWorker)return false;
+ try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await withTimeout(navigator.serviceWorker.ready,15000,'worker-timeout');return true}catch{return false}
+}
+async function warm(){
+ if(location.protocol==='file:')return{localFile:true,cached:0,failed:0,total:0};
+ if(!navigator.serviceWorker)throw Error('unsupported');
+ const registration=await withTimeout(navigator.serviceWorker.ready,15000,'worker-timeout');
+ const worker=registration.active||navigator.serviceWorker.controller;
+ if(!worker)throw Error('inactive');
+ return new Promise((resolve,reject)=>{
+  const channel=new MessageChannel();let timer;
+  const finish=(error,result)=>{clearTimeout(timer);channel.port1.close();channel.port2.close();error?reject(error):resolve(result)};
+  timer=setTimeout(()=>finish(Error('media-timeout')),45000);
+  channel.port1.onmessage=e=>finish(null,e.data);
+  channel.port1.onmessageerror=()=>finish(Error('message-error'));
+  try{worker.postMessage({type:'PREWARM'},[channel.port2])}catch(error){finish(error)}
+ });
+}
+function richMaps(stop,library){
+ const cfg=DATA.photoMaps[stop?.id];if(!cfg)return()=>{};
+ const target=document.getElementById('photoMap-'+stop.id);if(!target)return()=>{};
+ let map=null,timer=null,observer=null,disposed=false,failed=false,ready=false;
+ const details=[];for(let el=target.parentElement;el;el=el.parentElement)if(el.tagName==='DETAILS')details.push(el);
+ const visible=()=>details.every(el=>el.open)&&target.clientWidth>0;
+ const fallback=()=>{
+  if(disposed||failed)return;failed=true;clearTimeout(timer);
+  try{map?.remove()}catch{}map=null;
+  target.textContent='機位底圖暫時無法載入；仍可用下方站位及高德導航。';
+ };
+ const init=()=>{
+  if(disposed||failed||!visible())return;
+  if(map){map.resize();return}
+  try{
+   map=new library.Map({container:target,style:{version:8,sources:{osm:{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OpenStreetMap contributors'}},layers:[{id:'osm',type:'raster',source:'osm'}]},center:cfg.points[0].wgs,zoom:cfg.zoom||15,interactive:false,attributionControl:true});
+   timer=setTimeout(()=>{if(!ready)fallback()},8000);
+   map.on('error',()=>{if(!ready)fallback()});
+   map.on('load',()=>{
+    if(disposed||failed)return;ready=true;clearTimeout(timer);
+    cfg.points.forEach(p=>{const el=document.createElement('div');el.className='mwy-photo-pin'+(p.hot?' hot':'');el.textContent=p.label;el.title=p.name;el.setAttribute('aria-label',p.name);new library.Marker({element:el}).setLngLat(p.wgs).addTo(map)});
+    if(cfg.points.length>1){
+     map.addSource('photo-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:cfg.points.map(p=>p.wgs)}}});
+     map.addLayer({id:'photo-route-line',type:'line',source:'photo-route',paint:{'line-color':'#0a84ff','line-width':3,'line-opacity':0.8,'line-dasharray':[1.1,1.2]}});
+     const bounds=new library.LngLatBounds;cfg.points.forEach(p=>bounds.extend(p.wgs));map.fitBounds(bounds,{padding:40,maxZoom:cfg.zoom||15,duration:0});
+    }
+    map.resize();
+   });
+  }catch{fallback()}
+ };
+ details.forEach(el=>el.addEventListener('toggle',init));
+ if(typeof ResizeObserver!=='undefined'){observer=new ResizeObserver(init);observer.observe(target)}
+ init();
+ return()=>{disposed=true;clearTimeout(timer);observer?.disconnect();details.forEach(el=>el.removeEventListener('toggle',init));try{map?.remove()}catch{}};
+}
+window.MWY_FRAMEWORK={clock,now,preview,minutes,find,plan,phase,short,caption,mappedPlaces,actionIsHotel,actionAddress,copy,adjacent,load,save,navigate,closeHash,openHash,offline,warm,richMaps};
 })();

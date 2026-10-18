@@ -3,3 +3,12 @@
 .mwy-now{height:40px;display:flex;align-items:center;gap:8px;padding:0 10px}.mwy-now-clock{font-size:10px;font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);flex-shrink:0}.mwy-now-copy{flex:1;min-width:0;display:flex;align-items:center;gap:6px;white-space:nowrap;font-size:10px}.mwy-now-title{font-weight:600;overflow:hidden;text-overflow:ellipsis;color:var(--text)}.mwy-now-next{font-size:9px;color:var(--text-2);overflow:hidden;text-overflow:ellipsis}.mwy-now-next:before{content:'·';margin-right:5px}.mwy-now-jump{height:28px;padding:0 9px;border-radius:999px;background:#0a84ff;color:white;font-size:10px;font-weight:600;flex-shrink:0}.mwy-now[data-state=upcoming] .mwy-now-clock,.mwy-now[data-state=finished] .mwy-now-clock{display:none}.mwy-now-preview{font-size:9px;color:var(--accent);flex-shrink:0}.mwy-sheet-scroll{scroll-behavior:smooth}.mwy-detail-more{border-top:1px solid var(--border);padding-top:2px}.mwy-detail-more>summary{font-size:12px;font-weight:600;padding:12px 0;cursor:pointer;color:var(--text)}.mwy-integration :focus-visible{outline:2px solid #0a84ff;outline-offset:3px}.mwy-now-jump:focus-visible{outline-offset:2px}
 @media(max-width:359px){.mwy-now{gap:5px;padding-left:8px;padding-right:8px}.mwy-now-copy{gap:4px}.mwy-now-title{font-size:9px}.mwy-now-next{font-size:8px}.mwy-now-jump{padding:0 7px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.mwy-integration *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Migration additions follow the existing Meta typography and surfaces. */
+.mwy-day-brief{margin:-8px 24px 28px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.mwy-day-brief>summary{cursor:pointer;padding:13px 0;font-size:12px;font-weight:600;color:var(--text-2)}
+.mwy-day-brief .mwy-rich{padding-bottom:7px}
+.mwy-phase-note{padding:12px 14px;border-left:3px solid #0a84ff;background:var(--surface-2);border-radius:0 12px 12px 0;font-size:12px;line-height:1.7;color:var(--text-2)}
+.mwy-phase-note strong{display:block;color:var(--text);font-size:11px;margin-bottom:3px}
+.mwy-phase-note p{margin:0}
+.mwy-photo-pin.hot{background:var(--text);color:var(--surface);box-shadow:0 0 0 3px rgba(10,132,255,.22)}
