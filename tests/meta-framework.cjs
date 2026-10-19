@@ -32,6 +32,12 @@ for(const day of [1,2,3])assert(data.briefs[day].length>=3);
 const stops=data.days.flatMap(day=>day.stops),all=[...stops,...Object.values(data.extras)];
 assert.equal(stops.length,22);assert.equal(new Set(stops.map(s=>s.id)).size,22);
 assert.deepEqual(plain(data.days.map(d=>d.stops.map(({id,time,endTime,addr})=>({id,time,endTime,addr})))),baseline.displayRoute);
+for(const [id,image] of [['arrival','pvg-t2.webp'],['lailai','lailai.webp'],['taikang','taikang.webp']]){
+ const stop=stops.find(s=>s.id===id);
+ assert.equal(stop.img,'./assets/'+image,id+' homepage photo');
+ assert.equal(stop.hasPhoto,true,id+' displays image card');
+ assert(fs.statSync(path.join(dist,'assets',image)).size>10000,id+' locally bundled photo');
+}
 const references=JSON.parse(fs.readFileSync(path.join(__dirname,'content-references.json'),'utf8'));
 const unescape=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'");
 function contentReferences(html){const refs=[];for(const [,tag,attributes]of html.matchAll(/<([a-z][\w-]*)\b([^>]*?)>/gi)){for(const field of ['src','href','onclick']){const match=attributes.match(new RegExp('\\b'+field+'=(?:"([^"]*)"|\'([^\']*)\')'));if(match)refs.push([tag,field,unescape(match[1]??match[2])])}}return refs}
@@ -156,7 +162,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta7-master-20261017.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(!/\?v=meta[123]/.test(html));
+ assert(sw.includes('mwy2026-meta8-master-20261017.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta8'));assert(!/\?v=meta[123]/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);
