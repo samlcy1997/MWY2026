@@ -26,3 +26,12 @@ Eight existing cards now have pictures. Only their `img` / `hasPhoto` data field
 | `jing-an-exterior.webp` | [Trip.com Jing’an Sports Center](https://sg.trip.com/travel-guide/attraction/shanghai/jing-an-sports-center-56680110/), [venue exterior photo](https://ak-d.tripcdn.com/images/0103c120008qj3h547798.jpg) | Venue exterior for the flexible post-show card; not a new destination or an assertion of the actual VIP entrance. Reproduction license not confirmed. |
 
 Future image maintenance follows `AGENTS.md`: keep the existing component geometry and change image content only.
+
+## Day 3 breakfast replacement · 2026-10-20
+
+| Local asset | Subject and source | Scope |
+| --- | --- | --- |
+| `bianjie-cooking.webp` | [Jiefang Daily / Shangguan, July 30 2026 report](https://www.jfdaily.com/sgh/detail?id=4029666), photograph `889e3571931c4019b87adf7f66007174.jpg` | Bian Jie preparing an egg pancake; used in the existing shared breakfast header and first detail image. Third-party news photograph; reproduction license not confirmed. |
+| `bianjie-pancake.webp` | [Trip.com, Bian Jie Shaanxi South Road branch](https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-84139491/), image `1me0l12000bdfambaEEDD.jpg` | Egg pancake/youtiao reference. Additional fillings visible in the photo are not a required order. Third-party photograph; reproduction license not confirmed. |
+
+The breakfast card's existing `hasPhoto:false` is retained; these replace the previous restaurant's image content without changing the main timeline component or dimensions.

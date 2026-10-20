@@ -110,7 +110,7 @@
     },
     {
       "id": "wangji",
-      "img": "https://ak-d.tripcdn.com/images/0100u120009sq3xx01086_D_300_200_R5.png",
+      "img": "./assets/bianjie-cooking.webp",
       "hasPhoto": false
     },
     {
@@ -144,7 +144,7 @@
       "hasPhoto": false
     }
   ],
-  "day3": "0c59df78b5f56e6f5f605d000d247bc731c0d3e500542eeaaf257d8882431d7b",
+  "day3": "6c9a25f7e926e3f6ab0cc3d069bbe8b17d488a93c47cc3c94a0ffdda556621e1",
   "detailGeometry": {
     "arrival": "a478f08053e80f93b4bd0c6ae03be566c09478907ea194e3ac8e8a38f9c2a9de",
     "lailai": "1f1d2451c9a031428325e6472718b061833aeb99dedbc78eea39a340f9c69630",
@@ -172,5 +172,7 @@
     "guide": "e9543205177809f3ec65487439fe87ce43c730f114dd3e2ab61ea6b0b6467e74"
   },
   "photoSourceCommit": "8198319a2b7845e0b7f38613b14a76cac74c17da",
-  "imageOnlyContent": "97d777bad337482e829518bfca9207a068b1d97c60b985e170487bb754fbe6dd"
+  "imageOnlyContent": "2eb1d5cc1469b437930b4901baf49af8584884dab96f007b1963c48877d867c7",
+  "day12": "50aac093d9a9bec7a3fc0f29d19dd7ccef03d9c05ea2811db8b8c9db929d79d1",
+  "day3Continuation": "bd941210e76cdf0f260f821a65089b5624cc61e049fc51ce7ffb4c41cb0ea7bd"
 }
