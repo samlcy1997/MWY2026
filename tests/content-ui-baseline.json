@@ -80,7 +80,7 @@
     },
     {
       "id": "mwy",
-      "img": "https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
+      "img": "./assets/jing-an-exterior.webp",
       "hasPhoto": true
     },
     {
@@ -111,7 +111,7 @@
     {
       "id": "wangji",
       "img": "./assets/bianjie-cooking.webp",
-      "hasPhoto": false
+      "hasPhoto": true
     },
     {
       "id": "wukang",
@@ -120,31 +120,31 @@
     },
     {
       "id": "zx",
-      "img": "",
+      "img": "https://sghimages.shobserver.com/img/catch/2024/01/08/46c36bb4-5aee-4dab-8b51-5210c2a80abb.jpg",
       "hasPhoto": true
     },
     {
       "id": "newworld",
-      "img": "",
+      "img": "https://img3.winshangdata.com/api/server-file/file/access?fileKey=20230628164929780.jpg",
       "hasPhoto": true
     },
     {
       "id": "haijinzi",
       "img": "https://ak-d.tripcdn.com/images/1mi3i2234b8t2q7k0130F_R_600_400_R5_Q90.jpg?proc=source%2Ftrip",
-      "hasPhoto": false
+      "hasPhoto": true
     },
     {
       "id": "hotelreturn",
-      "img": "",
-      "hasPhoto": false
+      "img": "https://images.bthhotels.com/hotel_img/T21013_n_1.jpg?x-image-process=image%2Fresize%2Cm_fixed%2Cw_750%2Ch_500%2Climit_0%2Fmarker%2Cu_plus",
+      "hasPhoto": true
     },
     {
       "id": "airport",
-      "img": "",
-      "hasPhoto": false
+      "img": "./assets/pvg-t2.webp",
+      "hasPhoto": true
     }
   ],
-  "day3": "9afe0671eb077ed56ebd1b09d838a3df0335b028f7380f960cb25a08d1f1d73e",
+  "day3": "70527ecd4f0d560ef5ba0a0f01ee80d9c502bac7a4c49ce113d145745f612539",
   "detailGeometry": {
     "arrival": "a478f08053e80f93b4bd0c6ae03be566c09478907ea194e3ac8e8a38f9c2a9de",
     "lailai": "1f1d2451c9a031428325e6472718b061833aeb99dedbc78eea39a340f9c69630",
@@ -171,8 +171,8 @@
     "tower": "c4f67d2e3e22688e85d0f64e3f67267c60e9df7d47b183abca4a6ab51562590f",
     "guide": "e9543205177809f3ec65487439fe87ce43c730f114dd3e2ab61ea6b0b6467e74"
   },
-  "photoSourceCommit": "8198319a2b7845e0b7f38613b14a76cac74c17da",
-  "imageOnlyContent": "df42cfc2f5c6bef947b24001931b89004ca7de9958c869b595f8806ca5f88ed1",
-  "day12": "7338305e4fe9dce545d11dfaec0fa9c033c7e6c4ca714be4e5ce0a001bd98909",
-  "day3Continuation": "8b59c2684d92ea5255e144e0f9fafd5aa5ff2b8a154e8a2a4ac3011ae3cc43f9"
+  "photoSourceCommit": "e5b201568abe46cd2c4ed90cefe57a5c8aaeb18d",
+  "imageOnlyContent": "806855349fda9a2572af39a90f788592359372f3cd065fc73adf450f84449949",
+  "day12": "d564ba49985c37e3c18b9cc97b4f22d40e763d48fbe95b8d6ece19b04dd0cc45",
+  "day3Continuation": "c5fab8c9184ba47d6e9fa356c9b4d2498d7ece58447676664a75233ab587a5f9"
 }

@@ -38,7 +38,7 @@ for(const [id,image] of [['arrival','pvg-t2.webp'],['lailai','lailai.webp'],['ta
  assert.equal(stop.hasPhoto,true,id+' displays image card');
  assert(fs.statSync(path.join(dist,'assets',image)).size>10000,id+' locally bundled photo');
 }
-for(const day of data.days.slice(0,2))for(const stop of day.stops){
+for(const day of data.days)for(const stop of day.stops){
  assert(stop.hasPhoto&&stop.img,stop.id+' has a homepage timeline picture');
  if(stop.img.startsWith('./assets/'))assert(fs.statSync(path.join(dist,stop.img)).size>10000,stop.id+' bundled picture is present');
 }
@@ -102,7 +102,7 @@ assert.deepEqual(plain(data.phases[2].map(r=>r[0])),[
 for(const day2stop of data.days[1].stops)assert(!/14:20–14:55|15:35–15:50|16:15–17:20|17:45–18:00/.test(JSON.stringify(day2stop)),'old Day2 times removed from '+day2stop.id);
 // Old script query versions are deliberate; the worker must bypass HTTP cache for both files.
 const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');
-assert(sw.includes('mwy2026-meta14-master-20261021.2'));
+assert(sw.includes('mwy2026-meta15-photos-20261021.2'));
 assert(sw.includes("cache.add(new Request('./assets/meta-data.js?v=meta11',{cache:'reload'}))"));
 assert(sw.includes("cache.add(new Request('./assets/meta-integration.js?v=meta6',{cache:'reload'}))"));
 
@@ -127,11 +127,11 @@ assert.equal(hash(fs.readFileSync(path.join(dist,'assets/meta-integration.css'),
 assert.deepEqual(plain(data.days.map(d=>d.stops.map(s=>s.id))),ui.ids,'notes and completion IDs remain stable');
 assert.deepEqual(plain(stops.map(({id,img,hasPhoto})=>({id,img,hasPhoto}))),ui.images,'timeline photos match the approved image-only revision');
 const imageOnlyContent=plain(data);
-for(const day of imageOnlyContent.days.slice(0,2))for(const stop of day.stops){delete stop.img;delete stop.hasPhoto}
+for(const day of imageOnlyContent.days)for(const stop of day.stops){delete stop.img;delete stop.hasPhoto}
 assert.equal(hash(JSON.stringify(imageOnlyContent)),ui.imageOnlyContent,'itinerary content matches the approved MASTER revision');
-assert.equal(hash(JSON.stringify(data.days[2])),ui.day3,'Day 3 schedule and destinations unchanged; only navQuery added');
-assert.equal(hash(JSON.stringify({days:data.days.slice(0,2),sourceDays:[data.sourceDays[1],data.sourceDays[2]],phases:[data.phases[1],data.phases[2]],briefs:[data.briefs[1],data.briefs[2]]})),ui.day12,'Day1/2 remain exactly unchanged');
-assert.equal(hash(JSON.stringify({stops:data.days[2].stops.slice(1),mapPlaces:data.days[2].mapPlaces.slice(1),phases:data.phases[3].slice(5),sourceItems:data.sourceDays[3].items.slice(1)})),ui.day3Continuation,'Day3 itinerary aside from navigation keywords is unchanged');
+assert.equal(hash(JSON.stringify(data.days[2])),ui.day3,'Day 3 matches the approved image fill; route and schedule preserved');
+assert.equal(hash(JSON.stringify({days:data.days.slice(0,2),sourceDays:[data.sourceDays[1],data.sourceDays[2]],phases:[data.phases[1],data.phases[2]],briefs:[data.briefs[1],data.briefs[2]]})),ui.day12,'Day1/2 match the approved image-only revision');
+assert.equal(hash(JSON.stringify({stops:data.days[2].stops.slice(1),mapPlaces:data.days[2].mapPlaces.slice(1),phases:data.phases[3].slice(5),sourceItems:data.sourceDays[3].items.slice(1)})),ui.day3Continuation,'Day3 continuation matches the approved image fill');
 function richGeometry(text){return[...text.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*?)>/gi)].map(([,close,tag,attrs])=>[close,tag,[...attrs.matchAll(/\b(class|style|id|width|height)="([^"]*)"/g)].map(([,k,v])=>[k,v])])}
 for(const stop of all)assert.equal(hash(JSON.stringify(richGeometry(stop.richHtml))),ui.detailGeometry[stop.id],stop.id+' preserves detail component structure and geometry');
 assert(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(JSON.stringify(data)),'Private MASTER fields remain excluded');
@@ -240,7 +240,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta14-master-20261021.2'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
+ assert(sw.includes('mwy2026-meta15-photos-20261021.2'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);

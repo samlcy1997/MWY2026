@@ -35,3 +35,28 @@ Future image maintenance follows `AGENTS.md`: keep the existing component geomet
 | `bianjie-pancake.webp` | [Trip.com, Bian Jie Shaanxi South Road branch](https://hk.trip.com/restaurant/china/shanghai/detail/restaurant-84139491/), image `1me0l12000bdfambaEEDD.jpg` | Egg pancake/youtiao reference. Additional fillings visible in the photo are not a required order. Third-party photograph; reproduction license not confirmed. |
 
 The breakfast card's existing `hasPhoto:false` is retained; these replace the previous restaurant's image content without changing the main timeline component or dimensions.
+
+## Day 3 missing timeline pictures · 2026-10-21
+
+Checked the current Google Doc MASTER v2026-10-21.2 against main e5b2015 before this image-only update. Day 1 data and all three days' itinerary text, timings, destinations, ordering, IDs, maps and rich detail HTML remain unchanged. Day 2's MWY image repair is recorded below.
+
+Six existing Day 3 stops now opt into the existing photo-card renderer. No React markup, CSS, class/style props, frame dimensions, centered 16:9 cover crop, navigation, sheet behavior or private-note storage changed. The breakfast image uses the existing local Bian Jie cooking photo; Haijinzi enables its existing image; the airport reuses the existing local Pudong T2 photograph. All 22 timeline cards now have a nonempty img and hasPhoto=true.
+
+| Stop | Image source | Scope |
+| --- | --- | --- |
+| wangji / 卞姐蛋餅 | Existing ./assets/bianjie-cooking.webp, source recorded above | Enable its existing timeline picture; keep the stable ID and detail images. |
+| zx / 百聯ZX | [Shangguan, Jan 8 2024](https://sghexport.shobserver.com/html/baijiahao/2024/01/08/1230364.html), image https://sghimages.shobserver.com/img/catch/2024/01/08/46c36bb4-5aee-4dab-8b51-5210c2a80abb.jpg | Photograph of the Nanjing East Road ZX entrance; article credits the venues, Shanghai Huangpu and Shanghai Bailian Group. Historical venue reference, not a promise of current display contents. Third-party photograph; reproduction license not confirmed. |
+| newworld / 新世界城・CAPCOM | [Winshang's on-site opening report, Jun 28 2023](https://m.winshang.com/news714273.html), image https://img3.winshangdata.com/api/server-file/file/access?fileKey=20230628164929780.jpg | Actual Shanghai New World City CAPCOM entrance/queue; not another city's branch or a future event photo. Third-party photograph; reproduction license not confirmed. |
+| haijinzi / 海金滋 | Existing https://ak-d.tripcdn.com/images/1mi3i2234b8t2q7k0130F_R_600_400_R5_Q90.jpg?proc=source%2Ftrip | Enable the restaurant image already assigned to this stop and used in its detail. Existing Trip.com food/reference image; reproduction license not confirmed. |
+| hotelreturn / 回酒店取行李 | [Official Homeinn hotel photo gallery, property T21013](https://www.bthhotels.com/Hotel/T21013), image https://images.bthhotels.com/hotel_img/T21013_n_1.jpg?x-image-process=image%2Fresize%2Cm_fixed%2Cw_750%2Ch_500%2Climit_0%2Fmarker%2Cu_plus | Official photo from the exact South Square property; not a different Homeinn branch. Copyright retained by the respective owner. |
+| airport / 浦東T2 | Existing ./assets/pvg-t2.webp, Commons attribution recorded above | Reuse the bundled photograph of the correct airport terminal. |
+
+New remote image URLs were opened successfully through web retrieval and are included in the existing bounded offline-media warmer. The three new source images remain external URLs because no execution environment was available for downloading and inspecting local raster files. The component's existing center crop is unchanged; there was no fresh pixel-level crop, browser, handset or hotlink/referrer test. Do not interpret source retrieval as proof of handset rendering.
+
+The earlier breakfast note retaining hasPhoto:false described its prior state; this request explicitly enables that existing image card.
+
+Verification: the existing meta-framework and address-contract suites passed in an in-memory V8 harness with virtual filesystem/platform shims (4,320 planned trip minutes and all 22 address records). The actual Node commands and browser/device tests could not run without an execution environment. Renderer/CSS/detail geometry baseline hashes were retained; only image-dependent expectations and cache-version assertions changed. Other existing remote image URLs are not guaranteed by these contract checks.
+
+## Day 2 MWY remote-image repair · 2026-10-21
+
+The existing Trip.com primary stadium image could not be retrieved on two attempts during this audit. This does not prove it fails in every browser. The MWY daytime card now reuses the verified, bundled ./assets/jing-an-exterior.webp photograph of the same Jing'an Sports Center (source and scope recorded above), avoiding that fragile homepage hotlink. It is a venue reference, not a photograph of the upcoming MWY exhibition. Only this stop's img field changed; hasPhoto remains true and rich detail HTML remains unchanged. Day 1's existing Pexels image could not be checked through the web retrieval tool, so no claim is made about its live browser availability; Wukang's existing image was successfully retrieved on retry.
