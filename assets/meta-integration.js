@@ -48,7 +48,7 @@ function plan(input=now()){
 function adjacent(dayIdx,idx,delta){if(idx<0)return null;let d=dayIdx,i=idx+delta;if(i<0){if(d===0)return null;d--;i=DATA.days[d].stops.length-1}else if(i>=DATA.days[d].stops.length){if(d===DATA.days.length-1)return null;d++;i=0}return{stop:DATA.days[d].stops[i],dayIdx:d,idx:i}}
 function load(key,fallback){try{const value=JSON.parse(localStorage.getItem('mwy-meta-'+key));if(key==='completed')return Array.isArray(value)?value.filter(id=>find(id)?.idx>=0):fallback;if(key==='notes')return value&&typeof value==='object'&&!Array.isArray(value)?Object.fromEntries(Object.entries(value).filter(([id,note])=>find(id)&&typeof note==='string')):fallback;return value??fallback}catch{return fallback}}
 function save(key,value){try{localStorage.setItem('mwy-meta-'+key,JSON.stringify(value));return true}catch{return false}}
-function navigate(address){if(!address)return;window.open('https://uri.amap.com/search?keyword='+encodeURIComponent(address)+'&city='+encodeURIComponent('上海'),'_blank','noopener,noreferrer')}
+function navigate(address){if(!address)return;const stop=DATA.days.flatMap(day=>day.stops).find(s=>s.addr===address);const keyword=stop?.navQuery||address;window.open('https://uri.amap.com/search?keyword='+encodeURIComponent(keyword)+'&city='+encodeURIComponent('上海'),'_blank','noopener,noreferrer')}
 function setHistory(method,state,hash){try{history[method](state,'',hash)}catch{location.hash=hash}}
 function closeHash(day){setHistory('replaceState',{mwyMeta:true,day},'#day-'+(day+1)+'-timeline')}
 function openHash(stop,day,replace=false){setHistory(replace?'replaceState':'pushState',{mwyMeta:true,detail:stop.id,day},'#detail-'+stop.id)}
