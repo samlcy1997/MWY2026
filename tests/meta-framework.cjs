@@ -46,7 +46,7 @@ const references=JSON.parse(fs.readFileSync(path.join(__dirname,'content-referen
 const unescape=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'");
 function contentReferences(html){const refs=[];for(const [,tag,attributes]of html.matchAll(/<([a-z][\w-]*)\b([^>]*?)>/gi)){for(const field of ['src','href','onclick']){const match=attributes.match(new RegExp('\\b'+field+'=(?:"([^"]*)"|\'([^\']*)\')'));if(match)refs.push([tag,field,unescape(match[1]??match[2])])}}return refs}
 for(const [id,expected]of Object.entries(references))assert.deepEqual(contentReferences(api.find(id).stop.richHtml),expected,id+' retains images, links and actions');
-const facts={arrival:['12:30','14:15–14:45','龍陽路','人民廣場'],lailai:['天津路506號','松茸鮮肉','純鮮肉','沈大成'],bund:['16:45–17:40','17:40','18:00–18:05','17:06–17:07'],ferry:['18:15','18:30','日落長廊','正大廣場','東方明珠','東泰路×花園石橋路','19:45','20:45','20:55','3.4公里','46分鐘'],mwyafternoon:['萬榮路1056號','14:20','14:55–15:35','15:35–15:50','15:50–16:15','16:15–17:20'],qiqi:['12:10–12:55','13:25','麥當勞','北寶興路296–298號'],haijinzi:['進賢路240號','葱烤大排','13:10–13:15','陝西南路57號','14:00'],hotelreturn:['14:30–14:50','15:15–15:25','15:30'],airport:['15:15–15:25','15:30','75–100','T2','19:05','18:05','17:55']};
+const facts={arrival:['12:30','14:15–14:45','龍陽路','人民廣場'],lailai:['天津路506號','松茸鮮肉','純鮮肉','沈大成'],bund:['16:45–17:40','17:40','18:00–18:05','17:06–17:07'],ferry:['18:15','18:30','日落長廊','正大廣場','東方明珠','東泰路×花園石橋路','19:45','20:45','20:55','3.4公里','46分鐘'],mwyafternoon:['萬榮路1056號','15:00','15:25–16:05','16:05–16:20','16:20–17:02','17:02–17:45'],qiqi:['12:10–12:55','13:25','麥當勞','北寶興路296–298號'],haijinzi:['進賢路240號','葱烤大排','13:10–13:15','陝西南路57號','14:00'],hotelreturn:['14:30–14:50','15:15–15:25','15:30'],airport:['15:15–15:25','15:30','75–100','T2','19:05','18:05','17:55']};
 for(const [id,required]of Object.entries(facts))for(const fact of required)assert(api.find(id).stop.richHtml.includes(fact),id+' retains '+fact);
 const readerCopy=all.map(s=>[s.title,s.subtitle,s.why,s.desc,s.tip,...s.tips,s.richHtml.replace(/<[^>]*>/g,' ')].join(' ')).join(' ');
 assert(!/足量正餐|先保主片|慢端|補數|保正餐|保住|顧好|門到門預算|規劃預算|先完成/.test(readerCopy),'Reader-facing copy uses ordinary language');
@@ -65,7 +65,7 @@ for(const day of data.days)for(let m=0;m<1440;m++){
 }
 assert.equal(api.plan(new Date('2026-10-30T23:59:00+08:00')).state,'upcoming');
 assert.equal(api.plan(new Date('2026-11-03T00:00:00+08:00')).state,'finished');
-assert.equal(api.plan(new Date('2026-11-01T14:20:00+08:00')).compact,'EVA攝影');
+assert.equal(api.plan(new Date('2026-11-01T14:20:00+08:00')).compact,'MWY活動');
 assert.equal(api.plan(new Date('2026-11-01T13:15:00+08:00')).sub,'13:25 MWY活動');
 // Independently specified MASTER milestones, including both sides of changed boundaries.
 for(const [at,id,title]of [
@@ -74,12 +74,14 @@ for(const [at,id,title]of [
  ['2026-11-01T08:15','zhang','前往張師傅早餐'],['2026-11-01T08:35','zhang','張師傅早餐'],
  ['2026-11-01T09:35','mwy','確認入口／入場準備'],['2026-11-01T11:40','qiqi','前往琪琪麵館'],
  ['2026-11-01T12:10','qiqi','琪琪午餐／補水'],['2026-11-01T12:55','qiqi','午餐後返回MWY'],
- ['2026-11-01T13:25','mwyafternoon','MWY展示／粉絲活動'],['2026-11-01T15:34','mwyafternoon','帶相機返回酒店'],
- ['2026-11-01T15:35','mwyafternoon','酒店放相機／整理輕裝'],['2026-11-01T15:50','mwyafternoon','輕裝返回MWY會場附近'],
- ['2026-11-01T16:15','xiaoyang','晚餐／補水／休息'],['2026-11-01T17:20','mwyshow','前往VIP入場區'],
- ['2026-11-01T20:30','postshow','散場後休息'],
+ ['2026-11-01T13:25','mwyafternoon','MWY展示／粉絲活動'],['2026-11-01T14:40','mwyafternoon','前往EVA'],
+ ['2026-11-01T15:00','mwyafternoon','EVA攝影'],['2026-11-01T15:25','mwyafternoon','帶相機返回酒店'],
+ ['2026-11-01T16:05','mwyafternoon','酒店放相機／整理輕裝'],['2026-11-01T16:20','xiaoyang','前往協信小楊生煎'],
+ ['2026-11-01T17:02','xiaoyang','小楊生煎／補水'],['2026-11-01T17:45','xiaoyang','步行返回VIP會場'],
+ ['2026-11-01T18:02','mwyshow','VIP核驗／候場'],['2026-11-01T19:00','mwyshow','VIP演出'],
+ ['2026-11-01T20:40','postshow','散場→燒烤慶功→酒店'],
 ]){const state=api.plan(new Date(at+':00+08:00'));assert.equal(state.current.id,id,at);assert.equal(state.phase.title,title,at);assert(!/有相機先去|如有相機/.test(state.compact+state.sub),at+' uses one camera route')}
-assert.equal(data.source.master,'v2026-10-20.6');
+assert.equal(data.source.master,'v2026-10-21.1');
 for(const [at,id,title]of [
  ['07:45','wangji','退房／寄存行李'],['08:00','wangji','前往卞姐蛋餅'],
  ['08:29','wangji','前往卞姐蛋餅'],['08:30','wangji','卞姐蛋餅早餐'],
@@ -109,7 +111,7 @@ assert.equal(hash(JSON.stringify({stops:data.days[2].stops.slice(1),mapPlaces:da
 function richGeometry(text){return[...text.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*?)>/gi)].map(([,close,tag,attrs])=>[close,tag,[...attrs.matchAll(/\b(class|style|id|width|height)="([^"]*)"/g)].map(([,k,v])=>[k,v])])}
 for(const stop of all)assert.equal(hash(JSON.stringify(richGeometry(stop.richHtml))),ui.detailGeometry[stop.id],stop.id+' preserves detail component structure and geometry');
 assert(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(JSON.stringify(data)),'Private MASTER fields remain excluded');
-assert.equal(api.actionAddress(api.find('arrival').stop),data.hotel);assert.equal(api.actionAddress(api.find('postshow').stop),data.hotel);
+assert.equal(api.actionAddress(api.find('arrival').stop),data.hotel);assert.equal(api.actionAddress(api.find('postshow').stop),'恒通路與長安路交叉口北約40米');
 assert.equal(api.actionAddress(api.find('zx').stop),api.find('zx').stop.addr);
 
 // Render the shipped component into an element tree, using a minimal hook runtime.
