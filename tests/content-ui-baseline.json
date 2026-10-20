@@ -1,0 +1,174 @@
+{
+  "sourceCommit": "a4917f0c5fa7667248a1cf281b183f7c82def82a",
+  "renderer": "29f48f2a2e013788fff8c211fa4fdaf42d132673ce649e8c1a53141f07595918",
+  "integrationCss": "ec89f38b639a0f676f8d98010f72014794cbbe10b134aaf9869b9bb3490dd23c",
+  "ids": [
+    [
+      "arrival",
+      "lailai",
+      "taikang",
+      "bund",
+      "ferry",
+      "gundam",
+      "gundambase",
+      "dongtaixiang"
+    ],
+    [
+      "zhang",
+      "mwy",
+      "qiqi",
+      "mwyafternoon",
+      "xiaoyang",
+      "mwyshow",
+      "postshow"
+    ],
+    [
+      "wangji",
+      "wukang",
+      "zx",
+      "newworld",
+      "haijinzi",
+      "hotelreturn",
+      "airport"
+    ]
+  ],
+  "images": [
+    {
+      "id": "arrival",
+      "img": "./assets/pvg-t2.webp",
+      "hasPhoto": true
+    },
+    {
+      "id": "lailai",
+      "img": "./assets/lailai.webp",
+      "hasPhoto": true
+    },
+    {
+      "id": "taikang",
+      "img": "./assets/taikang.webp",
+      "hasPhoto": true
+    },
+    {
+      "id": "bund",
+      "img": "./assets/shanghai-bund-cover.jpg",
+      "hasPhoto": true
+    },
+    {
+      "id": "ferry",
+      "img": "https://images.pexels.com/photos/30685872/pexels-photo-30685872/free-photo-of-shanghai-bund-night-skyline-illuminated.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "hasPhoto": true
+    },
+    {
+      "id": "gundam",
+      "img": "",
+      "hasPhoto": true
+    },
+    {
+      "id": "gundambase",
+      "img": "https://staticcdn.bandaihobbysite.cn/www/assets/wandai/img/gbase/20231227/OfflineImg5_big.jpg",
+      "hasPhoto": true
+    },
+    {
+      "id": "dongtaixiang",
+      "img": "https://n.sinaimg.cn/sinakd20240423s/290/w1080h810/20240423/7419-bc70bfd19f645e1eed7c94be2da7b64d.jpg",
+      "hasPhoto": false
+    },
+    {
+      "id": "zhang",
+      "img": "https://www.lemon8-app.com/seo/image?index=2&item_id=7413743356045459969&sign=5d985b79c9546cbeb8d05215512115d2",
+      "hasPhoto": false
+    },
+    {
+      "id": "mwy",
+      "img": "https://ak-d.tripcdn.com/images/1mh2112000bnerdgzF4CB.jpg",
+      "hasPhoto": true
+    },
+    {
+      "id": "qiqi",
+      "img": "https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
+      "hasPhoto": false
+    },
+    {
+      "id": "mwyafternoon",
+      "img": "",
+      "hasPhoto": true
+    },
+    {
+      "id": "xiaoyang",
+      "img": "https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
+      "hasPhoto": false
+    },
+    {
+      "id": "mwyshow",
+      "img": "",
+      "hasPhoto": true
+    },
+    {
+      "id": "postshow",
+      "img": "",
+      "hasPhoto": false
+    },
+    {
+      "id": "wangji",
+      "img": "https://ak-d.tripcdn.com/images/0100u120009sq3xx01086_D_300_200_R5.png",
+      "hasPhoto": false
+    },
+    {
+      "id": "wukang",
+      "img": "https://youimg1.c-ctrip.com/target/100b1900000169ysl903E.jpg",
+      "hasPhoto": true
+    },
+    {
+      "id": "zx",
+      "img": "",
+      "hasPhoto": true
+    },
+    {
+      "id": "newworld",
+      "img": "",
+      "hasPhoto": true
+    },
+    {
+      "id": "haijinzi",
+      "img": "https://ak-d.tripcdn.com/images/1mi3i2234b8t2q7k0130F_R_600_400_R5_Q90.jpg?proc=source%2Ftrip",
+      "hasPhoto": false
+    },
+    {
+      "id": "hotelreturn",
+      "img": "",
+      "hasPhoto": false
+    },
+    {
+      "id": "airport",
+      "img": "",
+      "hasPhoto": false
+    }
+  ],
+  "day3": "0c59df78b5f56e6f5f605d000d247bc731c0d3e500542eeaaf257d8882431d7b",
+  "detailGeometry": {
+    "arrival": "a478f08053e80f93b4bd0c6ae03be566c09478907ea194e3ac8e8a38f9c2a9de",
+    "lailai": "1f1d2451c9a031428325e6472718b061833aeb99dedbc78eea39a340f9c69630",
+    "taikang": "a14181522cece56cab4c6a36f7c1eaa26b4f3be76ef744f75a899b4e0ea9335b",
+    "bund": "412b03b569ff0da3f8106b94d6ee53eadf7b5bcd18655c49a9f63fd21a719e6e",
+    "ferry": "8f96bcbe2f7d38e1c4fd4e92523551b15e1af3c8fa064e18da17e39110e06f41",
+    "gundam": "4416502c8dac6fc66c394dd0f334ce32757fb009550e7b52368f4d1e898d1c84",
+    "gundambase": "bc86a47d902121f2c443c3c881e2ed0e761a53b5cbcc5b3b3d21e50ba1b3c6d8",
+    "dongtaixiang": "054f6bc931d87ace15e268a20136eac9b73527e70880a10316c79b61b187f2a3",
+    "zhang": "095b8c398a49ed8b0b329fb664344709fe4a081ba10bfbaaffb2f66a8639a941",
+    "mwy": "233e97d183141329aa2e26087e6134cafe0eb19e2f5187373d138e7287024776",
+    "qiqi": "904b388ca6903895270b215c43d7108e9a772a1143f703dad706c361d7dcdf08",
+    "mwyafternoon": "557e194936d407dbce7dacecbe8309d3441517af7cabff92c664f62445a44e4a",
+    "xiaoyang": "0c3f2d2c643722c4e23a19d10d68ef7f4ccccee54bd8e6e625cac06cea46b062",
+    "mwyshow": "71e348496a44cae2254c1adf51445ecebd0fa37693b3ae9b800aa3a95363233b",
+    "postshow": "d726fdc1ed04ae5f9d2775bcaba9c822e77b333213f58a84b32ab98b72ccad10",
+    "wangji": "daa78df22a158280e56809c63da5778213147d171ab0ebb0c5766a12e97c6689",
+    "wukang": "5e2281a5765ac8b7fe569c94114f7b8c79a499fa9bb03f377aae21a965b95b86",
+    "zx": "2f147c2db1dfa4c64b235ee7b02718b13038df3e18a83e085a6afc971f1725c7",
+    "newworld": "1a7bc52c8063a78d4238e127e5d3fd31ce1e77534652490fb47d6a0964258b63",
+    "haijinzi": "086a4fa0b72d82ac44e6ab37fc8d37afc34c074dcb6aa7e766836cebb906fa6b",
+    "hotelreturn": "38410daeadedd88bde9fff73dfc15c58365fd852d76bf162b99bd9350acff70c",
+    "airport": "05e16e8965b62f072230762083e5f6740c91ec8ecf0752db03e5a0a99ad65986",
+    "tower": "c4f67d2e3e22688e85d0f64e3f67267c60e9df7d47b183abca4a6ab51562590f",
+    "guide": "e9543205177809f3ec65487439fe87ce43c730f114dd3e2ab61ea6b0b6467e74"
+  }
+}

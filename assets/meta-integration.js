@@ -4,7 +4,7 @@
 const DATA=window.MWY_DATA,TRIP_START='2026-10-31',TRIP_END='2026-11-02';
 const aliases={xjh:'zx',zhangyuan:'hotelreturn'};
 const labels={
- '出發前準備':'出發準備','啟程前往上海':'前往上海','入境、取行李／前往酒店':'入境與行李','下午正餐':'下午正餐','餐後前往外灘':'前往外灘','往外灘／外白渡橋短拍':'外白渡橋','外灘日落／藍調攝影':'外灘攝影','沿外灘往金陵東路渡口':'前往渡口','輪渡候船／過江':'輪渡過江','浦東濱江反拍外灘':'浦東夜攝','叫車／前往LaLaport':'前往金橋','Freedom Gundam夜攝':'高達夜攝','Gundam Base重點逛店':'高達基地','離LaLaport／9號線返市中心':'返回市中心','東泰祥宵夜／返酒店':'東泰祥宵夜','回酒店／休息':'回酒店休息','休息／早餐前準備':'早餐前準備','張師傅早餐':'張師傅早餐','前往MWY會場':'前往會場','確認入口／入場準備':'入場準備','MWY場販／展示':'MWY場販','會場附近午餐／補水':'午餐補水','MWY展示／粉絲活動':'MWY活動','步行前往EVA':'前往EVA','EVA攝影':'EVA攝影','帶相機返回酒店':'返酒店放機','酒店放相機／整理輕裝':'放好相機','輕裝返回MWY會場附近':'輕裝回場','晚餐／補水／休息':'晚餐休息','前往VIP入場區':'前往VIP入口','VIP核驗／候場':'VIP入場','VIP演出／散場後休息':'VIP演唱會','休息／退房前準備':'退房前準備','退房／寄存行李':'退房寄存','前往王記早餐':'前往王記','王記葱油餅早餐':'王記早餐','前往武康大樓':'前往武康路','武康大樓／武康路街拍':'武康路街拍','10號線前往百聯ZX':'前往百聯ZX','百聯ZX模型／遊戲IP':'百聯ZX','沿南京路向西往新世界城':'前往新世界城','新世界城／CAPCOM':'新世界城','前往海金滋午餐':'去吃午飯','本幫菜午餐':'本幫菜午餐','1號線返回酒店':'返回酒店','回酒店取行李／整理離店':'取行李','地鐵／磁浮前往PVG T2':'前往機場','抵達T2／登機手續／候機':'T2登機手續','返程航班階段':'返程航班'
+ '出發前準備':'出發準備','啟程前往上海':'前往上海','入境、取行李／前往酒店':'入境與行李','下午正餐':'下午正餐','餐後前往外灘':'前往外灘','往外灘／外白渡橋短拍':'外白渡橋','外灘日落／藍調攝影':'外灘攝影','沿外灘往金陵東路渡口':'前往渡口','輪渡候船／過江':'輪渡過江','浦東濱江反拍外灘':'浦東夜攝','陸家嘴區內夜攝':'陸家嘴夜攝','Freedom戶外廣場找位':'高達廣場找位','Freedom夜間SHOW目標':'高達SHOW目標','SHOW後／可選逛店':'SHOW後可選逛店','前往張師傅早餐':'前往早餐店','前往琪琪麵館':'前往琪琪','琪琪午餐／補水':'琪琪午餐','午餐後返回MWY':'返回MWY','前往EVA':'前往EVA','VIP演出':'VIP演唱會','散場後休息':'散場後休息','叫車／前往LaLaport':'前往金橋','Freedom Gundam夜攝':'高達夜攝','Gundam Base重點逛店':'高達基地','離LaLaport／9號線返市中心':'返回市中心','東泰祥宵夜／返酒店':'東泰祥宵夜','回酒店／休息':'回酒店休息','休息／早餐前準備':'早餐前準備','張師傅早餐':'張師傅早餐','前往MWY會場':'前往會場','確認入口／入場準備':'入場準備','MWY場販／展示':'MWY場販','會場附近午餐／補水':'午餐補水','MWY展示／粉絲活動':'MWY活動','步行前往EVA':'前往EVA','EVA攝影':'EVA攝影','帶相機返回酒店':'返酒店放機','酒店放相機／整理輕裝':'放好相機','輕裝返回MWY會場附近':'輕裝回場','晚餐／補水／休息':'晚餐休息','前往VIP入場區':'前往VIP入口','VIP核驗／候場':'VIP入場','VIP演出／散場後休息':'VIP演唱會','休息／退房前準備':'退房前準備','退房／寄存行李':'退房寄存','前往王記早餐':'前往王記','王記葱油餅早餐':'王記早餐','前往武康大樓':'前往武康路','武康大樓／武康路街拍':'武康路街拍','10號線前往百聯ZX':'前往百聯ZX','百聯ZX模型／遊戲IP':'百聯ZX','沿南京路向西往新世界城':'前往新世界城','新世界城／CAPCOM':'新世界城','前往海金滋午餐':'去吃午飯','本幫菜午餐':'本幫菜午餐','1號線返回酒店':'返回酒店','回酒店取行李／整理離店':'取行李','地鐵／磁浮前往PVG T2':'前往機場','抵達T2／登機手續／候機':'T2登機手續','返程航班階段':'返程航班'
 };
 function minutes(value){const m=String(value).match(/(\d{1,2}):(\d{2})/);return m?+m[1]*60+(+m[2]):0}
 function preview(){const p=new URLSearchParams(location.search).get('planPreview')||'';const m=p.match(/^(2026-\d{2}-\d{2})T(\d{2}):(\d{2})$/);return m&&DATA.tripDates[m[1]]&&+m[2]<24&&+m[3]<60?p:null}
@@ -17,10 +17,8 @@ function find(id){id=aliases[id]||id;for(let dayIdx=0;dayIdx<DATA.days.length;da
 function phase(day,index){const rows=DATA.phases[day],row=rows[index];return{day,start:row[0],end:rows[index+1]?.[0]||'24:00',title:row[1],id:row[2],note:row[3]||''}}
 function short(title){return labels[title]||title}
 function caption(phase){
- const t=minutes(phase.start),title=short(phase.title);
- if(phase.day===2&&t>=840&&t<895)return '有相機先去・'+title;
- if(phase.day===2&&t>=895&&t<1000)return '如有相機・'+title;
- if(phase.day===1&&phase.id==='ferry')return '船班未確認・'+title;
+ const title=short(phase.title);
+ if(phase.day===1&&phase.id==='ferry'&&minutes(phase.start)<1110)return '船班未確認・'+title;
  return title;
 }
 function mappedPlaces(places){return places.filter(p=>Number.isFinite(p.longitude)&&Number.isFinite(p.latitude))}
