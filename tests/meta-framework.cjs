@@ -236,7 +236,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta11-master-20261020.6'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
+ assert(sw.includes('mwy2026-meta13-master-20261021.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);
@@ -244,5 +244,5 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  await workerPending;
  const workerResult=workerMessages.at(-1);assert.equal(workerResult.failed,0);assert.equal(workerResult.cached,workerResult.total);
  assert.equal(workerMessages.filter(m=>m.type==='progress').length,workerResult.total);assert(workerMessages.some(m=>m.type==='progress'&&m.cached<workerResult.total));
- console.log('PASS: MASTER v2026-10-20.6 breakfast/transport milestones, unchanged renderer/CSS/detail geometry/Day1/Day2/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
+ console.log('PASS: MASTER v2026-10-21.1 route milestones, unchanged renderer/CSS/detail geometry/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
 })().catch(error=>{console.error(error);process.exitCode=1});
