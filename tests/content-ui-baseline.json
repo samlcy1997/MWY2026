@@ -144,7 +144,7 @@
       "hasPhoto": false
     }
   ],
-  "day3": "6c9a25f7e926e3f6ab0cc3d069bbe8b17d488a93c47cc3c94a0ffdda556621e1",
+  "day3": "9afe0671eb077ed56ebd1b09d838a3df0335b028f7380f960cb25a08d1f1d73e",
   "detailGeometry": {
     "arrival": "a478f08053e80f93b4bd0c6ae03be566c09478907ea194e3ac8e8a38f9c2a9de",
     "lailai": "1f1d2451c9a031428325e6472718b061833aeb99dedbc78eea39a340f9c69630",
@@ -172,7 +172,7 @@
     "guide": "e9543205177809f3ec65487439fe87ce43c730f114dd3e2ab61ea6b0b6467e74"
   },
   "photoSourceCommit": "8198319a2b7845e0b7f38613b14a76cac74c17da",
-  "imageOnlyContent": "ca7fa99aa1afb36a9546635082523fa0832a5899f1381854908f7f7d936158e3",
-  "day12": "c79e52a4ff52c9709aa0a86a673fdfd50a4650ca951a7bd592c479e8532bb094",
-  "day3Continuation": "bd941210e76cdf0f260f821a65089b5624cc61e049fc51ce7ffb4c41cb0ea7bd"
+  "imageOnlyContent": "df42cfc2f5c6bef947b24001931b89004ca7de9958c869b595f8806ca5f88ed1",
+  "day12": "7338305e4fe9dce545d11dfaec0fa9c033c7e6c4ca714be4e5ce0a001bd98909",
+  "day3Continuation": "8b59c2684d92ea5255e144e0f9fafd5aa5ff2b8a154e8a2a4ac3011ae3cc43f9"
 }
