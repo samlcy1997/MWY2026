@@ -38,6 +38,10 @@ for(const [id,image] of [['arrival','pvg-t2.webp'],['lailai','lailai.webp'],['ta
  assert.equal(stop.hasPhoto,true,id+' displays image card');
  assert(fs.statSync(path.join(dist,'assets',image)).size>10000,id+' locally bundled photo');
 }
+for(const day of data.days.slice(0,2))for(const stop of day.stops){
+ assert(stop.hasPhoto&&stop.img,stop.id+' has a homepage timeline picture');
+ if(stop.img.startsWith('./assets/'))assert(fs.statSync(path.join(dist,stop.img)).size>10000,stop.id+' bundled picture is present');
+}
 const references=JSON.parse(fs.readFileSync(path.join(__dirname,'content-references.json'),'utf8'));
 const unescape=s=>s.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'");
 function contentReferences(html){const refs=[];for(const [,tag,attributes]of html.matchAll(/<([a-z][\w-]*)\b([^>]*?)>/gi)){for(const field of ['src','href','onclick']){const match=attributes.match(new RegExp('\\b'+field+'=(?:"([^"]*)"|\'([^\']*)\')'));if(match)refs.push([tag,field,unescape(match[1]??match[2])])}}return refs}
@@ -82,7 +86,10 @@ const ui=JSON.parse(fs.readFileSync(path.join(__dirname,'content-ui-baseline.jso
 assert.equal(hash(moduleCode),ui.renderer,'React components and their class/style props remain unchanged');
 assert.equal(hash(fs.readFileSync(path.join(dist,'assets/meta-integration.css'),'utf8')),ui.integrationCss,'all sizes/positions/sticky layers remain unchanged');
 assert.deepEqual(plain(data.days.map(d=>d.stops.map(s=>s.id))),ui.ids,'notes and completion IDs remain stable');
-assert.deepEqual(plain(stops.map(({id,img,hasPhoto})=>({id,img,hasPhoto}))),ui.images,'existing image-card proportions stay on the same cards');
+assert.deepEqual(plain(stops.map(({id,img,hasPhoto})=>({id,img,hasPhoto}))),ui.images,'timeline photos match the approved image-only revision');
+const imageOnlyContent=plain(data);
+for(const day of imageOnlyContent.days.slice(0,2))for(const stop of day.stops){delete stop.img;delete stop.hasPhoto}
+assert.equal(hash(JSON.stringify(imageOnlyContent)),ui.imageOnlyContent,'photo maintenance preserves all itinerary text/times/places/details and Day3');
 assert.equal(hash(JSON.stringify(data.days[2])),ui.day3,'Day 3 is unchanged');
 function richGeometry(text){return[...text.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*?)>/gi)].map(([,close,tag,attrs])=>[close,tag,[...attrs.matchAll(/\b(class|style|id|width|height)="([^"]*)"/g)].map(([,k,v])=>[k,v])])}
 for(const stop of all)assert.equal(hash(JSON.stringify(richGeometry(stop.richHtml))),ui.detailGeometry[stop.id],stop.id+' preserves detail component structure and geometry');
@@ -188,7 +195,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta9-master-20261020.5'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta9'));assert(html.includes('./assets/meta-integration.js?v=meta5'));assert(!/\?v=meta[123]/.test(html));
+ assert(sw.includes('mwy2026-meta10-master-20261020.5'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta10'));assert(html.includes('./assets/meta-integration.js?v=meta5'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);

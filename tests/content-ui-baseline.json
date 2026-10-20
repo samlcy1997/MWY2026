@@ -60,7 +60,7 @@
     },
     {
       "id": "gundam",
-      "img": "",
+      "img": "./assets/freedom-gundam.webp",
       "hasPhoto": true
     },
     {
@@ -70,13 +70,13 @@
     },
     {
       "id": "dongtaixiang",
-      "img": "https://n.sinaimg.cn/sinakd20240423s/290/w1080h810/20240423/7419-bc70bfd19f645e1eed7c94be2da7b64d.jpg",
-      "hasPhoto": false
+      "img": "./assets/dongtaixiang.webp",
+      "hasPhoto": true
     },
     {
       "id": "zhang",
-      "img": "https://www.lemon8-app.com/seo/image?index=2&item_id=7413743356045459969&sign=5d985b79c9546cbeb8d05215512115d2",
-      "hasPhoto": false
+      "img": "./assets/zhang-breakfast.webp",
+      "hasPhoto": true
     },
     {
       "id": "mwy",
@@ -85,28 +85,28 @@
     },
     {
       "id": "qiqi",
-      "img": "https://k.sinaimg.cn/n/sinakd20210308ac/646/w871h575/20210308/02fb-kkxpcze7863750.png/w700d1q75cms.jpg",
-      "hasPhoto": false
+      "img": "./assets/qiqi-noodles.webp",
+      "hasPhoto": true
     },
     {
       "id": "mwyafternoon",
-      "img": "",
+      "img": "./assets/eva-unit01.webp",
       "hasPhoto": true
     },
     {
       "id": "xiaoyang",
-      "img": "https://pimg.1px.tw/julialkpkpk/1732950853-1027769976-g.jpg",
-      "hasPhoto": false
+      "img": "./assets/xiaoyang-shengjian.webp",
+      "hasPhoto": true
     },
     {
       "id": "mwyshow",
-      "img": "",
+      "img": "./assets/mwy2026.webp",
       "hasPhoto": true
     },
     {
       "id": "postshow",
-      "img": "",
-      "hasPhoto": false
+      "img": "./assets/jing-an-exterior.webp",
+      "hasPhoto": true
     },
     {
       "id": "wangji",
@@ -170,5 +170,7 @@
     "airport": "05e16e8965b62f072230762083e5f6740c91ec8ecf0752db03e5a0a99ad65986",
     "tower": "c4f67d2e3e22688e85d0f64e3f67267c60e9df7d47b183abca4a6ab51562590f",
     "guide": "e9543205177809f3ec65487439fe87ce43c730f114dd3e2ab61ea6b0b6467e74"
-  }
+  },
+  "photoSourceCommit": "8198319a2b7845e0b7f38613b14a76cac74c17da",
+  "imageOnlyContent": "97d777bad337482e829518bfca9207a068b1d97c60b985e170487bb754fbe6dd"
 }
