@@ -1,4 +1,4 @@
-const VERSION="mwy2026-meta11-master-20261020.6";
+const VERSION="mwy2026-meta12-master-20261021.1";
 const CORE_CACHE=VERSION+"-core";
 const MEDIA_CACHE=VERSION+"-media";
 const RUNTIME_CACHE=VERSION+"-runtime";
@@ -35,7 +35,7 @@ async function warmCriticalMedia(onProgress){
   return {cached,failed,total:CRITICAL_MEDIA.length};
 }
 self.addEventListener("install",event=>{
-  event.waitUntil((async()=>{const cache=await caches.open(CORE_CACHE);await cache.addAll(CORE);await self.skipWaiting()})());
+  event.waitUntil((async()=>{const cache=await caches.open(CORE_CACHE);await cache.addAll(CORE.filter(x=>!x.includes('meta-data.js?v=')));await cache.add(new Request('./assets/meta-data.js?v=meta11',{cache:'reload'}));await self.skipWaiting()})());
 });
 self.addEventListener("activate",event=>{
   event.waitUntil((async()=>{
