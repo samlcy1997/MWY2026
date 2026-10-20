@@ -166,7 +166,7 @@ const sheet=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];assert.equal(typeof
 const before=history.calls.length;nodes(tree,n=>n.type==='button'&&n.props.className==='mwy-now-jump')[0].props.onClick();assert.equal(history.calls.length,before,'Opening the current detail again does not navigate');
 window.openDetail('arrival');tree=render();
 const arrivalCopy=nodes(tree,n=>n.type==='button'&&text(n).trim()==='複製住宿地址')[0];assert(arrivalCopy);
-const arrivalNav=nodes(tree,n=>n.type==='button'&&text(n).trim()==='前往酒店')[0];assert(arrivalNav);arrivalNav.props.onClick();assert(opened.at(-1).includes(encodeURIComponent(data.hotel)));
+const arrivalNav=nodes(tree,n=>n.type==='button'&&text(n).trim()==='前往酒店')[0];assert(arrivalNav);arrivalNav.props.onClick();assert(opened.at(-1).includes(encodeURIComponent(api.find('hotelreturn').stop.navQuery)));
 let scroller=nodes(tree,n=>n.props.id==='metaSheetScroll')[0];
 scroller.props.onTouchStart({touches:[{clientX:200,clientY:100}],target:{closest:()=>null}});scroller.props.onTouchEnd({changedTouches:[{clientX:90,clientY:105}]});tree=render();
 assert.equal(nodes(tree,n=>n.props.id==='metaSheetTitle')[0].props.children,'萊萊小籠');
