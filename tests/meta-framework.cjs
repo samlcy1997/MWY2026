@@ -82,6 +82,30 @@ for(const [at,id,title]of [
  ['2026-11-01T20:40','postshow','散場→燒烤慶功→酒店'],
 ]){const state=api.plan(new Date(at+':00+08:00'));assert.equal(state.current.id,id,at);assert.equal(state.phase.title,title,at);assert(!/有相機先去|如有相機/.test(state.compact+state.sub),at+' uses one camera route')}
 assert.equal(data.source.master,'v2026-10-21.1');
+
+// Independent acceptance milestones for the finalized October 21 itinerary.
+assert.equal(api.find('taikang').stop.title,'泰康食品／沈大成');
+assert.equal(api.find('taikang').stop.endTime,'16:25');
+assert.equal(api.find('bund').stop.time,'16:25');
+assert(api.find('taikang').stop.richHtml.includes('桂花條頭糕／雙釀團'));
+assert.equal(api.find('mwyafternoon').stop.endTime,'16:20');
+assert.equal(api.find('xiaoyang').stop.addr,'江場路1212號協信星光廣場北區B1');
+assert.equal(api.find('xiaoyang').stop.endTime,'18:02');
+assert.equal(api.find('mwyshow').stop.endTime,'20:40');
+assert.equal(api.find('postshow').stop.time,'21:35');
+assert.equal(api.find('postshow').stop.title,'散場後 · 淄博燒烤');
+assert.equal(api.find('postshow').stop.addr,'恒通路與長安路交叉口北約40米');
+assert.deepEqual(plain(data.phases[2].map(r=>r[0])),[
+ '00:00','08:15','08:35','09:00','09:35','10:00','11:40','12:10','12:55','13:25',
+ '14:40','15:00','15:25','16:05','16:20','17:02','17:45','18:02','19:00','20:40'
+]);
+for(const day2stop of data.days[1].stops)assert(!/14:20–14:55|15:35–15:50|16:15–17:20|17:45–18:00/.test(JSON.stringify(day2stop)),'old Day2 times removed from '+day2stop.id);
+// Old script query versions are deliberate; the worker must bypass HTTP cache for both files.
+const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');
+assert(sw.includes('mwy2026-meta13-master-20261021.1'));
+assert(sw.includes("cache.add(new Request('./assets/meta-data.js?v=meta11',{cache:'reload'}))"));
+assert(sw.includes("cache.add(new Request('./assets/meta-integration.js?v=meta6',{cache:'reload'}))"));
+
 for(const [at,id,title]of [
  ['07:45','wangji','退房／寄存行李'],['08:00','wangji','前往卞姐蛋餅'],
  ['08:29','wangji','前往卞姐蛋餅'],['08:30','wangji','卞姐蛋餅早餐'],
@@ -212,7 +236,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta11-master-20261020.6'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
+ assert(sw.includes('mwy2026-meta13-master-20261021.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);
@@ -220,5 +244,5 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  await workerPending;
  const workerResult=workerMessages.at(-1);assert.equal(workerResult.failed,0);assert.equal(workerResult.cached,workerResult.total);
  assert.equal(workerMessages.filter(m=>m.type==='progress').length,workerResult.total);assert(workerMessages.some(m=>m.type==='progress'&&m.cached<workerResult.total));
- console.log('PASS: MASTER v2026-10-20.6 breakfast/transport milestones, unchanged renderer/CSS/detail geometry/Day1/Day2/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
+ console.log('PASS: MASTER v2026-10-21.1 route milestones, unchanged renderer/CSS/detail geometry/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
 })().catch(error=>{console.error(error);process.exitCode=1});
