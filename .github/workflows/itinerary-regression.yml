@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [fix/20261021-itinerary-verification]
+    branches: ['fix/**']
 
 permissions:
   contents: read
@@ -21,5 +21,8 @@ jobs:
           node --check assets/meta-integration.js
           node --check sw.js
           node --check tests/meta-framework.cjs
+          node --check tests/address-contracts.cjs
       - name: Run UI and itinerary regression suite
-        run: node tests/meta-framework.cjs
+        run: |
+          node tests/meta-framework.cjs
+          node tests/address-contracts.cjs

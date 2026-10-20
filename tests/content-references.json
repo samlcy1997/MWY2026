@@ -82,7 +82,7 @@
     [
       "button",
       "onclick",
-      "copyText('外灘陳毅廣場 上海')"
+      "copyText('沈大成 南京東路636號')"
     ]
   ],
   "bund": [
@@ -134,14 +134,14 @@
     [
       "button",
       "onclick",
-      "copyText('金陵東路渡口 上海')"
+      "copyText('金陵東路渡口（輪渡站）')"
     ]
   ],
   "ferry": [
     [
       "button",
       "onclick",
-      "copyText('金陵東路渡口 上海')"
+      "copyText('金陵東路渡口（輪渡站）')"
     ],
     [
       "button",
@@ -355,7 +355,7 @@
     [
       "button",
       "onclick",
-      "copyText('上海靜安體育中心 汶水路116號')"
+      "copyText('小楊生煎 江場路1212號協信星光廣場北區B1')"
     ]
   ],
   "qiqi": [
@@ -416,7 +416,7 @@
     [
       "button",
       "onclick",
-      "copyText('如家商旅酒店（上海火車站南廣場店）')"
+      "copyText('淄個爐子·淄博燒烤 恒通路357號現代交通商務大廈1樓')"
     ]
   ],
   "wangji": [
