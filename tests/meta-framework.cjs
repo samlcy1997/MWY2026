@@ -81,7 +81,7 @@ for(const [at,id,title]of [
  ['2026-11-01T18:02','mwyshow','VIP核驗／候場'],['2026-11-01T19:00','mwyshow','VIP演出'],
  ['2026-11-01T20:40','postshow','散場→燒烤慶功→酒店'],
 ]){const state=api.plan(new Date(at+':00+08:00'));assert.equal(state.current.id,id,at);assert.equal(state.phase.title,title,at);assert(!/有相機先去|如有相機/.test(state.compact+state.sub),at+' uses one camera route')}
-assert.equal(data.source.master,'v2026-10-21.1');
+assert.equal(data.source.master,'v2026-10-21.2');
 
 // Independent acceptance milestones for the finalized October 21 itinerary.
 assert.equal(api.find('taikang').stop.title,'泰康食品／沈大成');
@@ -94,7 +94,7 @@ assert.equal(api.find('xiaoyang').stop.endTime,'18:02');
 assert.equal(api.find('mwyshow').stop.endTime,'20:40');
 assert.equal(api.find('postshow').stop.time,'21:35');
 assert.equal(api.find('postshow').stop.title,'散場後 · 淄博燒烤');
-assert.equal(api.find('postshow').stop.addr,'恒通路與長安路交叉口北約40米');
+assert.equal(api.find('postshow').stop.addr,'恒通路357號現代交通商務大廈1樓');
 assert.deepEqual(plain(data.phases[2].map(r=>r[0])),[
  '00:00','08:15','08:35','09:00','09:35','10:00','11:40','12:10','12:55','13:25',
  '14:40','15:00','15:25','16:05','16:20','17:02','17:45','18:02','19:00','20:40'
@@ -102,7 +102,7 @@ assert.deepEqual(plain(data.phases[2].map(r=>r[0])),[
 for(const day2stop of data.days[1].stops)assert(!/14:20–14:55|15:35–15:50|16:15–17:20|17:45–18:00/.test(JSON.stringify(day2stop)),'old Day2 times removed from '+day2stop.id);
 // Old script query versions are deliberate; the worker must bypass HTTP cache for both files.
 const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');
-assert(sw.includes('mwy2026-meta13-master-20261021.1'));
+assert(sw.includes('mwy2026-meta14-master-20261021.2'));
 assert(sw.includes("cache.add(new Request('./assets/meta-data.js?v=meta11',{cache:'reload'}))"));
 assert(sw.includes("cache.add(new Request('./assets/meta-integration.js?v=meta6',{cache:'reload'}))"));
 
@@ -129,13 +129,17 @@ assert.deepEqual(plain(stops.map(({id,img,hasPhoto})=>({id,img,hasPhoto}))),ui.i
 const imageOnlyContent=plain(data);
 for(const day of imageOnlyContent.days.slice(0,2))for(const stop of day.stops){delete stop.img;delete stop.hasPhoto}
 assert.equal(hash(JSON.stringify(imageOnlyContent)),ui.imageOnlyContent,'itinerary content matches the approved MASTER revision');
-assert.equal(hash(JSON.stringify(data.days[2])),ui.day3,'Day 3 matches MASTER v2026-10-20.6');
+assert.equal(hash(JSON.stringify(data.days[2])),ui.day3,'Day 3 schedule and destinations unchanged; only navQuery added');
 assert.equal(hash(JSON.stringify({days:data.days.slice(0,2),sourceDays:[data.sourceDays[1],data.sourceDays[2]],phases:[data.phases[1],data.phases[2]],briefs:[data.briefs[1],data.briefs[2]]})),ui.day12,'Day1/2 remain exactly unchanged');
-assert.equal(hash(JSON.stringify({stops:data.days[2].stops.slice(1),mapPlaces:data.days[2].mapPlaces.slice(1),phases:data.phases[3].slice(5),sourceItems:data.sourceDays[3].items.slice(1)})),ui.day3Continuation,'Day3 after breakfast/arrival at Wukang is unchanged');
+assert.equal(hash(JSON.stringify({stops:data.days[2].stops.slice(1),mapPlaces:data.days[2].mapPlaces.slice(1),phases:data.phases[3].slice(5),sourceItems:data.sourceDays[3].items.slice(1)})),ui.day3Continuation,'Day3 itinerary aside from navigation keywords is unchanged');
 function richGeometry(text){return[...text.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*?)>/gi)].map(([,close,tag,attrs])=>[close,tag,[...attrs.matchAll(/\b(class|style|id|width|height)="([^"]*)"/g)].map(([,k,v])=>[k,v])])}
 for(const stop of all)assert.equal(hash(JSON.stringify(richGeometry(stop.richHtml))),ui.detailGeometry[stop.id],stop.id+' preserves detail component structure and geometry');
 assert(!/Z8|Nikon|24-120|CX\d{3}|長安路1109|HK\$267/.test(JSON.stringify(data)),'Private MASTER fields remain excluded');
-assert.equal(api.actionAddress(api.find('arrival').stop),data.hotel);assert.equal(api.actionAddress(api.find('postshow').stop),'恒通路與長安路交叉口北約40米');
+assert.equal(api.actionAddress(api.find('arrival').stop),data.hotel);assert.equal(api.actionAddress(api.find('postshow').stop),'恒通路357號現代交通商務大廈1樓');
+api.navigate(api.actionAddress(api.find('postshow').stop));
+assert(opened.at(-1).includes(encodeURIComponent('淄个炉子·淄博烧烤 恒通路357号')),'barbecue navigation uses business POI instead of a vague junction');
+api.navigate(api.actionAddress(api.find('bund').stop));
+assert(opened.at(-1).includes(encodeURIComponent('外滩-陈毅广场 上海')),'Bund navigation uses exact photo POI');
 assert.equal(api.actionAddress(api.find('zx').stop),api.find('zx').stop.addr);
 
 // Render the shipped component into an element tree, using a minimal hook runtime.
@@ -236,7 +240,7 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  isOpen=true;for(const toggle of toggles)toggle();assert.equal(constructed,1);map.events.load();assert(layers.some(x=>x.id==='photo-route-line'));assert.equal(markers.length,data.photoMaps.bund.points.length);assert(markers.some(m=>m.className.includes('hot')));assert(resized>0);cleanup();assert.equal(toggles.size,0);
  cleanup=api.richMaps({id:'bund'},{Map,Marker,LngLatBounds:Bounds});map.events.error();assert(target.textContent.includes('暫時無法載入'));cleanup();assert(removed>=2);document.getElementById=previousGet;
  const sw=fs.readFileSync(path.join(dist,'sw.js'),'utf8');const core=JSON.parse(sw.match(/const CORE=(\[[^;]+\]);/)[1]);for(const resource of core){const file=resource.split('?')[0];assert(fs.existsSync(path.join(dist,file)),resource)}
- assert(sw.includes('mwy2026-meta13-master-20261021.1'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
+ assert(sw.includes('mwy2026-meta14-master-20261021.2'));assert(html.includes('./assets/meta-integration.css?v=meta6'));assert(html.includes('./assets/meta-data.js?v=meta11'));assert(html.includes('./assets/meta-integration.js?v=meta6'));assert(!/\?v=meta[123](?:["&]|$)/.test(html));
  const workerEvents={},workerMessages=[];let workerPending;
  const workerContext={self:{addEventListener(name,fn){workerEvents[name]=fn}},caches:{open:async()=>({match:async()=>null,put:async()=>{}})},Request,Response,URL,AbortController,setTimeout,clearTimeout,fetch:async()=>new Response('image')};
  vm.runInNewContext(sw,workerContext);
@@ -244,5 +248,5 @@ assert.equal(nodes(tree,n=>n.props.id==='metaSettings').length,0);assert(locatio
  await workerPending;
  const workerResult=workerMessages.at(-1);assert.equal(workerResult.failed,0);assert.equal(workerResult.cached,workerResult.total);
  assert.equal(workerMessages.filter(m=>m.type==='progress').length,workerResult.total);assert(workerMessages.some(m=>m.type==='progress'&&m.cached<workerResult.total));
- console.log('PASS: MASTER v2026-10-21.1 route milestones, unchanged renderer/CSS/detail geometry/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
+ console.log('PASS: MASTER v2026-10-21.2 route milestones, unchanged renderer/CSS/detail geometry/Day3 continuation, '+minutes+' trip minutes, storage recovery, settings, offline progress, maps and migration controls.');
 })().catch(error=>{console.error(error);process.exitCode=1});
