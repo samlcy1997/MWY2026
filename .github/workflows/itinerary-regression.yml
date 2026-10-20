@@ -1,0 +1,25 @@
+name: Itinerary regression checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [fix/20261021-itinerary-verification]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check script syntax
+        run: |
+          node --check assets/meta-data.js
+          node --check assets/meta-integration.js
+          node --check sw.js
+          node --check tests/meta-framework.cjs
+      - name: Run UI and itinerary regression suite
+        run: node tests/meta-framework.cjs
